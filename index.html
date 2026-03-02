@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0f0e0c;--surface:#1a1915;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--border:#2e2c28;--radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .hero{min-height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;background:radial-gradient(ellipse at 50% 60%, #1e1c14 0%, var(--bg) 70%);}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;letter-spacing:-2px;margin-bottom:1.2rem;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--text-muted);font-size:1.1rem;max-width:480px;margin:0 auto 1rem;font-weight:300;line-height:1.7;}
+  .level-section{width:100%;max-width:900px;margin:0 auto 2.5rem;text-align:left;}
+  .level-heading{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;}
+  .level-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .level-line{flex:1;height:1px;background:var(--border);}
+  .topic-cards{display:flex;gap:1.2rem;flex-wrap:wrap;}
+  .topic-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem 2rem;width:240px;cursor:pointer;transition:all 0.3s;text-align:left;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;}
+  .topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .topic-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+  .topic-card:hover::before{transform:scaleX(1);}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.3);color:var(--accent);border-radius:100px;padding:0.15rem 0.65rem;font-size:0.7rem;font-weight:700;letter-spacing:1px;margin-bottom:0.7rem;}
+  .topic-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:0.4rem;}
+  .topic-card p{color:var(--text-muted);font-size:0.83rem;line-height:1.55;}
+  .tc-arrow{margin-top:1.2rem;color:var(--accent);font-size:1.2rem;display:inline-block;transition:transform 0.2s;}
+  .topic-card:hover .tc-arrow{transform:translateX(4px);}
+  @media(max-width:600px){.topic-card{width:100%;max-width:340px;}}
+</style>
+</head>
+<body>
+<nav><a class="nav-logo" href="index.html">Grammar<span>Hub</span></a></nav>
+<div class="hero">
+  <h1>Master<br><span>English</span><br>Grammar.</h1>
+  <p>Choose a topic below and work through explanations, examples, and five interactive activity types.</p>
+
+  <!-- A2 -->
+  <div class="level-section">
+    <div class="level-heading"><span class="level-label">A2 — Elementary</span><div class="level-line"></div></div>
+    <div class="topic-cards">
+      <a class="topic-card" href="used-to.html">
+        <div class="cefr-badge">A2</div>
+        <h3>Used To</h3>
+        <p>Past habits and states that no longer exist.</p>
+        <div class="tc-arrow">→</div>
+      </a>
+      <a class="topic-card" href="zero-conditional.html">
+        <div class="cefr-badge">A2</div>
+        <h3>Zero Conditional</h3>
+        <p>General truths, facts and things that always happen.</p>
+        <div class="tc-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- B1 -->
+  <div class="level-section">
+    <div class="level-heading"><span class="level-label">B1 — Intermediate</span><div class="level-line"></div></div>
+    <div class="topic-cards">
+      <a class="topic-card" href="first-conditional.html">
+        <div class="cefr-badge">B1</div>
+        <h3>First Conditional</h3>
+        <p>Real possibilities and their likely results.</p>
+        <div class="tc-arrow">→</div>
+      </a>
+      <a class="topic-card" href="second-conditional.html">
+        <div class="cefr-badge">B1</div>
+        <h3>Second Conditional</h3>
+        <p>Imaginary or unlikely present and future situations.</p>
+        <div class="tc-arrow">→</div>
+      </a>
+      <a class="topic-card" href="so-such.html">
+        <div class="cefr-badge">B1</div>
+        <h3>So / Such</h3>
+        <p>Expressing degree and intensifying descriptions.</p>
+        <div class="tc-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- B2 -->
+  <div class="level-section">
+    <div class="level-heading"><span class="level-label">B2 — Upper Intermediate</span><div class="level-line"></div></div>
+    <div class="topic-cards">
+      <a class="topic-card" href="third-conditional.html">
+        <div class="cefr-badge">B2</div>
+        <h3>Third Conditional</h3>
+        <p>Hypothetical past situations and their imagined results.</p>
+        <div class="tc-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ADD NEW LEVEL SECTIONS OR CARDS BELOW THIS LINE -->
+
+</div>
+</body>
+</html>

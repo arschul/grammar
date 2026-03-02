@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Third Conditional – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:120px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B2</span>
+      <div class="topic-label">Conditionals</div>
+    </div>
+    <h1>Third Conditional</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'tc-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'tc-activities')">Activities</button>
+  </div>
+  <div id="tc-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>What is the Third Conditional?</h2>
+      <p>The third conditional refers to imaginary situations in the past. We use it to speculate about things that did not happen, and to imagine a different outcome. It often expresses regret or criticism.</p>
+      <div class="formula-box"><strong>IF clause:</strong> if + past perfect (had + past participle)<br><strong>Main clause:</strong> would have / could have / might have + past participle</div>
+    </div>
+    <div class="explanation-section">
+      <h2>Examples</h2>
+      <div class="examples-grid">
+        <div class="example-item"><em>If I had studied harder, I would have passed the exam.</em> (I didn't study, so I failed)</div>
+        <div class="example-item"><em>She would have got the job if she had arrived on time.</em> (she was late)</div>
+        <div class="example-item"><em>If he had saved more money, he could have bought a car.</em> (he didn't save)</div>
+        <div class="example-item"><em>We wouldn't have got lost if we had used the map.</em> (we didn't use it)</div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Contractions in Speech</h2>
+      <p>In spoken English, <em>had</em> and <em>would have</em> are often contracted.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>If I'd known, I would've told you.</em> (= If I had known, I would have told you.)</div>
+        <div class="example-item"><em>She'd have come if she'd been invited.</em></div>
+      </div>
+      <div class="note-box"><strong>⚠ Common mistake:</strong> Do NOT use <em>would have</em> in the if-clause.<br>✗ <em>If I would have known, I would have called.</em><br>✓ <em>If I had known, I would have called.</em></div>
+    </div>
+  </div>
+  <div id="tc-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'tc-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'tc-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'tc-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'tc-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'tc-act5')">5. Open Questions</button>
+    </div>
+    <div id="tc-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Click a sentence beginning on the left, then click its matching ending on the right.</div>
+      <div class="score-badge">Matched: <span id="tc-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="tc-left"></div><div class="match-col" id="tc-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+    <div id="tc-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each sentence with the correct form of the verb in brackets.</div>
+      <div id="tc-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('tc-fill-exercises','tc-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('tc-fill-exercises',FILL);document.getElementById('tc-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="tc-fill-feedback" class="feedback"></div>
+    </div>
+    <div id="tc-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
+      <div id="tc-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('tc-mistake-exercises','tc-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('tc-mistake-exercises',MISTAKE);document.getElementById('tc-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="tc-mistake-feedback" class="feedback"></div>
+    </div>
+    <div id="tc-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="tc-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('tc-order-exercises','tc-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('tc-order-exercises',ORDER);document.getElementById('tc-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="tc-order-feedback" class="feedback"></div>
+    </div>
+    <div id="tc-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own answers using the third conditional. Then click "Show Model Answer" to compare.</div>
+      <div id="tc-open-exercises"></div>
+    </div>
+  </div>
+</div>
+<script>
+
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  const p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld); roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score'); scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+
+const MATCH = [
+  {left:"1. If she had left earlier,", right:"a. she wouldn't have missed the train."},
+  {left:"2. If they had trained harder,", right:"b. we would have won the match."},
+  {left:"3. If I had known you were coming,", right:"c. I would have cooked dinner."},
+  {left:"4. If he had prepared better,", right:"d. he could have got the job."},
+  {left:"5. If we hadn't taken a wrong turn,", right:"e. we would have arrived on time."}
+];
+const FILL = [
+  {sentence:"If I _____ (study) harder, I would have passed the exam.", answer:"had studied"},
+  {sentence:"She would have got the job if she _____ (arrive) on time.", answer:"had arrived"},
+  {sentence:"If they _____ (not take) the wrong road, they would have arrived earlier.", answer:"hadn't taken", alt:["had not taken"]},
+  {sentence:"He _____ (not lose) his wallet if he had been more careful.", answer:"wouldn't have lost", alt:["would not have lost"]},
+  {sentence:"If we _____ (leave) at 7, we would have caught the flight.", answer:"had left"}
+];
+const MISTAKE = [
+  {sentence:"If I would have studied, I would have passed.", options:["If I would have studied,","I would have passed.",""], correct:0, explanation:"No 'would have' in the if-clause. Use past perfect: 'If I had studied'"},
+  {sentence:"She would have come if she knew about the party.", options:["She would have come","if she knew","about the party."], correct:1, explanation:"Third conditional needs past perfect in the if-clause: 'if she had known'"},
+  {sentence:"If he had worked harder, he would passed the exam.", options:["If he had worked harder,","he would passed","the exam."], correct:1, explanation:"After 'would' in third conditional: 'would have passed'"},
+  {sentence:"We wouldn't have been late if we had leaved on time.", options:["We wouldn't have been late","if we had leaved","on time."], correct:1, explanation:"'Leaved' is wrong. The past participle of 'leave' is 'left'"},
+  {sentence:"If they had listened, they would have understanded.", options:["If they had listened,","they would have understanded.",""], correct:1, explanation:"'Understanded' is not a word. The past participle is 'understood'"}
+];
+const ORDER = [
+  {words:["studied,","had","If","I","passed.","have","would","I"], answer:"If I had studied, I would have passed."},
+  {words:["had","She","have","if","earlier.","left","would","she","arrived"], answer:"She would have arrived if she had left earlier."},
+  {words:["hadn't","rained,","it","If","have","we","would","picnic.","had","a"], answer:"If it hadn't rained, we would have had a picnic."},
+  {words:["map,","got","used","If","the","we","lost.","have","wouldn't","we","had"], answer:"If we had used the map, we wouldn't have got lost."},
+  {words:["could","he","If","harder,","have","trained","won.","had","he"], answer:"If he had trained harder, he could have won."}
+];
+const OPEN = [
+  {question:"Think of an exam or test. What would have happened if you had prepared more?", model:"If I had prepared more for my last exam, I would have felt more confident and probably would have got a better grade."},
+  {question:"Think of a time you were late for something. What would have been different if you had left earlier?", model:"If I had left earlier, I wouldn't have missed the train and I would have arrived on time for the meeting."},
+  {question:"Think of a historical event. How might things have been different?", model:"If World War II hadn't happened, millions of lives would have been saved and Europe would have developed very differently."},
+  {question:"Think of a decision you made. How would your life be different if you had chosen differently?", model:"If I had chosen to study abroad, I would have learnt another language and met many more people from different cultures."},
+  {question:"Think of a time something went wrong. What could you have done to prevent it?", model:"If I had checked the weather forecast, I would have brought an umbrella and I wouldn't have got completely soaked."}
+];
+function init(){
+  initMatch('tc', MATCH);
+  buildFillHTML('tc-fill-exercises', FILL);
+  document.getElementById('tc-fill-feedback').classList.remove('show');
+  buildMistakeHTML('tc-mistake-exercises', MISTAKE);
+  document.getElementById('tc-mistake-feedback').classList.remove('show');
+  buildOrderHTML('tc-order-exercises', ORDER);
+  document.getElementById('tc-order-feedback').classList.remove('show');
+  buildOpenHTML('tc-open-exercises', OPEN);
+  
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
