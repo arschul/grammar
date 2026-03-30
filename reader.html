@@ -57,7 +57,7 @@
 
     --kw-correct:  #1e4d28;
     --kw-wrong:    #5c1a1a;
-    --kw-hint-bg:  #5a4200;
+    --kw-hint-bg:  #c2185b;
 
     --shadow: 0 2px 12px rgba(0,0,0,.4);
   }
@@ -577,6 +577,7 @@
   .activity-mode-active .kw-span { cursor: pointer; }
   .activity-mode-active .kw-span:hover { background: rgba(184,92,42,.12); }
   .kw-hints.activity-mode-active .kw-span:not(.kw-correct) { background: var(--kw-hint-bg); }
+  body.dark .kw-hints.activity-mode-active .kw-span:not(.kw-correct) { color: #fff; }
   .kw-span.kw-correct { background: var(--kw-correct) !important; cursor: default !important; }
   .kw-span.kw-wrong-flash { animation: kwWrongFlash .5s ease; }
   @keyframes kwWrongFlash {
@@ -984,9 +985,23 @@ function buildActivity(text) {
 
   const keywords = text.keywords || [];
 
-  // Build definition cards
+  // Build kwData for tokenizing
+  const kwData = keywords.map((kw, idx) => ({
+    idx,
+    words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
+  }));
+
+  // Build activity HTML first so we know which indices actually appear in the text
+  activityBody.innerHTML = buildActivityHTML(text.text, kwData);
+
+  const foundIndices = new Set(
+    [...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx))
+  );
+
+  // Build definition cards only for keywords found in the text
   defCards.innerHTML = '';
   keywords.forEach((kw, idx) => {
+    if (!foundIndices.has(idx)) return; // skip entirely — not in text
     const card = document.createElement('div');
     card.className = 'def-card';
     card.dataset.idx = idx;
@@ -996,37 +1011,6 @@ function buildActivity(text) {
     `;
     card.addEventListener('click', () => selectDefinition(idx));
     defCards.appendChild(card);
-  });
-
-  // Build activity text with keyword word spans
-  // For each keyword, normalize it to find matching tokens in the text
-  // We build a regex that matches any word belonging to any keyword phrase
-  const kwData = keywords.map((kw, idx) => ({
-    idx,
-    words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
-    solved: false,
-  }));
-
-  activityBody.innerHTML = buildActivityHTML(text.text, kwData);
-
-  // Find which keyword indices have no matching span in the text
-  // and auto-skip those definition cards (not counted against the student)
-  const foundIndices = new Set(
-    [...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx))
-  );
-  keywords.forEach((kw, idx) => {
-    if (!foundIndices.has(idx)) {
-      const card = defCards.querySelector(`.def-card[data-idx="${idx}"]`);
-      if (card) {
-        card.classList.add('done');
-        card.style.opacity = '0.32';
-        card.style.cursor = 'default';
-        card.title = 'This word does not appear in the text';
-        const kwEl = card.querySelector('.def-keyword');
-        if (kwEl) { kwEl.textContent = '—'; kwEl.classList.remove('hidden'); }
-      }
-      state.solved.add(idx); // pre-solve so progress count is correct
-    }
   });
 
   attachActivityWordListeners(kwData);
@@ -1184,7 +1168,7 @@ function selectDefinition(idx) {
 }
 
 function updateProgress() {
-  const total = (state.current?.keywords || []).length;
+  const total = defCards.querySelectorAll('.def-card').length;
   const done  = state.solved.size;
   const pct   = total ? (done / total) * 100 : 0;
   progressFill.style.width = pct + '%';
