@@ -469,7 +469,7 @@
 <script>
 // ── CONFIG: point these to your GitHub repo ─────────────────────────────
 // e.g. https://cdn.jsdelivr.net/gh/janedoe/efl-texts@main/texts-a1.js
-const BASE_URL = 'https://cdn.jsdelivr.net/gh/arschul/grammar@main/'; // change to CDN URL when hosted on GitHub
+const BASE_URL = './'; // change to CDN URL when hosted on GitHub
 
 // We'll load the scripts dynamically so we can detect load events.
 // The files expose window.A1Texts, window.A2Texts, window.B1Texts, window.B2Texts.
@@ -511,17 +511,23 @@ const randomBtn    = document.getElementById('randomBtn');
 const clearHlBtn   = document.getElementById('clearHlBtn');
 const footerInfo   = document.getElementById('footerInfo');
 
-/* ── LOAD SCRIPT ── */
-function loadScript(url) {
-  return new Promise((resolve, reject) => {
-    // If already in page, resolve immediately
-    if (document.querySelector(`script[src="${url}"]`)) { resolve(); return; }
-    const s = document.createElement('script');
-    s.src = url;
-    s.onload = resolve;
-    s.onerror = () => reject(new Error(`Failed to load ${url}`));
-    document.head.appendChild(s);
-  });
+/* ── LOAD SCRIPT ──
+   The text files use ES module `export` syntax which breaks classic <script> tags.
+   We fetch them as text, strip the export lines, then evaluate the cleaned code.
+   The files also set window.A1Texts etc. via the browser-global block, so after
+   eval() those globals are available immediately.
+── */
+async function loadScript(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+  let code = await res.text();
+  // Remove ES module export lines (export { ... }; / export default ...; / export const ...)
+  code = code
+    .replace(/^export\s+\{[^}]*\};?\s*$/gm, '')
+    .replace(/^export\s+default\s+\w+;?\s*$/gm, '')
+    .replace(/^export\s+(const|let|var|function|class)\s+/gm, '$1 ');
+  // eslint-disable-next-line no-new-func
+  new Function(code)();
 }
 
 async function ensureLevel(level) {
@@ -530,8 +536,7 @@ async function ensureLevel(level) {
     await loadScript(FILE_MAP[level]);
     state.loaded[level] = true;
   } catch (e) {
-    console.warn(e);
-    // If local load fails (e.g. opened as file://), try to keep going gracefully
+    console.warn('Could not load texts for', level, e);
     state.loaded[level] = false;
   }
 }
