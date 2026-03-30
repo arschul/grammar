@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EFL Reader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --bg:        #f5f0e8;
+    --surface:   #fdfaf4;
+    --ink:       #1e1a14;
+    --ink-soft:  #5a5040;
+    --border:    #d6ccb4;
+    --accent:    #b85c2a;
+    --accent-lt: #e8c9b5;
+
+    /* highlight palette */
+    --hl-yellow: #ffe066;
+    --hl-green:  #a8e6a3;
+    --hl-blue:   #a3cde6;
+    --hl-pink:   #f5a3c2;
+
+    --badge-a1: #4caf7d;
+    --badge-a2: #2196a8;
+    --badge-b1: #8559d4;
+    --badge-b2: #c0392b;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'Lora', Georgia, serif;
+    --font-mono:    'DM Mono', monospace;
+
+    --radius: 6px;
+    --shadow: 0 2px 12px rgba(30,26,20,.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 280px 1fr;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+  }
+
+  /* ── HEADER ── */
+  header {
+    grid-area: header;
+    border-bottom: 1.5px solid var(--border);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+  }
+  header .logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -.02em;
+  }
+  header .logo span { color: var(--ink); }
+  header .tagline {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--ink-soft);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-left: 4px;
+    margin-top: 2px;
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    grid-area: sidebar;
+    background: var(--surface);
+    border-right: 1.5px solid var(--border);
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    overflow-y: auto;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  /* Level pills */
+  .level-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .level-btn {
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 8px 0;
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+  .level-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .level-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .level-btn[data-level="A1"] { --lc: var(--badge-a1); }
+  .level-btn[data-level="A2"] { --lc: var(--badge-a2); }
+  .level-btn[data-level="B1"] { --lc: var(--badge-b1); }
+  .level-btn[data-level="B2"] { --lc: var(--badge-b2); }
+  .level-btn.active { background: var(--lc); border-color: var(--lc); }
+
+  /* Topic list */
+  .topic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .topic-btn {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 7px 10px;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: .88rem;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all .12s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .topic-btn:hover { background: var(--accent-lt); color: var(--ink); }
+  .topic-btn.active { background: var(--accent); color: #fff; }
+  .topic-btn .count {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    opacity: .6;
+  }
+
+  .random-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .random-btn:hover { background: var(--accent); }
+  .random-btn svg { flex-shrink: 0; }
+
+  /* ── MAIN ── */
+  main {
+    grid-area: main;
+    padding: 36px 44px;
+    overflow-y: auto;
+    max-width: 780px;
+  }
+
+  /* Text list */
+  .text-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .text-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .text-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  .text-card.selected { border-color: var(--accent); background: var(--accent-lt); }
+  .text-card-info { flex: 1; min-width: 0; }
+  .text-card-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .text-card-meta {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    letter-spacing: .04em;
+  }
+  .level-badge {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 20px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .badge-A1 { background: var(--badge-a1); }
+  .badge-A2 { background: var(--badge-a2); }
+  .badge-B1 { background: var(--badge-b1); }
+  .badge-B2 { background: var(--badge-b2); }
+
+  /* Reader pane */
+  .reader-pane {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    box-shadow: var(--shadow);
+    display: none;
+  }
+  .reader-pane.visible { display: block; }
+
+  .reader-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+  .reader-title {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+    flex: 1;
+  }
+  .reader-meta {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* Highlight toolbar */
+  .hl-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .hl-toolbar-label {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-right: 4px;
+  }
+  .hl-color-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform .12s, border-color .12s;
+    flex-shrink: 0;
+  }
+  .hl-color-btn:hover { transform: scale(1.2); }
+  .hl-color-btn.active { border-color: var(--ink); transform: scale(1.15); }
+  .hl-color-btn[data-color="yellow"] { background: var(--hl-yellow); }
+  .hl-color-btn[data-color="green"]  { background: var(--hl-green); }
+  .hl-color-btn[data-color="blue"]   { background: var(--hl-blue); }
+  .hl-color-btn[data-color="pink"]   { background: var(--hl-pink); }
+
+  .hl-sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+
+  .hl-clear-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 3px 10px;
+    font-family: var(--font-mono);
+    font-size: .67rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all .12s;
+  }
+  .hl-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* The text body */
+  .reader-body {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--ink);
+    white-space: pre-wrap;
+    user-select: text;
+    cursor: text;
+  }
+  .reader-body p { margin-bottom: 1.2em; }
+
+  /* highlighted spans */
+  .hl { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: filter .12s; }
+  .hl:hover { filter: brightness(.92); }
+  .hl-yellow { background: var(--hl-yellow); }
+  .hl-green  { background: var(--hl-green); }
+  .hl-blue   { background: var(--hl-blue); }
+  .hl-pink   { background: var(--hl-pink); }
+
+  /* empty state */
+  .empty-state {
+    text-align: center;
+    padding: 64px 32px;
+    color: var(--ink-soft);
+  }
+  .empty-state .icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: .5;
+  }
+  .empty-state p {
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    grid-area: footer;
+    border-top: 1.5px solid var(--border);
+    padding: 12px 32px;
+    background: var(--surface);
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    color: var(--ink-soft);
+    letter-spacing: .05em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    body {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "sidebar"
+        "main"
+        "footer";
+    }
+    aside { border-right: none; border-bottom: 1.5px solid var(--border); }
+    main { padding: 24px 18px; }
+    .reader-pane { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div>
+    <div class="logo">EFL <span>Reader</span></div>
+    <div class="tagline">Reading Practice · CEFR A1–B2</div>
+  </div>
+</header>
+
+<!-- ── SIDEBAR ── -->
+<aside>
+  <div>
+    <div class="section-label">Level</div>
+    <div class="level-grid">
+      <button class="level-btn active" data-level="A1">A1</button>
+      <button class="level-btn" data-level="A2">A2</button>
+      <button class="level-btn" data-level="B1">B1</button>
+      <button class="level-btn" data-level="B2">B2</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label">Topic</div>
+    <div class="topic-list" id="topicList"></div>
+  </div>
+
+  <button class="random-btn" id="randomBtn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+    Random Text
+  </button>
+</aside>
+
+<!-- ── MAIN ── -->
+<main id="mainArea">
+  <div class="text-list" id="textList"></div>
+  <div class="reader-pane" id="readerPane">
+    <div class="reader-header">
+      <div>
+        <div class="reader-title" id="readerTitle"></div>
+        <div class="reader-meta" id="readerMeta"></div>
+      </div>
+      <span class="level-badge" id="readerBadge"></span>
+    </div>
+
+    <!-- Highlight toolbar -->
+    <div class="hl-toolbar">
+      <span class="hl-toolbar-label">Highlight</span>
+      <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
+      <button class="hl-color-btn" data-color="green"  title="Green"></button>
+      <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
+      <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
+      <div class="hl-sep"></div>
+      <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
+    </div>
+
+    <div class="reader-body" id="readerBody"></div>
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    <div class="icon">📖</div>
+    <p>Select a level and topic to begin</p>
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>EFL Reader — CEFR A1–B2</span>
+  <span id="footerInfo"></span>
+</footer>
+
+<!-- ── DATA FILES ──
+     Replace YOUR_USER / YOUR_REPO with your GitHub details.
+     Using jsDelivr CDN so plain <script> tags work (no ES module server needed).
+-->
+<script>
+// ── CONFIG: point these to your GitHub repo ─────────────────────────────
+// e.g. https://cdn.jsdelivr.net/gh/janedoe/efl-texts@main/texts-a1.js
+const BASE_URL = './'; // change to CDN URL when hosted on GitHub
+
+// We'll load the scripts dynamically so we can detect load events.
+// The files expose window.A1Texts, window.A2Texts, window.B1Texts, window.B2Texts.
+const FILE_MAP = {
+  A1: BASE_URL + 'texts-a1.js',
+  A2: BASE_URL + 'texts-a2.js',
+  B1: BASE_URL + 'texts-b1.js',
+  B2: BASE_URL + 'texts-b2.js',
+};
+const GLOBAL_MAP = {
+  A1: 'A1Texts',
+  A2: 'A2Texts',
+  B1: 'B1Texts',
+  B2: 'B2Texts',
+};
+// ────────────────────────────────────────────────────────────────────────
+
+/* ── STATE ── */
+const state = {
+  level:       'A1',
+  topic:       null,        // null = all topics
+  allTexts:    [],          // texts for current level
+  filtered:    [],
+  current:     null,
+  hlColor:     'yellow',
+  loaded:      {},          // { A1: true, ... }
+};
+
+/* ── DOM ── */
+const topicListEl  = document.getElementById('topicList');
+const textListEl   = document.getElementById('textList');
+const readerPane   = document.getElementById('readerPane');
+const emptyState   = document.getElementById('emptyState');
+const readerTitle  = document.getElementById('readerTitle');
+const readerMeta   = document.getElementById('readerMeta');
+const readerBadge  = document.getElementById('readerBadge');
+const readerBody   = document.getElementById('readerBody');
+const randomBtn    = document.getElementById('randomBtn');
+const clearHlBtn   = document.getElementById('clearHlBtn');
+const footerInfo   = document.getElementById('footerInfo');
+
+/* ── LOAD SCRIPT ── */
+function loadScript(url) {
+  return new Promise((resolve, reject) => {
+    // If already in page, resolve immediately
+    if (document.querySelector(`script[src="${url}"]`)) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = url;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error(`Failed to load ${url}`));
+    document.head.appendChild(s);
+  });
+}
+
+async function ensureLevel(level) {
+  if (state.loaded[level]) return;
+  try {
+    await loadScript(FILE_MAP[level]);
+    state.loaded[level] = true;
+  } catch (e) {
+    console.warn(e);
+    // If local load fails (e.g. opened as file://), try to keep going gracefully
+    state.loaded[level] = false;
+  }
+}
+
+function getTextsForLevel(level) {
+  const g = window[GLOBAL_MAP[level]];
+  return g ? g.texts : [];
+}
+
+/* ── LEVEL BUTTONS ── */
+document.querySelectorAll('.level-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.level = btn.dataset.level;
+    state.topic = null;
+    state.current = null;
+    await loadLevel(state.level);
+  });
+});
+
+async function loadLevel(level) {
+  await ensureLevel(level);
+  state.allTexts = getTextsForLevel(level);
+  state.filtered = [...state.allTexts];
+  renderTopics();
+  renderTextList();
+  hideReader();
+}
+
+/* ── TOPICS ── */
+function renderTopics() {
+  const topics = [...new Set(state.allTexts.map(t => t.topic))].sort();
+  topicListEl.innerHTML = '';
+
+  // "All" option
+  const allBtn = document.createElement('button');
+  allBtn.className = 'topic-btn' + (state.topic === null ? ' active' : '');
+  allBtn.innerHTML = `<span>All topics</span><span class="count">${state.allTexts.length}</span>`;
+  allBtn.addEventListener('click', () => selectTopic(null));
+  topicListEl.appendChild(allBtn);
+
+  topics.forEach(topic => {
+    const count = state.allTexts.filter(t => t.topic === topic).length;
+    const btn = document.createElement('button');
+    btn.className = 'topic-btn' + (state.topic === topic ? ' active' : '');
+    btn.innerHTML = `<span>${capitalize(topic)}</span><span class="count">${count}</span>`;
+    btn.addEventListener('click', () => selectTopic(topic));
+    topicListEl.appendChild(btn);
+  });
+}
+
+function selectTopic(topic) {
+  state.topic = topic;
+  state.current = null;
+  state.filtered = topic === null
+    ? [...state.allTexts]
+    : state.allTexts.filter(t => t.topic === topic);
+  renderTopics();
+  renderTextList();
+  hideReader();
+}
+
+/* ── TEXT LIST ── */
+function renderTextList() {
+  textListEl.innerHTML = '';
+  if (state.filtered.length === 0) {
+    emptyState.style.display = '';
+    footerInfo.textContent = '';
+    return;
+  }
+  emptyState.style.display = 'none';
+  footerInfo.textContent = `${state.filtered.length} text${state.filtered.length !== 1 ? 's' : ''} available`;
+
+  state.filtered.forEach(text => {
+    const card = document.createElement('div');
+    card.className = 'text-card' + (state.current?.id === text.id ? ' selected' : '');
+    card.innerHTML = `
+      <div class="text-card-info">
+        <div class="text-card-title">${text.title}</div>
+        <div class="text-card-meta">${capitalize(text.topic)} · ~${text.wordCount} words</div>
+      </div>
+      <span class="level-badge badge-${text.level}">${text.level}</span>
+    `;
+    card.addEventListener('click', () => openText(text));
+    textListEl.appendChild(card);
+  });
+}
+
+/* ── READER ── */
+function openText(text) {
+  state.current = text;
+  renderTextList(); // refresh selection highlight
+
+  readerTitle.textContent = text.title;
+  readerMeta.textContent  = `${capitalize(text.topic)} · ${text.level} · ~${text.wordCount} words`;
+  readerBadge.textContent = text.level;
+  readerBadge.className   = `level-badge badge-${text.level}`;
+
+  // Wrap each word in a span for click-to-highlight
+  readerBody.innerHTML = wrapWords(text.text);
+  attachWordHighlight();
+
+  readerPane.classList.add('visible');
+  readerPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideReader() {
+  readerPane.classList.remove('visible');
+  emptyState.style.display = state.filtered.length ? 'none' : '';
+}
+
+/* ── WORD WRAPPING ── */
+function wrapWords(raw) {
+  // Split into paragraphs, then wrap words in spans
+  return raw.split(/\n+/).map(para => {
+    if (!para.trim()) return '';
+    const wrapped = para.replace(/(\S+)/g, '<span class="word">$1</span>');
+    return `<p>${wrapped}</p>`;
+  }).filter(Boolean).join('');
+}
+
+/* ── WORD HIGHLIGHT ON CLICK ── */
+function attachWordHighlight() {
+  readerBody.querySelectorAll('.word').forEach(span => {
+    span.addEventListener('click', () => {
+      const color = state.hlColor;
+      // Toggle: if already highlighted with this color, remove; else apply
+      if (span.classList.contains('hl') && span.classList.contains(`hl-${color}`)) {
+        span.classList.remove('hl', `hl-${color}`);
+      } else {
+        // Remove any existing highlight color then apply new
+        span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
+        span.classList.add('hl', `hl-${color}`);
+      }
+    });
+  });
+}
+
+/* ── HIGHLIGHT TOOLBAR ── */
+document.querySelectorAll('.hl-color-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.hl-color-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.hlColor = btn.dataset.color;
+  });
+});
+
+clearHlBtn.addEventListener('click', () => {
+  readerBody.querySelectorAll('.word.hl').forEach(span => {
+    span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
+  });
+});
+
+/* ── RANDOM ── */
+randomBtn.addEventListener('click', async () => {
+  await loadLevel(state.level);
+  if (state.allTexts.length === 0) return;
+  const pool = state.topic
+    ? state.allTexts.filter(t => t.topic === state.topic)
+    : state.allTexts;
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  openText(pick);
+});
+
+/* ── UTIL ── */
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/* ── INIT ── */
+loadLevel('A1');
+emptyState.style.display = '';
+</script>
+</body>
+</html>
