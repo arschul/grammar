@@ -16,11 +16,15 @@
     --accent:    #b85c2a;
     --accent-lt: #e8c9b5;
 
-    /* highlight palette */
     --hl-yellow: #ffe066;
     --hl-green:  #a8e6a3;
     --hl-blue:   #a3cde6;
     --hl-pink:   #f5a3c2;
+
+    --kw-pending:  #fff3cd;
+    --kw-active:   #ffd54f;
+    --kw-correct:  #c8e6c9;
+    --kw-wrong:    #ffcdd2;
 
     --badge-a1: #4caf7d;
     --badge-a2: #2196a8;
@@ -41,10 +45,11 @@
     background: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 240px 1fr;
     grid-template-areas:
       "header header"
       "sidebar main"
@@ -55,15 +60,16 @@
   header {
     grid-area: header;
     border-bottom: 1.5px solid var(--border);
-    padding: 18px 32px;
+    padding: 14px 28px;
     display: flex;
     align-items: center;
     gap: 16px;
     background: var(--surface);
+    z-index: 10;
   }
   header .logo {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: -.02em;
@@ -71,11 +77,10 @@
   header .logo span { color: var(--ink); }
   header .tagline {
     font-family: var(--font-mono);
-    font-size: .7rem;
+    font-size: .65rem;
     color: var(--ink-soft);
     letter-spacing: .08em;
     text-transform: uppercase;
-    margin-left: 4px;
     margin-top: 2px;
   }
 
@@ -84,35 +89,34 @@
     grid-area: sidebar;
     background: var(--surface);
     border-right: 1.5px solid var(--border);
-    padding: 28px 20px;
+    padding: 20px 16px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 20px;
     overflow-y: auto;
   }
 
   .section-label {
     font-family: var(--font-mono);
-    font-size: .65rem;
+    font-size: .62rem;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
-  /* Level pills */
   .level-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 6px;
   }
   .level-btn {
     border: 1.5px solid var(--border);
     background: var(--bg);
     border-radius: var(--radius);
-    padding: 8px 0;
+    padding: 7px 0;
     font-family: var(--font-mono);
-    font-size: .85rem;
+    font-size: .82rem;
     font-weight: 500;
     cursor: pointer;
     transition: all .15s;
@@ -120,27 +124,25 @@
     color: var(--ink-soft);
   }
   .level-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .level-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
   .level-btn[data-level="A1"] { --lc: var(--badge-a1); }
   .level-btn[data-level="A2"] { --lc: var(--badge-a2); }
   .level-btn[data-level="B1"] { --lc: var(--badge-b1); }
   .level-btn[data-level="B2"] { --lc: var(--badge-b2); }
-  .level-btn.active { background: var(--lc); border-color: var(--lc); }
+  .level-btn.active { background: var(--lc); border-color: var(--lc); color: #fff; }
 
-  /* Topic list */
   .topic-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
   }
   .topic-btn {
     background: none;
     border: none;
     text-align: left;
-    padding: 7px 10px;
+    padding: 6px 8px;
     border-radius: var(--radius);
     font-family: var(--font-body);
-    font-size: .88rem;
+    font-size: .84rem;
     cursor: pointer;
     color: var(--ink-soft);
     transition: all .12s;
@@ -153,7 +155,7 @@
   .topic-btn.active { background: var(--accent); color: #fff; }
   .topic-btn .count {
     font-family: var(--font-mono);
-    font-size: .7rem;
+    font-size: .67rem;
     opacity: .6;
   }
 
@@ -163,53 +165,75 @@
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 10px;
+    padding: 9px;
     background: var(--ink);
     color: var(--bg);
     border: none;
     border-radius: var(--radius);
     font-family: var(--font-mono);
-    font-size: .78rem;
+    font-size: .74rem;
     letter-spacing: .06em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all .15s;
+    margin-top: auto;
   }
   .random-btn:hover { background: var(--accent); }
-  .random-btn svg { flex-shrink: 0; }
 
-  /* ── MAIN ── */
+  /* ── MAIN: two-column layout ── */
   main {
     grid-area: main;
-    padding: 36px 44px;
-    overflow-y: auto;
-    max-width: 780px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 1fr;
   }
 
-  /* Text list */
+  /* Left: text list panel */
+  .list-panel {
+    border-right: 1.5px solid var(--border);
+    overflow-y: auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .list-panel-label {
+    font-family: var(--font-mono);
+    font-size: .62rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+    flex-shrink: 0;
+  }
+
   .text-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 32px;
+    gap: 6px;
   }
+
   .text-card {
     background: var(--surface);
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 14px 18px;
+    padding: 10px 14px;
     cursor: pointer;
     transition: all .15s;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
   }
   .text-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
   .text-card.selected { border-color: var(--accent); background: var(--accent-lt); }
   .text-card-info { flex: 1; min-width: 0; }
   .text-card-title {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: .9rem;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
@@ -217,16 +241,15 @@
   }
   .text-card-meta {
     font-family: var(--font-mono);
-    font-size: .68rem;
+    font-size: .63rem;
     color: var(--ink-soft);
-    margin-top: 3px;
-    letter-spacing: .04em;
+    margin-top: 2px;
   }
   .level-badge {
     font-family: var(--font-mono);
-    font-size: .7rem;
+    font-size: .66rem;
     font-weight: 500;
-    padding: 3px 8px;
+    padding: 2px 7px;
     border-radius: 20px;
     color: #fff;
     flex-shrink: 0;
@@ -236,36 +259,89 @@
   .badge-B1 { background: var(--badge-b1); }
   .badge-B2 { background: var(--badge-b2); }
 
-  /* Reader pane */
-  .reader-pane {
+  /* Right: content panel */
+  .content-panel {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    gap: 12px;
+  }
+  .empty-state .icon { font-size: 3rem; opacity: .4; }
+  .empty-state p {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: .7;
+  }
+
+  /* ── MODE TABS ── */
+  .mode-tabs {
+    display: flex;
+    border-bottom: 1.5px solid var(--border);
     background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 36px 40px;
-    box-shadow: var(--shadow);
+    flex-shrink: 0;
+  }
+  .mode-tab {
+    flex: 1;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .mode-tab:hover { color: var(--accent); }
+  .mode-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--bg); }
+
+  /* ── READER VIEW ── */
+  .reader-view {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
     display: none;
   }
-  .reader-pane.visible { display: block; }
+  .reader-view.active { display: block; }
 
   .reader-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     gap: 16px;
   }
   .reader-title {
     font-family: var(--font-display);
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     font-weight: 700;
     line-height: 1.2;
     flex: 1;
   }
   .reader-meta {
     font-family: var(--font-mono);
-    font-size: .7rem;
+    font-size: .65rem;
     color: var(--ink-soft);
-    margin-top: 6px;
+    margin-top: 5px;
     letter-spacing: .06em;
     text-transform: uppercase;
   }
@@ -275,8 +351,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 22px;
-    padding: 10px 14px;
+    margin-bottom: 16px;
+    padding: 8px 12px;
     background: var(--bg);
     border-radius: var(--radius);
     border: 1px solid var(--border);
@@ -284,15 +360,13 @@
   }
   .hl-toolbar-label {
     font-family: var(--font-mono);
-    font-size: .65rem;
+    font-size: .62rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-right: 4px;
   }
   .hl-color-btn {
-    width: 22px;
-    height: 22px;
+    width: 20px; height: 20px;
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
@@ -305,16 +379,14 @@
   .hl-color-btn[data-color="green"]  { background: var(--hl-green); }
   .hl-color-btn[data-color="blue"]   { background: var(--hl-blue); }
   .hl-color-btn[data-color="pink"]   { background: var(--hl-pink); }
-
-  .hl-sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
-
+  .hl-sep { width: 1px; height: 16px; background: var(--border); margin: 0 2px; }
   .hl-clear-btn {
     background: none;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 3px 10px;
+    padding: 2px 9px;
     font-family: var(--font-mono);
-    font-size: .67rem;
+    font-size: .64rem;
     letter-spacing: .06em;
     text-transform: uppercase;
     cursor: pointer;
@@ -323,51 +395,237 @@
   }
   .hl-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* The text body */
   .reader-body {
     font-size: 1.05rem;
     line-height: 1.9;
     color: var(--ink);
-    white-space: pre-wrap;
     user-select: text;
-    cursor: text;
   }
   .reader-body p { margin-bottom: 1.2em; }
 
-  /* highlighted spans */
-  .hl { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: filter .12s; }
+  .word { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: filter .12s; }
+  .word:hover { background: rgba(184,92,42,.1); }
+  .hl { border-radius: 3px; padding: 0 1px; }
   .hl:hover { filter: brightness(.92); }
   .hl-yellow { background: var(--hl-yellow); }
   .hl-green  { background: var(--hl-green); }
   .hl-blue   { background: var(--hl-blue); }
   .hl-pink   { background: var(--hl-pink); }
 
-  /* empty state */
-  .empty-state {
-    text-align: center;
-    padding: 64px 32px;
-    color: var(--ink-soft);
+  /* ── ACTIVITY VIEW ── */
+  .activity-view {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 28px;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
   }
-  .empty-state .icon {
-    font-size: 3rem;
-    margin-bottom: 12px;
-    opacity: .5;
+  .activity-view.active { display: flex; }
+
+  .activity-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    align-items: start;
+    flex: 1;
   }
-  .empty-state p {
+
+  /* Definitions panel */
+  .definitions-panel {
+    position: sticky;
+    top: 0;
+  }
+  .definitions-panel-label {
     font-family: var(--font-mono);
-    font-size: .8rem;
+    font-size: .62rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .def-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .def-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all .15s;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+  }
+  .def-card:hover:not(.done) { border-color: var(--accent); }
+  .def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); }
+  .def-card.done { opacity: .5; cursor: default; border-color: var(--border); background: var(--kw-correct); }
+  .def-card.wrong-flash { animation: wrongFlash .5s ease; }
+  @keyframes wrongFlash {
+    0%,100% { background: var(--surface); }
+    30%,70% { background: var(--kw-wrong); border-color: #e53935; }
+  }
+  .def-text {
+    font-family: var(--font-body);
+    font-size: .82rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .def-keyword {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+  }
+  .def-keyword.hidden { visibility: hidden; }
+
+  /* Progress bar */
+  .activity-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width .3s ease;
+  }
+  .progress-text {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* Activity text panel */
+  .activity-text-panel {}
+  .activity-text-label {
+    font-family: var(--font-mono);
+    font-size: .62rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .activity-body {
+    font-size: 1rem;
+    line-height: 1.95;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  .activity-body p { margin-bottom: 1.2em; }
+  .activity-body p:last-child { margin-bottom: 0; }
+
+  /* Keyword spans in activity text */
+  .kw-span {
+    border-radius: 3px;
+    padding: 1px 2px;
+    transition: all .15s;
+    cursor: default;
+  }
+  /* When a definition is selected, clickable keyword words glow */
+  .activity-mode-active .kw-span {
+    cursor: pointer;
+    background: rgba(184,92,42,.08);
+    border-bottom: 1.5px dashed var(--accent);
+  }
+  .activity-mode-active .kw-span:hover {
+    background: rgba(184,92,42,.2);
+  }
+  .kw-span.kw-correct {
+    background: var(--kw-correct) !important;
+    border-bottom: 1.5px solid #66bb6a !important;
+    cursor: default !important;
+  }
+  .kw-span.kw-wrong-flash {
+    animation: kwWrongFlash .5s ease;
+  }
+  @keyframes kwWrongFlash {
+    0%,100% { background: rgba(184,92,42,.08); }
+    30%,70% { background: var(--kw-wrong); }
+  }
+
+  /* Completion banner */
+  .activity-complete {
+    display: none;
+    background: var(--kw-correct);
+    border: 1.5px solid #66bb6a;
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    color: #2e7d32;
+    letter-spacing: .06em;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .activity-complete.visible { display: block; }
+
+  /* Instruction bar */
+  .activity-instruction {
+    background: var(--kw-pending);
+    border: 1px solid #e6c84a;
+    border-radius: var(--radius);
+    padding: 8px 14px;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: #7a6a10;
+    letter-spacing: .04em;
+    flex-shrink: 0;
+  }
+  .activity-instruction.step2 {
+    background: #e3f2fd;
+    border-color: #90caf9;
+    color: #1565c0;
+  }
+  .activity-instruction.hidden { visibility: hidden; }
+
+  /* Reset button */
+  .reset-btn {
+    align-self: flex-start;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 5px 14px;
+    font-family: var(--font-mono);
+    font-size: .68rem;
     letter-spacing: .06em;
     text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all .15s;
   }
+  .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ── FOOTER ── */
   footer {
     grid-area: footer;
     border-top: 1.5px solid var(--border);
-    padding: 12px 32px;
+    padding: 10px 28px;
     background: var(--surface);
     font-family: var(--font-mono);
-    font-size: .68rem;
+    font-size: .65rem;
     color: var(--ink-soft);
     letter-spacing: .05em;
     display: flex;
@@ -376,18 +634,18 @@
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     body {
       grid-template-columns: 1fr;
-      grid-template-areas:
-        "header"
-        "sidebar"
-        "main"
-        "footer";
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas: "header" "sidebar" "main" "footer";
+      height: auto;
+      overflow: auto;
     }
-    aside { border-right: none; border-bottom: 1.5px solid var(--border); }
-    main { padding: 24px 18px; }
-    .reader-pane { padding: 22px 18px; }
+    main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .list-panel { max-height: 260px; }
+    .activity-layout { grid-template-columns: 1fr; }
+    .definitions-panel { position: static; }
   }
 </style>
 </head>
@@ -419,40 +677,91 @@
   </div>
 
   <button class="random-btn" id="randomBtn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
     Random Text
   </button>
 </aside>
 
 <!-- ── MAIN ── -->
-<main id="mainArea">
-  <div class="text-list" id="textList"></div>
-  <div class="reader-pane" id="readerPane">
-    <div class="reader-header">
-      <div>
-        <div class="reader-title" id="readerTitle"></div>
-        <div class="reader-meta" id="readerMeta"></div>
-      </div>
-      <span class="level-badge" id="readerBadge"></span>
-    </div>
-
-    <!-- Highlight toolbar -->
-    <div class="hl-toolbar">
-      <span class="hl-toolbar-label">Highlight</span>
-      <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
-      <button class="hl-color-btn" data-color="green"  title="Green"></button>
-      <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
-      <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
-      <div class="hl-sep"></div>
-      <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
-    </div>
-
-    <div class="reader-body" id="readerBody"></div>
+<main>
+  <!-- Left: Text list -->
+  <div class="list-panel">
+    <div class="list-panel-label">Texts</div>
+    <div class="text-list" id="textList"></div>
   </div>
 
-  <div class="empty-state" id="emptyState">
-    <div class="icon">📖</div>
-    <p>Select a level and topic to begin</p>
+  <!-- Right: Content panel -->
+  <div class="content-panel" id="contentPanel">
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState">
+      <div class="icon">📖</div>
+      <p>Select a text to begin</p>
+    </div>
+
+    <!-- Mode tabs (hidden until text selected) -->
+    <div class="mode-tabs" id="modeTabs" style="display:none">
+      <button class="mode-tab active" id="tabReader" onclick="switchMode('reader')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Read
+      </button>
+      <button class="mode-tab" id="tabActivity" onclick="switchMode('activity')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Keywords Activity
+      </button>
+    </div>
+
+    <!-- Reader view -->
+    <div class="reader-view active" id="readerView">
+      <div class="reader-header">
+        <div>
+          <div class="reader-title" id="readerTitle"></div>
+          <div class="reader-meta" id="readerMeta"></div>
+        </div>
+        <span class="level-badge" id="readerBadge"></span>
+      </div>
+
+      <div class="hl-toolbar">
+        <span class="hl-toolbar-label">Highlight</span>
+        <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
+        <button class="hl-color-btn" data-color="green"  title="Green"></button>
+        <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
+        <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
+        <div class="hl-sep"></div>
+        <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
+      </div>
+
+      <div class="reader-body" id="readerBody"></div>
+    </div>
+
+    <!-- Activity view -->
+    <div class="activity-view" id="activityView">
+      <div class="activity-instruction" id="activityInstruction">
+        👆 Click a definition on the left to select it, then click the matching word in the text.
+      </div>
+
+      <div class="activity-progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <span class="progress-text" id="progressText">0 / 0</span>
+        <button class="reset-btn" id="resetBtn">↺ Reset</button>
+      </div>
+
+      <div class="activity-complete" id="activityComplete">
+        🎉 Well done! All keywords found!
+      </div>
+
+      <div class="activity-layout">
+        <div class="definitions-panel">
+          <div class="definitions-panel-label">Definitions</div>
+          <div class="def-cards" id="defCards"></div>
+        </div>
+        <div class="activity-text-panel">
+          <div class="activity-text-label">Text — click words to match definitions</div>
+          <div class="activity-body" id="activityBody"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -462,83 +771,59 @@
   <span id="footerInfo"></span>
 </footer>
 
-<!-- ── DATA FILES ──
-     Replace YOUR_USER / YOUR_REPO with your GitHub details.
-     Using jsDelivr CDN so plain <script> tags work (no ES module server needed).
--->
 <script>
-// ── CONFIG: point these to your GitHub repo ─────────────────────────────
-// e.g. https://cdn.jsdelivr.net/gh/janedoe/efl-texts@main/texts-a1.js
-const BASE_URL = './'; // change to CDN URL when hosted on GitHub
-
-// We'll load the scripts dynamically so we can detect load events.
-// The files expose window.A1Texts, window.A2Texts, window.B1Texts, window.B2Texts.
-const FILE_MAP = {
-  A1: BASE_URL + 'texts-a1.js',
-  A2: BASE_URL + 'texts-a2.js',
-  B1: BASE_URL + 'texts-b1.js',
-  B2: BASE_URL + 'texts-b2.js',
-};
-const GLOBAL_MAP = {
-  A1: 'A1Texts',
-  A2: 'A2Texts',
-  B1: 'B1Texts',
-  B2: 'B2Texts',
-};
-// ────────────────────────────────────────────────────────────────────────
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+const BASE_URL = './';
+const FILE_MAP  = { A1: BASE_URL+'texts-a1.js', A2: BASE_URL+'texts-a2.js', B1: BASE_URL+'texts-b1.js', B2: BASE_URL+'texts-b2.js' };
+const GLOBAL_MAP = { A1: 'A1Texts', A2: 'A2Texts', B1: 'B1Texts', B2: 'B2Texts' };
 
 /* ── STATE ── */
 const state = {
-  level:       'A1',
-  topic:       null,        // null = all topics
-  allTexts:    [],          // texts for current level
-  filtered:    [],
-  current:     null,
-  hlColor:     'yellow',
-  loaded:      {},          // { A1: true, ... }
+  level: 'A1', topic: null, allTexts: [], filtered: [], current: null,
+  hlColor: 'yellow', loaded: {},
+  // activity state
+  selectedDef: null,   // index of selected definition card
+  solved: new Set(),   // indices of solved keywords
 };
 
 /* ── DOM ── */
-const topicListEl  = document.getElementById('topicList');
-const textListEl   = document.getElementById('textList');
-const readerPane   = document.getElementById('readerPane');
-const emptyState   = document.getElementById('emptyState');
-const readerTitle  = document.getElementById('readerTitle');
-const readerMeta   = document.getElementById('readerMeta');
-const readerBadge  = document.getElementById('readerBadge');
-const readerBody   = document.getElementById('readerBody');
-const randomBtn    = document.getElementById('randomBtn');
-const clearHlBtn   = document.getElementById('clearHlBtn');
-const footerInfo   = document.getElementById('footerInfo');
+const topicListEl       = document.getElementById('topicList');
+const textListEl        = document.getElementById('textList');
+const emptyState        = document.getElementById('emptyState');
+const modeTabs          = document.getElementById('modeTabs');
+const readerView        = document.getElementById('readerView');
+const activityView      = document.getElementById('activityView');
+const readerTitle       = document.getElementById('readerTitle');
+const readerMeta        = document.getElementById('readerMeta');
+const readerBadge       = document.getElementById('readerBadge');
+const readerBody        = document.getElementById('readerBody');
+const activityBody      = document.getElementById('activityBody');
+const defCards          = document.getElementById('defCards');
+const progressFill      = document.getElementById('progressFill');
+const progressText      = document.getElementById('progressText');
+const activityInstruct  = document.getElementById('activityInstruction');
+const activityComplete  = document.getElementById('activityComplete');
+const randomBtn         = document.getElementById('randomBtn');
+const resetBtn          = document.getElementById('resetBtn');
+const clearHlBtn        = document.getElementById('clearHlBtn');
+const footerInfo        = document.getElementById('footerInfo');
 
-/* ── LOAD SCRIPT ──
-   The text files use ES module `export` syntax which breaks classic <script> tags.
-   We fetch them as text, strip the export lines, then evaluate the cleaned code.
-   The files also set window.A1Texts etc. via the browser-global block, so after
-   eval() those globals are available immediately.
-── */
+/* ── LOAD SCRIPTS ── */
 async function loadScript(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+  if (!res.ok) throw new Error(`Failed: ${url}`);
   let code = await res.text();
-  // Remove ES module export lines (export { ... }; / export default ...; / export const ...)
   code = code
     .replace(/^export\s+\{[^}]*\};?\s*$/gm, '')
     .replace(/^export\s+default\s+\w+;?\s*$/gm, '')
     .replace(/^export\s+(const|let|var|function|class)\s+/gm, '$1 ');
-  // eslint-disable-next-line no-new-func
   new Function(code)();
 }
 
 async function ensureLevel(level) {
   if (state.loaded[level]) return;
-  try {
-    await loadScript(FILE_MAP[level]);
-    state.loaded[level] = true;
-  } catch (e) {
-    console.warn('Could not load texts for', level, e);
-    state.loaded[level] = false;
-  }
+  try { await loadScript(FILE_MAP[level]); state.loaded[level] = true; }
+  catch(e) { console.warn('Could not load', level, e); state.loaded[level] = false; }
 }
 
 function getTextsForLevel(level) {
@@ -564,7 +849,7 @@ async function loadLevel(level) {
   state.filtered = [...state.allTexts];
   renderTopics();
   renderTextList();
-  hideReader();
+  hideContent();
 }
 
 /* ── TOPICS ── */
@@ -572,7 +857,6 @@ function renderTopics() {
   const topics = [...new Set(state.allTexts.map(t => t.topic))].sort();
   topicListEl.innerHTML = '';
 
-  // "All" option
   const allBtn = document.createElement('button');
   allBtn.className = 'topic-btn' + (state.topic === null ? ' active' : '');
   allBtn.innerHTML = `<span>All topics</span><span class="count">${state.allTexts.length}</span>`;
@@ -592,24 +876,18 @@ function renderTopics() {
 function selectTopic(topic) {
   state.topic = topic;
   state.current = null;
-  state.filtered = topic === null
-    ? [...state.allTexts]
-    : state.allTexts.filter(t => t.topic === topic);
+  state.filtered = topic === null ? [...state.allTexts] : state.allTexts.filter(t => t.topic === topic);
   renderTopics();
   renderTextList();
-  hideReader();
+  hideContent();
 }
 
 /* ── TEXT LIST ── */
 function renderTextList() {
   textListEl.innerHTML = '';
-  if (state.filtered.length === 0) {
-    emptyState.style.display = '';
-    footerInfo.textContent = '';
-    return;
-  }
-  emptyState.style.display = 'none';
-  footerInfo.textContent = `${state.filtered.length} text${state.filtered.length !== 1 ? 's' : ''} available`;
+  footerInfo.textContent = state.filtered.length
+    ? `${state.filtered.length} text${state.filtered.length !== 1 ? 's' : ''} available`
+    : '';
 
   state.filtered.forEach(text => {
     const card = document.createElement('div');
@@ -626,32 +904,45 @@ function renderTextList() {
   });
 }
 
-/* ── READER ── */
+/* ── OPEN TEXT ── */
 function openText(text) {
   state.current = text;
-  renderTextList(); // refresh selection highlight
+  renderTextList();
+  emptyState.style.display = 'none';
+  modeTabs.style.display = 'flex';
 
+  // Populate reader
   readerTitle.textContent = text.title;
   readerMeta.textContent  = `${capitalize(text.topic)} · ${text.level} · ~${text.wordCount} words`;
   readerBadge.textContent = text.level;
   readerBadge.className   = `level-badge badge-${text.level}`;
-
-  // Wrap each word in a span for click-to-highlight
   readerBody.innerHTML = wrapWords(text.text);
   attachWordHighlight();
 
-  readerPane.classList.add('visible');
-  readerPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  // Build activity
+  buildActivity(text);
+
+  // Switch to reader mode
+  switchMode('reader');
 }
 
-function hideReader() {
-  readerPane.classList.remove('visible');
-  emptyState.style.display = state.filtered.length ? 'none' : '';
+function hideContent() {
+  emptyState.style.display = '';
+  modeTabs.style.display = 'none';
+  readerView.classList.remove('active');
+  activityView.classList.remove('active');
 }
 
-/* ── WORD WRAPPING ── */
+/* ── MODE TABS ── */
+function switchMode(mode) {
+  document.getElementById('tabReader').classList.toggle('active', mode === 'reader');
+  document.getElementById('tabActivity').classList.toggle('active', mode === 'activity');
+  readerView.classList.toggle('active', mode === 'reader');
+  activityView.classList.toggle('active', mode === 'activity');
+}
+
+/* ── READER: word wrapping & highlight ── */
 function wrapWords(raw) {
-  // Split into paragraphs, then wrap words in spans
   return raw.split(/\n+/).map(para => {
     if (!para.trim()) return '';
     const wrapped = para.replace(/(\S+)/g, '<span class="word">$1</span>');
@@ -659,16 +950,13 @@ function wrapWords(raw) {
   }).filter(Boolean).join('');
 }
 
-/* ── WORD HIGHLIGHT ON CLICK ── */
 function attachWordHighlight() {
   readerBody.querySelectorAll('.word').forEach(span => {
     span.addEventListener('click', () => {
       const color = state.hlColor;
-      // Toggle: if already highlighted with this color, remove; else apply
       if (span.classList.contains('hl') && span.classList.contains(`hl-${color}`)) {
         span.classList.remove('hl', `hl-${color}`);
       } else {
-        // Remove any existing highlight color then apply new
         span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
         span.classList.add('hl', `hl-${color}`);
       }
@@ -676,7 +964,6 @@ function attachWordHighlight() {
   });
 }
 
-/* ── HIGHLIGHT TOOLBAR ── */
 document.querySelectorAll('.hl-color-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.hl-color-btn').forEach(b => b.classList.remove('active'));
@@ -686,30 +973,213 @@ document.querySelectorAll('.hl-color-btn').forEach(btn => {
 });
 
 clearHlBtn.addEventListener('click', () => {
-  readerBody.querySelectorAll('.word.hl').forEach(span => {
-    span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
+  readerBody.querySelectorAll('.word.hl').forEach(s => s.classList.remove('hl','hl-yellow','hl-green','hl-blue','hl-pink'));
+});
+
+/* ── ACTIVITY ── */
+function buildActivity(text) {
+  state.selectedDef = null;
+  state.solved = new Set();
+  activityComplete.classList.remove('visible');
+  activityBody.classList.remove('activity-mode-active');
+  activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
+  activityInstruct.className = 'activity-instruction';
+
+  const keywords = text.keywords || [];
+
+  // Build definition cards
+  defCards.innerHTML = '';
+  keywords.forEach((kw, idx) => {
+    const card = document.createElement('div');
+    card.className = 'def-card';
+    card.dataset.idx = idx;
+    card.innerHTML = `
+      <span class="def-text">${kw.definition}</span>
+      <span class="def-keyword hidden" id="defKw_${idx}">${kw.word}</span>
+    `;
+    card.addEventListener('click', () => selectDefinition(idx));
+    defCards.appendChild(card);
   });
+
+  // Build activity text with keyword word spans
+  // For each keyword, normalize it to find matching tokens in the text
+  // We build a regex that matches any word belonging to any keyword phrase
+  const kwData = keywords.map((kw, idx) => ({
+    idx,
+    words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
+    solved: false,
+  }));
+
+  activityBody.innerHTML = buildActivityHTML(text.text, kwData);
+  attachActivityWordListeners(kwData);
+  updateProgress();
+}
+
+function buildActivityHTML(raw, kwData) {
+  // Build a set of all individual words that are part of any keyword
+  // We'll mark them with data-kw-idx attributes
+  // Strategy: tokenize text, for each token check if it belongs to a kw phrase
+
+  const paragraphs = raw.split(/\n+/).filter(p => p.trim());
+
+  return paragraphs.map(para => {
+    // Tokenize: split preserving whitespace and punctuation attachment
+    // We'll process word by word
+    const tokens = tokenize(para);
+    const tagged = tagTokens(tokens, kwData);
+    return `<p>${tagged}</p>`;
+  }).join('');
+}
+
+function tokenize(para) {
+  // Split into alternating non-word and word chunks
+  const parts = [];
+  const re = /([^\w'-]+|[\w'-]+)/g;
+  let m;
+  while ((m = re.exec(para)) !== null) {
+    parts.push(m[1]);
+  }
+  return parts;
+}
+
+function tagTokens(tokens, kwData) {
+  // For each token that is a word, check if it belongs to a keyword
+  // We need to handle multi-word keywords: if kw = "gig economy",
+  // both "gig" and "economy" in the text should be tagged with the same kw idx.
+  // We'll do a simple: for each word token, check all kwData words lists.
+
+  const wordTokens = tokens.map((t, i) => ({
+    token: t,
+    isWord: /[\w'-]/.test(t),
+    clean: t.toLowerCase().replace(/[^a-z'-]/g, ''),
+    kwIdx: null,
+  }));
+
+  // For each keyword, find which word-token indices belong to it
+  kwData.forEach(kw => {
+    if (kw.words.length === 0) return;
+    // Each word in the keyword phrase: tag all matching occurrences
+    kw.words.forEach(kwWord => {
+      wordTokens.forEach(wt => {
+        if (wt.isWord && wt.clean === kwWord) {
+          // Only assign if not already assigned to another keyword
+          if (wt.kwIdx === null) wt.kwIdx = kw.idx;
+        }
+      });
+    });
+  });
+
+  return wordTokens.map(wt => {
+    if (!wt.isWord) return wt.token;
+    if (wt.kwIdx !== null) {
+      return `<span class="kw-span" data-kw-idx="${wt.kwIdx}">${wt.token}</span>`;
+    }
+    return wt.token;
+  }).join('');
+}
+
+function attachActivityWordListeners(kwData) {
+  activityBody.querySelectorAll('.kw-span').forEach(span => {
+    span.addEventListener('click', () => {
+      const kwIdx = parseInt(span.dataset.kwIdx);
+
+      // Ignore if already solved
+      if (state.solved.has(kwIdx)) return;
+
+      // Must have a selected definition
+      if (state.selectedDef === null) {
+        // Flash instruction
+        activityInstruct.style.animation = 'none';
+        requestAnimationFrame(() => {
+          activityInstruct.style.animation = '';
+          activityInstruct.style.background = '#ffd54f';
+          setTimeout(() => activityInstruct.style.background = '', 500);
+        });
+        return;
+      }
+
+      if (state.selectedDef === kwIdx) {
+        // Correct!
+        state.solved.add(kwIdx);
+        // Mark all spans with this kwIdx as correct
+        activityBody.querySelectorAll(`.kw-span[data-kw-idx="${kwIdx}"]`).forEach(s => {
+          s.classList.add('kw-correct');
+        });
+        // Mark def card as done
+        const card = defCards.querySelector(`.def-card[data-idx="${kwIdx}"]`);
+        if (card) {
+          card.classList.remove('selected');
+          card.classList.add('done');
+          const kwEl = card.querySelector('.def-keyword');
+          if (kwEl) kwEl.classList.remove('hidden');
+        }
+        state.selectedDef = null;
+        activityBody.classList.remove('activity-mode-active');
+        activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
+        activityInstruct.className = 'activity-instruction';
+        updateProgress();
+      } else {
+        // Wrong
+        span.classList.add('kw-wrong-flash');
+        setTimeout(() => span.classList.remove('kw-wrong-flash'), 500);
+        const card = defCards.querySelector(`.def-card[data-idx="${state.selectedDef}"]`);
+        if (card) { card.classList.add('wrong-flash'); setTimeout(() => card.classList.remove('wrong-flash'), 500); }
+      }
+    });
+  });
+}
+
+function selectDefinition(idx) {
+  if (state.solved.has(idx)) return; // already done
+
+  // Deselect previous
+  defCards.querySelectorAll('.def-card').forEach(c => c.classList.remove('selected'));
+
+  if (state.selectedDef === idx) {
+    // Toggle off
+    state.selectedDef = null;
+    activityBody.classList.remove('activity-mode-active');
+    activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
+    activityInstruct.className = 'activity-instruction';
+  } else {
+    state.selectedDef = idx;
+    defCards.querySelector(`.def-card[data-idx="${idx}"]`).classList.add('selected');
+    activityBody.classList.add('activity-mode-active');
+    activityInstruct.textContent = '🔍 Now click the word in the text that matches this definition.';
+    activityInstruct.className = 'activity-instruction step2';
+  }
+}
+
+function updateProgress() {
+  const total = (state.current?.keywords || []).length;
+  const done  = state.solved.size;
+  const pct   = total ? (done / total) * 100 : 0;
+  progressFill.style.width = pct + '%';
+  progressText.textContent = `${done} / ${total}`;
+
+  if (total > 0 && done === total) {
+    activityComplete.classList.add('visible');
+    activityInstruct.className = 'activity-instruction hidden';
+  }
+}
+
+resetBtn.addEventListener('click', () => {
+  if (state.current) buildActivity(state.current);
 });
 
 /* ── RANDOM ── */
 randomBtn.addEventListener('click', async () => {
   await loadLevel(state.level);
   if (state.allTexts.length === 0) return;
-  const pool = state.topic
-    ? state.allTexts.filter(t => t.topic === state.topic)
-    : state.allTexts;
-  const pick = pool[Math.floor(Math.random() * pool.length)];
-  openText(pick);
+  const pool = state.topic ? state.allTexts.filter(t => t.topic === state.topic) : state.allTexts;
+  openText(pool[Math.floor(Math.random() * pool.length)]);
 });
 
 /* ── UTIL ── */
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
 
 /* ── INIT ── */
 loadLevel('A1');
-emptyState.style.display = '';
 </script>
 </body>
 </html>
