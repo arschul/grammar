@@ -25,6 +25,7 @@
     --kw-active:   #ffd54f;
     --kw-correct:  #c8e6c9;
     --kw-wrong:    #ffcdd2;
+    --kw-hint-bg:  #ffe082;
 
     --badge-a1: #4caf7d;
     --badge-a2: #2196a8;
@@ -37,6 +38,28 @@
 
     --radius: 6px;
     --shadow: 0 2px 12px rgba(30,26,20,.10);
+  }
+
+  /* ── DARK MODE ── */
+  body.dark {
+    --bg:        #1a1710;
+    --surface:   #222018;
+    --ink:       #e8e0d0;
+    --ink-soft:  #9a8f78;
+    --border:    #3a342a;
+    --accent:    #d4784a;
+    --accent-lt: #3d2a1e;
+
+    --hl-yellow: #7a6500;
+    --hl-green:  #1e5c2a;
+    --hl-blue:   #1a3f5c;
+    --hl-pink:   #6b2040;
+
+    --kw-correct:  #1e4d28;
+    --kw-wrong:    #5c1a1a;
+    --kw-hint-bg:  #5a4200;
+
+    --shadow: 0 2px 12px rgba(0,0,0,.4);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -83,6 +106,21 @@
     text-transform: uppercase;
     margin-top: 2px;
   }
+  .dark-toggle {
+    margin-left: auto;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px 10px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1;
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+  }
+  .dark-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ── SIDEBAR ── */
   aside {
@@ -550,9 +588,10 @@
   .activity-mode-active .kw-span:hover {
     background: rgba(184,92,42,.12);
   }
-  /* highlight toggle: only show underline hints when .kw-hints is set */
+  /* highlight toggle: background highlight when .kw-hints is set */
   .kw-hints.activity-mode-active .kw-span:not(.kw-correct) {
-    border-bottom: 1.5px dashed var(--accent);
+    background: var(--kw-hint-bg);
+    border-radius: 3px;
   }
   .kw-span.kw-correct {
     background: var(--kw-correct) !important;
@@ -693,6 +732,7 @@
     <div class="logo">EFL <span>Reader</span></div>
     <div class="tagline">Reading Practice · CEFR A1–B2</div>
   </div>
+  <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">☀️</button>
 </header>
 
 <!-- ── SIDEBAR ── -->
@@ -1258,6 +1298,13 @@ randomBtn.addEventListener('click', async () => {
 
 /* ── UTIL ── */
 function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
+
+/* ── DARK MODE ── */
+const darkToggleBtn = document.getElementById('darkToggle');
+darkToggleBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  darkToggleBtn.textContent = isDark ? '🌙' : '☀️';
+});
 
 /* ── INIT ── */
 loadLevel('A1');
