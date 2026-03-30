@@ -19,12 +19,16 @@
   .hero{min-height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;background:radial-gradient(ellipse at 50% 60%, var(--hero-inner) 0%, var(--bg) 70%);transition:background 0.3s;}
   .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;letter-spacing:-2px;margin-bottom:1.2rem;}
   .hero h1 span{color:var(--accent);}
-  .hero p{color:var(--text-muted);font-size:1.1rem;max-width:480px;margin:0 auto 1rem;font-weight:300;line-height:1.7;}
+  .hero>p{color:var(--text-muted);font-size:1.1rem;max-width:480px;margin:0 auto 1rem;font-weight:300;line-height:1.7;}
+
+  /* ── SHARED SECTION STYLES ── */
   .level-section{width:100%;max-width:900px;margin:0 auto 2.5rem;text-align:left;}
   .level-heading{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;}
-  .level-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .level-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:700;white-space:nowrap;}
   .level-line{flex:1;height:1px;background:var(--border);}
   .topic-cards{display:flex;gap:1.2rem;flex-wrap:wrap;}
+
+  /* ── GRAMMAR TOPIC CARDS ── */
   .topic-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem 2rem;width:240px;cursor:pointer;transition:all 0.3s;text-align:left;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;}
   .topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
   .topic-card:hover{border-color:var(--accent);transform:translateY(-4px);}
@@ -34,7 +38,94 @@
   .topic-card p{color:var(--text-muted);font-size:0.83rem;line-height:1.55;}
   .tc-arrow{margin-top:1.2rem;color:var(--accent);font-size:1.2rem;display:inline-block;transition:transform 0.2s;}
   .topic-card:hover .tc-arrow{transform:translateX(4px);}
-  @media(max-width:600px){.topic-card{width:100%;max-width:340px;}}
+
+  /* ── READER FEATURE CARD ── */
+  .reader-feature-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2.2rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+    transition: all 0.3s;
+    max-width: 900px;
+    width: 100%;
+  }
+  .reader-feature-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(232,197,71,0.06) 0%, rgba(240,151,90,0.08) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .reader-feature-card:hover { border-color: var(--accent2); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+  .reader-feature-card:hover::after { opacity: 1; }
+
+  .rfc-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(232,197,71,0.15), rgba(240,151,90,0.15));
+    border: 1px solid rgba(240,151,90,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+
+  .rfc-body { flex: 1; min-width: 0; }
+  .rfc-tag {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .rfc-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.35rem;
+    line-height: 1.2;
+  }
+  .rfc-body p { color: var(--text-muted); font-size: 0.83rem; line-height: 1.6; }
+
+  .rfc-pills {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+  .rfc-pill {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 0.18rem 0.6rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .rfc-arrow {
+    flex-shrink: 0;
+    color: var(--accent2);
+    font-size: 1.4rem;
+    transition: transform 0.2s;
+  }
+  .reader-feature-card:hover .rfc-arrow { transform: translateX(5px); }
+
+  @media(max-width:600px){
+    .topic-card{width:100%;max-width:340px;}
+    .reader-feature-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rfc-arrow { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -45,6 +136,32 @@
 <div class="hero">
   <h1>Master<br><span>English</span><br>Grammar.</h1>
   <p>Choose a topic below and work through explanations, examples, and five interactive activity types.</p>
+
+  <!-- ── EFL READER ── -->
+  <div class="level-section">
+    <div class="level-heading">
+      <span class="level-label">Reading Practice</span>
+      <div class="level-line"></div>
+    </div>
+    <a class="reader-feature-card" href="reader.html">
+      <div class="rfc-icon">📖</div>
+      <div class="rfc-body">
+        <div class="rfc-tag">EFL Reader</div>
+        <h3>Reading Texts — A1 to B2</h3>
+        <p>Graded reading passages across a wide range of topics. Click words to highlight, filter by level and topic, or pick a random text.</p>
+        <div class="rfc-pills">
+          <span class="rfc-pill">A1</span>
+          <span class="rfc-pill">A2</span>
+          <span class="rfc-pill">B1</span>
+          <span class="rfc-pill">B2</span>
+          <span class="rfc-pill">Word highlight</span>
+          <span class="rfc-pill">Topic filter</span>
+          <span class="rfc-pill">Random text</span>
+        </div>
+      </div>
+      <div class="rfc-arrow">→</div>
+    </a>
+  </div>
 
   <!-- A1 -->
   <div class="level-section">
@@ -172,7 +289,7 @@
         <p>Love, like, hate, prefer, would like, would prefer and would rather.</p>
         <div class="tc-arrow">→</div>
       </a>
-      </div>
+    </div>
   </div>
 
   <!-- B2 -->
