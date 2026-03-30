@@ -31,6 +31,18 @@ const texts = [
     topic: "work",
     level: "A1",
     wordCount: 120,
+    keywords: [
+      { word: 'office', definition: 'a room or building where people work at desks' },
+      { word: 'manager', definition: 'the person who is in charge of a team or place' },
+      { word: 'colleague', definition: 'a person you work with' },
+      { word: 'nervous', definition: 'feeling a little worried or afraid about something' },
+      { word: 'friendly', definition: 'kind and pleasant to other people' },
+      { word: 'desk', definition: 'a table used for working or studying' },
+      { word: 'notebook', definition: 'a small book used for writing notes' },
+      { word: 'floor', definition: 'a level of a building (e.g. ground floor, second floor)' },
+      { word: 'kitchen', definition: 'a room where food is prepared and cooked' },
+      { word: 'finish', definition: 'to stop doing something because it is complete' },
+    ],
     text: `My name is Lena. Today is my first day at my new job. I work in a small office in the city center. My desk is near the window. I have a computer, a phone, and a notebook on my desk.
 
 My manager is very friendly. Her name is Maria. She shows me where everything is. There is a kitchen on the second floor. We can eat lunch there.
@@ -47,6 +59,18 @@ I am a little nervous, but I am also very happy. I think this is a good place to
     topic: "travel",
     level: "A1",
     wordCount: 118,
+    keywords: [
+      { word: 'beach', definition: 'an area of sand or stones next to the sea' },
+      { word: 'train', definition: 'a vehicle that travels on rails and carries people or goods' },
+      { word: 'beautiful', definition: 'very nice to look at' },
+      { word: 'sand', definition: 'the soft yellow or white material found on beaches' },
+      { word: 'restaurant', definition: 'a place where you pay to eat a meal' },
+      { word: 'delicious', definition: 'tasting very good' },
+      { word: 'afternoon', definition: 'the part of the day between midday and evening' },
+      { word: 'sunset', definition: 'the time when the sun goes down and the sky turns orange or red' },
+      { word: 'photo', definition: 'a picture taken with a camera' },
+      { word: 'summer', definition: 'the warmest season of the year' },
+    ],
     text: `Last weekend, Tom and his sister went to the beach. They live in the city, so they took the train. The trip was about two hours long.
 
 The beach was beautiful. The water was warm and the sky was blue. Tom swam in the sea. His sister sat on the sand and read a book.
@@ -65,6 +89,18 @@ Tom says he wants to go back next summer.`
     topic: "technology",
     level: "A1",
     wordCount: 115,
+    keywords: [
+      { word: 'smartphone', definition: 'a mobile phone that can connect to the internet and run apps' },
+      { word: 'app', definition: 'a program you download and use on a phone or tablet' },
+      { word: 'camera', definition: 'a device used to take photos or videos' },
+      { word: 'charge', definition: 'to put electricity into a battery so a device works again' },
+      { word: 'share', definition: 'to show something to other people or give them a copy' },
+      { word: 'useful', definition: 'helpful; making things easier to do' },
+      { word: 'check', definition: 'to look at something to get information' },
+      { word: 'news', definition: 'information about recent events' },
+      { word: 'message', definition: 'a short piece of text sent to another person' },
+      { word: 'imagine', definition: 'to form a picture of something in your mind' },
+    ],
     text: `I have a smartphone. I use it every day. My phone is very important for me.
 
 In the morning, I use my phone to check the time. I also read the news and check my messages. I have many apps on my phone. I use a maps app when I go to a new place. I use a music app when I exercise.
@@ -81,6 +117,18 @@ At night, I put my phone on my desk to charge. My parents always say I use my ph
     topic: "food",
     level: "A1",
     wordCount: 122,
+    keywords: [
+      { word: 'cook', definition: 'to prepare food using heat' },
+      { word: 'vegetable', definition: 'a plant or part of a plant that we eat, such as carrots or potatoes' },
+      { word: 'market', definition: 'a place where people buy and sell food and other things' },
+      { word: 'fresh', definition: 'recently made or picked; not old or frozen' },
+      { word: 'ingredient', definition: 'one of the foods you use to make a meal' },
+      { word: 'sauce', definition: 'a liquid added to food for extra flavor' },
+      { word: 'tasty', definition: 'having a good flavor; nice to eat' },
+      { word: 'recipe', definition: 'a list of ingredients and steps to make a dish' },
+      { word: 'garlic', definition: 'a small white plant with a strong smell, used in cooking' },
+      { word: 'healthy', definition: 'good for your body; helping you stay well' },
+    ],
     text: `Sara likes to cook. She cooks dinner every day at home. She thinks cooking is fun and healthy.
 
 On Monday, she made vegetable soup. She used carrots, potatoes, and onions. It was easy to make. She ate the soup with bread.
@@ -99,6 +147,18 @@ Her friends love her cooking. They often come to her house for dinner. Sara is h
     topic: "habits and routine",
     level: "A1",
     wordCount: 119,
+    keywords: [
+      { word: 'alarm', definition: 'a device that makes a loud sound to wake you up' },
+      { word: 'routine', definition: 'a regular set of actions you do at the same time each day' },
+      { word: 'breakfast', definition: 'the first meal of the day, eaten in the morning' },
+      { word: 'podcast', definition: 'an audio program you can listen to on a phone or computer' },
+      { word: 'arrive', definition: 'to reach a place after a journey' },
+      { word: 'brush', definition: 'to clean teeth using a toothbrush and toothpaste' },
+      { word: 'coffee', definition: 'a hot drink made from roasted coffee beans' },
+      { word: 'bus stop', definition: 'a place on the road where you wait for a bus' },
+      { word: 'toast', definition: 'bread that has been heated until it is brown and crispy' },
+      { word: 'important', definition: 'having great value or meaning' },
+    ],
     text: `Every morning, David wakes up at seven o'clock. He does not use an alarm. He just wakes up at the same time every day.
 
 First, he drinks a glass of water. Then he goes to the bathroom to wash his face and brush his teeth. After that, he makes breakfast. He usually eats eggs and toast. He drinks one cup of coffee.
@@ -117,6 +177,18 @@ David thinks a good morning routine is very important for a happy day.`
     topic: "health",
     level: "A1",
     wordCount: 121,
+    keywords: [
+      { word: 'healthy', definition: 'good for your body; helping you stay well' },
+      { word: 'exercise', definition: 'physical activity done to keep the body fit' },
+      { word: 'yoga', definition: 'a type of gentle exercise with stretching and breathing' },
+      { word: 'sleep', definition: 'the natural rest your body needs each night' },
+      { word: 'sugar', definition: 'a sweet white substance used in food and drinks' },
+      { word: 'smoke', definition: 'to breathe in and out the smoke from a cigarette' },
+      { word: 'check-up', definition: 'a visit to the doctor to make sure you are well' },
+      { word: 'prevention', definition: 'stopping something bad from happening before it does' },
+      { word: 'active', definition: 'doing physical movement; not sitting still' },
+      { word: 'energy', definition: 'the strength and ability to be active and do things' },
+    ],
     text: `Ana wants to be healthy. She follows some simple rules every day.
 
 She drinks eight glasses of water every day. She eats a lot of vegetables and fruit. She tries not to eat too much sugar. She does not smoke.
@@ -135,6 +207,18 @@ Every year, she visits her doctor for a check-up. She believes that prevention i
     topic: "sports",
     level: "A1",
     wordCount: 117,
+    keywords: [
+      { word: 'midfielder', definition: 'a football player who plays in the middle of the field' },
+      { word: 'stadium', definition: 'a large sports ground with seats for spectators' },
+      { word: 'field', definition: 'a large flat area of grass used for playing sports' },
+      { word: 'tired', definition: 'feeling that you need to rest or sleep' },
+      { word: 'fast', definition: 'moving or happening quickly' },
+      { word: 'team', definition: 'a group of people who play or work together' },
+      { word: 'score', definition: 'to get a goal or point in a game' },
+      { word: 'sport', definition: 'a game or physical activity done for enjoyment or competition' },
+      { word: 'player', definition: 'a person who takes part in a game or sport' },
+      { word: 'café', definition: 'a small place where you can buy drinks and light food' },
+    ],
     text: `Carlos loves football. He plays football every Saturday morning with his friends. They meet at the park at nine o'clock.
 
 There are ten players on the field. They play for one hour. Carlos is a midfielder. He runs a lot during the game. He is very fast.
@@ -153,6 +237,18 @@ Carlos says football is more than a sport. It is a way to make friends and have 
     topic: "nature",
     level: "A1",
     wordCount: 116,
+    keywords: [
+      { word: 'forest', definition: 'a large area of land with many trees' },
+      { word: 'path', definition: 'a narrow track that people walk along' },
+      { word: 'leaf', definition: 'a flat green part of a plant or tree (plural: leaves)' },
+      { word: 'autumn', definition: 'the season between summer and winter when leaves change colour' },
+      { word: 'quiet', definition: 'making little or no noise; peaceful' },
+      { word: 'river', definition: 'a large natural flow of water that goes to the sea' },
+      { word: 'bird', definition: 'an animal with wings and feathers that can usually fly' },
+      { word: 'calm', definition: 'relaxed and not worried; peaceful' },
+      { word: 'nature', definition: 'everything in the world that is not made by people' },
+      { word: 'spring', definition: 'the season after winter when plants start to grow' },
+    ],
     text: `Near my town there is a big forest. I love going there on weekends.
 
 The trees are very tall. In spring, the forest is full of green leaves and flowers. Birds sing in the morning. You can hear the sound of a small river too.
@@ -171,6 +267,18 @@ The forest is a quiet place. There are no cars or noise. I feel calm and relaxed
     topic: "movies and series",
     level: "A1",
     wordCount: 120,
+    keywords: [
+      { word: 'tradition', definition: 'something people do regularly because they have always done it' },
+      { word: 'comedy', definition: 'a film or show that is funny and makes people laugh' },
+      { word: 'streaming', definition: 'watching video or listening to audio directly from the internet' },
+      { word: 'sofa', definition: 'a comfortable seat with a back and arms for two or more people' },
+      { word: 'popcorn', definition: 'a snack made from heated corn kernels that pop open' },
+      { word: 'subscription', definition: 'a regular payment to use a service' },
+      { word: 'scene', definition: 'a part of a film or story that happens in one place' },
+      { word: 'roommate', definition: 'a person who shares a home with you' },
+      { word: 'content', definition: 'films, music, or other media that you can watch or listen to' },
+      { word: 'choose', definition: 'to decide which thing you want from several options' },
+    ],
     text: `On Friday evenings, Julia and her roommate watch a movie together. They call it "movie night." It is their favorite weekly tradition.
 
 They take turns choosing the film. This week, Julia chose a comedy. Her roommate likes action movies, but he agreed. They made popcorn and sat on the sofa together.
@@ -189,6 +297,18 @@ After the movie, they talked about their favorite scenes. Julia says movie night
     topic: "music",
     level: "A1",
     wordCount: 118,
+    keywords: [
+      { word: 'guitar', definition: 'a musical instrument with strings that you play with your fingers' },
+      { word: 'chord', definition: 'several musical notes played at the same time' },
+      { word: 'practice', definition: 'to do something repeatedly to get better at it' },
+      { word: 'patient', definition: 'able to wait calmly without getting annoyed' },
+      { word: 'instrument', definition: 'an object used to make music, such as a piano or violin' },
+      { word: 'technique', definition: 'a particular way of doing something that requires skill' },
+      { word: 'lesson', definition: 'a period of time when someone teaches you something' },
+      { word: 'nervous', definition: 'feeling a little worried or afraid about something' },
+      { word: 'resource', definition: 'something useful that helps you do or learn something' },
+      { word: 'rock', definition: 'a style of loud, energetic music with electric guitars' },
+    ],
     text: `Mike started to learn the guitar six months ago. He always wanted to play a musical instrument.
 
 He has lessons once a week with a teacher. His teacher is very patient. Mike also practices at home every evening for thirty minutes.
@@ -209,6 +329,18 @@ He wants to play in front of people one day. Maybe at a small party or a family 
     topic: "shopping",
     level: "A1",
     wordCount: 115,
+    keywords: [
+      { word: 'supermarket', definition: 'a large shop where you can buy food and household items' },
+      { word: 'dairy', definition: 'food made from milk, such as cheese, butter, or yogurt' },
+      { word: 'checkout', definition: 'the place in a shop where you pay for your items' },
+      { word: 'loyalty card', definition: 'a card that gives you points or discounts when you shop' },
+      { word: 'reusable', definition: 'able to be used again, not thrown away after one use' },
+      { word: 'sale', definition: 'a time when goods are sold at a lower price than usual' },
+      { word: 'list', definition: 'a written record of things you need or want to do' },
+      { word: 'price', definition: 'the amount of money you pay for something' },
+      { word: 'environment', definition: 'the natural world, including the air, water, and land' },
+      { word: 'section', definition: 'a separate part of a shop or building' },
+    ],
     text: `Every Sunday, Grace goes to the supermarket. She makes a list before she leaves the house. She writes down everything she needs for the week.
 
 At the supermarket, she starts with fruit and vegetables. Then she goes to the dairy section to get milk, cheese, and yogurt. She also buys bread, pasta, and rice.
@@ -227,6 +359,18 @@ Shopping usually takes about forty-five minutes. She goes home, puts everything 
     topic: "animals and pets",
     level: "A1",
     wordCount: 112,
+    keywords: [
+      { word: 'fur', definition: 'the soft hair that covers an animal\'s body' },
+      { word: 'litter box', definition: 'a container filled with sand where a cat goes to the toilet' },
+      { word: 'indoor', definition: 'inside a building; not outside' },
+      { word: 'hungry', definition: 'feeling that you need or want to eat food' },
+      { word: 'company', definition: 'being with someone so that you do not feel alone' },
+      { word: 'toy', definition: 'an object that children or animals play with' },
+      { word: 'tuna', definition: 'a large sea fish that is often sold in cans' },
+      { word: 'jump', definition: 'to push yourself up into the air with your legs' },
+      { word: 'alone', definition: 'without other people; by yourself' },
+      { word: 'feed', definition: 'to give food to a person or animal' },
+    ],
     text: `I have a cat. Her name is Luna. She is two years old and she has grey and white fur.
 
 Luna sleeps a lot. She usually sleeps on the sofa or on my bed. She wakes up when she is hungry. Her favorite food is tuna.
@@ -247,6 +391,18 @@ I love Luna very much. She is good company, especially when I am alone at home.`
     topic: "education",
     level: "A1",
     wordCount: 119,
+    keywords: [
+      { word: 'subtitles', definition: 'words at the bottom of a screen that show what people are saying' },
+      { word: 'confident', definition: 'feeling sure of yourself and your abilities' },
+      { word: 'vocabulary', definition: 'all the words that a person knows or uses' },
+      { word: 'progress', definition: 'improvement or development over time' },
+      { word: 'activity', definition: 'something you do, especially for learning or enjoyment' },
+      { word: 'adult', definition: 'a fully grown person, usually over 18 years old' },
+      { word: 'homework', definition: 'schoolwork that you do at home' },
+      { word: 'shy', definition: 'nervous and uncomfortable with other people' },
+      { word: 'clearly', definition: 'in a way that is easy to understand' },
+      { word: 'practice', definition: 'to do something repeatedly to get better at it' },
+    ],
     text: `My name is Paulo. I study English twice a week. My class is on Tuesday and Thursday evenings.
 
 There are twelve students in my class. We are all adults. Some students want to travel. Others want to use English for work. I want to use English to watch movies without subtitles.
@@ -265,6 +421,18 @@ I started this class three months ago. At first, I was shy. Now I feel more conf
     topic: "weather",
     level: "A1",
     wordCount: 113,
+    keywords: [
+      { word: 'rainy', definition: 'having a lot of rain' },
+      { word: 'grey', definition: 'the colour between black and white; like a cloudy sky' },
+      { word: 'cozy', definition: 'warm, comfortable, and safe' },
+      { word: 'mystery', definition: 'a story about a crime or secret that must be solved' },
+      { word: 'novel', definition: 'a long book that tells a fictional story' },
+      { word: 'shiny', definition: 'reflecting light; bright and clean-looking' },
+      { word: 'wind', definition: 'moving air outdoors' },
+      { word: 'calm', definition: 'relaxed and not worried; peaceful' },
+      { word: 'smell', definition: 'to sense an odor through your nose; also the odor itself' },
+      { word: 'fresh', definition: 'clean and cool, like the air after rain' },
+    ],
     text: `Today it is raining. The sky is grey and it is cold outside. I do not want to go out.
 
 I stay at home and drink hot tea. I look out the window and watch the rain fall on the street. The trees move in the wind.
@@ -285,6 +453,18 @@ I actually like rainy days. They make me feel calm and cozy.`
     topic: "technology",
     level: "A1",
     wordCount: 121,
+    keywords: [
+      { word: 'search', definition: 'to look for information, especially online' },
+      { word: 'contact', definition: 'to communicate with someone by phone, email, etc.' },
+      { word: 'video call', definition: 'a conversation where you can see the other person on a screen' },
+      { word: 'recipe', definition: 'a list of ingredients and steps to make a dish' },
+      { word: 'email', definition: 'a message sent electronically from one computer to another' },
+      { word: 'balance', definition: 'having the right amount of different things in your life' },
+      { word: 'screen', definition: 'the flat surface of a phone, computer, or TV that shows images' },
+      { word: 'online', definition: 'connected to or available through the internet' },
+      { word: 'channel', definition: 'a TV or video account that publishes content regularly' },
+      { word: 'meeting', definition: 'a time when people come together to discuss something' },
+    ],
     text: `Most people use the internet every day. We use it for many different things.
 
 We use it to find information. If I have a question, I search for the answer online. It is very fast and easy.
@@ -305,6 +485,18 @@ Sometimes I worry about spending too much time online. It is important to take b
     topic: "holidays and celebrations",
     level: "A1",
     wordCount: 116,
+    keywords: [
+      { word: 'celebrate', definition: 'to do something enjoyable on a special occasion' },
+      { word: 'fireworks', definition: 'devices that explode in the sky to make bright colors and sounds' },
+      { word: 'midnight', definition: '12 o\'clock at night; the middle of the night' },
+      { word: 'grateful', definition: 'feeling happy and thankful for something' },
+      { word: 'memory', definition: 'something from the past that you remember' },
+      { word: 'hug', definition: 'to put your arms around someone to show you care' },
+      { word: 'excited', definition: 'feeling very happy and eager about something' },
+      { word: 'emotional', definition: 'having or showing strong feelings' },
+      { word: 'board game', definition: 'a game played on a flat surface, such as chess or Scrabble' },
+      { word: 'tradition', definition: 'something people do regularly because they have always done it' },
+    ],
     text: `New Year's Eve is my favorite night of the year. It is the last day of December. People celebrate the end of the old year and the beginning of the new one.
 
 In my family, we always have dinner together. My grandmother makes her special soup. We also eat rice, salad, and grilled chicken. After dinner, we play board games.
@@ -323,6 +515,18 @@ I always feel excited and a little emotional on this night. It is a moment to be
     topic: "travel",
     level: "A1",
     wordCount: 117,
+    keywords: [
+      { word: 'bicycle', definition: 'a vehicle with two wheels that you ride by pedalling' },
+      { word: 'metro', definition: 'an underground train system in a city' },
+      { word: 'crowded', definition: 'full of people; with too little space' },
+      { word: 'traffic', definition: 'cars and other vehicles on a road' },
+      { word: 'parking', definition: 'a place where you leave your car for a period of time' },
+      { word: 'cycling', definition: 'riding a bicycle as a way to travel or exercise' },
+      { word: 'pleasant', definition: 'enjoyable and giving you a good feeling' },
+      { word: 'cheap', definition: 'not costing much money' },
+      { word: 'public transport', definition: 'buses, trains, or other vehicles used by many people' },
+      { word: 'station', definition: 'a place where trains or buses stop to pick up passengers' },
+    ],
     text: `My office is twelve kilometers from my home. I have different ways to get there.
 
 On nice days, I ride my bicycle. It takes about thirty-five minutes. I enjoy the fresh air and the exercise. I go through a park, which is very pleasant.
@@ -341,6 +545,18 @@ I never drive to work. There is a lot of traffic and parking is very expensive. 
     topic: "sports",
     level: "A1",
     wordCount: 114,
+    keywords: [
+      { word: 'run', definition: 'to move quickly on foot' },
+      { word: 'breath', definition: 'the air that goes in and out of your lungs' },
+      { word: 'distance', definition: 'the length of space between two places' },
+      { word: 'proud', definition: 'feeling very pleased about something you or someone else did' },
+      { word: 'fitness app', definition: 'a program on your phone that records your exercise' },
+      { word: 'comfortable', definition: 'feeling physically relaxed and at ease' },
+      { word: 'track', definition: 'to record or follow progress over time' },
+      { word: 'race', definition: 'a competition to see who can run fastest' },
+      { word: 'energy', definition: 'the strength and ability to be active and do things' },
+      { word: 'give up', definition: 'to stop trying to do something' },
+    ],
     text: `Elena started running six weeks ago. She runs three times a week in the park near her house.
 
 At first, she could only run for five minutes. She stopped because she was out of breath. But she did not give up. She continued to practice.
@@ -361,6 +577,18 @@ She wants to run a five-kilometer race before the end of the year.`
     topic: "food",
     level: "A1",
     wordCount: 118,
+    keywords: [
+      { word: 'waiter', definition: 'a person who brings food and drinks to your table in a restaurant' },
+      { word: 'menu', definition: 'a list of food and drinks available in a restaurant' },
+      { word: 'crust', definition: 'the hard outer part of bread or pizza' },
+      { word: 'dessert', definition: 'a sweet food eaten at the end of a meal' },
+      { word: 'bill', definition: 'a piece of paper showing how much you must pay' },
+      { word: 'tip', definition: 'extra money you give to a waiter to thank them for good service' },
+      { word: 'crispy', definition: 'hard and dry on the outside; making a crunching sound' },
+      { word: 'candle', definition: 'a stick of wax with a wick that you light to give light' },
+      { word: 'option', definition: 'one of the choices available to you' },
+      { word: 'service', definition: 'the help that workers give to customers in a shop or restaurant' },
+    ],
     text: `On Saturday, Jack and his friend went to a new restaurant in the city. The restaurant was Italian. Jack loves Italian food.
 
 The waiter gave them the menu. There were many options. Jack chose pizza with tomatoes, cheese, and mushrooms. His friend chose pasta with cream sauce.
@@ -383,6 +611,18 @@ He wants to go back next month.`
     topic: "nature",
     level: "A1",
     wordCount: 120,
+    keywords: [
+      { word: 'environment', definition: 'the natural world, including the air, water, and land' },
+      { word: 'recycle', definition: 'to process used materials so they can be used again' },
+      { word: 'waste', definition: 'materials that are thrown away and no longer needed' },
+      { word: 'reusable', definition: 'able to be used again, not thrown away after one use' },
+      { word: 'pollution', definition: 'harmful substances in the air, water, or land' },
+      { word: 'community', definition: 'a group of people who live in the same area' },
+      { word: 'produce', definition: 'to make or grow something' },
+      { word: 'planet', definition: 'a large round object in space, like the Earth' },
+      { word: 'reduce', definition: 'to make something smaller in size or amount' },
+      { word: 'cycle', definition: 'to travel by bicycle; also a repeated series of events' },
+    ],
     text: `Many people today think about the environment. They want to take care of the planet.
 
 There are simple things we can do every day. We can turn off the lights when we leave a room. We can take short showers to save water. We can walk or cycle instead of using a car.

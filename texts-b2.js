@@ -29,6 +29,18 @@ const texts = [
     topic: "work",
     level: "B2",
     wordCount: 452,
+    keywords: [
+      { word: 'gig economy', definition: 'a labour market based on short-term contracts and freelance work rather than permanent jobs' },
+      { word: 'autonomous', definition: 'working independently, without being controlled by others' },
+      { word: 'bilateral', definition: 'involving two parties or sides' },
+      { word: 'precariousness', definition: 'the state of being uncertain, unstable, or dependent on chance' },
+      { word: 'entitlement', definition: 'a legal right to receive something, such as pay or leave' },
+      { word: 'lobbying', definition: 'trying to influence politicians or officials to support your cause' },
+      { word: 'salaried', definition: 'receiving a fixed regular payment for work, regardless of hours' },
+      { word: 'regulatory', definition: 'relating to official rules and the bodies that enforce them' },
+      { word: 'scaling', definition: 'increasing or decreasing the size of something quickly' },
+      { word: 'categorize', definition: 'to put something into a group based on its characteristics' },
+    ],
     text: `Over the past two decades, a new model of employment has taken root in economies around the world. Loosely grouped under the term "gig economy," it encompasses the growing practice of hiring independent contractors, freelancers, and platform workers for short-term tasks rather than offering them traditional salaried positions with associated benefits and legal protections. Companies such as Uber, Deliveroo, and Upwork have become emblematic of this shift, but the phenomenon extends far beyond recognizable platform brands into virtually every sector of the economy.
 
 Proponents of gig work emphasize its flexibility. For workers who want to set their own hours, pursue multiple income streams simultaneously, or combine paid work with caregiving or study, gig arrangements can offer a degree of autonomy that conventional employment rarely provides. For businesses, the model enables rapid scaling without the fixed costs and legal obligations associated with a permanent workforce. For consumers, competition among gig platforms has frequently driven down prices and improved convenience.
@@ -49,6 +61,18 @@ For many gig workers themselves, the experience defies easy categorization. Some
     topic: "travel",
     level: "B2",
     wordCount: 448,
+    keywords: [
+      { word: 'flâneur', definition: 'a person who strolls through a city in a relaxed, observant way (French concept)' },
+      { word: 'dérive', definition: 'an unplanned journey through a city guided by atmosphere, not destination (French Situationist concept)' },
+      { word: 'sensibility', definition: 'a particular way of experiencing and responding to the world' },
+      { word: 'recalibration', definition: 'a small adjustment to restore the right balance' },
+      { word: 'incidental', definition: 'happening as a minor part of something else; not planned' },
+      { word: 'transactional', definition: 'relating only to a simple exchange, without personal connection' },
+      { word: 'lineage', definition: 'a line of development or descent from earlier ideas or people' },
+      { word: 'predetermined', definition: 'decided in advance, before events actually happen' },
+      { word: 'contemplative', definition: 'involving deep, quiet thought and careful attention' },
+      { word: 'affluent', definition: 'having a lot of money; wealthy' },
+    ],
     text: `There is a peculiar anxiety that afflicts many modern travellers — a nagging sense that they are not doing quite enough with their time in a given place. This anxiety has its own cultural infrastructure: the "top ten must-see" list, the Instagram location pin, the bucket list mentality that frames travel as a series of experiences to be collected rather than absorbed. The result is a form of tourism that can leave people feeling curiously unfulfilled, having moved through remarkable places without ever truly arriving in them.
 
 Slow travel is, at one level, simply a reaction against this. The movement — to the extent that it constitutes a coherent movement rather than a loosely shared sensibility — advocates spending longer in fewer places, prioritizing depth of experience over breadth of coverage, and allowing the rhythms and textures of a place to reveal themselves gradually rather than extracting a predetermined set of highlights under time pressure.
@@ -71,6 +95,18 @@ The deepest argument for slow travel is perhaps the simplest: that places, like 
     topic: "technology",
     level: "B2",
     wordCount: 461,
+    keywords: [
+      { word: 'algorithm', definition: 'a set of rules a computer follows to solve a problem or make a decision' },
+      { word: 'bias', definition: 'an unfair preference for or against something that affects judgement' },
+      { word: 'recidivism', definition: 'the tendency of a convicted person to commit more crimes' },
+      { word: 'misapprehension', definition: 'a wrong or mistaken understanding of something' },
+      { word: 'discriminatory', definition: 'treating people unfairly because of their race, gender, or other characteristic' },
+      { word: 'impartiality', definition: 'treating all people equally, without favouring any one group' },
+      { word: 'demographic', definition: 'a particular group in society defined by age, gender, income, etc.' },
+      { word: 'audit', definition: 'an official examination of something to check it is correct or fair' },
+      { word: 'transparency', definition: 'the quality of being open and honest about how something works' },
+      { word: 'aggregate', definition: 'combined or total, made up of many individual parts' },
+    ],
     text: `When a decision is made by an algorithm rather than a human being, it is tempting to assume that the process has thereby been made more objective. Algorithms, after all, do not have moods, personal prejudices, or conscious biases. They apply the same rules to every case. This intuition, while understandable, rests on a fundamental misapprehension of how algorithmic systems actually work — and the consequences of this misapprehension are, in some contexts, genuinely serious.
 
 Machine learning algorithms, which underlie most modern AI systems, do not reason from first principles. They learn patterns from historical data and apply those patterns to new cases. The critical point is this: if the historical data reflects existing social inequalities, the algorithm will reproduce those inequalities, often with considerable precision. Worse, by presenting a discriminatory outcome as the product of mathematical calculation rather than human judgment, the algorithmic format can make that outcome appear more legitimate and therefore harder to challenge.
@@ -93,6 +129,18 @@ Most fundamentally, it requires abandoning the comforting fiction that mathemati
     topic: "food",
     level: "B2",
     wordCount: 456,
+    keywords: [
+      { word: 'food security', definition: 'reliable access to enough nutritious food for an active, healthy life' },
+      { word: 'crop yield', definition: 'the amount of a crop produced per unit of land' },
+      { word: 'staple crop', definition: 'a basic food that forms the main part of a population\'s diet' },
+      { word: 'precipitation', definition: 'water falling from the sky as rain, snow, or hail' },
+      { word: 'soil erosion', definition: 'the wearing away of topsoil by wind, water, or farming activity' },
+      { word: 'deprivation', definition: 'not having enough of the things that are necessary for a healthy life' },
+      { word: 'adaptive', definition: 'able to change to suit new conditions' },
+      { word: 'resilience', definition: 'the ability to recover from difficulties or adapt to change' },
+      { word: 'commodity crop', definition: 'a crop grown in large quantities and sold on world markets, such as wheat or maize' },
+      { word: 'irrigation', definition: 'a system for supplying water to land so that crops can grow' },
+    ],
     text: `The global food system feeds approximately eight billion people, and doing so requires a set of interlocking agricultural, logistical, and economic arrangements of extraordinary complexity. For most people in high-income countries, this complexity is invisible: food appears reliably in shops, its abundance taken for granted, its origins rarely considered. But the system that delivers this abundance is more fragile than it appears, and the stresses being placed upon it by climate change are accelerating in ways that demand serious attention.
 
 Temperature is the most immediate variable. Crop yields for staple foods — wheat, maize, rice, and soybean — are sensitive to heat stress during critical growth phases, particularly during flowering and grain-filling. Studies have consistently found that for every degree Celsius of warming above historical averages, yields of these crops decline by roughly six to ten percent, depending on location and variety. In regions that already experience high ambient temperatures, even modest further warming can push conditions beyond the physiological tolerance of existing crop varieties.
@@ -115,6 +163,18 @@ The challenge is not simply technical. It is political, economic, and ultimately
     topic: "habits and routine",
     level: "B2",
     wordCount: 449,
+    keywords: [
+      { word: 'basal ganglia', definition: 'a group of brain structures that control automatic and routine movements' },
+      { word: 'myelination', definition: 'the process of forming a protective sheath around nerve fibres, speeding up signals' },
+      { word: 'prefrontal cortex', definition: 'the front part of the brain that controls conscious thought and decision-making' },
+      { word: 'automaticity', definition: 'the ability to perform a task without conscious attention' },
+      { word: 'habit loop', definition: 'the three-part cycle of cue, routine, and reward that drives habitual behaviour' },
+      { word: 'craving', definition: 'a powerful desire for something' },
+      { word: 'willpower', definition: 'the ability to control your thoughts and actions using mental effort' },
+      { word: 'deliberation', definition: 'careful thought before making a decision' },
+      { word: 'neuroscience', definition: 'the scientific study of the brain and nervous system' },
+      { word: 'addiction', definition: 'a strong physical or mental dependence on a substance or behaviour' },
+    ],
     text: `Human beings are, to a remarkable degree, creatures of habit. Neuroscientists estimate that somewhere between forty and fifty percent of our daily behaviors are habitual — performed automatically, without conscious deliberation, in response to specific contextual cues. We brush our teeth on autopilot, take the same route to work without deciding to, reach for a cup of coffee at the same time each morning without consciously registering either the urge or the decision. This automaticity is not a flaw in our cognitive architecture. It is a feature — a highly efficient mechanism by which the brain conserves limited conscious processing resources for tasks that genuinely require them.
 
 The neurological basis of habit formation centers on the basal ganglia, a cluster of structures deep within the brain that play a central role in procedural learning and routine behavior. When a behavior is repeated consistently in the same context, the neural pathways associated with it are progressively strengthened through a process called myelination — the formation of a fatty sheath around the axons that carry neural signals, which dramatically increases the speed and efficiency of neural transmission. Eventually, the behavior can be triggered and executed with minimal involvement of the prefrontal cortex, which governs conscious, deliberate thought.
@@ -133,6 +193,18 @@ What the neuroscience also makes clear is that the process takes time. Popular c
     topic: "health",
     level: "B2",
     wordCount: 458,
+    keywords: [
+      { word: 'placebo effect', definition: 'an improvement in a patient\'s condition caused by their belief in a treatment, not the treatment itself' },
+      { word: 'pharmacological', definition: 'relating to drugs and their effects on the body' },
+      { word: 'neuroimaging', definition: 'techniques for producing images of the brain\'s structure and activity' },
+      { word: 'endogenous opioid', definition: 'a natural pain-relieving chemical produced by the brain' },
+      { word: 'antagonist', definition: 'a substance that blocks the effect of another substance in the body' },
+      { word: 'open-label', definition: 'a trial where both the doctor and patient know what treatment is being given' },
+      { word: 'inert', definition: 'not active or producing any chemical effect' },
+      { word: 'clinical trial', definition: 'a scientific study to test whether a treatment is safe and effective' },
+      { word: 'mechanism', definition: 'the way in which something works or happens' },
+      { word: 'mechanistic', definition: 'treating a complex thing as if it were a simple machine' },
+    ],
     text: `Few phenomena in medicine are as simultaneously well-documented and poorly understood as the placebo effect. The basic observation — that patients frequently experience genuine, measurable improvements in their condition after receiving a treatment that contains no active pharmacological ingredient — has been replicated across thousands of clinical trials. Yet the mechanism by which an inert substance can produce real physiological change remains a subject of active scientific debate, and the ethical implications of the phenomenon for clinical practice remain unresolved.
 
 The earliest systematic use of the placebo was as a control condition in clinical trials. To demonstrate that a drug is effective, researchers need to show not merely that patients improve after taking it, but that they improve more than patients who receive an identical-looking but pharmacologically inactive substitute. This requirement exposed a persistent and sometimes dramatic problem: the control group, receiving what was ostensibly nothing, frequently improved as well — sometimes almost as much as the treatment group.
@@ -153,6 +225,18 @@ What the placebo effect ultimately illustrates is the inadequacy of a purely mec
     topic: "sports",
     level: "B2",
     wordCount: 453,
+    keywords: [
+      { word: 'performance-enhancing', definition: 'designed to make an athlete faster, stronger, or more able' },
+      { word: 'doping', definition: 'the use of banned drugs or methods to improve sports performance' },
+      { word: 'lactate threshold', definition: 'the exercise intensity at which lactic acid builds up faster than the body can remove it' },
+      { word: 'genetic mutation', definition: 'a change in a person\'s DNA that may affect how their body works' },
+      { word: 'enhancement', definition: 'an improvement to something beyond its natural state' },
+      { word: 'prohibition', definition: 'an official ban on something' },
+      { word: 'integrity', definition: 'the quality of being honest and having strong moral principles' },
+      { word: 'pharmacological', definition: 'relating to drugs and their effects on the body' },
+      { word: 'regulatory body', definition: 'an official organisation that makes and enforces rules in an industry or sport' },
+      { word: 'transhumanist', definition: 'relating to the belief that technology should be used to improve human abilities beyond natural limits' },
+    ],
     text: `The prohibition of performance-enhancing substances in competitive sport rests on a set of intuitions that most people find immediately compelling: that sport should reward natural talent and disciplined training, that competitors should face each other on a level field, and that the integrity of athletic achievement depends on its being genuinely human — the product of bodies operating within their natural limits. These intuitions are real and widely shared. They are also, on closer examination, considerably more complicated than they first appear.
 
 The category of "natural" in sport is already deeply unstable. Elite athletes do not simply train harder than recreational athletes; they are selected, in part, for genetic characteristics — cardiovascular efficiency, muscle fiber composition, lactate threshold — that they have done nothing to earn and that are distributed with radical inequality across the human population. Eero Mäntyranta, the Finnish cross-country skier who dominated his sport in the 1960s, was later found to have a genetic mutation that caused his blood to carry approximately fifty percent more oxygen than average. He was never accused of doping. His advantage was biological rather than pharmacological, and this distinction was considered morally decisive — but its justification is not obvious.
@@ -173,6 +257,18 @@ The debate ultimately cannot be resolved without clarity about what sport is fun
     topic: "nature",
     level: "B2",
     wordCount: 455,
+    keywords: [
+      { word: 'social fabric', definition: 'the network of relationships and shared values that hold a community together' },
+      { word: 'atomized', definition: 'broken into separate, isolated individuals with few connections' },
+      { word: 'anonymity', definition: 'the state of not being known or identified' },
+      { word: 'commuter', definition: 'a person who travels regularly between home and work' },
+      { word: 'public realm', definition: 'spaces and areas that are accessible to everyone, such as streets and parks' },
+      { word: 'third place', definition: 'a social environment separate from home and work, such as a café or community centre' },
+      { word: 'density', definition: 'the number of people or things in a given area' },
+      { word: 'proximity', definition: 'being near to someone or something' },
+      { word: 'intentional community', definition: 'a group of people who choose to live together and share resources and values' },
+      { word: 'co-working', definition: 'sharing an office space with people from different organisations' },
+    ],
     text: `For most of human history, forests were understood primarily in terms of what was visible: the trees themselves, the animals that moved through them, the timber and food they provided. The underground dimension of forest ecosystems — the vast, intricate networks of fungi and root systems through which trees exchange resources and, evidence increasingly suggests, information — was entirely beyond our awareness and largely beyond our imagining. The scientific investigation of these networks over the past three decades has transformed our understanding of what a forest actually is.
 
 At the center of this transformation is the discovery of mycorrhizal networks — symbiotic relationships between trees and certain species of fungi in which the fungi attach to tree roots and dramatically extend their capacity to absorb water and nutrients from the soil. In exchange, the trees provide the fungi with sugars produced through photosynthesis. This relationship is ancient, having evolved approximately four hundred and fifty million years ago, and is present in the vast majority of the world's plant species.
@@ -191,6 +287,18 @@ What these findings do unambiguously challenge is the older model of individual 
     topic: "movies and series",
     level: "B2",
     wordCount: 447,
+    keywords: [
+      { word: 'REM sleep', definition: 'Rapid Eye Movement sleep, the stage associated with vivid dreams' },
+      { word: 'circadian rhythm', definition: 'the body\'s natural 24-hour cycle that controls sleep and wakefulness' },
+      { word: 'melatonin', definition: 'a hormone produced by the brain that signals the body to sleep' },
+      { word: 'cortisol', definition: 'a hormone released when you are stressed; also helps you wake up' },
+      { word: 'consolidation', definition: 'the process by which memories are stored more permanently during sleep' },
+      { word: 'neuroplasticity', definition: 'the brain\'s ability to change and reorganise itself' },
+      { word: 'insomnia', definition: 'difficulty in falling or staying asleep' },
+      { word: 'deprivation', definition: 'not having enough of something essential, such as sleep' },
+      { word: 'cognitive function', definition: 'mental abilities including memory, attention, and reasoning' },
+      { word: 'synaptic pruning', definition: 'the brain\'s process of removing unnecessary neural connections during sleep' },
+    ],
     text: `Cinema is a collaborative art form on a scale that has no real equivalent in other creative traditions. A major film involves the contributions of hundreds of individuals — cinematographers, editors, composers, production designers, actors, sound engineers — each of whom brings expertise and creative judgment to the work. Yet the dominant critical framework through which films have been analyzed and celebrated since the 1950s assigns the primary creative authorship of a film to a single individual: the director. This framework, known as auteur theory, has profoundly shaped how films are marketed, reviewed, taught, and remembered — and it has been disputed, with considerable force, almost since its inception.
 
 Auteur theory originated in the pages of the French film journal Cahiers du Cinéma in the early 1950s, where a group of young critics — including François Truffaut and Jean-Luc Godard, who would later become filmmakers themselves — argued that the greatest directors imposed a coherent personal vision on their films that was recognizable across their entire body of work, regardless of the genre, studio, or material they were working with. A "true" auteur, in this formulation, transformed the essentially industrial process of filmmaking into a medium of personal expression comparable to literature, painting, or music.
@@ -209,6 +317,18 @@ The auteur framework has also been criticized for the way it has historically pr
     topic: "music",
     level: "B2",
     wordCount: 451,
+    keywords: [
+      { word: 'linguistic relativity', definition: 'the theory that the language you speak influences how you think' },
+      { word: 'cognition', definition: 'the mental processes of thinking, understanding, and remembering' },
+      { word: 'spatial reasoning', definition: 'the ability to understand and remember the relationships between objects in space' },
+      { word: 'cardinal directions', definition: 'the four main compass directions: north, south, east, and west' },
+      { word: 'colour perception', definition: 'the ability to see and distinguish between different colours' },
+      { word: 'determinism', definition: 'the belief that all events are caused by earlier events and cannot be changed' },
+      { word: 'bilingual', definition: 'able to speak two languages fluently' },
+      { word: 'empirical', definition: 'based on observation and experiment rather than theory' },
+      { word: 'sapir-whorf hypothesis', definition: 'the theory that language shapes and limits thought (also called linguistic relativity)' },
+      { word: 'constrain', definition: 'to limit or restrict something' },
+    ],
     text: `The relationship between popular music and political dissent is long, complex, and frequently uncomfortable for all parties involved. Musicians have used their platform to criticize power, galvanize movements, and give voice to communities whose experiences were otherwise invisible in mainstream culture. Governments, corporations, and institutions have variously censored, co-opted, and commodified those same voices. The result is a history in which moments of genuine political expression exist alongside an equally persistent tendency for radical aesthetics to be absorbed into the entertainment industry with their political content neutralized.
 
 The examples of music serving as a vehicle for political consciousness are well documented. The American folk revival of the 1950s and early 1960s, associated with artists like Pete Seeger, Woody Guthrie, and the young Bob Dylan, was explicitly connected to labor rights, civil rights, and anti-war activism. Reggae, emerging from the economically marginalized communities of Kingston, Jamaica in the late 1960s, carried a systematic critique of colonialism, capitalism, and racial hierarchy, most powerfully expressed in the work of Bob Marley, whose global reach brought these themes to audiences far beyond their geographic origin.
@@ -229,6 +349,18 @@ This does not mean that political music is inevitably futile or that its effects
     topic: "shopping",
     level: "B2",
     wordCount: 446,
+    keywords: [
+      { word: 'autonomous', definition: 'able to act independently without human control' },
+      { word: 'liability', definition: 'legal responsibility for something that goes wrong' },
+      { word: 'accountability', definition: 'being responsible for your actions and their consequences' },
+      { word: 'surveillance', definition: 'close observation of a person or group, often by authorities' },
+      { word: 'predictive policing', definition: 'using data and algorithms to forecast where crimes might occur' },
+      { word: 'consent', definition: 'permission freely given by a person for something to happen' },
+      { word: 'governance', definition: 'the way in which something is managed and controlled' },
+      { word: 'existential risk', definition: 'a danger that threatens the future of humanity itself' },
+      { word: 'alignment', definition: 'ensuring that an AI system\'s goals match human values and intentions' },
+      { word: 'opacity', definition: 'the quality of being difficult to understand or see through' },
+    ],
     text: `Each time we make a purchase, we participate — whether we are aware of it or not — in a global network of production, distribution, and exchange whose human, environmental, and political consequences extend far beyond the immediate transaction. The question of whether and how individual consumption choices can or should be guided by ethical considerations is one that has moved steadily from the margins of cultural debate toward its center, driven by growing awareness of the conditions under which many goods are produced and the environmental costs of contemporary consumption patterns.
 
 The concept of "ethical consumerism" encompasses a wide range of practices: buying products certified as fair trade, prioritizing goods produced locally to reduce carbon miles, avoiding companies with documented records of human rights violations, choosing products with recyclable or minimal packaging, boycotting corporations whose political activities or values conflict with one's own. These practices are united by a common underlying premise: that consumer choices are not merely personal preferences but moral acts with consequences that extend to third parties.
@@ -249,6 +381,18 @@ The most honest position is probably this: individual consumption choices matter
     topic: "animals and pets",
     level: "B2",
     wordCount: 454,
+    keywords: [
+      { word: 'reciprocity', definition: 'the principle that people feel obliged to give back what they receive' },
+      { word: 'social proof', definition: 'the tendency to do what others are doing, assuming it must be correct' },
+      { word: 'scarcity', definition: 'the principle that things seem more desirable when they are rare' },
+      { word: 'authority', definition: 'power or expertise that makes people more likely to believe or follow you' },
+      { word: 'cognitive bias', definition: 'a systematic error in thinking that affects decisions and judgements' },
+      { word: 'manipulation', definition: 'trying to control someone\'s feelings or actions in a dishonest way' },
+      { word: 'framing', definition: 'presenting information in a specific way to influence how it is understood' },
+      { word: 'heuristic', definition: 'a mental shortcut that helps you make quick decisions' },
+      { word: 'compliance', definition: 'the act of doing what you are asked or required to do' },
+      { word: 'subconscious', definition: 'relating to the part of your mind you are not fully aware of' },
+    ],
     text: `The industrialization of animal agriculture over the second half of the twentieth century produced a revolution in the scale and efficiency of food production that fundamentally altered the diet of much of the world. It also created conditions of animal confinement and suffering that, increasingly, a significant proportion of the public finds difficult to reconcile with widely held intuitions about the moral status of sentient creatures — intuitions that the same individuals often apply quite readily to the pets they keep in their homes.
 
 The scale of industrial animal agriculture is difficult to fully comprehend. Approximately eighty billion land animals are slaughtered for food globally each year, the vast majority of them raised in conditions of intensive confinement that severely restrict their natural behaviors. Laying hens may be housed in battery cages so small they cannot spread their wings. Breeding pigs may spend most of their lives in gestation crates in which they cannot turn around. Broiler chickens are selectively bred for such rapid weight gain that many develop skeletal problems that impair their ability to walk.
@@ -267,6 +411,18 @@ The fundamental tension at the heart of this issue is between the genuine satisf
     topic: "education",
     level: "B2",
     wordCount: 449,
+    keywords: [
+      { word: 'narrative identity', definition: 'the story a person constructs about their own life to make sense of who they are' },
+      { word: 'autobiographical memory', definition: 'the collection of memories about your own life and experiences' },
+      { word: 'reminiscence bump', definition: 'the tendency to remember events from adolescence and early adulthood more vividly' },
+      { word: 'confabulation', definition: 'unconsciously filling in gaps in memory with invented details believed to be true' },
+      { word: 'malleability', definition: 'the quality of being easily changed or shaped' },
+      { word: 'schema', definition: 'a mental framework that organises and interprets information' },
+      { word: 'introspection', definition: 'examining your own thoughts and feelings carefully' },
+      { word: 'coherence', definition: 'the quality of being logical and consistent' },
+      { word: 'nostalgia', definition: 'a sentimental longing or affection for the past' },
+      { word: 'distortion', definition: 'a change that makes something no longer accurate or true' },
+    ],
     text: `The proliferation of false, misleading, and decontextualized information across digital media platforms has generated widespread concern among educators, journalists, policymakers, and researchers. The problem is not new — misinformation and propaganda have been features of human communication throughout recorded history — but the current information environment has introduced a set of characteristics that make the challenge qualitatively different from its historical predecessors.
 
 The speed at which information circulates online means that a false claim can reach millions of people before the infrastructure of fact-checking and expert correction has had time to engage with it. A correction, even when issued promptly, rarely reaches the same audience as the original claim, and research in cognitive psychology suggests that corrections are in any case often less persuasive than the initial misinformation — particularly when the false claim is emotionally resonant or confirms existing beliefs, a phenomenon known as the "continued influence effect."
@@ -287,6 +443,18 @@ More fundamentally, the misinformation problem cannot be solved exclusively at t
     topic: "weather",
     level: "B2",
     wordCount: 447,
+    keywords: [
+      { word: 'ecological grief', definition: 'sadness or distress felt in response to environmental destruction and species loss' },
+      { word: 'climate anxiety', definition: 'ongoing worry or fear about climate change and its consequences' },
+      { word: 'solastalgia', definition: 'distress caused by environmental changes to one\'s home environment' },
+      { word: 'fatalism', definition: 'the belief that events are fixed and people cannot change them' },
+      { word: 'disengagement', definition: 'withdrawing interest or involvement from a situation' },
+      { word: 'therapeutic', definition: 'relating to treatment that improves health or well-being' },
+      { word: 'medicalizing', definition: 'treating a social or emotional issue as a medical problem' },
+      { word: 'pro-environmental', definition: 'relating to actions that help protect the environment' },
+      { word: 'counterproductive', definition: 'having the opposite effect to the one intended' },
+      { word: 'paralysis', definition: 'the inability to move or act, sometimes caused by extreme emotion' },
+    ],
     text: `Environmental psychologists and mental health practitioners have, over the past decade, identified and begun to study a cluster of emotional responses to climate change and ecological loss that resist categorization within the existing frameworks of psychological distress. These responses — which include profound grief, anxiety, despair, anger, and a persistent sense of helplessness in the face of a threat that is real, large-scale, and inadequately addressed by existing institutions — have been described variously as "eco-grief," "climate anxiety," "solastalgia," and "ecological grief."
 
 The term solastalgia, coined by Australian philosopher Glenn Albrecht in 2003, refers specifically to the distress experienced by people who witness the deterioration of their home environment — a form of homesickness experienced not by those who have left home but by those who remain as their home changes around them. The concept was initially developed in the context of communities living near open-cast mines, but Albrecht and others have extended it to encompass the broader psychological experience of living in a world undergoing accelerating ecological disruption.
@@ -307,6 +475,18 @@ The most nuanced practitioners in this emerging field attempt to hold both persp
     topic: "technology",
     level: "B2",
     wordCount: 453,
+    keywords: [
+      { word: 'attention economy', definition: 'an economic system based on capturing and selling human attention' },
+      { word: 'variable reward schedule', definition: 'a pattern of unpredictable rewards that creates compulsive behaviour' },
+      { word: 'dopamine', definition: 'a brain chemical associated with pleasure, motivation, and reward' },
+      { word: 'autonomous selfhood', definition: 'the ability to form your own goals and values independently' },
+      { word: 'polarization', definition: 'the process of dividing into opposing groups with extreme views' },
+      { word: 'recommendation algorithm', definition: 'a computer program that suggests content based on your past behaviour' },
+      { word: 'infinite scroll', definition: 'a web design feature that constantly loads new content as you scroll down' },
+      { word: 'friction', definition: 'obstacles that slow down or interrupt a process' },
+      { word: 'outrage', definition: 'extreme anger caused by something perceived as wrong or unfair' },
+      { word: 'misaligned', definition: 'not pointing in the same direction; having different goals or interests' },
+    ],
     text: `Human attention is finite. There are only so many hours in a day and only so many cognitive resources available to process the information those hours contain. For most of human history, the scarcity of attention was a background condition of life that no one thought to exploit systematically. The rise of advertising changed this somewhat, but it was the digital revolution — and specifically the emergence of platforms whose revenue depends entirely on capturing and holding user attention for as long as possible — that transformed attention from an incidental resource into the primary commodity of the most valuable industry in the world.
 
 The term "attention economy" was coined by psychologist and Nobel laureate Herbert Simon in the 1970s, who observed that a surplus of information creates a scarcity of the attention needed to process it. But the concept was given its contemporary shape by writers like Tim Wu, James Williams, and former Google design ethicist Tristan Harris, who documented in detail the sophisticated engineering techniques deployed by technology companies to capture and hold user attention.
@@ -325,6 +505,18 @@ James Williams, who spent a decade working in the technology industry before bec
     topic: "holidays and celebrations",
     level: "B2",
     wordCount: 448,
+    keywords: [
+      { word: 'cultural appropriation', definition: 'adopting elements of another culture, especially by a more powerful group' },
+      { word: 'syncretic', definition: 'combining elements from different cultures or belief systems' },
+      { word: 'marginalized', definition: 'treated as less important, pushed to the edges of society' },
+      { word: 'provenance', definition: 'the origin or source of something' },
+      { word: 'porous', definition: 'allowing things to pass through; not rigidly separate' },
+      { word: 'hegemony', definition: 'dominance or control of one group over others' },
+      { word: 'commodify', definition: 'to treat something as a product to be bought and sold' },
+      { word: 'acknowledgement', definition: 'recognising and accepting the truth or importance of something' },
+      { word: 'reciprocal', definition: 'given and received equally by both sides' },
+      { word: 'categorical', definition: 'absolute and without exception' },
+    ],
     text: `Few debates in contemporary cultural life generate as much heat as the question of cultural appropriation — the adoption, borrowing, or transformation of elements from one culture by members of another, particularly when the borrowing flows from a dominant cultural group toward one that has been historically marginalized, exploited, or oppressed. The debate is real and the concerns underlying it are genuine. It is also, in its more absolutist forms, philosophically problematic in ways that deserve careful examination.
 
 The concept draws its force from historical contexts of specific injustice. When elements of Black American music — blues, jazz, rhythm and blues — were performed and commercially marketed by white artists to white audiences in the mid-twentieth century, while Black artists were segregated from the commercial infrastructure that would have allowed them to benefit fully from their own cultural innovations, something that deserves the word "appropriation" was occurring. The borrowing was not innocent: it operated within a structure of racial inequality that determined who could profit from cultural exchange and who could not.
@@ -343,6 +535,18 @@ The most productive reframing of the debate may be to shift the question from "w
     topic: "travel",
     level: "B2",
     wordCount: 452,
+    keywords: [
+      { word: 'contingent', definition: 'dependent on something else; not fixed or inevitable' },
+      { word: 'bidirectional', definition: 'working or moving in two directions' },
+      { word: 'subsidy', definition: 'financial support given by a government to reduce costs' },
+      { word: 'pathology', definition: 'a harmful or abnormal condition; also the study of diseases' },
+      { word: 'particulate matter', definition: 'tiny particles of dust or smoke in the air that harm health' },
+      { word: 'epidemics', definition: 'widespread occurrences of a disease or problem in a community' },
+      { word: 'car-dependent', definition: 'designed in a way that makes owning a car necessary' },
+      { word: 'liveability', definition: 'the quality of an environment that makes it pleasant to live in' },
+      { word: 'spatial', definition: 'relating to space and the positions of things' },
+      { word: 'pervasive', definition: 'present or spreading through every part of something' },
+    ],
     text: `No single technology has done more to reshape the physical environment of modern life than the automobile. The car did not merely offer a new means of getting from place to place; it fundamentally reorganized the spatial logic of cities, suburbs, and rural areas; restructured patterns of work, social life, and commerce; and generated a set of economic, political, and cultural dependencies so deep and pervasive that they now feel like natural features of the landscape rather than the contingent outcomes of specific choices made under specific conditions.
 
 The relationship is, to an extraordinary degree, bidirectional. Cars were built for roads; roads were built for cars; cities were redesigned around roads; and so a physical environment came into existence in which car ownership gradually shifted from a luxury to a practical necessity for large proportions of the population. In much of the United States, and in many suburbs and smaller cities elsewhere, the infrastructure built around the assumption of car ownership has made genuine alternatives impossible for most residents. There is no walkable neighborhood, no useful transit network, no safe cycling infrastructure. In this context, the choice to own a car is not really a free choice at all — it is the only rational response to an environment that has been designed to make every other option impractical.
@@ -361,6 +565,18 @@ The deeper question is not what fuel cars should run on but how many cars — an
     topic: "sports",
     level: "B2",
     wordCount: 450,
+    keywords: [
+      { word: 'commercialization', definition: 'the process of organising something primarily to make money' },
+      { word: 'integrity', definition: 'the quality of being honest and following strong moral principles' },
+      { word: 'sovereign wealth fund', definition: 'a state-owned investment fund used to manage a country\'s wealth' },
+      { word: 'private equity', definition: 'investment in companies that are not listed on a public stock market' },
+      { word: 'predetermined', definition: 'decided in advance before events actually happen' },
+      { word: 'geopolitical', definition: 'relating to the influence of geography on politics between countries' },
+      { word: 'credibility', definition: 'the quality of being trusted and believed' },
+      { word: 'institutional', definition: 'relating to established organisations and their rules' },
+      { word: 'transparency', definition: 'the quality of being open and clear about how decisions are made' },
+      { word: 'revenue maximization', definition: 'the aim of earning the highest possible income' },
+    ],
     text: `The commercialization of elite sport over the past half-century has been so thoroughgoing that it is now difficult to discuss the major professional leagues and competitions without simultaneously discussing the financial structures that sustain them. Football, basketball, cricket, Formula One, tennis — in each case, the on-field contest exists within an economic framework of extraordinary complexity, and the relationship between that framework and the integrity of the competition it sponsors is increasingly a subject of debate.
 
 The scale of money in elite sport creates pressures and incentives that do not always align with the interests of competition, fans, or athletes. Ownership groups primarily motivated by return on investment may prioritize revenue maximization over sporting excellence. Broadcasting arrangements may distort scheduling in ways that are indifferent to players' physical welfare. Sponsorship deals may influence decisions about where events are held in ways that prioritize commercial viability over sporting tradition or human rights considerations. The hosting of the 2022 FIFA World Cup in Qatar, decided in circumstances that led to widespread corruption investigations, illustrated in extreme form the degree to which commercial and geopolitical interests can override the ostensible sporting purposes of a competition.
@@ -381,6 +597,18 @@ What the evidence suggests is that integrity is not maintained automatically or 
     topic: "food",
     level: "B2",
     wordCount: 448,
+    keywords: [
+      { word: 'discourse', definition: 'the way language is used to discuss a particular subject in society' },
+      { word: 'aestheticizing', definition: 'treating something as art or making it seem beautiful' },
+      { word: 'terroir', definition: 'the environmental conditions that give a food or wine its distinctive character' },
+      { word: 'provenance', definition: 'the origin or source of something, especially food' },
+      { word: 'artisanal', definition: 'made in a traditional, small-scale way by skilled craftspeople' },
+      { word: 'marginalized', definition: 'treated as unimportant, pushed to the edges of society' },
+      { word: 'heirloom', definition: 'an old variety of plant or vegetable that was popular before mass farming' },
+      { word: 'culinary', definition: 'relating to cooking and food' },
+      { word: 'demographic', definition: 'a particular group in society, defined by age, income, etc.' },
+      { word: 'negotiation', definition: 'a discussion aimed at reaching an agreement or understanding' },
+    ],
     text: `Food is one of the most universal of human experiences and one of the most culturally specific. Every human society eats, but what is eaten, how it is prepared, with whom it is shared, and what meanings are attached to it vary so enormously across cultures and historical periods that the apparent universality of eating can obscure the radical particularity of any given food culture. This tension is nowhere more evident than in the language we use to describe food — a language that is never merely descriptive but always also evaluative, social, and political.
 
 The vocabulary of contemporary food writing — particularly in its upscale, English-language, urban manifestations — has undergone a remarkable expansion and elaboration in the past three decades. Restaurant reviewing has become a serious literary genre. Cookbooks by prominent chefs routinely appear on bestseller lists. Food documentaries command large global audiences. The cultural space devoted to discussing, analyzing, and aestheticizing food has grown enormously, as has the sophistication of the language employed within it.
@@ -401,6 +629,18 @@ Perhaps the most productive framework is one that treats the language of food no
     topic: "nature",
     level: "B2",
     wordCount: 457,
+    keywords: [
+      { word: 'mass extinction', definition: 'an event in which a large proportion of all species on Earth die out in a short time' },
+      { word: 'biodiversity', definition: 'the variety of plant and animal species in a particular area' },
+      { word: 'ecosystem services', definition: 'the benefits that natural ecosystems provide to people, such as clean water and pollination' },
+      { word: 'background rate', definition: 'the natural rate at which species go extinct without human interference' },
+      { word: 'invasive species', definition: 'a plant or animal introduced to a new area that harms the local ecosystem' },
+      { word: 'habitat destruction', definition: 'the process of damaging or removing the natural home of a species' },
+      { word: 'overexploitation', definition: 'using a natural resource faster than it can be replaced' },
+      { word: 'pollination', definition: 'the transfer of pollen between plants, enabling them to reproduce' },
+      { word: 'cost-benefit analysis', definition: 'comparing the advantages and disadvantages of an action to decide if it is worthwhile' },
+      { word: 'irreversible', definition: 'impossible to undo or return to the original state' },
+    ],
     text: `Earth has experienced five mass extinction events in its geological history — episodes during which catastrophic disruption to environmental conditions caused the rapid elimination of a significant proportion of all species on the planet. The most recent of these, approximately sixty-six million years ago, was caused by the impact of a large asteroid and resulted in the extinction of the non-avian dinosaurs and approximately three-quarters of all species then living. Scientists studying contemporary rates of species loss have concluded, with increasing alarm, that the planet is currently experiencing a sixth mass extinction — one unique among all previous extinctions in being driven not by geological catastrophe or cosmic incident but by the activities of a single species.
 
 Current rates of species extinction are estimated to be between one hundred and one thousand times higher than the background rate — the natural rate of extinction that would be expected to occur in the absence of significant human influence. The causes are multiple and interlocking: habitat destruction through deforestation, agricultural expansion, and urban development; overexploitation through hunting, fishing, and the wildlife trade; pollution of terrestrial and aquatic environments; the spread of invasive species facilitated by global trade and travel; and, increasingly, the compounding disruption of climate change, which is altering the conditions to which species are adapted faster than many can adjust through migration or evolution.

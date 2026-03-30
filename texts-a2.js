@@ -29,6 +29,18 @@ const texts = [
     topic: "work",
     level: "A2",
     wordCount: 197,
+    keywords: [
+      { word: 'remote work', definition: 'working from a place other than the main office, usually at home' },
+      { word: 'pandemic', definition: 'a disease that spreads across many countries at the same time' },
+      { word: 'environment', definition: 'the conditions and surroundings in which you live or work' },
+      { word: 'interaction', definition: 'communication or contact between people' },
+      { word: 'dedicated', definition: 'used only for one specific purpose' },
+      { word: 'connected', definition: 'staying in contact with other people' },
+      { word: 'routine', definition: 'a regular set of actions done at the same time each day' },
+      { word: 'traditional', definition: 'following long-established customs or ways of doing things' },
+      { word: 'challenges', definition: 'difficult situations that test your abilities' },
+      { word: 'focus', definition: 'to give all your attention to one thing' },
+    ],
     text: `In recent years, many companies have started to allow their employees to work from home. This arrangement is called remote work, and it has become very popular since the pandemic.
 
 Working from home has several advantages. You do not need to travel to the office every day, which saves time and money. You can also organize your workspace the way you like and often feel more comfortable at home than in a formal office environment.
@@ -47,6 +59,18 @@ She also has a video call with her team every morning to stay connected. She thi
     topic: "travel",
     level: "A2",
     wordCount: 210,
+    keywords: [
+      { word: 'visa', definition: 'an official stamp in a passport that allows you to enter a country' },
+      { word: 'nationality', definition: 'the country that a person officially belongs to' },
+      { word: 'insurance', definition: 'an agreement to pay for costs if something goes wrong' },
+      { word: 'itinerary', definition: 'a detailed plan for a journey or trip' },
+      { word: 'accommodation', definition: 'a place to stay, such as a hotel or apartment' },
+      { word: 'authentic', definition: 'real and genuine, not a copy or imitation' },
+      { word: 'application', definition: 'a formal request for something, such as a visa' },
+      { word: 'expenses', definition: 'money you spend on things, such as food or travel' },
+      { word: 'phrase', definition: 'a short group of words used together with a meaning' },
+      { word: 'culture', definition: 'the customs, arts, and ideas of a particular group of people' },
+    ],
     text: `Travelling to another country requires more preparation than a simple weekend trip. You need to think about several things before you leave.
 
 First, you have to check whether you need a visa. This depends on your nationality and the country you are visiting. Some countries allow tourists to enter without a visa for a limited period, while others require you to apply in advance. The application process can take a few weeks, so it is important to plan early.
@@ -67,6 +91,18 @@ He says the planning process is almost as exciting as the trip itself. He cannot
     topic: "technology",
     level: "A2",
     wordCount: 205,
+    keywords: [
+      { word: 'artificial intelligence', definition: 'technology that allows computers to perform tasks that normally require human thinking' },
+      { word: 'recommend', definition: 'to suggest something to someone because you think it is good' },
+      { word: 'predict', definition: 'to say what you think will happen in the future' },
+      { word: 'diagnose', definition: 'to identify an illness or problem after examination' },
+      { word: 'fraud', definition: 'the crime of deceiving someone to get money or an advantage' },
+      { word: 'privacy', definition: 'the right to keep your personal information and life secret' },
+      { word: 'unemployment', definition: 'the state of not having a paid job' },
+      { word: 'transaction', definition: 'an act of buying or selling something' },
+      { word: 'responsibly', definition: 'in a way that is careful and does not harm others' },
+      { word: 'analyze', definition: 'to look at something carefully to understand it' },
+    ],
     text: `Artificial intelligence, or AI, is no longer something from science fiction movies. It is already part of our everyday lives, even if we do not always notice it.
 
 When you use a music streaming app, AI recommends songs based on what you have listened to before. When you type a message on your phone, AI suggests the next word. When you shop online, AI shows you products similar to the ones you have already looked at. These systems learn from your behavior and try to predict what you want.
@@ -85,6 +121,18 @@ Despite these concerns, most experts agree that AI will continue to develop rapi
     topic: "food",
     level: "A2",
     wordCount: 208,
+    keywords: [
+      { word: 'affordable', definition: 'not too expensive; easy to pay for' },
+      { word: 'vendor', definition: 'a person who sells food or goods on the street or at a market' },
+      { word: 'flavor', definition: 'the taste of food or drink' },
+      { word: 'tortilla', definition: 'a thin, flat bread made from corn or wheat, used in Mexican food' },
+      { word: 'recipe', definition: 'a set of instructions for cooking a particular dish' },
+      { word: 'generation', definition: 'all the people born and living at about the same time' },
+      { word: 'queue', definition: 'a line of people waiting for something' },
+      { word: 'variety', definition: 'a number of different types of the same thing' },
+      { word: 'spicy', definition: 'having a strong, hot taste from spices or chili' },
+      { word: 'guidebook', definition: 'a book with information to help travellers visit a place' },
+    ],
     text: `Street food is one of the best ways to experience a country's culture. It is affordable, delicious, and often reflects recipes that have been passed down through generations.
 
 In Thailand, one of the most popular street foods is pad thai — a stir-fried noodle dish with shrimp, tofu, eggs, and a tangy sauce made from tamarind. Vendors cook it quickly on high heat in a large wok, and the result is a rich, smoky flavor that is hard to find in restaurants.
@@ -103,6 +151,18 @@ Sara has tried street food in several countries during her travels. She says it 
     topic: "habits and routine",
     level: "A2",
     wordCount: 200,
+    keywords: [
+      { word: 'habit', definition: 'something you do regularly, often without thinking about it' },
+      { word: 'automatically', definition: 'without thinking; done by itself' },
+      { word: 'anxious', definition: 'feeling worried and nervous' },
+      { word: 'behavior', definition: 'the way a person acts or does things' },
+      { word: 'effective', definition: 'producing the result that you want' },
+      { word: 'replace', definition: 'to put something new in the place of something old' },
+      { word: 'productive', definition: 'doing or achieving a lot in the available time' },
+      { word: 'consistent', definition: 'always behaving or happening in the same way' },
+      { word: 'overwhelmed', definition: 'feeling that there is too much to deal with' },
+      { word: 'charger', definition: 'a device used to put electricity back into a battery' },
+    ],
     text: `Everyone has habits — some good and some bad. A habit is something we do automatically, without really thinking about it. The challenge is that bad habits can be very difficult to change, even when we know they are harmful.
 
 David had a habit of checking his phone immediately after waking up. He would spend thirty to forty-five minutes scrolling through news and social media before even getting out of bed. He noticed that this made him feel anxious and unmotivated at the start of every day.
@@ -123,6 +183,18 @@ His experience shows that small, consistent changes are often more powerful than
     topic: "health",
     level: "A2",
     wordCount: 203,
+    keywords: [
+      { word: 'deprivation', definition: 'not having enough of something you need, such as sleep' },
+      { word: 'concentration', definition: 'the ability to give your full attention to something' },
+      { word: 'immune system', definition: 'the body\'s natural defense against illness and infection' },
+      { word: 'caffeine', definition: 'a substance in coffee and tea that keeps you awake' },
+      { word: 'strategy', definition: 'a plan you use to achieve a goal' },
+      { word: 'reaction time', definition: 'how quickly you respond to something happening' },
+      { word: 'infection', definition: 'an illness caused by bacteria or a virus entering the body' },
+      { word: 'essential', definition: 'completely necessary; you cannot do without it' },
+      { word: 'focused', definition: 'giving full attention to something; not distracted' },
+      { word: 'obesity', definition: 'a medical condition in which a person has too much body fat' },
+    ],
     text: `Most adults need between seven and nine hours of sleep per night, but many people regularly sleep much less than this. Sleep deprivation has become a common problem in modern society, and its effects on health are more serious than many people realize.
 
 When we sleep, our bodies repair damaged cells and our brains process and store the information we have learned during the day. Without enough sleep, concentration and memory are significantly affected. People who are sleep-deprived tend to make more mistakes and have slower reaction times. This can be dangerous, especially when driving.
@@ -141,6 +213,18 @@ She says there is no perfect solution, but these changes made a noticeable diffe
     topic: "sports",
     level: "A2",
     wordCount: 206,
+    keywords: [
+      { word: 'spectator', definition: 'a person who watches an event or sport' },
+      { word: 'mainstream', definition: 'considered normal and accepted by most people' },
+      { word: 'investment', definition: 'money spent on something to improve or develop it' },
+      { word: 'sponsorship', definition: 'money given to support a person or event in return for advertising' },
+      { word: 'counterpart', definition: 'a person who has the same job or role as someone else in a different context' },
+      { word: 'ambition', definition: 'a strong desire to achieve something important' },
+      { word: 'coverage', definition: 'the amount of attention given to an event by the media' },
+      { word: 'role model', definition: 'a person that others admire and want to be like' },
+      { word: 'competitive', definition: 'involving competition; trying hard to win' },
+      { word: 'broadcast', definition: 'to send out a programme on television or radio' },
+    ],
     text: `Women's football has grown enormously in popularity over the past decade. Matches that once attracted only a few hundred spectators now fill large stadiums, and international tournaments are broadcast to millions of viewers around the world.
 
 One of the most significant moments was the 2019 FIFA Women's World Cup, held in France, which broke television viewing records in many countries. The final match was watched by nearly 1.2 billion people globally. This was a clear sign that the sport had moved into the mainstream.
@@ -159,6 +243,18 @@ Carlos, who coaches a youth football team with both boys and girls, says the att
     topic: "nature",
     level: "A2",
     wordCount: 211,
+    keywords: [
+      { word: 'ecosystem', definition: 'all the living things in an area and how they depend on each other' },
+      { word: 'habitat', definition: 'the natural environment where an animal or plant lives' },
+      { word: 'coral bleaching', definition: 'a process where coral turns white and dies when water is too warm' },
+      { word: 'algae', definition: 'simple plant-like organisms that grow in or near water' },
+      { word: 'marine', definition: 'relating to the sea or ocean' },
+      { word: 'pollution', definition: 'harmful substances in the air, water, or land' },
+      { word: 'emissions', definition: 'gases released into the air, often from burning fuel' },
+      { word: 'restore', definition: 'to bring something back to its original condition' },
+      { word: 'erosion', definition: 'the gradual wearing away of rock or soil by water or wind' },
+      { word: 'transplant', definition: 'to move a living thing from one place and put it in another' },
+    ],
     text: `Coral reefs are among the most diverse ecosystems on Earth. Although they cover less than one percent of the ocean floor, they provide a habitat for roughly twenty-five percent of all marine species. Fish, turtles, sharks, and thousands of other creatures depend on coral reefs to feed, shelter, and reproduce.
 
 Unfortunately, coral reefs around the world are in serious trouble. The main threat is rising ocean temperatures caused by climate change. When water becomes too warm, corals expel the tiny algae that live inside them and give them color and nutrients. This process is called coral bleaching. If the water stays warm for too long, the coral dies.
@@ -179,6 +275,18 @@ Experts agree that the most important step is reducing carbon emissions globally
     topic: "movies and series",
     level: "A2",
     wordCount: 207,
+    keywords: [
+      { word: 'streaming', definition: 'watching or listening to content directly from the internet' },
+      { word: 'subscription', definition: 'a regular payment to use a service for a period of time' },
+      { word: 'phenomenon', definition: 'something remarkable or unusual that attracts attention' },
+      { word: 'content', definition: 'films, programmes, or other material available to watch or read' },
+      { word: 'platform', definition: 'an online service used to share or access content' },
+      { word: 'decision fatigue', definition: 'tiredness caused by making too many choices' },
+      { word: 'personalized', definition: 'designed or made to suit one particular person' },
+      { word: 'international', definition: 'involving more than one country' },
+      { word: 'thriller', definition: 'a film or book with an exciting, suspenseful story' },
+      { word: 'production', definition: 'the process of making a film, TV show, or product' },
+    ],
     text: `The way people watch films and television series has changed dramatically in the last ten years. Streaming platforms have replaced traditional television as the primary way that most people consume video content, particularly among younger generations.
 
 The appeal is easy to understand. Streaming services give users access to thousands of films and series at any time, without commercial breaks, for a monthly subscription fee. You can watch on a television, a laptop, a tablet, or a phone. You can pause, rewind, and watch at your own pace.
@@ -197,6 +305,18 @@ Julia, who works in film production, says the industry has changed more in the l
     topic: "music",
     level: "A2",
     wordCount: 198,
+    keywords: [
+      { word: 'nostalgic', definition: 'feeling happy or sad when thinking about the past' },
+      { word: 'memory', definition: 'something from the past that you can remember' },
+      { word: 'therapeutic', definition: 'helping to treat illness or improve health and well-being' },
+      { word: 'dementia', definition: 'a medical condition that affects memory and thinking, especially in older people' },
+      { word: 'motivate', definition: 'to make someone feel enthusiastic and want to do something' },
+      { word: 'nervous system', definition: 'the network of nerves in your body that controls your feelings and movements' },
+      { word: 'rhythm', definition: 'a regular repeated pattern of sounds in music' },
+      { word: 'brain', definition: 'the organ inside your head that controls your body and thoughts' },
+      { word: 'emotion', definition: 'a strong feeling such as happiness, sadness, or anger' },
+      { word: 'upbeat', definition: 'lively and positive in mood or sound' },
+    ],
     text: `It is something almost everyone has experienced: you hear a song and suddenly you feel happy, sad, nostalgic, or energized. Music has a powerful effect on our emotions, and scientists have been studying this connection for many years.
 
 Research shows that listening to music activates multiple areas of the brain simultaneously, including regions associated with emotion, memory, and movement. This is why a song from your teenage years can instantly bring back vivid memories and feelings from that time.
@@ -217,6 +337,18 @@ For him, music is both an emotional outlet and a form of meditation.`
     topic: "shopping",
     level: "A2",
     wordCount: 204,
+    keywords: [
+      { word: 'convenient', definition: 'easy to use or do, saving you time or effort' },
+      { word: 'delivery', definition: 'the act of bringing goods to a person\'s address' },
+      { word: 'refund', definition: 'money returned to you when you send a product back' },
+      { word: 'review', definition: 'a written opinion about a product or service after using it' },
+      { word: 'discount', definition: 'a reduction in the usual price of something' },
+      { word: 'comparison', definition: 'looking at two or more things to see how they are different' },
+      { word: 'scam', definition: 'a dishonest plan to trick people out of money' },
+      { word: 'secure', definition: 'safe, especially for sending personal or payment information' },
+      { word: 'purchase', definition: 'something that you buy; also the act of buying' },
+      { word: 'checkout', definition: 'the online page where you complete a purchase and pay' },
+    ],
     text: `Online shopping has transformed the way people buy goods. What began as a convenient way to purchase books and electronics has expanded to cover almost every product imaginable, from groceries to furniture to luxury fashion.
 
 The advantages are clear. You can shop at any hour of the day without leaving your home. You can easily compare prices from multiple sellers in seconds. Product reviews written by other customers help you make more informed decisions. And most platforms offer free returns if you are not satisfied.
@@ -235,6 +367,18 @@ She still visits her local bookshop and bakery every week. She says these places
     topic: "animals and pets",
     level: "A2",
     wordCount: 196,
+    keywords: [
+      { word: 'companionship', definition: 'the feeling of being with someone friendly; not being alone' },
+      { word: 'cortisol', definition: 'a hormone your body produces when you are stressed' },
+      { word: 'serotonin', definition: 'a chemical in the brain that helps you feel happy' },
+      { word: 'veterinary', definition: 'relating to the medical care of animals' },
+      { word: 'commitment', definition: 'a promise or duty to do something regularly' },
+      { word: 'elderly', definition: 'old; used politely to describe older people' },
+      { word: 'well-being', definition: 'the state of being comfortable, healthy, and happy' },
+      { word: 'routine', definition: 'a regular set of actions done at the same time each day' },
+      { word: 'responsibility', definition: 'something that it is your duty to look after or deal with' },
+      { word: 'bond', definition: 'a close connection between people or between a person and an animal' },
+    ],
     text: `Research consistently shows that having a pet can have a positive impact on a person's mental and physical health. Pet owners tend to experience lower levels of stress, reduced feelings of loneliness, and even lower blood pressure compared to people who do not have pets.
 
 Dogs in particular encourage physical activity. Owners who walk their dogs regularly get considerably more exercise than people without dogs. This not only benefits physical health but also provides regular opportunities to spend time outdoors and interact with other people.
@@ -255,6 +399,18 @@ Despite the responsibilities involved, many pet owners say they cannot imagine l
     topic: "education",
     level: "A2",
     wordCount: 201,
+    keywords: [
+      { word: 'neurological', definition: 'relating to the brain and nervous system' },
+      { word: 'motivation', definition: 'the reason you want to do something; the drive to succeed' },
+      { word: 'consistency', definition: 'doing something regularly and in the same way' },
+      { word: 'commute', definition: 'the journey you make regularly between home and work' },
+      { word: 'exchange partner', definition: 'a person from another country you talk to in order to practice each other\'s languages' },
+      { word: 'inevitable', definition: 'certain to happen and impossible to avoid' },
+      { word: 'deliberate', definition: 'done on purpose; planned and intentional' },
+      { word: 'confident', definition: 'feeling sure of yourself and your abilities' },
+      { word: 'progress', definition: 'improvement or development over time' },
+      { word: 'grammar', definition: 'the rules about how words are used in a language' },
+    ],
     text: `There is a common belief that children learn languages more easily than adults. While it is true that children have certain neurological advantages, research suggests that adults are actually capable of making very rapid progress, especially in the early stages.
 
 Adults have significant advantages that children do not. They already understand grammar concepts in their native language, they have a larger vocabulary to draw from when making connections, and they can use deliberate study strategies. Adults are also highly motivated when they choose to learn a language, which is a powerful driver of success.
@@ -273,6 +429,18 @@ He says the most important thing he has learned is not to be afraid of making mi
     topic: "weather",
     level: "A2",
     wordCount: 202,
+    keywords: [
+      { word: 'heatwave', definition: 'a period of unusually hot weather' },
+      { word: 'drought', definition: 'a long period with very little or no rain' },
+      { word: 'infrastructure', definition: 'the basic systems that a country needs, such as roads and water supplies' },
+      { word: 'evacuate', definition: 'to leave a dangerous place quickly for safety' },
+      { word: 'emissions', definition: 'gases released into the air, especially from burning fuel' },
+      { word: 'unpredictable', definition: 'not able to be forecast or expected' },
+      { word: 'flood', definition: 'a large amount of water covering an area that is usually dry' },
+      { word: 'agriculture', definition: 'the activity of farming, growing crops, and raising animals' },
+      { word: 'wildfire', definition: 'a large fire that spreads quickly over land' },
+      { word: 'coordinated', definition: 'organized so that different parts work together effectively' },
+    ],
     text: `In recent years, extreme weather events have become more frequent and more intense around the world. Heatwaves, floods, droughts, and powerful storms are occurring in places that historically experienced relatively mild conditions. Scientists are increasingly confident that these changes are linked to global climate change caused by human activity.
 
 In the summer of 2023, several European countries experienced temperatures that broke historical records. Wildfires burned for weeks across parts of southern Europe and North Africa. At the same time, other regions were dealing with severe flooding caused by unusually heavy rainfall.
@@ -293,6 +461,18 @@ Many experts warn that the time for gradual, comfortable change has passed. Urge
     topic: "technology",
     level: "A2",
     wordCount: 209,
+    keywords: [
+      { word: 'anxiety', definition: 'a feeling of worry and nervousness that is hard to control' },
+      { word: 'self-esteem', definition: 'the opinion you have of yourself and your own abilities' },
+      { word: 'curated', definition: 'carefully selected and presented to look its best' },
+      { word: 'validation', definition: 'the feeling of being accepted or approved of by others' },
+      { word: 'disproportionate', definition: 'too large or too small compared with what is normal' },
+      { word: 'stimulation', definition: 'activity or interest that keeps the mind active' },
+      { word: 'concentrate', definition: 'to give your full attention to one thing' },
+      { word: 'platform', definition: 'an online service used to share content and communicate' },
+      { word: 'depression', definition: 'a medical condition that makes a person feel very sad for a long time' },
+      { word: 'impression', definition: 'an idea or image of something formed in your mind' },
+    ],
     text: `Social media platforms have connected billions of people around the world, allowing friends and family to stay in touch regardless of distance. They have also given ordinary people the ability to share ideas, start businesses, and participate in global conversations.
 
 However, a growing body of research suggests that heavy use of social media, particularly among teenagers and young adults, is associated with increased levels of anxiety, depression, and low self-esteem. One reason is the constant exposure to carefully curated images of other people's lives. Users tend to post their best moments — holidays, achievements, social events — which creates an unrealistic impression that everyone else is living a happier and more successful life.
@@ -313,6 +493,18 @@ She encourages her students to take regular breaks from their phones and to prac
     topic: "holidays and celebrations",
     level: "A2",
     wordCount: 200,
+    keywords: [
+      { word: 'carnival', definition: 'a public celebration with music, dancing, and colourful costumes' },
+      { word: 'elaborate', definition: 'very detailed and complicated; with a lot of decoration' },
+      { word: 'infectious', definition: 'spreading quickly; used to describe enthusiasm or laughter as well as illness' },
+      { word: 'costume', definition: 'clothes worn to represent a character or for a special event' },
+      { word: 'parade', definition: 'a celebration where people walk or ride through the streets' },
+      { word: 'dazzling', definition: 'very bright and impressive; almost too beautiful to look at' },
+      { word: 'masked', definition: 'wearing a covering over the face' },
+      { word: 'tradition', definition: 'something people do regularly because they have always done it' },
+      { word: 'compete', definition: 'to try to win against others in a game or contest' },
+      { word: 'collective', definition: 'shared by or including all members of a group' },
+    ],
     text: `Carnival is one of the most celebrated festivals in the world. Although it is most famously associated with Brazil, it is actually observed in hundreds of countries across different continents, each with its own unique traditions and character.
 
 In Brazil, the most spectacular celebrations take place in Rio de Janeiro. Samba schools — large community organizations that spend the entire year preparing — compete in an enormous parade through a purpose-built stadium called the Sambadrome. The floats are elaborately decorated, the costumes are dazzling, and the music is constant and infectious.
@@ -333,6 +525,18 @@ Many people who experience carnival for the first time say it is unlike anything
     topic: "travel",
     level: "A2",
     wordCount: 203,
+    keywords: [
+      { word: 'urban', definition: 'relating to a town or city, not the countryside' },
+      { word: 'innovation', definition: 'a new idea or method that is better than the old one' },
+      { word: 'sensor', definition: 'a device that detects and measures information from the environment' },
+      { word: 'congestion', definition: 'when roads are so full of traffic that vehicles move very slowly' },
+      { word: 'sustainable', definition: 'able to continue without damaging the environment or using up resources' },
+      { word: 'infrastructure', definition: 'the basic systems a city needs, such as roads, water, and power' },
+      { word: 'resident', definition: 'a person who lives in a particular place' },
+      { word: 'dependency', definition: 'needing something or someone too much' },
+      { word: 'liveable', definition: 'pleasant and comfortable to live in' },
+      { word: 'efficient', definition: 'doing a task well without wasting time or energy' },
+    ],
     text: `Urban populations around the world are growing rapidly. By 2050, it is estimated that nearly seventy percent of all people will live in cities. This creates significant challenges around housing, transport, energy, and the environment — but it also creates exciting opportunities for innovation.
 
 The concept of the "smart city" is already being tested in various places. Smart cities use technology to improve the lives of residents and make urban systems more efficient. Sensors placed around the city collect data on traffic, air quality, energy use, and waste. This information is then used to make real-time adjustments that reduce congestion, pollution, and costs.
@@ -351,6 +555,18 @@ Elena, who works as an urban planner, says the most livable cities of the future
     topic: "sports",
     level: "A2",
     wordCount: 197,
+    keywords: [
+      { word: 'spontaneous', definition: 'happening naturally without being planned' },
+      { word: 'intrinsically', definition: 'in a way that comes from inside, not from outside pressure' },
+      { word: 'neural pathway', definition: 'a connection in the brain through which signals travel' },
+      { word: 'leisure', definition: 'free time when you are not working' },
+      { word: 'creativity', definition: 'the ability to produce new and original ideas or things' },
+      { word: 'coordination', definition: 'the ability to control your body\'s movements smoothly' },
+      { word: 'motivation', definition: 'the reason you want to do something; the drive to take action' },
+      { word: 'stress', definition: 'a feeling of worry and pressure caused by difficult situations' },
+      { word: 'competitive', definition: 'involving competition; trying hard to win' },
+      { word: 'retirement', definition: 'the time in life when a person stops working permanently' },
+    ],
     text: `In childhood, play is recognized as essential for development. Children learn social skills, develop creativity, and build physical coordination through playing. But somewhere in the transition to adulthood, most people stop playing altogether. This, according to many psychologists and health experts, is a serious mistake.
 
 Play for adults does not have to mean competitive sports, though it can. It includes any activity done purely for enjoyment and without a specific goal or outcome — a spontaneous game, an improvised dance, building something just for fun. The key characteristic of play is that it is intrinsically motivated, meaning you do it because you enjoy it, not because you have to.
@@ -369,6 +585,18 @@ He believes that society places too much value on productivity and too little on
     topic: "food",
     level: "A2",
     wordCount: 207,
+    keywords: [
+      { word: 'consumption', definition: 'the act of eating, drinking, or using something' },
+      { word: 'greenhouse gas', definition: 'a gas like carbon dioxide that traps heat in the atmosphere' },
+      { word: 'livestock', definition: 'animals kept on a farm, such as cows, pigs, and chickens' },
+      { word: 'legume', definition: 'a plant whose seeds are eaten, such as beans, lentils, or chickpeas' },
+      { word: 'welfare', definition: 'the health and happiness of a person or animal' },
+      { word: 'plant-based', definition: 'made from plants rather than meat or animal products' },
+      { word: 'sceptical', definition: 'not sure that something is true or good; having doubts' },
+      { word: 'processed', definition: 'food that has been changed from its natural state by adding chemicals' },
+      { word: 'emissions', definition: 'gases released into the air, especially from burning fuel' },
+      { word: 'technique', definition: 'a particular way of doing something that requires skill' },
+    ],
     text: `In many parts of the world, meat has traditionally been considered the centerpiece of a meal. However, attitudes toward meat consumption are changing, particularly among younger generations. A growing number of people are choosing to reduce or eliminate meat from their diets for reasons related to health, the environment, and animal welfare.
 
 From an environmental perspective, the arguments are significant. The production of red meat, especially beef, generates far more greenhouse gas emissions per kilogram than the production of vegetables, legumes, or grains. Livestock farming also uses large amounts of land and water.
@@ -387,6 +615,18 @@ Jack started cooking plant-based meals twice a week about a year ago. He admits 
     topic: "nature",
     level: "A2",
     wordCount: 208,
+    keywords: [
+      { word: 'linear', definition: 'going in a straight line from start to end, without looping back' },
+      { word: 'circular economy', definition: 'an economic system where products and materials are reused instead of thrown away' },
+      { word: 'refurbish', definition: 'to clean and repair something to make it look or work like new' },
+      { word: 'disassemble', definition: 'to take something apart into its separate pieces' },
+      { word: 'raw material', definition: 'a natural substance used to make products, such as wood or metal' },
+      { word: 'sustainable', definition: 'able to continue without damaging the environment' },
+      { word: 'resilient', definition: 'able to recover quickly from difficulties' },
+      { word: 'transition', definition: 'the process of changing from one state or system to another' },
+      { word: 'consumer', definition: 'a person who buys and uses goods or services' },
+      { word: 'regulation', definition: 'an official rule made by a government or authority' },
+    ],
     text: `The way our economy currently works is often described as "linear." We extract raw materials from the earth, use them to make products, and then throw those products away when we no longer need them. This linear model generates enormous amounts of waste and puts constant pressure on natural resources.
 
 An alternative model, called the circular economy, is attracting increasing interest from businesses, governments, and environmental organizations. In a circular economy, the aim is to keep materials and products in use for as long as possible. Rather than disposing of a product at the end of its life, it is repaired, refurbished, remanufactured, or recycled so that its materials can be used again.
