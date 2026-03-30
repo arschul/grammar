@@ -541,22 +541,23 @@
   .kw-span {
     border-radius: 3px;
     padding: 1px 2px;
-    transition: all .15s;
+    transition: background .15s;
     cursor: default;
   }
-  /* When a definition is selected, clickable keyword words glow */
   .activity-mode-active .kw-span {
     cursor: pointer;
-    background: rgba(184,92,42,.08);
-    border-bottom: 1.5px dashed var(--accent);
   }
   .activity-mode-active .kw-span:hover {
-    background: rgba(184,92,42,.2);
+    background: rgba(184,92,42,.12);
+  }
+  /* highlight toggle: only show underline hints when .kw-hints is set */
+  .kw-hints.activity-mode-active .kw-span:not(.kw-correct) {
+    border-bottom: 1.5px dashed var(--accent);
   }
   .kw-span.kw-correct {
     background: var(--kw-correct) !important;
-    border-bottom: 1.5px solid #66bb6a !important;
     cursor: default !important;
+    border-bottom: none !important;
   }
   .kw-span.kw-wrong-flash {
     animation: kwWrongFlash .5s ease;
@@ -600,6 +601,41 @@
     color: #1565c0;
   }
   .activity-instruction.hidden { visibility: hidden; }
+
+  /* Highlight toggle */
+  .hl-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: .66rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: .04em;
+  }
+  .hl-toggle input[type="checkbox"] {
+    appearance: none;
+    width: 30px; height: 16px;
+    border-radius: 8px;
+    background: var(--border);
+    position: relative;
+    cursor: pointer;
+    transition: background .2s;
+    flex-shrink: 0;
+  }
+  .hl-toggle input[type="checkbox"]:checked { background: var(--accent); }
+  .hl-toggle input[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    top: 2px; left: 2px;
+    transition: left .2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  }
+  .hl-toggle input[type="checkbox"]:checked::after { left: 16px; }
 
   /* Reset button */
   .reset-btn {
@@ -743,6 +779,9 @@
       <div class="activity-progress">
         <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
         <span class="progress-text" id="progressText">0 / 0</span>
+        <label class="hl-toggle" title="Highlight keyword words in the text when a definition is selected">
+          <input type="checkbox" id="hlToggle"> highlight words
+        </label>
         <button class="reset-btn" id="resetBtn">↺ Reset</button>
       </div>
 
@@ -805,6 +844,7 @@ const activityInstruct  = document.getElementById('activityInstruction');
 const activityComplete  = document.getElementById('activityComplete');
 const randomBtn         = document.getElementById('randomBtn');
 const resetBtn          = document.getElementById('resetBtn');
+const hlToggle          = document.getElementById('hlToggle');
 const clearHlBtn        = document.getElementById('clearHlBtn');
 const footerInfo        = document.getElementById('footerInfo');
 
@@ -982,6 +1022,7 @@ function buildActivity(text) {
   state.solved = new Set();
   activityComplete.classList.remove('visible');
   activityBody.classList.remove('activity-mode-active');
+  activityBody.classList.toggle('kw-hints', hlToggle.checked);
   activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
   activityInstruct.className = 'activity-instruction';
 
@@ -1011,6 +1052,27 @@ function buildActivity(text) {
   }));
 
   activityBody.innerHTML = buildActivityHTML(text.text, kwData);
+
+  // Find which keyword indices have no matching span in the text
+  // and auto-skip those definition cards (not counted against the student)
+  const foundIndices = new Set(
+    [...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx))
+  );
+  keywords.forEach((kw, idx) => {
+    if (!foundIndices.has(idx)) {
+      const card = defCards.querySelector(`.def-card[data-idx="${idx}"]`);
+      if (card) {
+        card.classList.add('done');
+        card.style.opacity = '0.32';
+        card.style.cursor = 'default';
+        card.title = 'This word does not appear in the text';
+        const kwEl = card.querySelector('.def-keyword');
+        if (kwEl) { kwEl.textContent = '—'; kwEl.classList.remove('hidden'); }
+      }
+      state.solved.add(idx); // pre-solve so progress count is correct
+    }
+  });
+
   attachActivityWordListeners(kwData);
   updateProgress();
 }
@@ -1042,6 +1104,21 @@ function tokenize(para) {
   return parts;
 }
 
+function smartMatch(textWord, kwWord) {
+  if (textWord === kwWord) return true;
+  // inflected form: "colleagues" starts with "colleague", "photos" starts with "photo"
+  if (kwWord.length >= 4 && textWord.startsWith(kwWord)) return true;
+  // keyword longer than text word (e.g. keyword "reintroduce", text has "reintroduced")
+  if (textWord.length >= 4 && kwWord.startsWith(textWord)) return true;
+  // hyphen variants: "check-up" vs "check" — strip hyphens and retry
+  const tc = textWord.replace(/-/g, '');
+  const kc = kwWord.replace(/-/g, '');
+  if (tc === kc) return true;
+  if (kc.length >= 4 && tc.startsWith(kc)) return true;
+  if (tc.length >= 4 && kc.startsWith(tc)) return true;
+  return false;
+}
+
 function tagTokens(tokens, kwData) {
   // For each token that is a word, check if it belongs to a keyword
   // We need to handle multi-word keywords: if kw = "gig economy",
@@ -1061,7 +1138,7 @@ function tagTokens(tokens, kwData) {
     // Each word in the keyword phrase: tag all matching occurrences
     kw.words.forEach(kwWord => {
       wordTokens.forEach(wt => {
-        if (wt.isWord && wt.clean === kwWord) {
+        if (wt.isWord && smartMatch(wt.clean, kwWord)) {
           // Only assign if not already assigned to another keyword
           if (wt.kwIdx === null) wt.kwIdx = kw.idx;
         }
@@ -1130,7 +1207,7 @@ function attachActivityWordListeners(kwData) {
 }
 
 function selectDefinition(idx) {
-  if (state.solved.has(idx)) return; // already done
+  if (state.solved.has(idx)) return; // already done or not in text
 
   // Deselect previous
   defCards.querySelectorAll('.def-card').forEach(c => c.classList.remove('selected'));
@@ -1165,6 +1242,10 @@ function updateProgress() {
 
 resetBtn.addEventListener('click', () => {
   if (state.current) buildActivity(state.current);
+});
+
+hlToggle.addEventListener('change', () => {
+  activityBody.classList.toggle('kw-hints', hlToggle.checked);
 });
 
 /* ── RANDOM ── */
