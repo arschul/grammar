@@ -58,6 +58,7 @@
     --kw-correct:  #1e4d28;
     --kw-wrong:    #5c1a1a;
     --kw-hint-bg:  #c2185b;
+    --kw-active:   #5c3a00;
 
     --shadow: 0 2px 12px rgba(0,0,0,.4);
   }
@@ -538,7 +539,7 @@
     gap: 8px;
   }
   .def-card:hover:not(.done) { border-color: var(--accent); }
-  .def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); }
+  .def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); color: var(--ink); }
   .def-card.done { opacity: .5; cursor: default; border-color: var(--border); background: var(--kw-correct); }
   .def-card.wrong-flash { animation: wrongFlash .5s ease; }
   @keyframes wrongFlash {
