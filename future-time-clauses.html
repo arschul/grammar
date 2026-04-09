@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Time Clauses – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:120px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Future &amp; Time</div>
+    </div>
+    <h1>Future Time Clauses</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'ftc-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'ftc-activities')">Activities</button>
+  </div>
+  <div id="ftc-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>What are Future Time Clauses?</h2>
+      <p>A future time clause uses a time conjunction (<em>after, as soon as, before, until, when</em>) to connect two parts of a sentence about the future. The key rule is: <strong>we do not use will in the time clause</strong>. Instead, we use the <strong>present simple</strong>.</p>
+      <div class="formula-box">
+        <strong>Main clause (will / going to)</strong> + time conjunction + <strong>time clause (present simple)</strong><br>
+        <em>— or —</em><br>
+        <strong>Time conjunction + time clause (present simple)</strong> + , + <strong>main clause (will / going to)</strong>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>The Five Conjunctions</h2>
+      <div class="examples-grid">
+        <div class="example-item"><strong>when</strong> — at the moment that<br><em>I will call you <strong>when</strong> I arrive.</em></div>
+        <div class="example-item"><strong>before</strong> — earlier than<br><em>Finish your homework <strong>before</strong> you watch TV.</em></div>
+        <div class="example-item"><strong>after</strong> — later than<br><em><strong>After</strong> she graduates, she is going to travel.</em></div>
+        <div class="example-item"><strong>as soon as</strong> — immediately when<br><em>I'll text you <strong>as soon as</strong> I get the results.</em></div>
+        <div class="example-item"><strong>until</strong> — up to the point that<br><em>He won't stop practising <strong>until</strong> he gets it right.</em></div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>More Examples</h2>
+      <div class="examples-grid">
+        <div class="example-item"><em>We will leave <strong>when</strong> everyone <strong>is</strong> ready.</em> ✓ (not 'will be')</div>
+        <div class="example-item"><em><strong>Before</strong> he <strong>starts</strong> the job, he will need to sign a contract.</em> ✓</div>
+        <div class="example-item"><em>She is going to rest <strong>until</strong> she <strong>feels</strong> better.</em> ✓</div>
+        <div class="example-item"><em><strong>As soon as</strong> the meeting <strong>ends</strong>, I'll let you know.</em> ✓</div>
+        <div class="example-item"><em><strong>After</strong> you <strong>finish</strong> the course, you will get a certificate.</em> ✓</div>
+      </div>
+      <div class="note-box">
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>I will call you when I will arrive.</em> → ✓ <em>I will call you when I <strong>arrive</strong>.</em><br>
+        ✗ <em>She won't leave before she will finish.</em> → ✓ <em>She won't leave before she <strong>finishes</strong>.</em><br>
+        ✗ <em>As soon as he will get home, he'll eat.</em> → ✓ <em>As soon as he <strong>gets</strong> home, he'll eat.</em>
+      </div>
+    </div>
+  </div>
+  <div id="ftc-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'ftc-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftc-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftc-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftc-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftc-act5')">5. Open Questions</button>
+    </div>
+    <div id="ftc-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="ftc-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="ftc-left"></div><div class="match-col" id="ftc-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+    <div id="ftc-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each sentence with the correct form of the verb in brackets. Remember: no <em>will</em> in the time clause.</div>
+      <div id="ftc-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('ftc-fill-exercises','ftc-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('ftc-fill-exercises',FILL);document.getElementById('ftc-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="ftc-fill-feedback" class="feedback"></div>
+    </div>
+    <div id="ftc-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="ftc-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('ftc-mistake-exercises','ftc-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('ftc-mistake-exercises',MISTAKE);document.getElementById('ftc-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ftc-mistake-feedback" class="feedback"></div>
+    </div>
+    <div id="ftc-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="ftc-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('ftc-order-exercises','ftc-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('ftc-order-exercises',ORDER);document.getElementById('ftc-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ftc-order-feedback" class="feedback"></div>
+    </div>
+    <div id="ftc-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own sentences using future time clauses. Then click "Show Model Answer" to compare.</div>
+      <div id="ftc-open-exercises"></div>
+    </div>
+  </div>
+</div>
+<script>
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  const p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld); roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score'); scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+
+
+
+
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`; 
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
+const MATCH = [
+  {left:"1. I will call you as soon as", right:"a. I get the results."},
+  {left:"2. Before she starts university,", right:"b. she is going to get a part-time job."},
+  {left:"3. He won't stop working until", right:"c. he finishes the project."},
+  {left:"4. After you take the exam,", right:"d. you will feel much better."},
+  {left:"5. We will leave when", right:"e. everyone is ready."}
+];
+const FILL = [
+  {sentence:"I'll text you as soon as I _____ (get) home.", answer:"get", explanation:"No 'will' in the time clause — use present simple: 'as soon as I get home.'"},
+  {sentence:"She won't go out before she _____ (finish) her homework.", answer:"finishes", explanation:"No 'will' in the time clause — use present simple: 'before she finishes.'"},
+  {sentence:"After he _____ (graduate), he is going to travel around Asia.", answer:"graduates", explanation:"No 'will' in the time clause — use present simple: 'after he graduates.'"},
+  {sentence:"We will wait here until the bus _____  (arrive).", answer:"arrives", explanation:"No 'will' in the time clause — use present simple: 'until the bus arrives.'"},
+  {sentence:"When she _____ (be) ready, we can leave.", answer:"is", explanation:"No 'will' in the time clause — use present simple: 'when she is ready.'"}
+];
+const MISTAKE = [
+  {sentence:"I will call you when I will get to the station.", options:["I will call you","when I will get","to the station."], correct:1, explanation:"No 'will' in the time clause: 'when I get to the station.'"},
+  {sentence:"As soon as the results will come out, I'll let you know.", options:["As soon as","the results will come out,","I'll let you know."], correct:1, explanation:"No 'will' in the time clause: 'as soon as the results come out.'"},
+  {sentence:"She won't leave the office before she will send the email.", options:["She won't leave","the office","before she will send the email."], correct:2, explanation:"No 'will' in the time clause: 'before she sends the email.'"},
+  {sentence:"After he will finish the course, he is going to look for a new job.", options:["After he will finish","the course,","he is going to look for a new job."], correct:0, explanation:"No 'will' in the time clause: 'After he finishes the course.'"},
+  {sentence:"We are going to celebrate when we will hear the good news.", options:["We are going to celebrate","when we will hear","the good news."], correct:1, explanation:"No 'will' in the time clause: 'when we hear the good news.'"}
+];
+const ORDER = [
+  {words:["I'll","as","text","you","I","as","soon","land."], answer:"I'll text you as soon as I land."},
+  {words:["she","Before","leaves,","goodbye.","she'll","say"], answer:"Before she leaves, she'll say goodbye."},
+  {words:["won't","He","stop","until","right.","gets","he","it"], answer:"He won't stop until he gets it right."},
+  {words:["the","After","ends,","meeting","go","we'll","home."], answer:"After the meeting ends, we'll go home."},
+  {words:["ready,","When","you're","will","we","start."], answer:"When you're ready, we will start."}
+];
+const OPEN = [
+  {question:"Write two sentences using 'when' + present simple for a future event.", model:"I will call you when I arrive. When she gets the job, she is going to celebrate."},
+  {question:"Write two sentences using 'as soon as' and 'until'.", model:"I'll text you as soon as I know the answer. He won't rest until he finishes the report."},
+  {question:"Write two sentences using 'before' and 'after'.", model:"Before you leave, make sure you have your passport. After she graduates, she is going to take a gap year."},
+  {question:"Write two sentences about your own plans using any two conjunctions from this topic.", model:"When I finish this course, I'm going to look for a new job. I'll keep studying until I feel confident."},
+  {question:"Correct these sentences and explain why: 'I'll go home when I will finish.' / 'As soon as she will arrive, we'll eat.'", model:"'I'll go home when I finish.' — no will in the time clause. 'As soon as she arrives, we'll eat.' — present simple replaces will in the time clause."}
+];
+function init(){
+  initMatch('ftc', MATCH);
+  buildFillHTML('ftc-fill-exercises', FILL);
+  document.getElementById('ftc-fill-feedback').classList.remove('show');
+  buildMistakeHTML('ftc-mistake-exercises', MISTAKE);
+  document.getElementById('ftc-mistake-feedback').classList.remove('show');
+  buildOrderHTML('ftc-order-exercises', ORDER);
+  document.getElementById('ftc-order-feedback').classList.remove('show');
+  buildOpenHTML('ftc-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
