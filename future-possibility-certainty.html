@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Possibility and Certainty – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:120px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Modals &amp; Adverbs</div>
+    </div>
+    <h1>Future Possibility and Certainty</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'fpc-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'fpc-activities')">Activities</button>
+  </div>
+  <div id="fpc-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>Expressing Possibility: may, might, could</h2>
+      <p>Use <em>may</em>, <em>might</em>, or <em>could</em> to say that something is <strong>possible</strong> in the future — you are not sure if it will happen. All three are followed by the base verb.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>I <strong>might</strong> still be at home with my parents next year.</em> (possible, not sure)</div>
+        <div class="example-item"><em>You <strong>could</strong> live with a friend.</em> (possible option)</div>
+        <div class="example-item"><em>You <strong>may</strong> find something cheap outside the city.</em> (possible)</div>
+        <div class="example-item"><em>She <strong>might not</strong> come to the party.</em> (possibly won't happen)</div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Expressing Near Certainty: probably</h2>
+      <p>Use <em>probably</em> when you are <strong>almost sure</strong> something will or won't happen. Place <em>probably</em> after <em>will</em> in positive sentences, and before <em>won't</em> in negative sentences.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>I will <strong>probably</strong> get a new job next year.</em> (almost certain — positive)</div>
+        <div class="example-item"><em>I <strong>probably</strong> won't have enough money for that.</em> (almost certain — negative)</div>
+        <div class="example-item"><em>She will <strong>probably</strong> be late.</em></div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Expressing Full Certainty: definitely</h2>
+      <p>Use <em>definitely</em> when you are <strong>completely sure</strong> something will happen. Place <em>definitely</em> after <em>will</em> in positive sentences, and before <em>won't</em> in negative sentences.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>I will <strong>definitely</strong> miss them!</em> (100% certain — positive)</div>
+        <div class="example-item"><em>He <strong>definitely</strong> won't forget your birthday.</em> (100% certain — negative)</div>
+      </div>
+      <div class="note-box">
+        <strong>💡 Certainty scale:</strong><br>
+        <em>could / may / might</em> → possible (maybe 30–50%)<br>
+        <em>will probably</em> → almost certain (around 70–80%)<br>
+        <em>will definitely</em> → completely certain (100%)<br><br>
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>She might to come tomorrow.</em> → ✓ <em>She might come tomorrow.</em> (no <em>to</em> after modals)<br>
+        ✗ <em>I definitely will go.</em> → ✓ <em>I will definitely go.</em> (<em>definitely</em> comes after <em>will</em>)<br>
+        ✗ <em>I probably won't to pass.</em> → ✓ <em>I probably won't pass.</em>
+      </div>
+    </div>
+  </div>
+  <div id="fpc-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'fpc-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'fpc-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'fpc-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'fpc-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'fpc-act5')">5. Open Questions</button>
+    </div>
+    <div id="fpc-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="fpc-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="fpc-left"></div><div class="match-col" id="fpc-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+    <div id="fpc-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each sentence with the correct word or phrase from this topic.</div>
+      <div id="fpc-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('fpc-fill-exercises','fpc-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('fpc-fill-exercises',FILL);document.getElementById('fpc-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="fpc-fill-feedback" class="feedback"></div>
+    </div>
+    <div id="fpc-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="fpc-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('fpc-mistake-exercises','fpc-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('fpc-mistake-exercises',MISTAKE);document.getElementById('fpc-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="fpc-mistake-feedback" class="feedback"></div>
+    </div>
+    <div id="fpc-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="fpc-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('fpc-order-exercises','fpc-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('fpc-order-exercises',ORDER);document.getElementById('fpc-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="fpc-order-feedback" class="feedback"></div>
+    </div>
+    <div id="fpc-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own sentences about the future using the expressions from this topic. Then click "Show Model Answer" to compare.</div>
+      <div id="fpc-open-exercises"></div>
+    </div>
+  </div>
+</div>
+<script>
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  const p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld); roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score'); scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+
+
+
+
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`; 
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
+const MATCH = [
+  {left:"1. I might stay home tonight —", right:"a. I'm not sure yet."},
+  {left:"2. She will definitely get the job.", right:"b. She is completely certain about it."},
+  {left:"3. He probably won't come to the party", right:"c. because he is very busy this week."},
+  {left:"4. You could find a cheaper flat", right:"d. if you look outside the city centre."},
+  {left:"5. They will probably move abroad", right:"e. but they haven't decided for sure."}
+];
+const FILL = [
+  {sentence:"I'm not sure about my plans — I _____ go to the beach if the weather is good.", answer:"might", alt:["may","could"], explanation:"Use 'might', 'may' or 'could' for something possible but uncertain."},
+  {sentence:"She has studied really hard, so she will _____ pass the exam.", answer:"definitely", alt:["probably"], explanation:"Both 'definitely' and 'probably' work, since there's not enough context."},
+  {sentence:"I _____ won't have enough money to travel this summer.", answer:"probably", alt:["definitely"], explanation:"Both 'definitely' and 'probably' work, since there's not enough context."},
+  {sentence:"He _____ get a promotion soon — his boss really likes him.", answer:"will probably", alt:["probably will"], explanation:"Use 'will probably' for near certainty in a positive sentence."},
+  {sentence:"They _____ move to another city, but they haven't decided yet.", answer:"might", alt:["may","could"], explanation:"Use 'might', 'may' or 'could' when something is just a possibility."}
+];
+const MISTAKE = [
+  {sentence:"She might to call you later this evening.", options:["She might","to call you","later this evening."], correct:1, explanation:"No 'to' after modal verbs: 'She might call you later.'"},
+  {sentence:"I definitely will pass the exam — I studied all week.", options:["I definitely will pass","the exam","I studied all week."], correct:0, explanation:"'Definitely' comes after 'will': 'I will definitely pass the exam.'"},
+  {sentence:"He will probably not comes to the meeting tomorrow.", options:["He will probably","not comes","to the meeting tomorrow."], correct:1, explanation:"After 'will', use the base verb: 'He will probably not come' or 'He probably won't come.'"},
+  {sentence:"They could to find a cheaper place if they look online.", options:["They could","to find a cheaper place","if they look online."], correct:1, explanation:"No 'to' after modal verbs: 'They could find a cheaper place.'"},
+  {sentence:"He works very hard, so he will pass definitely.", options:["He works very hard,","so he will pass","definitely."], correct:2, explanation:"'Definitely' must come between 'will' and the verb: 'he will definitely pass.'"}
+];
+const ORDER = [
+  {words:["might","I","late.","be"], answer:"I might be late."},
+  {words:["will","She","pass.","definitely"], answer:"She will definitely pass."},
+  {words:["probably","He","come.","won't"], answer:"He probably won't come."},
+  {words:["could","You","job.","a","find","better"], answer:"You could find a better job."},
+  {words:["will","They","move","probably","year.","next"], answer:"They will probably move next year."}
+];
+const OPEN = [
+  {question:"Write two sentences about something you might do next weekend.", model:"I might go to the cinema with my friends. I could also stay home and watch TV if I'm tired."},
+  {question:"Write two sentences using 'will definitely' and 'will probably'.", model:"I will definitely call my mum this weekend. I will probably visit my grandparents too."},
+  {question:"Write two negative sentences using 'probably won't' and 'might not'.", model:"I probably won't go out on Friday — I have work early on Saturday. She might not come to the party if she's not feeling well."},
+  {question:"Think about your life in five years. Write three sentences using different expressions from this topic.", model:"I will definitely have finished my degree by then. I might be living in a different city. I probably won't have the same job I have now."},
+  {question:"Write one sentence for each level of certainty: possible, almost certain, and completely certain.", model:"I could get a promotion this year — my manager seems happy with my work. I will probably move to a bigger flat next year. I will definitely keep studying English."}
+];
+function init(){
+  initMatch('fpc', MATCH);
+  buildFillHTML('fpc-fill-exercises', FILL);
+  document.getElementById('fpc-fill-feedback').classList.remove('show');
+  buildMistakeHTML('fpc-mistake-exercises', MISTAKE);
+  document.getElementById('fpc-mistake-feedback').classList.remove('show');
+  buildOrderHTML('fpc-order-exercises', ORDER);
+  document.getElementById('fpc-order-feedback').classList.remove('show');
+  buildOpenHTML('fpc-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
