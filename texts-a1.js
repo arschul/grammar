@@ -43,6 +43,13 @@ const texts = [
       { word: 'kitchen', definition: 'a room where food is prepared and cooked' },
       { word: 'finish', definition: 'to stop doing something because it is complete' },
     ],
+    questions: [
+      { q: "Where does Lena work?", choices: ["In a big factory", "In a small office in the city center", "In a shop near her home", "In a school"], answer: 1 },
+      { q: "What is on Lena's desk?", choices: ["A computer, a phone, and a notebook", "A lamp, a book, and a plant", "A phone, a bag, and a cup", "A notebook, a printer, and a pen"], answer: 0 },
+      { q: "Where can people eat lunch?", choices: ["In the office", "On the first floor", "In the kitchen on the second floor", "In a café outside"], answer: 2 },
+      { q: "What time do people finish work?", choices: ["At five o'clock", "At half past five", "At six o'clock", "At seven o'clock"], answer: 2 },
+      { q: "How does Lena feel on her first day?", choices: ["Very bored", "Nervous but happy", "Angry and tired", "Calm and relaxed"], answer: 1 },
+    ],
     text: `My name is Lena. Today is my first day at my new job. I work in a small office in the city center. My desk is near the window. I have a computer, a phone, and a notebook on my desk.
 
 My manager is very friendly. Her name is Maria. She shows me where everything is. There is a kitchen on the second floor. We can eat lunch there.
@@ -70,6 +77,13 @@ I am a little nervous, but I am also very happy. I think this is a good place to
       { word: 'sunset', definition: 'the time when the sun goes down and the sky turns orange or red' },
       { word: 'photo', definition: 'a picture taken with a camera' },
       { word: 'summer', definition: 'the warmest season of the year' },
+    ],
+    questions: [
+      { q: "How did Tom and his sister travel to the beach?", choices: ["By car", "By bus", "By train", "By plane"], answer: 2 },
+      { q: "What did Tom do at the beach?", choices: ["Read a book", "Swam in the sea", "Ate ice cream", "Played football"], answer: 1 },
+      { q: "What did Tom eat for lunch?", choices: ["Pizza and soup", "Pasta and salad", "Fish and salad", "Sandwiches and fruit"], answer: 2 },
+      { q: "What did they see before going home?", choices: ["A storm", "A beautiful sunset", "Some dolphins", "A big ship"], answer: 1 },
+      { q: "How long was the train trip?", choices: ["One hour", "Two hours", "Three hours", "Forty-five minutes"], answer: 1 },
     ],
     text: `Last weekend, Tom and his sister went to the beach. They live in the city, so they took the train. The trip was about two hours long.
 
@@ -101,6 +115,13 @@ Tom says he wants to go back next summer.`
       { word: 'message', definition: 'a short piece of text sent to another person' },
       { word: 'imagine', definition: 'to form a picture of something in your mind' },
     ],
+    questions: [
+      { q: "What does the writer use in the morning to check the time?", choices: ["A clock", "A watch", "A smartphone", "A computer"], answer: 2 },
+      { q: "When does the writer use a music app?", choices: ["At night", "When cooking", "When exercising", "On the bus"], answer: 2 },
+      { q: "Where does the writer put the phone at night?", choices: ["Under the bed", "In a bag", "On the desk", "On the sofa"], answer: 2 },
+      { q: "What do the writer's parents say?", choices: ["The phone is too expensive", "The writer uses the phone too much", "The phone has a bad camera", "The writer should buy a new phone"], answer: 1 },
+      { q: "What does the writer take photos of?", choices: ["Animals, cars, and buildings", "Food, friends, and beautiful places", "Work, school, and family", "Books, music, and films"], answer: 1 },
+    ],
     text: `I have a smartphone. I use it every day. My phone is very important for me.
 
 In the morning, I use my phone to check the time. I also read the news and check my messages. I have many apps on my phone. I use a maps app when I go to a new place. I use a music app when I exercise.
@@ -128,6 +149,13 @@ At night, I put my phone on my desk to charge. My parents always say I use my ph
       { word: 'recipe', definition: 'a list of ingredients and steps to make a dish' },
       { word: 'garlic', definition: 'a small white plant with a strong smell, used in cooking' },
       { word: 'healthy', definition: 'good for your body; helping you stay well' },
+    ],
+    questions: [
+      { q: "How often does Sara cook dinner at home?", choices: ["Once a week", "Twice a week", "Every day", "On weekends"], answer: 2 },
+      { q: "What did Sara make on Monday?", choices: ["Pasta with tomato sauce", "Vegetable soup", "Grilled fish", "Rice with chicken"], answer: 1 },
+      { q: "When does Sara go to the market?", choices: ["On Friday evening", "On Sunday morning", "On Saturday morning", "On Wednesday afternoon"], answer: 2 },
+      { q: "What does Sara NOT buy?", choices: ["Vegetables", "Red meat", "Fish", "Fruit"], answer: 1 },
+      { q: "According to Sara, what is the secret to good cooking?", choices: ["Use expensive ingredients", "Cook quickly", "Use fresh ingredients and cook with love", "Follow a recipe exactly"], answer: 2 },
     ],
     text: `Sara likes to cook. She cooks dinner every day at home. She thinks cooking is fun and healthy.
 
@@ -159,6 +187,13 @@ Her friends love her cooking. They often come to her house for dinner. Sara is h
       { word: 'toast', definition: 'bread that has been heated until it is brown and crispy' },
       { word: 'important', definition: 'having great value or meaning' },
     ],
+    questions: [
+      { q: "What time does David wake up?", choices: ["Six o'clock", "Half past six", "Seven o'clock", "Eight o'clock"], answer: 2 },
+      { q: "What does David drink first in the morning?", choices: ["A cup of coffee", "A glass of water", "A glass of juice", "A cup of tea"], answer: 1 },
+      { q: "What does David usually eat for breakfast?", choices: ["Cereal and milk", "Bread and cheese", "Eggs and toast", "Fruit and yogurt"], answer: 2 },
+      { q: "How does David travel to work?", choices: ["By car", "By bicycle", "By metro", "By bus"], answer: 3 },
+      { q: "What time does David arrive at work?", choices: ["Eight o'clock", "Half past eight", "Nine o'clock", "Quarter past eight"], answer: 1 },
+    ],
     text: `Every morning, David wakes up at seven o'clock. He does not use an alarm. He just wakes up at the same time every day.
 
 First, he drinks a glass of water. Then he goes to the bathroom to wash his face and brush his teeth. After that, he makes breakfast. He usually eats eggs and toast. He drinks one cup of coffee.
@@ -188,6 +223,13 @@ David thinks a good morning routine is very important for a happy day.`
       { word: 'prevention', definition: 'stopping something bad from happening before it does' },
       { word: 'active', definition: 'doing physical movement; not sitting still' },
       { word: 'energy', definition: 'the strength and ability to be active and do things' },
+    ],
+    questions: [
+      { q: "How many glasses of water does Ana drink every day?", choices: ["Four", "Six", "Eight", "Ten"], answer: 2 },
+      { q: "What time does Ana go to bed?", choices: ["Nine o'clock", "Ten o'clock", "Eleven o'clock", "Midnight"], answer: 1 },
+      { q: "How many times a week does Ana walk in the park?", choices: ["Once", "Twice", "Three times", "Every day"], answer: 2 },
+      { q: "Where does Ana do yoga?", choices: ["At the gym", "In the park", "At home", "At a yoga studio"], answer: 2 },
+      { q: "How often does Ana visit her doctor?", choices: ["Every month", "Every six months", "Every year", "Every two years"], answer: 2 },
     ],
     text: `Ana wants to be healthy. She follows some simple rules every day.
 
@@ -219,6 +261,13 @@ Every year, she visits her doctor for a check-up. She believes that prevention i
       { word: 'player', definition: 'a person who takes part in a game or sport' },
       { word: 'café', definition: 'a small place where you can buy drinks and light food' },
     ],
+    questions: [
+      { q: "When does Carlos play football?", choices: ["Every Sunday morning", "Every Saturday morning", "Every Friday evening", "Every weekday"], answer: 1 },
+      { q: "What position does Carlos play?", choices: ["Goalkeeper", "Defender", "Midfielder", "Striker"], answer: 2 },
+      { q: "How long do they play football?", choices: ["Thirty minutes", "Forty-five minutes", "One hour", "Two hours"], answer: 2 },
+      { q: "Who does Carlos go to the stadium with?", choices: ["His friends", "His brother", "His father", "His colleagues"], answer: 2 },
+      { q: "According to Carlos, football is a way to ...", choices: ["make money and travel", "make friends and have fun", "stay thin and healthy", "win trophies and fame"], answer: 1 },
+    ],
     text: `Carlos loves football. He plays football every Saturday morning with his friends. They meet at the park at nine o'clock.
 
 There are ten players on the field. They play for one hour. Carlos is a midfielder. He runs a lot during the game. He is very fast.
@@ -248,6 +297,13 @@ Carlos says football is more than a sport. It is a way to make friends and have 
       { word: 'calm', definition: 'relaxed and not worried; peaceful' },
       { word: 'nature', definition: 'everything in the world that is not made by people' },
       { word: 'spring', definition: 'the season after winter when plants start to grow' },
+    ],
+    questions: [
+      { q: "When does the writer go to the forest?", choices: ["Every morning", "On weekdays", "On weekends", "In the evening"], answer: 2 },
+      { q: "What does the writer do in the forest?", choices: ["Ride a bicycle", "Walk with a dog", "Swim in the river", "Pick flowers"], answer: 1 },
+      { q: "What happens to the leaves in autumn?", choices: ["They fall immediately", "They turn orange, red, and yellow", "They turn dark green", "They stay the same color"], answer: 1 },
+      { q: "How long do they walk in the forest?", choices: ["Thirty minutes", "About one hour", "Two hours", "The whole day"], answer: 1 },
+      { q: "Why does the writer like the forest?", choices: ["It is close to a shopping center", "It has many animals", "It is quiet and relaxing", "It is open all night"], answer: 2 },
     ],
     text: `Near my town there is a big forest. I love going there on weekends.
 
@@ -279,6 +335,13 @@ The forest is a quiet place. There are no cars or noise. I feel calm and relaxed
       { word: 'content', definition: 'films, music, or other media that you can watch or listen to' },
       { word: 'choose', definition: 'to decide which thing you want from several options' },
     ],
+    questions: [
+      { q: "When do Julia and her roommate watch a movie?", choices: ["Saturday evenings", "Sunday evenings", "Friday evenings", "Thursday evenings"], answer: 2 },
+      { q: "What type of film did Julia choose this week?", choices: ["Action", "Horror", "Comedy", "Drama"], answer: 2 },
+      { q: "What was the movie about?", choices: ["A woman who moves to a big city", "A man who loses his job and starts a new life in a village", "A family that travels the world", "Two friends who open a restaurant"], answer: 1 },
+      { q: "How much does Julia pay for her streaming service?", choices: ["Five dollars a month", "Eight dollars a month", "Ten dollars a month", "Fifteen dollars a month"], answer: 2 },
+      { q: "How do Julia and her roommate decide who chooses the film?", choices: ["They always choose together", "Julia always chooses", "They take turns", "The roommate always chooses"], answer: 2 },
+    ],
     text: `On Friday evenings, Julia and her roommate watch a movie together. They call it "movie night." It is their favorite weekly tradition.
 
 They take turns choosing the film. This week, Julia chose a comedy. Her roommate likes action movies, but he agreed. They made popcorn and sat on the sofa together.
@@ -308,6 +371,13 @@ After the movie, they talked about their favorite scenes. Julia says movie night
       { word: 'nervous', definition: 'feeling a little worried or afraid about something' },
       { word: 'resource', definition: 'something useful that helps you do or learn something' },
       { word: 'rock', definition: 'a style of loud, energetic music with electric guitars' },
+    ],
+    questions: [
+      { q: "How long has Mike been learning guitar?", choices: ["Two months", "Six months", "One year", "Two years"], answer: 1 },
+      { q: "How often does Mike have lessons?", choices: ["Every day", "Twice a week", "Once a week", "Once a month"], answer: 2 },
+      { q: "How many chords does Mike know now?", choices: ["Five", "Seven", "Ten", "Fifteen"], answer: 2 },
+      { q: "Where does Mike learn new techniques?", choices: ["At school", "From books", "Online", "From his friends"], answer: 2 },
+      { q: "What is Mike's goal for the future?", choices: ["To record an album", "To play in front of people", "To become a teacher", "To buy a better guitar"], answer: 1 },
     ],
     text: `Mike started to learn the guitar six months ago. He always wanted to play a musical instrument.
 
@@ -341,6 +411,13 @@ He wants to play in front of people one day. Maybe at a small party or a family 
       { word: 'environment', definition: 'the natural world, including the air, water, and land' },
       { word: 'section', definition: 'a separate part of a shop or building' },
     ],
+    questions: [
+      { q: "When does Grace go to the supermarket?", choices: ["On Friday", "On Saturday", "On Sunday", "On Monday"], answer: 2 },
+      { q: "What does Grace do before she leaves the house?", choices: ["She calls the supermarket", "She makes a shopping list", "She checks the prices online", "She eats a big meal"], answer: 1 },
+      { q: "What does Grace use to save money?", choices: ["A discount code", "A credit card", "A loyalty card", "Coupons from the newspaper"], answer: 2 },
+      { q: "Why does Grace use reusable bags?", choices: ["They are cheaper", "She likes the design", "To protect the environment", "The supermarket requires them"], answer: 2 },
+      { q: "How long does Grace's shopping usually take?", choices: ["About twenty minutes", "About thirty minutes", "About forty-five minutes", "About one hour"], answer: 2 },
+    ],
     text: `Every Sunday, Grace goes to the supermarket. She makes a list before she leaves the house. She writes down everything she needs for the week.
 
 At the supermarket, she starts with fruit and vegetables. Then she goes to the dairy section to get milk, cheese, and yogurt. She also buys bread, pasta, and rice.
@@ -370,6 +447,13 @@ Shopping usually takes about forty-five minutes. She goes home, puts everything 
       { word: 'jump', definition: 'to push yourself up into the air with your legs' },
       { word: 'alone', definition: 'without other people; by yourself' },
       { word: 'feed', definition: 'to give food to a person or animal' },
+    ],
+    questions: [
+      { q: "What is the cat's name?", choices: ["Lena", "Luna", "Lucy", "Lily"], answer: 1 },
+      { q: "How old is the cat?", choices: ["One year old", "Two years old", "Three years old", "Four years old"], answer: 1 },
+      { q: "What is Luna's favorite food?", choices: ["Chicken", "Fish", "Tuna", "Milk"], answer: 2 },
+      { q: "What kind of cat is Luna?", choices: ["An outdoor cat", "A farm cat", "An indoor cat", "A stray cat"], answer: 2 },
+      { q: "What does Luna do at the window?", choices: ["Sleep in the sun", "Look at the birds outside", "Watch the street", "Play with her toy"], answer: 1 },
     ],
     text: `I have a cat. Her name is Luna. She is two years old and she has grey and white fur.
 
@@ -403,6 +487,13 @@ I love Luna very much. She is good company, especially when I am alone at home.`
       { word: 'clearly', definition: 'in a way that is easy to understand' },
       { word: 'practice', definition: 'to do something repeatedly to get better at it' },
     ],
+    questions: [
+      { q: "How many days a week does Paulo study English?", choices: ["Once", "Twice", "Three times", "Every day"], answer: 1 },
+      { q: "Why does Paulo want to learn English?", choices: ["For travel", "For work", "To watch movies without subtitles", "To pass an exam"], answer: 2 },
+      { q: "Where is the teacher from?", choices: ["The United States", "Australia", "Canada", "The United Kingdom"], answer: 2 },
+      { q: "How long does Paulo study at home each day?", choices: ["Ten minutes", "Twenty minutes", "Thirty minutes", "One hour"], answer: 1 },
+      { q: "How does Paulo feel now compared to when he started?", choices: ["More nervous", "More confident", "More bored", "More tired"], answer: 1 },
+    ],
     text: `My name is Paulo. I study English twice a week. My class is on Tuesday and Thursday evenings.
 
 There are twelve students in my class. We are all adults. Some students want to travel. Others want to use English for work. I want to use English to watch movies without subtitles.
@@ -432,6 +523,13 @@ I started this class three months ago. At first, I was shy. Now I feel more conf
       { word: 'calm', definition: 'relaxed and not worried; peaceful' },
       { word: 'smell', definition: 'to sense an odor through your nose; also the odor itself' },
       { word: 'fresh', definition: 'clean and cool, like the air after rain' },
+    ],
+    questions: [
+      { q: "What is the weather like at the start of the text?", choices: ["Sunny and warm", "Windy and dry", "Rainy and cold", "Cloudy but warm"], answer: 2 },
+      { q: "What is the writer reading on this rainy day?", choices: ["A science book", "A mystery novel", "A magazine", "A travel guide"], answer: 1 },
+      { q: "Where is the cat during the rainy day?", choices: ["Under the bed", "By the window", "On the sofa next to the writer", "In another room"], answer: 2 },
+      { q: "What happens in the afternoon?", choices: ["It rains more", "The wind stops", "The rain stops and the sun comes out", "The writer goes for a walk"], answer: 2 },
+      { q: "How does the writer feel about rainy days?", choices: ["Sad and bored", "Angry and restless", "Calm and cozy", "Tired and cold"], answer: 2 },
     ],
     text: `Today it is raining. The sky is grey and it is cold outside. I do not want to go out.
 
@@ -465,6 +563,13 @@ I actually like rainy days. They make me feel calm and cozy.`
       { word: 'channel', definition: 'a TV or video account that publishes content regularly' },
       { word: 'meeting', definition: 'a time when people come together to discuss something' },
     ],
+    questions: [
+      { q: "What does the writer use the internet for in the morning?", choices: ["Watching videos", "Reading news and checking messages", "Joining online meetings", "Listening to music"], answer: 1 },
+      { q: "Where do the writer's parents live?", choices: ["In the same city", "In another country", "In another city", "Next door"], answer: 2 },
+      { q: "What is the writer's favorite online channel about?", choices: ["Travel", "Music", "Cooking", "Sport"], answer: 2 },
+      { q: "What does the writer use the internet for at work?", choices: ["Playing games", "Sending emails and joining meetings", "Watching films", "Shopping online"], answer: 1 },
+      { q: "What does the writer think is important about internet use?", choices: ["Always staying online", "Using only one app", "Having balance and taking breaks", "Paying for the best connection"], answer: 2 },
+    ],
     text: `Most people use the internet every day. We use it for many different things.
 
 We use it to find information. If I have a question, I search for the answer online. It is very fast and easy.
@@ -497,6 +602,13 @@ Sometimes I worry about spending too much time online. It is important to take b
       { word: 'board game', definition: 'a game played on a flat surface, such as chess or Scrabble' },
       { word: 'tradition', definition: 'something people do regularly because they have always done it' },
     ],
+    questions: [
+      { q: "When is New Year's Eve?", choices: ["The first day of January", "The last day of November", "The last day of December", "The first day of December"], answer: 2 },
+      { q: "Who makes the special soup?", choices: ["The writer's mother", "The writer's grandmother", "The writer's aunt", "The writer"], answer: 1 },
+      { q: "What do they do after dinner?", choices: ["Watch a film", "Play board games", "Go for a walk", "Go to a party"], answer: 1 },
+      { q: "What do they do at midnight?", choices: ["Eat a special cake", "Call friends on the phone", "Go outside to watch the fireworks", "Stay inside and sing"], answer: 2 },
+      { q: "What does the writer talk about before going to sleep?", choices: ["Plans and memories from the year", "Sports and news", "Films and music", "Food and travel"], answer: 0 },
+    ],
     text: `New Year's Eve is my favorite night of the year. It is the last day of December. People celebrate the end of the old year and the beginning of the new one.
 
 In my family, we always have dinner together. My grandmother makes her special soup. We also eat rice, salad, and grilled chicken. After dinner, we play board games.
@@ -527,6 +639,13 @@ I always feel excited and a little emotional on this night. It is a moment to be
       { word: 'public transport', definition: 'buses, trains, or other vehicles used by many people' },
       { word: 'station', definition: 'a place where trains or buses stop to pick up passengers' },
     ],
+    questions: [
+      { q: "How far is the office from the writer's home?", choices: ["Five kilometers", "Eight kilometers", "Twelve kilometers", "Twenty kilometers"], answer: 2 },
+      { q: "How long does the bicycle ride take?", choices: ["About fifteen minutes", "About twenty minutes", "About thirty-five minutes", "About one hour"], answer: 2 },
+      { q: "How long does the metro ride take?", choices: ["Five minutes", "Fifteen minutes", "Twenty minutes", "Thirty minutes"], answer: 1 },
+      { q: "Which is cheaper, the metro or the bus?", choices: ["The metro", "The bus", "They cost the same", "The bicycle"], answer: 1 },
+      { q: "Why does the writer never drive to work?", choices: ["There is no parking near the office", "The car is broken", "There is a lot of traffic and parking is expensive", "The writer does not have a car"], answer: 2 },
+    ],
     text: `My office is twelve kilometers from my home. I have different ways to get there.
 
 On nice days, I ride my bicycle. It takes about thirty-five minutes. I enjoy the fresh air and the exercise. I go through a park, which is very pleasant.
@@ -556,6 +675,13 @@ I never drive to work. There is a lot of traffic and parking is very expensive. 
       { word: 'race', definition: 'a competition to see who can run fastest' },
       { word: 'energy', definition: 'the strength and ability to be active and do things' },
       { word: 'give up', definition: 'to stop trying to do something' },
+    ],
+    questions: [
+      { q: "When did Elena start running?", choices: ["Two weeks ago", "One month ago", "Six weeks ago", "Three months ago"], answer: 2 },
+      { q: "How many times a week does Elena run?", choices: ["Once", "Twice", "Three times", "Every day"], answer: 2 },
+      { q: "How long could Elena run at the beginning?", choices: ["Five minutes", "Ten minutes", "Fifteen minutes", "Twenty minutes"], answer: 0 },
+      { q: "What does Elena use to track her runs?", choices: ["A notebook", "A sports watch", "A fitness app on her phone", "A map"], answer: 2 },
+      { q: "What is Elena's goal?", choices: ["To run a marathon", "To run a five-kilometer race", "To run every day", "To join a running club"], answer: 1 },
     ],
     text: `Elena started running six weeks ago. She runs three times a week in the park near her house.
 
@@ -588,6 +714,13 @@ She wants to run a five-kilometer race before the end of the year.`
       { word: 'candle', definition: 'a stick of wax with a wick that you light to give light' },
       { word: 'option', definition: 'one of the choices available to you' },
       { word: 'service', definition: 'the help that workers give to customers in a shop or restaurant' },
+    ],
+    questions: [
+      { q: "What type of restaurant did Jack and his friend visit?", choices: ["Chinese", "French", "Italian", "Mexican"], answer: 2 },
+      { q: "What did Jack order?", choices: ["Pasta with cream sauce", "Pizza with tomatoes, cheese, and mushrooms", "Fish and salad", "Risotto"], answer: 1 },
+      { q: "What did they share for dessert?", choices: ["Ice cream", "Tiramisu", "Chocolate cake", "Fruit salad"], answer: 2 },
+      { q: "How did Jack pay the bill?", choices: ["With cash", "By card", "With a voucher", "His friend paid"], answer: 1 },
+      { q: "How much was the bill for two people?", choices: ["Twenty euros", "Twenty-five euros", "Thirty euros", "Thirty-two euros"], answer: 3 },
     ],
     text: `On Saturday, Jack and his friend went to a new restaurant in the city. The restaurant was Italian. Jack loves Italian food.
 
@@ -622,6 +755,13 @@ He wants to go back next month.`
       { word: 'planet', definition: 'a large round object in space, like the Earth' },
       { word: 'reduce', definition: 'to make something smaller in size or amount' },
       { word: 'cycle', definition: 'to travel by bicycle; also a repeated series of events' },
+    ],
+    questions: [
+      { q: "Which of these is mentioned as a way to save water?", choices: ["Buy less plastic", "Take short showers", "Use reusable bags", "Grow vegetables"], answer: 1 },
+      { q: "What is in the writer's neighborhood?", choices: ["A recycling center", "A solar energy station", "A community garden", "A bicycle park"], answer: 2 },
+      { q: "What can people recycle according to the text?", choices: ["Food, water, and metal", "Paper, plastic, and glass", "Wood, cloth, and plastic", "Metal, glass, and rubber"], answer: 1 },
+      { q: "What does the writer believe about small actions?", choices: ["They are not enough to help", "Only governments can make a difference", "Many small actions together can make a big difference", "Small actions are a waste of time"], answer: 2 },
+      { q: "Why do people grow vegetables in the community garden?", choices: ["To sell them at the market", "To save money on food", "To produce food without much pollution", "To win a gardening competition"], answer: 2 },
     ],
     text: `Many people today think about the environment. They want to take care of the planet.
 
