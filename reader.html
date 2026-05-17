@@ -1095,19 +1095,18 @@ function tokenize(para) {
   return parts;
 }
 function normalize(s) {
-  // Decompose accented chars then re-compose — keeps é,â etc. intact for comparison
-  // but allows matching flâneur↔flâneur even if one is NFD and the other NFC
   return s.normalize('NFC');
 }
 function smartMatch(t, k) {
   const tn = normalize(t), kn = normalize(k);
   if (tn === kn) return true;
-  if (kn.length >= 4 && tn.startsWith(kn)) return true;
-  if (tn.length >= 4 && kn.startsWith(tn)) return true;
+  // Token is a prefix of keyword only if they're very close in length (e.g. plurals, -ed, -ing)
+  if (kn.length >= 4 && tn.startsWith(kn)) return true;           // keyword is prefix of token: "auteurs" matches "auteur"
+  if (tn.length >= 4 && kn.startsWith(tn) && kn.length - tn.length <= 4) return true;  // token is prefix of keyword, but only if keyword is at most 4 chars longer
   const tc = tn.replace(/-/g,''), kc = kn.replace(/-/g,'');
   if (tc === kc) return true;
   if (kc.length >= 4 && tc.startsWith(kc)) return true;
-  if (tc.length >= 4 && kc.startsWith(tc)) return true;
+  if (tc.length >= 4 && kc.startsWith(tc) && kc.length - tc.length <= 4) return true;
   return false;
 }
 function tagTokens(tokens, kwData) {
