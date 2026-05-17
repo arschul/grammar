@@ -16,16 +16,11 @@
     --accent:    #b85c2a;
     --accent-lt: #e8c9b5;
 
+    /* highlight palette */
     --hl-yellow: #ffe066;
     --hl-green:  #a8e6a3;
     --hl-blue:   #a3cde6;
     --hl-pink:   #f5a3c2;
-
-    --kw-pending:  #fff3cd;
-    --kw-active:   #ffd54f;
-    --kw-correct:  #c8e6c9;
-    --kw-wrong:    #ffcdd2;
-    --kw-hint-bg:  #ffe082;
 
     --badge-a1: #4caf7d;
     --badge-a2: #2196a8;
@@ -40,55 +35,35 @@
     --shadow: 0 2px 12px rgba(30,26,20,.10);
   }
 
-  /* ── DARK MODE ── */
-  body.dark {
-    --bg:        #1a1710;
-    --surface:   #222018;
-    --ink:       #e8e0d0;
-    --ink-soft:  #9a8f78;
-    --border:    #3a342a;
-    --accent:    #d4784a;
-    --accent-lt: #3d2a1e;
-
-    --hl-yellow: #7a6500;
-    --hl-green:  #1e5c2a;
-    --hl-blue:   #1a3f5c;
-    --hl-pink:   #6b2040;
-
-    --kw-correct:  #1e4d28;
-    --kw-wrong:    #5c1a1a;
-    --kw-hint-bg:  #c2185b;
-    --kw-active:   #5c3a00;
-
-    --shadow: 0 2px 12px rgba(0,0,0,.4);
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 280px 1fr;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
   }
 
   /* ── HEADER ── */
   header {
+    grid-area: header;
     border-bottom: 1.5px solid var(--border);
-    padding: 14px 28px;
+    padding: 18px 32px;
     display: flex;
     align-items: center;
     gap: 16px;
     background: var(--surface);
-    z-index: 10;
-    flex-shrink: 0;
   }
   header .logo {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: -.02em;
@@ -96,144 +71,48 @@
   header .logo span { color: var(--ink); }
   header .tagline {
     font-family: var(--font-mono);
-    font-size: .65rem;
+    font-size: .7rem;
     color: var(--ink-soft);
     letter-spacing: .08em;
     text-transform: uppercase;
+    margin-left: 4px;
     margin-top: 2px;
   }
-  .dark-toggle {
-    margin-left: auto;
-    background: none;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 6px 10px;
-    cursor: pointer;
-    color: var(--ink-soft);
-    font-size: 1rem;
-    line-height: 1;
-    transition: all .15s;
-    display: flex;
-    align-items: center;
-  }
-  .dark-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Back button — visible only in reading screen */
-  .back-btn {
-    display: none;
-    align-items: center;
-    gap: 6px;
-    background: none;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 6px 12px;
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--ink-soft);
-    transition: all .15s;
-  }
-  .back-btn:hover { border-color: var(--accent); color: var(--accent); }
-  body.reading .back-btn { display: flex; }
-  body.reading .dark-toggle { margin-left: 0; }
-
-  /* Header breadcrumb — text title shown while reading */
-  .header-crumb {
-    display: none;
-    font-family: var(--font-display);
-    font-size: .95rem;
-    font-weight: 600;
-    color: var(--ink);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex: 1;
-    min-width: 0;
-  }
-  body.reading .header-crumb { display: block; }
-  body.reading .tagline-wrap { display: none; }
-
-  /* ── SCREEN WRAPPER ── */
-  .screens {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* Both screens sit side by side, we translate to show one at a time */
-  .screen-browser,
-  .screen-reader {
-    position: absolute;
-    inset: 0;
-    transition: transform .3s cubic-bezier(.4,0,.2,1), opacity .3s;
-  }
-
-  /* Browser screen: default visible */
-  .screen-browser {
-    transform: translateX(0);
-    opacity: 1;
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    overflow: hidden;
-    height: 100%;
-  }
-  body.reading .screen-browser {
-    transform: translateX(-40px);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Reader screen: default hidden to the right */
-  .screen-reader {
-    transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    height: 100%;
-  }
-  body.reading .screen-reader {
-    transform: translateX(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* ── SIDEBAR (browser screen) ── */
+  /* ── SIDEBAR ── */
   aside {
+    grid-area: sidebar;
     background: var(--surface);
     border-right: 1.5px solid var(--border);
-    padding: 20px 16px;
+    padding: 28px 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 28px;
     overflow-y: auto;
-    height: 100%;
   }
 
   .section-label {
     font-family: var(--font-mono);
-    font-size: .62rem;
+    font-size: .65rem;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
+  /* Level pills */
   .level-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px;
+    gap: 8px;
   }
   .level-btn {
     border: 1.5px solid var(--border);
     background: var(--bg);
     border-radius: var(--radius);
-    padding: 7px 0;
+    padding: 8px 0;
     font-family: var(--font-mono);
-    font-size: .82rem;
+    font-size: .85rem;
     font-weight: 500;
     cursor: pointer;
     transition: all .15s;
@@ -241,25 +120,27 @@
     color: var(--ink-soft);
   }
   .level-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .level-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
   .level-btn[data-level="A1"] { --lc: var(--badge-a1); }
   .level-btn[data-level="A2"] { --lc: var(--badge-a2); }
   .level-btn[data-level="B1"] { --lc: var(--badge-b1); }
   .level-btn[data-level="B2"] { --lc: var(--badge-b2); }
-  .level-btn.active { background: var(--lc); border-color: var(--lc); color: #fff; }
+  .level-btn.active { background: var(--lc); border-color: var(--lc); }
 
+  /* Topic list */
   .topic-list {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
   }
   .topic-btn {
     background: none;
     border: none;
     text-align: left;
-    padding: 6px 8px;
+    padding: 7px 10px;
     border-radius: var(--radius);
     font-family: var(--font-body);
-    font-size: .84rem;
+    font-size: .88rem;
     cursor: pointer;
     color: var(--ink-soft);
     transition: all .12s;
@@ -272,7 +153,7 @@
   .topic-btn.active { background: var(--accent); color: #fff; }
   .topic-btn .count {
     font-family: var(--font-mono);
-    font-size: .67rem;
+    font-size: .7rem;
     opacity: .6;
   }
 
@@ -282,82 +163,70 @@
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 9px;
+    padding: 10px;
     background: var(--ink);
     color: var(--bg);
     border: none;
     border-radius: var(--radius);
     font-family: var(--font-mono);
-    font-size: .74rem;
+    font-size: .78rem;
     letter-spacing: .06em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all .15s;
-    margin-top: auto;
   }
   .random-btn:hover { background: var(--accent); }
+  .random-btn svg { flex-shrink: 0; }
 
-  /* ── TEXT LIST (browser screen, right side) ── */
-  .list-panel {
+  /* ── MAIN ── */
+  main {
+    grid-area: main;
+    padding: 36px 44px;
     overflow-y: auto;
-    padding: 20px 24px;
+    max-width: 780px;
+  }
+
+  /* Text list */
+  .text-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    height: 100%;
-  }
-  .list-panel-label {
-    font-family: var(--font-mono);
-    font-size: .62rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  .text-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 10px;
-    align-content: start;
+    gap: 12px;
+    margin-bottom: 32px;
   }
   .text-card {
     background: var(--surface);
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 14px 16px;
+    padding: 14px 18px;
     cursor: pointer;
     transition: all .15s;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: 14px;
   }
-  .text-card:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-1px); }
-  .text-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
-  }
+  .text-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  .text-card.selected { border-color: var(--accent); background: var(--accent-lt); }
+  .text-card-info { flex: 1; min-width: 0; }
   .text-card-title {
     font-family: var(--font-display);
-    font-size: .95rem;
+    font-size: 1rem;
     font-weight: 600;
-    line-height: 1.3;
-    color: var(--ink);
-    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .text-card-meta {
     font-family: var(--font-mono);
-    font-size: .62rem;
+    font-size: .68rem;
     color: var(--ink-soft);
+    margin-top: 3px;
+    letter-spacing: .04em;
   }
   .level-badge {
     font-family: var(--font-mono);
-    font-size: .66rem;
+    font-size: .7rem;
     font-weight: 500;
-    padding: 2px 7px;
+    padding: 3px 8px;
     border-radius: 20px;
     color: #fff;
     flex-shrink: 0;
@@ -367,61 +236,34 @@
   .badge-B1 { background: var(--badge-b1); }
   .badge-B2 { background: var(--badge-b2); }
 
-  /* ── MODE TABS (reader screen) ── */
-  .mode-tabs {
-    display: flex;
-    border-bottom: 1.5px solid var(--border);
+  /* Reader pane */
+  .reader-pane {
     background: var(--surface);
-    flex-shrink: 0;
-  }
-  .mode-tab {
-    flex: 1;
-    padding: 10px 16px;
-    background: none;
-    border: none;
-    border-bottom: 2.5px solid transparent;
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--ink-soft);
-    transition: all .15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .mode-tab:hover { color: var(--accent); }
-  .mode-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--bg); }
-
-  /* ── READER VIEW ── */
-  .reader-view {
-    flex: 1;
-    overflow-y: auto;
-    padding: 32px clamp(24px, 6vw, 80px);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    box-shadow: var(--shadow);
     display: none;
   }
-  .reader-view.active { display: block; }
+  .reader-pane.visible { display: block; }
 
   .reader-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     gap: 16px;
-    max-width: 780px;
   }
   .reader-title {
     font-family: var(--font-display);
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 700;
     line-height: 1.2;
     flex: 1;
   }
   .reader-meta {
     font-family: var(--font-mono);
-    font-size: .65rem;
+    font-size: .7rem;
     color: var(--ink-soft);
     margin-top: 6px;
     letter-spacing: .06em;
@@ -433,23 +275,24 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 20px;
-    padding: 8px 12px;
+    margin-bottom: 22px;
+    padding: 10px 14px;
     background: var(--bg);
     border-radius: var(--radius);
     border: 1px solid var(--border);
     flex-wrap: wrap;
-    max-width: 780px;
   }
   .hl-toolbar-label {
     font-family: var(--font-mono);
-    font-size: .62rem;
+    font-size: .65rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    margin-right: 4px;
   }
   .hl-color-btn {
-    width: 20px; height: 20px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
@@ -462,14 +305,16 @@
   .hl-color-btn[data-color="green"]  { background: var(--hl-green); }
   .hl-color-btn[data-color="blue"]   { background: var(--hl-blue); }
   .hl-color-btn[data-color="pink"]   { background: var(--hl-pink); }
-  .hl-sep { width: 1px; height: 16px; background: var(--border); margin: 0 2px; }
+
+  .hl-sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+
   .hl-clear-btn {
     background: none;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 2px 9px;
+    padding: 3px 10px;
     font-family: var(--font-mono);
-    font-size: .64rem;
+    font-size: .67rem;
     letter-spacing: .06em;
     text-transform: uppercase;
     cursor: pointer;
@@ -478,170 +323,227 @@
   }
   .hl-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
 
+  /* The text body */
   .reader-body {
-    font-size: 1.08rem;
-    line-height: 2;
+    font-size: 1.05rem;
+    line-height: 1.9;
     color: var(--ink);
+    white-space: pre-wrap;
     user-select: text;
-    max-width: 780px;
+    cursor: text;
   }
-  .reader-body p { margin-bottom: 1.3em; }
+  .reader-body p { margin-bottom: 1.2em; }
 
-  .word { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: background .1s; }
-  .word:hover { background: rgba(184,92,42,.1); }
-  .hl { border-radius: 3px; padding: 0 1px; }
+  /* highlighted spans */
+  .hl { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: filter .12s; }
   .hl:hover { filter: brightness(.92); }
   .hl-yellow { background: var(--hl-yellow); }
   .hl-green  { background: var(--hl-green); }
   .hl-blue   { background: var(--hl-blue); }
   .hl-pink   { background: var(--hl-pink); }
 
-  /* ── ACTIVITY VIEW ── */
-  .activity-view {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px clamp(16px, 4vw, 48px);
-    display: none;
-    flex-direction: column;
-    gap: 14px;
+  /* empty state */
+  .empty-state {
+    text-align: center;
+    padding: 64px 32px;
+    color: var(--ink-soft);
   }
-  .activity-view.active { display: flex; }
-
-  .activity-layout {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 24px;
-    align-items: start;
-    flex: 1;
+  .empty-state .icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: .5;
   }
-
-  /* Definitions panel */
-  .definitions-panel { position: sticky; top: 0; }
-  .definitions-panel-label {
+  .empty-state p {
     font-family: var(--font-mono);
-    font-size: .62rem;
-    letter-spacing: .1em;
+    font-size: .8rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── QUIZ PANEL ── */
+  .quiz-panel {
+    margin-top: 36px;
+    border-top: 1.5px solid var(--border);
+    padding-top: 28px;
+    display: none;
+  }
+  .quiz-panel.visible { display: block; }
+
+  .quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .quiz-title {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-bottom: 10px;
   }
-  .def-cards { display: flex; flex-direction: column; gap: 6px; }
-  .def-card {
-    background: var(--surface);
+  .quiz-score-badge {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    display: none;
+  }
+  .quiz-score-badge.visible { display: inline-block; }
+
+  .quiz-questions { display: flex; flex-direction: column; gap: 24px; }
+
+  .quiz-question {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .quiz-q-num {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--ink-soft);
+    letter-spacing: .08em;
+    margin-bottom: 6px;
+  }
+  .quiz-q-text {
+    font-family: var(--font-body);
+    font-size: .95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .quiz-choices { display: flex; flex-direction: column; gap: 8px; }
+
+  .quiz-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 12px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 8px 12px;
+    background: var(--surface);
     cursor: pointer;
-    transition: all .15s;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 8px;
+    transition: all .14s;
+    font-family: var(--font-body);
+    font-size: .88rem;
+    line-height: 1.45;
+    color: var(--ink);
+    text-align: left;
+    width: 100%;
   }
-  .def-card:hover:not(.done) { border-color: var(--accent); }
-  .def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); color: var(--ink); }
-  .def-card.done { opacity: .5; cursor: default; border-color: var(--border); background: var(--kw-correct); }
-  .def-card.wrong-flash { animation: wrongFlash .5s ease; }
-  @keyframes wrongFlash {
-    0%,100% { background: var(--surface); }
-    30%,70% { background: var(--kw-wrong); border-color: #e53935; }
-  }
-  .def-text { font-family: var(--font-body); font-size: .82rem; line-height: 1.4; color: var(--ink); }
-  .def-keyword {
-    font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft);
-    font-weight: 500; text-align: right; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis; max-width: 90px;
-  }
-  .def-keyword.hidden { visibility: hidden; }
+  .quiz-choice:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-lt); }
+  .quiz-choice:disabled { cursor: default; }
 
-  /* Progress bar */
-  .activity-progress { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-  .progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s ease; }
-  .progress-text { font-family: var(--font-mono); font-size: .65rem; color: var(--ink-soft); white-space: nowrap; }
+  .quiz-choice-letter {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all .14s;
+  }
+  .quiz-choice.correct  { border-color: #4caf7d; background: #eaf7f0; }
+  .quiz-choice.correct  .quiz-choice-letter { background: #4caf7d; color: #fff; }
+  .quiz-choice.wrong    { border-color: #c0392b; background: #fdf0ee; }
+  .quiz-choice.wrong    .quiz-choice-letter { background: #c0392b; color: #fff; }
+  .quiz-choice.reveal-correct { border-color: #4caf7d; background: #eaf7f0; opacity: .7; }
+  .quiz-choice.reveal-correct .quiz-choice-letter { background: #4caf7d; color: #fff; }
 
-  /* Activity text panel */
-  .activity-text-label {
-    font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;
+  .quiz-feedback {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .04em;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    display: none;
   }
-  .activity-body {
-    font-size: 1rem; line-height: 2; color: var(--ink);
-    background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: var(--radius); padding: 24px 28px;
-  }
-  .activity-body p { margin-bottom: 1.2em; }
-  .activity-body p:last-child { margin-bottom: 0; }
+  .quiz-feedback.visible { display: block; }
+  .quiz-feedback.ok  { background: #eaf7f0; color: #2e7d55; }
+  .quiz-feedback.err { background: #fdf0ee; color: #a02018; }
 
-  /* Keyword spans */
-  .kw-span { border-radius: 3px; padding: 1px 2px; transition: background .15s; cursor: default; }
-  .activity-mode-active .kw-span { cursor: pointer; }
-  .activity-mode-active .kw-span:hover { background: rgba(184,92,42,.12); }
-  .kw-hints.activity-mode-active .kw-span:not(.kw-correct) { background: var(--kw-hint-bg); }
-  body.dark .kw-hints.activity-mode-active .kw-span:not(.kw-correct) { color: #fff; }
-  .kw-span.kw-correct { background: var(--kw-correct) !important; cursor: default !important; }
-  .kw-span.kw-wrong-flash { animation: kwWrongFlash .5s ease; }
-  @keyframes kwWrongFlash {
-    0%,100% { background: rgba(184,92,42,.08); }
-    30%,70% { background: var(--kw-wrong); }
+  .quiz-results {
+    margin-top: 28px;
+    padding: 20px 22px;
+    border-radius: var(--radius);
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    display: none;
+    text-align: center;
   }
-
-  /* Completion banner */
-  .activity-complete {
-    display: none; background: var(--kw-correct); border: 1.5px solid #66bb6a;
-    border-radius: var(--radius); padding: 12px 18px; font-family: var(--font-mono);
-    font-size: .78rem; color: #2e7d32; letter-spacing: .06em; text-align: center; flex-shrink: 0;
+  .quiz-results.visible { display: block; }
+  .quiz-results-score {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
   }
-  .activity-complete.visible { display: block; }
-
-  /* Instruction bar */
-  .activity-instruction {
-    background: var(--kw-pending); border: 1px solid #e6c84a; border-radius: var(--radius);
-    padding: 8px 14px; font-family: var(--font-mono); font-size: .7rem;
-    color: #7a6a10; letter-spacing: .04em; flex-shrink: 0;
+  .quiz-results-label {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
   }
-  .activity-instruction.step2 { background: #e3f2fd; border-color: #90caf9; color: #1565c0; }
-  .activity-instruction.hidden { visibility: hidden; }
-
-  /* Highlight toggle */
-  .hl-toggle {
-    display: flex; align-items: center; gap: 7px; font-family: var(--font-mono);
-    font-size: .66rem; color: var(--ink-soft); cursor: pointer; user-select: none; letter-spacing: .04em;
+  .quiz-retry-btn {
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius);
+    padding: 8px 20px;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .15s;
   }
-  .hl-toggle input[type="checkbox"] {
-    appearance: none; width: 30px; height: 16px; border-radius: 8px;
-    background: var(--border); position: relative; cursor: pointer; transition: background .2s; flex-shrink: 0;
-  }
-  .hl-toggle input[type="checkbox"]:checked { background: var(--accent); }
-  .hl-toggle input[type="checkbox"]::after {
-    content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
-    background: #fff; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2);
-  }
-  .hl-toggle input[type="checkbox"]:checked::after { left: 16px; }
-
-  /* Reset button */
-  .reset-btn {
-    background: none; border: 1.5px solid var(--border); border-radius: var(--radius);
-    padding: 5px 14px; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
-    text-transform: uppercase; cursor: pointer; color: var(--ink-soft); transition: all .15s;
-  }
-  .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .quiz-retry-btn:hover { background: var(--accent); }
 
   /* ── FOOTER ── */
   footer {
-    border-top: 1.5px solid var(--border); padding: 9px 28px; background: var(--surface);
-    font-family: var(--font-mono); font-size: .65rem; color: var(--ink-soft);
-    letter-spacing: .05em; display: flex; justify-content: space-between; align-items: center;
-    flex-shrink: 0;
+    grid-area: footer;
+    border-top: 1.5px solid var(--border);
+    padding: 12px 32px;
+    background: var(--surface);
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    color: var(--ink-soft);
+    letter-spacing: .05em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
-    .screen-browser { grid-template-columns: 1fr; }
-    aside { display: none; }
-    .activity-layout { grid-template-columns: 1fr; }
-    .definitions-panel { position: static; }
-    .reader-view, .activity-view { padding: 20px 18px; }
+    body {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "sidebar"
+        "main"
+        "footer";
+    }
+    aside { border-right: none; border-bottom: 1.5px solid var(--border); }
+    main { padding: 24px 18px; }
+    .reader-pane { padding: 22px 18px; }
   }
 </style>
 </head>
@@ -649,111 +551,81 @@
 
 <!-- ── HEADER ── -->
 <header>
-  <button class="back-btn" id="backBtn">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    Back
-  </button>
-  <div class="tagline-wrap">
+  <div>
     <div class="logo">EFL <span>Reader</span></div>
     <div class="tagline">Reading Practice · CEFR A1–B2</div>
   </div>
-  <span class="header-crumb" id="headerCrumb"></span>
-  <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">☀️</button>
 </header>
 
-<!-- ── SCREENS ── -->
-<div class="screens">
-
-  <!-- SCREEN 1: Browser -->
-  <div class="screen-browser">
-    <aside>
-      <div>
-        <div class="section-label">Level</div>
-        <div class="level-grid">
-          <button class="level-btn active" data-level="A1">A1</button>
-          <button class="level-btn" data-level="A2">A2</button>
-          <button class="level-btn" data-level="B1">B1</button>
-          <button class="level-btn" data-level="B2">B2</button>
-        </div>
-      </div>
-      <div>
-        <div class="section-label">Topic</div>
-        <div class="topic-list" id="topicList"></div>
-      </div>
-      <button class="random-btn" id="randomBtn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-        Random Text
-      </button>
-    </aside>
-
-    <div class="list-panel">
-      <div class="list-panel-label" id="listPanelLabel">Texts</div>
-      <div class="text-grid" id="textList"></div>
+<!-- ── SIDEBAR ── -->
+<aside>
+  <div>
+    <div class="section-label">Level</div>
+    <div class="level-grid">
+      <button class="level-btn active" data-level="A1">A1</button>
+      <button class="level-btn" data-level="A2">A2</button>
+      <button class="level-btn" data-level="B1">B1</button>
+      <button class="level-btn" data-level="B2">B2</button>
     </div>
   </div>
 
-  <!-- SCREEN 2: Reader -->
-  <div class="screen-reader">
-    <div class="mode-tabs" id="modeTabs">
-      <button class="mode-tab active" id="tabReader" onclick="switchMode('reader')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Read
-      </button>
-      <button class="mode-tab" id="tabActivity" onclick="switchMode('activity')">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        Keywords Activity
-      </button>
-    </div>
-
-    <!-- Reader view -->
-    <div class="reader-view active" id="readerView">
-      <div class="reader-header">
-        <div>
-          <div class="reader-title" id="readerTitle"></div>
-          <div class="reader-meta" id="readerMeta"></div>
-        </div>
-        <span class="level-badge" id="readerBadge"></span>
-      </div>
-      <div class="hl-toolbar">
-        <span class="hl-toolbar-label">Highlight</span>
-        <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
-        <button class="hl-color-btn" data-color="green"  title="Green"></button>
-        <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
-        <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
-        <div class="hl-sep"></div>
-        <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
-      </div>
-      <div class="reader-body" id="readerBody"></div>
-    </div>
-
-    <!-- Activity view -->
-    <div class="activity-view" id="activityView">
-      <div class="activity-instruction" id="activityInstruction">
-        👆 Click a definition on the left to select it, then click the matching word in the text.
-      </div>
-      <div class="activity-progress">
-        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-        <span class="progress-text" id="progressText">0 / 0</span>
-        <label class="hl-toggle" title="Highlight keyword words when a definition is selected">
-          <input type="checkbox" id="hlToggle"> highlight words
-        </label>
-        <button class="reset-btn" id="resetBtn">↺ Reset</button>
-      </div>
-      <div class="activity-complete" id="activityComplete">🎉 Well done! All keywords found!</div>
-      <div class="activity-layout">
-        <div class="definitions-panel">
-          <div class="definitions-panel-label">Definitions</div>
-          <div class="def-cards" id="defCards"></div>
-        </div>
-        <div class="activity-text-panel">
-          <div class="activity-text-label">Text — click words to match definitions</div>
-          <div class="activity-body" id="activityBody"></div>
-        </div>
-      </div>
-    </div>
+  <div>
+    <div class="section-label">Topic</div>
+    <div class="topic-list" id="topicList"></div>
   </div>
 
-</div>
+  <button class="random-btn" id="randomBtn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+    Random Text
+  </button>
+</aside>
+
+<!-- ── MAIN ── -->
+<main id="mainArea">
+  <div class="text-list" id="textList"></div>
+  <div class="reader-pane" id="readerPane">
+    <div class="reader-header">
+      <div>
+        <div class="reader-title" id="readerTitle"></div>
+        <div class="reader-meta" id="readerMeta"></div>
+      </div>
+      <span class="level-badge" id="readerBadge"></span>
+    </div>
+
+    <!-- Highlight toolbar -->
+    <div class="hl-toolbar">
+      <span class="hl-toolbar-label">Highlight</span>
+      <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
+      <button class="hl-color-btn" data-color="green"  title="Green"></button>
+      <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
+      <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
+      <div class="hl-sep"></div>
+      <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
+    </div>
+
+    <div class="reader-body" id="readerBody"></div>
+
+    <!-- ── QUIZ PANEL ── -->
+    <div class="quiz-panel" id="quizPanel">
+      <div class="quiz-header">
+        <span class="quiz-title">&#x1F4DD; Comprehension Questions</span>
+        <span class="quiz-score-badge" id="quizScoreBadge"></span>
+      </div>
+      <div class="quiz-questions" id="quizQuestions"></div>
+      <div class="quiz-results" id="quizResults">
+        <div class="quiz-results-score" id="quizResultsScore"></div>
+        <div class="quiz-results-label" id="quizResultsLabel"></div>
+        <button class="quiz-retry-btn" id="quizRetryBtn">&#x21BA; Try again</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    <div class="icon">📖</div>
+    <p>Select a level and topic to begin</p>
+  </div>
+</main>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -761,62 +633,83 @@
   <span id="footerInfo"></span>
 </footer>
 
+<!-- ── DATA FILES ──
+     Replace YOUR_USER / YOUR_REPO with your GitHub details.
+     Using jsDelivr CDN so plain <script> tags work (no ES module server needed).
+-->
 <script>
-// ── CONFIG ──────────────────────────────────────────────────────────────────
-const BASE_URL = './';
-const FILE_MAP  = { A1: BASE_URL+'texts-a1.js', A2: BASE_URL+'texts-a2.js', B1: BASE_URL+'texts-b1.js', B2: BASE_URL+'texts-b2.js' };
-const GLOBAL_MAP = { A1: 'A1Texts', A2: 'A2Texts', B1: 'B1Texts', B2: 'B2Texts' };
+// ── CONFIG: point these to your GitHub repo ─────────────────────────────
+// e.g. https://cdn.jsdelivr.net/gh/janedoe/efl-texts@main/texts-a1.js
+const BASE_URL = './'; // change to CDN URL when hosted on GitHub
+
+// We'll load the scripts dynamically so we can detect load events.
+// The files expose window.A1Texts, window.A2Texts, window.B1Texts, window.B2Texts.
+const FILE_MAP = {
+  A1: BASE_URL + 'texts-a1.js',
+  A2: BASE_URL + 'texts-a2.js',
+  B1: BASE_URL + 'texts-b1.js',
+  B2: BASE_URL + 'texts-b2.js',
+};
+const GLOBAL_MAP = {
+  A1: 'A1Texts',
+  A2: 'A2Texts',
+  B1: 'B1Texts',
+  B2: 'B2Texts',
+};
+// ────────────────────────────────────────────────────────────────────────
 
 /* ── STATE ── */
 const state = {
-  level: 'A1', topic: null, allTexts: [], filtered: [], current: null,
-  hlColor: 'yellow', loaded: {},
-  // activity state
-  selectedDef: null,   // index of selected definition card
-  solved: new Set(),   // indices of solved keywords
+  level:       'A1',
+  topic:       null,        // null = all topics
+  allTexts:    [],          // texts for current level
+  filtered:    [],
+  current:     null,
+  hlColor:     'yellow',
+  loaded:      {},          // { A1: true, ... }
 };
 
 /* ── DOM ── */
-const topicListEl       = document.getElementById('topicList');
-const textListEl        = document.getElementById('textList');
-const listPanelLabel    = document.getElementById('listPanelLabel');
-const modeTabs          = document.getElementById('modeTabs');
-const readerView        = document.getElementById('readerView');
-const activityView      = document.getElementById('activityView');
-const readerTitle       = document.getElementById('readerTitle');
-const readerMeta        = document.getElementById('readerMeta');
-const readerBadge       = document.getElementById('readerBadge');
-const readerBody        = document.getElementById('readerBody');
-const activityBody      = document.getElementById('activityBody');
-const defCards          = document.getElementById('defCards');
-const progressFill      = document.getElementById('progressFill');
-const progressText      = document.getElementById('progressText');
-const activityInstruct  = document.getElementById('activityInstruction');
-const activityComplete  = document.getElementById('activityComplete');
-const randomBtn         = document.getElementById('randomBtn');
-const resetBtn          = document.getElementById('resetBtn');
-const hlToggle          = document.getElementById('hlToggle');
-const clearHlBtn        = document.getElementById('clearHlBtn');
-const footerInfo        = document.getElementById('footerInfo');
-const backBtn           = document.getElementById('backBtn');
-const headerCrumb       = document.getElementById('headerCrumb');
+const topicListEl  = document.getElementById('topicList');
+const textListEl   = document.getElementById('textList');
+const readerPane   = document.getElementById('readerPane');
+const emptyState   = document.getElementById('emptyState');
+const readerTitle  = document.getElementById('readerTitle');
+const readerMeta   = document.getElementById('readerMeta');
+const readerBadge  = document.getElementById('readerBadge');
+const readerBody   = document.getElementById('readerBody');
+const randomBtn    = document.getElementById('randomBtn');
+const clearHlBtn   = document.getElementById('clearHlBtn');
+const footerInfo   = document.getElementById('footerInfo');
 
-/* ── LOAD SCRIPTS ── */
+/* ── LOAD SCRIPT ──
+   The text files use ES module `export` syntax which breaks classic <script> tags.
+   We fetch them as text, strip the export lines, then evaluate the cleaned code.
+   The files also set window.A1Texts etc. via the browser-global block, so after
+   eval() those globals are available immediately.
+── */
 async function loadScript(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed: ${url}`);
+  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
   let code = await res.text();
+  // Remove ES module export lines (export { ... }; / export default ...; / export const ...)
   code = code
     .replace(/^export\s+\{[^}]*\};?\s*$/gm, '')
     .replace(/^export\s+default\s+\w+;?\s*$/gm, '')
     .replace(/^export\s+(const|let|var|function|class)\s+/gm, '$1 ');
+  // eslint-disable-next-line no-new-func
   new Function(code)();
 }
 
 async function ensureLevel(level) {
   if (state.loaded[level]) return;
-  try { await loadScript(FILE_MAP[level]); state.loaded[level] = true; }
-  catch(e) { console.warn('Could not load', level, e); state.loaded[level] = false; }
+  try {
+    await loadScript(FILE_MAP[level]);
+    state.loaded[level] = true;
+  } catch (e) {
+    console.warn('Could not load texts for', level, e);
+    state.loaded[level] = false;
+  }
 }
 
 function getTextsForLevel(level) {
@@ -842,7 +735,7 @@ async function loadLevel(level) {
   state.filtered = [...state.allTexts];
   renderTopics();
   renderTextList();
-  hideContent();
+  hideReader();
 }
 
 /* ── TOPICS ── */
@@ -850,6 +743,7 @@ function renderTopics() {
   const topics = [...new Set(state.allTexts.map(t => t.topic))].sort();
   topicListEl.innerHTML = '';
 
+  // "All" option
   const allBtn = document.createElement('button');
   allBtn.className = 'topic-btn' + (state.topic === null ? ' active' : '');
   allBtn.innerHTML = `<span>All topics</span><span class="count">${state.allTexts.length}</span>`;
@@ -869,78 +763,69 @@ function renderTopics() {
 function selectTopic(topic) {
   state.topic = topic;
   state.current = null;
-  state.filtered = topic === null ? [...state.allTexts] : state.allTexts.filter(t => t.topic === topic);
+  state.filtered = topic === null
+    ? [...state.allTexts]
+    : state.allTexts.filter(t => t.topic === topic);
   renderTopics();
   renderTextList();
-  hideContent();
+  hideReader();
 }
 
 /* ── TEXT LIST ── */
 function renderTextList() {
   textListEl.innerHTML = '';
-  const count = state.filtered.length;
-  footerInfo.textContent = count ? `${count} text${count !== 1 ? 's' : ''} available` : '';
-  listPanelLabel.textContent = state.topic ? capitalize(state.topic) : 'All Texts';
+  if (state.filtered.length === 0) {
+    emptyState.style.display = '';
+    footerInfo.textContent = '';
+    return;
+  }
+  emptyState.style.display = 'none';
+  footerInfo.textContent = `${state.filtered.length} text${state.filtered.length !== 1 ? 's' : ''} available`;
 
   state.filtered.forEach(text => {
     const card = document.createElement('div');
-    card.className = 'text-card';
+    card.className = 'text-card' + (state.current?.id === text.id ? ' selected' : '');
     card.innerHTML = `
-      <div class="text-card-top">
+      <div class="text-card-info">
         <div class="text-card-title">${text.title}</div>
-        <span class="level-badge badge-${text.level}">${text.level}</span>
+        <div class="text-card-meta">${capitalize(text.topic)} · ~${text.wordCount} words</div>
       </div>
-      <div class="text-card-meta">${capitalize(text.topic)} · ~${text.wordCount} words</div>
+      <span class="level-badge badge-${text.level}">${text.level}</span>
     `;
     card.addEventListener('click', () => openText(text));
     textListEl.appendChild(card);
   });
 }
 
-/* ── OPEN TEXT ── */
+/* ── READER ── */
 function openText(text) {
   state.current = text;
+  renderTextList(); // refresh selection highlight
 
-  // Populate reader
   readerTitle.textContent = text.title;
   readerMeta.textContent  = `${capitalize(text.topic)} · ${text.level} · ~${text.wordCount} words`;
   readerBadge.textContent = text.level;
   readerBadge.className   = `level-badge badge-${text.level}`;
+
+  // Wrap each word in a span for click-to-highlight
   readerBody.innerHTML = wrapWords(text.text);
   attachWordHighlight();
 
-  // Build activity
-  buildActivity(text);
+  // Render comprehension questions
+  renderQuiz(text);
 
-  // Update header crumb
-  headerCrumb.textContent = text.title;
-
-  // Switch to reader mode tab
-  switchMode('reader');
-
-  // Navigate to reader screen
-  document.body.classList.add('reading');
+  readerPane.classList.add('visible');
+  readerPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function goBack() {
-  document.body.classList.remove('reading');
-  state.current = null;
+function hideReader() {
+  readerPane.classList.remove('visible');
+  emptyState.style.display = state.filtered.length ? 'none' : '';
 }
 
-function hideContent() {
-  // no-op in new architecture — kept for compat with loadLevel/selectTopic
-}
-
-/* ── MODE TABS ── */
-function switchMode(mode) {
-  document.getElementById('tabReader').classList.toggle('active', mode === 'reader');
-  document.getElementById('tabActivity').classList.toggle('active', mode === 'activity');
-  readerView.classList.toggle('active', mode === 'reader');
-  activityView.classList.toggle('active', mode === 'activity');
-}
-
-/* ── READER: word wrapping & highlight ── */
+/* ── WORD WRAPPING ── */
 function wrapWords(raw) {
+  // Split into paragraphs, then wrap words in spans
   return raw.split(/\n+/).map(para => {
     if (!para.trim()) return '';
     const wrapped = para.replace(/(\S+)/g, '<span class="word">$1</span>');
@@ -948,13 +833,16 @@ function wrapWords(raw) {
   }).filter(Boolean).join('');
 }
 
+/* ── WORD HIGHLIGHT ON CLICK ── */
 function attachWordHighlight() {
   readerBody.querySelectorAll('.word').forEach(span => {
     span.addEventListener('click', () => {
       const color = state.hlColor;
+      // Toggle: if already highlighted with this color, remove; else apply
       if (span.classList.contains('hl') && span.classList.contains(`hl-${color}`)) {
         span.classList.remove('hl', `hl-${color}`);
       } else {
+        // Remove any existing highlight color then apply new
         span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
         span.classList.add('hl', `hl-${color}`);
       }
@@ -962,6 +850,7 @@ function attachWordHighlight() {
   });
 }
 
+/* ── HIGHLIGHT TOOLBAR ── */
 document.querySelectorAll('.hl-color-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.hl-color-btn').forEach(b => b.classList.remove('active'));
@@ -971,247 +860,130 @@ document.querySelectorAll('.hl-color-btn').forEach(btn => {
 });
 
 clearHlBtn.addEventListener('click', () => {
-  readerBody.querySelectorAll('.word.hl').forEach(s => s.classList.remove('hl','hl-yellow','hl-green','hl-blue','hl-pink'));
-});
-
-/* ── ACTIVITY ── */
-function buildActivity(text) {
-  state.selectedDef = null;
-  state.solved = new Set();
-  activityComplete.classList.remove('visible');
-  activityBody.classList.remove('activity-mode-active');
-  activityBody.classList.toggle('kw-hints', hlToggle.checked);
-  activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
-  activityInstruct.className = 'activity-instruction';
-
-  const keywords = text.keywords || [];
-
-  // Build kwData for tokenizing
-  const kwData = keywords.map((kw, idx) => ({
-    idx,
-    words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
-  }));
-
-  // Build activity HTML first so we know which indices actually appear in the text
-  activityBody.innerHTML = buildActivityHTML(text.text, kwData);
-
-  const foundIndices = new Set(
-    [...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx))
-  );
-
-  // Build definition cards only for keywords found in the text
-  defCards.innerHTML = '';
-  keywords.forEach((kw, idx) => {
-    if (!foundIndices.has(idx)) return; // skip entirely — not in text
-    const card = document.createElement('div');
-    card.className = 'def-card';
-    card.dataset.idx = idx;
-    card.innerHTML = `
-      <span class="def-text">${kw.definition}</span>
-      <span class="def-keyword hidden" id="defKw_${idx}">${kw.word}</span>
-    `;
-    card.addEventListener('click', () => selectDefinition(idx));
-    defCards.appendChild(card);
+  readerBody.querySelectorAll('.word.hl').forEach(span => {
+    span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
   });
-
-  attachActivityWordListeners(kwData);
-  updateProgress();
-}
-
-function buildActivityHTML(raw, kwData) {
-  // Build a set of all individual words that are part of any keyword
-  // We'll mark them with data-kw-idx attributes
-  // Strategy: tokenize text, for each token check if it belongs to a kw phrase
-
-  const paragraphs = raw.split(/\n+/).filter(p => p.trim());
-
-  return paragraphs.map(para => {
-    // Tokenize: split preserving whitespace and punctuation attachment
-    // We'll process word by word
-    const tokens = tokenize(para);
-    const tagged = tagTokens(tokens, kwData);
-    return `<p>${tagged}</p>`;
-  }).join('');
-}
-
-function tokenize(para) {
-  // Split into alternating non-word and word chunks
-  const parts = [];
-  const re = /([^\w'-]+|[\w'-]+)/g;
-  let m;
-  while ((m = re.exec(para)) !== null) {
-    parts.push(m[1]);
-  }
-  return parts;
-}
-
-function smartMatch(textWord, kwWord) {
-  if (textWord === kwWord) return true;
-  // inflected form: "colleagues" starts with "colleague", "photos" starts with "photo"
-  if (kwWord.length >= 4 && textWord.startsWith(kwWord)) return true;
-  // keyword longer than text word (e.g. keyword "reintroduce", text has "reintroduced")
-  if (textWord.length >= 4 && kwWord.startsWith(textWord)) return true;
-  // hyphen variants: "check-up" vs "check" — strip hyphens and retry
-  const tc = textWord.replace(/-/g, '');
-  const kc = kwWord.replace(/-/g, '');
-  if (tc === kc) return true;
-  if (kc.length >= 4 && tc.startsWith(kc)) return true;
-  if (tc.length >= 4 && kc.startsWith(tc)) return true;
-  return false;
-}
-
-function tagTokens(tokens, kwData) {
-  // For each token that is a word, check if it belongs to a keyword
-  // We need to handle multi-word keywords: if kw = "gig economy",
-  // both "gig" and "economy" in the text should be tagged with the same kw idx.
-  // We'll do a simple: for each word token, check all kwData words lists.
-
-  const wordTokens = tokens.map((t, i) => ({
-    token: t,
-    isWord: /[\w'-]/.test(t),
-    clean: t.toLowerCase().replace(/[^a-z'-]/g, ''),
-    kwIdx: null,
-  }));
-
-  // For each keyword, find which word-token indices belong to it
-  kwData.forEach(kw => {
-    if (kw.words.length === 0) return;
-    // Each word in the keyword phrase: tag all matching occurrences
-    kw.words.forEach(kwWord => {
-      wordTokens.forEach(wt => {
-        if (wt.isWord && smartMatch(wt.clean, kwWord)) {
-          // Only assign if not already assigned to another keyword
-          if (wt.kwIdx === null) wt.kwIdx = kw.idx;
-        }
-      });
-    });
-  });
-
-  return wordTokens.map(wt => {
-    if (!wt.isWord) return wt.token;
-    if (wt.kwIdx !== null) {
-      return `<span class="kw-span" data-kw-idx="${wt.kwIdx}">${wt.token}</span>`;
-    }
-    return wt.token;
-  }).join('');
-}
-
-function attachActivityWordListeners(kwData) {
-  activityBody.querySelectorAll('.kw-span').forEach(span => {
-    span.addEventListener('click', () => {
-      const kwIdx = parseInt(span.dataset.kwIdx);
-
-      // Ignore if already solved
-      if (state.solved.has(kwIdx)) return;
-
-      // Must have a selected definition
-      if (state.selectedDef === null) {
-        // Flash instruction
-        activityInstruct.style.animation = 'none';
-        requestAnimationFrame(() => {
-          activityInstruct.style.animation = '';
-          activityInstruct.style.background = '#ffd54f';
-          setTimeout(() => activityInstruct.style.background = '', 500);
-        });
-        return;
-      }
-
-      if (state.selectedDef === kwIdx) {
-        // Correct!
-        state.solved.add(kwIdx);
-        // Mark all spans with this kwIdx as correct
-        activityBody.querySelectorAll(`.kw-span[data-kw-idx="${kwIdx}"]`).forEach(s => {
-          s.classList.add('kw-correct');
-        });
-        // Mark def card as done
-        const card = defCards.querySelector(`.def-card[data-idx="${kwIdx}"]`);
-        if (card) {
-          card.classList.remove('selected');
-          card.classList.add('done');
-          const kwEl = card.querySelector('.def-keyword');
-          if (kwEl) kwEl.classList.remove('hidden');
-        }
-        state.selectedDef = null;
-        activityBody.classList.remove('activity-mode-active');
-        activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
-        activityInstruct.className = 'activity-instruction';
-        updateProgress();
-      } else {
-        // Wrong
-        span.classList.add('kw-wrong-flash');
-        setTimeout(() => span.classList.remove('kw-wrong-flash'), 500);
-        const card = defCards.querySelector(`.def-card[data-idx="${state.selectedDef}"]`);
-        if (card) { card.classList.add('wrong-flash'); setTimeout(() => card.classList.remove('wrong-flash'), 500); }
-      }
-    });
-  });
-}
-
-function selectDefinition(idx) {
-  if (state.solved.has(idx)) return; // already done or not in text
-
-  // Deselect previous
-  defCards.querySelectorAll('.def-card').forEach(c => c.classList.remove('selected'));
-
-  if (state.selectedDef === idx) {
-    // Toggle off
-    state.selectedDef = null;
-    activityBody.classList.remove('activity-mode-active');
-    activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
-    activityInstruct.className = 'activity-instruction';
-  } else {
-    state.selectedDef = idx;
-    defCards.querySelector(`.def-card[data-idx="${idx}"]`).classList.add('selected');
-    activityBody.classList.add('activity-mode-active');
-    activityInstruct.textContent = '🔍 Now click the word in the text that matches this definition.';
-    activityInstruct.className = 'activity-instruction step2';
-  }
-}
-
-function updateProgress() {
-  const total = defCards.querySelectorAll('.def-card').length;
-  const done  = state.solved.size;
-  const pct   = total ? (done / total) * 100 : 0;
-  progressFill.style.width = pct + '%';
-  progressText.textContent = `${done} / ${total}`;
-
-  if (total > 0 && done === total) {
-    activityComplete.classList.add('visible');
-    activityInstruct.className = 'activity-instruction hidden';
-  }
-}
-
-resetBtn.addEventListener('click', () => {
-  if (state.current) buildActivity(state.current);
 });
-
-hlToggle.addEventListener('change', () => {
-  activityBody.classList.toggle('kw-hints', hlToggle.checked);
-});
-
-/* ── BACK BUTTON ── */
-backBtn.addEventListener('click', goBack);
 
 /* ── RANDOM ── */
 randomBtn.addEventListener('click', async () => {
   await loadLevel(state.level);
   if (state.allTexts.length === 0) return;
-  const pool = state.topic ? state.allTexts.filter(t => t.topic === state.topic) : state.allTexts;
-  openText(pool[Math.floor(Math.random() * pool.length)]);
+  const pool = state.topic
+    ? state.allTexts.filter(t => t.topic === state.topic)
+    : state.allTexts;
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  openText(pick);
 });
+
+/* ── QUIZ ── */
+const quizPanel      = document.getElementById('quizPanel');
+const quizQuestions  = document.getElementById('quizQuestions');
+const quizResults    = document.getElementById('quizResults');
+const quizResultsScore = document.getElementById('quizResultsScore');
+const quizResultsLabel = document.getElementById('quizResultsLabel');
+const quizScoreBadge = document.getElementById('quizScoreBadge');
+const quizRetryBtn   = document.getElementById('quizRetryBtn');
+
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+function renderQuiz(text) {
+  const qs = text.questions;
+  if (!qs || qs.length === 0) {
+    quizPanel.classList.remove('visible');
+    return;
+  }
+
+  quizPanel.classList.add('visible');
+  quizResults.classList.remove('visible');
+  quizScoreBadge.classList.remove('visible');
+  quizQuestions.innerHTML = '';
+
+  let answered = 0;
+  let correct  = 0;
+
+  qs.forEach((q, qi) => {
+    const qEl = document.createElement('div');
+    qEl.className = 'quiz-question';
+    qEl.innerHTML = `
+      <div class="quiz-q-num">Question ${qi + 1} of ${qs.length}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-choices" id="choices-${qi}"></div>
+      <div class="quiz-feedback" id="feedback-${qi}"></div>
+    `;
+    quizQuestions.appendChild(qEl);
+
+    const choicesEl  = qEl.querySelector(`#choices-${qi}`);
+    const feedbackEl = qEl.querySelector(`#feedback-${qi}`);
+
+    q.choices.forEach((choice, ci) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-choice';
+      btn.innerHTML = `<span class="quiz-choice-letter">${LETTERS[ci]}</span><span>${choice}</span>`;
+
+      btn.addEventListener('click', () => {
+        // Disable all choices for this question
+        choicesEl.querySelectorAll('.quiz-choice').forEach(b => b.disabled = true);
+
+        const isCorrect = ci === q.answer;
+        answered++;
+        if (isCorrect) correct++;
+
+        // Mark chosen button
+        btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+        // If wrong, reveal the correct answer
+        if (!isCorrect) {
+          choicesEl.querySelectorAll('.quiz-choice')[q.answer]
+            .classList.add('reveal-correct');
+        }
+
+        // Feedback text
+        feedbackEl.textContent = isCorrect
+          ? '✓ Correct!'
+          : `✗ The correct answer is ${LETTERS[q.answer]}.`;
+        feedbackEl.className = `quiz-feedback visible ${isCorrect ? 'ok' : 'err'}`;
+
+        // Update live score badge
+        quizScoreBadge.textContent = `${correct} / ${answered} correct`;
+        quizScoreBadge.classList.add('visible');
+
+        // If all answered, show results
+        if (answered === qs.length) showResults(correct, qs.length);
+      });
+
+      choicesEl.appendChild(btn);
+    });
+  });
+
+  quizRetryBtn.onclick = () => renderQuiz(text);
+}
+
+function showResults(correct, total) {
+  const pct = Math.round((correct / total) * 100);
+  const messages = [
+    [100, '🎉 Perfect score!'],
+    [80,  '⭐ Great job!'],
+    [60,  '👍 Good effort — review the ones you missed.'],
+    [40,  '📖 Keep practising — re-read the text and try again.'],
+    [0,   '💪 Don\'t give up — read the text again carefully.'],
+  ];
+  const msg = messages.find(([threshold]) => pct >= threshold)[1];
+
+  quizResultsScore.textContent = `${correct} / ${total}`;
+  quizResultsLabel.textContent = msg;
+  quizResults.classList.add('visible');
+  quizResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 
 /* ── UTIL ── */
-function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
-
-/* ── DARK MODE ── */
-const darkToggleBtn = document.getElementById('darkToggle');
-darkToggleBtn.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark');
-  darkToggleBtn.textContent = isDark ? '🌙' : '☀️';
-});
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 /* ── INIT ── */
 loadLevel('A1');
+emptyState.style.display = '';
 </script>
 </body>
 </html>
