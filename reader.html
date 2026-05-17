@@ -33,6 +33,13 @@
 
     --radius: 6px;
     --shadow: 0 2px 12px rgba(30,26,20,.10);
+
+    /* vocab activity */
+    --kw-pending:  #fff3cd;
+    --kw-active:   #ffd54f;
+    --kw-correct:  #c8e6c9;
+    --kw-wrong:    #ffcdd2;
+    --kw-hint-bg:  #ffe082;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -516,6 +523,134 @@
   }
   .quiz-retry-btn:hover { background: var(--accent); }
 
+  /* ── VOCAB ACTIVITY ── */
+  .vocab-panel {
+    margin-top: 36px;
+    border-top: 1.5px solid var(--border);
+    padding-top: 28px;
+    display: none;
+  }
+  .vocab-panel.visible { display: block; }
+
+  .vocab-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .vocab-panel-title {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .activity-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .progress-bar { flex: 1; min-width: 80px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s ease; }
+  .progress-text { font-family: var(--font-mono); font-size: .65rem; color: var(--ink-soft); white-space: nowrap; }
+  .hl-toggle {
+    display: flex; align-items: center; gap: 7px; font-family: var(--font-mono);
+    font-size: .66rem; color: var(--ink-soft); cursor: pointer; user-select: none; letter-spacing: .04em;
+  }
+  .hl-toggle input[type="checkbox"] {
+    appearance: none; width: 30px; height: 16px; border-radius: 8px;
+    background: var(--border); position: relative; cursor: pointer; transition: background .2s; flex-shrink: 0;
+  }
+  .hl-toggle input[type="checkbox"]:checked { background: var(--accent); }
+  .hl-toggle input[type="checkbox"]::after {
+    content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
+    background: #fff; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  }
+  .hl-toggle input[type="checkbox"]:checked::after { left: 16px; }
+  .reset-btn {
+    background: none; border: 1.5px solid var(--border); border-radius: var(--radius);
+    padding: 4px 12px; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+    text-transform: uppercase; cursor: pointer; color: var(--ink-soft); transition: all .15s;
+  }
+  .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .activity-instruction {
+    background: var(--kw-pending); border: 1px solid #e6c84a; border-radius: var(--radius);
+    padding: 8px 14px; font-family: var(--font-mono); font-size: .7rem;
+    color: #7a6a10; letter-spacing: .04em; margin-bottom: 14px;
+  }
+  .activity-instruction.step2 { background: #e3f2fd; border-color: #90caf9; color: #1565c0; }
+  .activity-instruction.hidden { visibility: hidden; }
+
+  .activity-complete {
+    display: none; background: var(--kw-correct); border: 1.5px solid #66bb6a;
+    border-radius: var(--radius); padding: 12px 18px; font-family: var(--font-mono);
+    font-size: .78rem; color: #2e7d32; letter-spacing: .06em; text-align: center; margin-bottom: 14px;
+  }
+  .activity-complete.visible { display: block; }
+
+  .activity-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 700px) { .activity-layout { grid-template-columns: 1fr; } }
+
+  .definitions-panel { position: sticky; top: 16px; }
+  .definitions-panel-label {
+    font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;
+  }
+  .def-cards { display: flex; flex-direction: column; gap: 6px; }
+  .def-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 8px 12px; cursor: pointer;
+    transition: all .15s; display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 8px;
+  }
+  .def-card:hover:not(.done) { border-color: var(--accent); }
+  .def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); }
+  .def-card.done { opacity: .55; cursor: default; background: var(--kw-correct); }
+  .def-card.wrong-flash { animation: wrongFlash .5s ease; }
+  @keyframes wrongFlash {
+    0%,100% { background: var(--surface); }
+    30%,70%  { background: var(--kw-wrong); border-color: #e53935; }
+  }
+  .def-text { font-family: var(--font-body); font-size: .82rem; line-height: 1.4; color: var(--ink); }
+  .def-keyword {
+    font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft);
+    font-weight: 500; text-align: right; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; max-width: 90px;
+  }
+  .def-keyword.hidden { visibility: hidden; }
+
+  .activity-text-panel-label {
+    font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;
+  }
+  .activity-body {
+    font-size: 1rem; line-height: 2; color: var(--ink);
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 22px 26px;
+  }
+  .activity-body p { margin-bottom: 1.2em; }
+  .activity-body p:last-child { margin-bottom: 0; }
+
+  .kw-span { border-radius: 3px; padding: 1px 2px; transition: background .15s; cursor: default; }
+  .activity-mode-active .kw-span { cursor: pointer; }
+  .activity-mode-active .kw-span:hover { background: rgba(184,92,42,.12); }
+  .kw-hints.activity-mode-active .kw-span:not(.kw-correct) { background: var(--kw-hint-bg); }
+  .kw-span.kw-correct { background: var(--kw-correct) !important; cursor: default !important; }
+  .kw-span.kw-wrong-flash { animation: kwWrongFlash .5s ease; }
+  @keyframes kwWrongFlash {
+    0%,100% { background: rgba(184,92,42,.08); }
+    30%,70%  { background: var(--kw-wrong); }
+  }
+
   /* ── FOOTER ── */
   footer {
     grid-area: footer;
@@ -604,6 +739,35 @@
     </div>
 
     <div class="reader-body" id="readerBody"></div>
+
+    <!-- ── VOCAB ACTIVITY ── -->
+    <div class="vocab-panel" id="vocabPanel">
+      <div class="vocab-panel-header">
+        <span class="vocab-panel-title">&#x1F4DA; Vocabulary Activity</span>
+        <div class="activity-progress">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+          <span class="progress-text" id="progressText">0 / 0</span>
+          <label class="hl-toggle" title="Highlight keyword words in the text when a definition is selected">
+            <input type="checkbox" id="hlToggle"> hint
+          </label>
+          <button class="reset-btn" id="resetBtn">&#x21BA; Reset</button>
+        </div>
+      </div>
+      <div class="activity-instruction" id="activityInstruction">
+        &#x1F446; Click a definition on the left to select it, then click the matching word in the text.
+      </div>
+      <div class="activity-complete" id="activityComplete">&#x1F389; Well done! All keywords found!</div>
+      <div class="activity-layout">
+        <div class="definitions-panel">
+          <div class="definitions-panel-label">Definitions</div>
+          <div class="def-cards" id="defCards"></div>
+        </div>
+        <div>
+          <div class="activity-text-panel-label">Text — click words to match definitions</div>
+          <div class="activity-body" id="activityBody"></div>
+        </div>
+      </div>
+    </div>
 
     <!-- ── QUIZ PANEL ── -->
     <div class="quiz-panel" id="quizPanel">
@@ -814,6 +978,9 @@ function openText(text) {
   // Render comprehension questions
   renderQuiz(text);
 
+  // Build vocabulary activity
+  buildActivity(text);
+
   readerPane.classList.add('visible');
   readerPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -875,6 +1042,186 @@ randomBtn.addEventListener('click', async () => {
   const pick = pool[Math.floor(Math.random() * pool.length)];
   openText(pick);
 });
+
+/* ── VOCAB ACTIVITY ── */
+const vocabPanel       = document.getElementById('vocabPanel');
+const activityBody     = document.getElementById('activityBody');
+const defCards         = document.getElementById('defCards');
+const progressFill     = document.getElementById('progressFill');
+const progressText     = document.getElementById('progressText');
+const activityInstruct = document.getElementById('activityInstruction');
+const activityComplete = document.getElementById('activityComplete');
+const resetBtn         = document.getElementById('resetBtn');
+const hlToggle         = document.getElementById('hlToggle');
+
+// activity sub-state (lives inside main state object too)
+state.selectedDef = null;
+state.solved      = new Set();
+
+function buildActivity(text) {
+  const keywords = text.keywords || [];
+  if (keywords.length === 0) { vocabPanel.classList.remove('visible'); return; }
+  vocabPanel.classList.add('visible');
+
+  state.selectedDef = null;
+  state.solved      = new Set();
+  activityComplete.classList.remove('visible');
+  activityBody.classList.remove('activity-mode-active');
+  activityBody.classList.toggle('kw-hints', hlToggle.checked);
+  activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
+  activityInstruct.className   = 'activity-instruction';
+
+  const kwData = keywords.map((kw, idx) => ({
+    idx,
+    words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
+  }));
+
+  activityBody.innerHTML = buildActivityHTML(text.text, kwData);
+
+  const foundIndices = new Set(
+    [...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx))
+  );
+
+  defCards.innerHTML = '';
+  keywords.forEach((kw, idx) => {
+    if (!foundIndices.has(idx)) return;
+    const card = document.createElement('div');
+    card.className   = 'def-card';
+    card.dataset.idx = idx;
+    card.innerHTML   = `
+      <span class="def-text">${kw.definition}</span>
+      <span class="def-keyword hidden" id="defKw_${idx}">${kw.word}</span>
+    `;
+    card.addEventListener('click', () => selectDefinition(idx));
+    defCards.appendChild(card);
+  });
+
+  attachActivityWordListeners();
+  updateProgress();
+}
+
+function buildActivityHTML(raw, kwData) {
+  return raw.split(/\n+/).filter(p => p.trim()).map(para => {
+    const tokens = tokenize(para);
+    return `<p>${tagTokens(tokens, kwData)}</p>`;
+  }).join('');
+}
+
+function tokenize(para) {
+  const parts = [];
+  const re = /([^\w'-]+|[\w'-]+)/g;
+  let m;
+  while ((m = re.exec(para)) !== null) parts.push(m[1]);
+  return parts;
+}
+
+function smartMatch(textWord, kwWord) {
+  if (textWord === kwWord) return true;
+  if (kwWord.length >= 4 && textWord.startsWith(kwWord)) return true;
+  if (textWord.length >= 4 && kwWord.startsWith(textWord)) return true;
+  const tc = textWord.replace(/-/g, '');
+  const kc = kwWord.replace(/-/g, '');
+  if (tc === kc) return true;
+  if (kc.length >= 4 && tc.startsWith(kc)) return true;
+  if (tc.length >= 4 && kc.startsWith(tc)) return true;
+  return false;
+}
+
+function tagTokens(tokens, kwData) {
+  const wordTokens = tokens.map(t => ({
+    token: t,
+    isWord: /[\w'-]/.test(t),
+    clean: t.toLowerCase().replace(/[^a-z'-]/g, ''),
+    kwIdx: null,
+  }));
+
+  kwData.forEach(kw => {
+    kw.words.forEach(kwWord => {
+      wordTokens.forEach(wt => {
+        if (wt.isWord && wt.kwIdx === null && smartMatch(wt.clean, kwWord)) {
+          wt.kwIdx = kw.idx;
+        }
+      });
+    });
+  });
+
+  return wordTokens.map(wt => {
+    if (!wt.isWord) return wt.token;
+    if (wt.kwIdx !== null) return `<span class="kw-span" data-kw-idx="${wt.kwIdx}">${wt.token}</span>`;
+    return wt.token;
+  }).join('');
+}
+
+function attachActivityWordListeners() {
+  activityBody.querySelectorAll('.kw-span').forEach(span => {
+    span.addEventListener('click', () => {
+      const kwIdx = parseInt(span.dataset.kwIdx);
+      if (state.solved.has(kwIdx)) return;
+
+      if (state.selectedDef === null) {
+        // Flash instruction to prompt them to pick a definition first
+        activityInstruct.style.background = '#ffd54f';
+        setTimeout(() => activityInstruct.style.background = '', 500);
+        return;
+      }
+
+      if (state.selectedDef === kwIdx) {
+        // Correct!
+        state.solved.add(kwIdx);
+        activityBody.querySelectorAll(`.kw-span[data-kw-idx="${kwIdx}"]`).forEach(s => s.classList.add('kw-correct'));
+        const card = defCards.querySelector(`.def-card[data-idx="${kwIdx}"]`);
+        if (card) {
+          card.classList.remove('selected');
+          card.classList.add('done');
+          card.querySelector('.def-keyword')?.classList.remove('hidden');
+        }
+        state.selectedDef = null;
+        activityBody.classList.remove('activity-mode-active');
+        activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
+        activityInstruct.className   = 'activity-instruction';
+        updateProgress();
+      } else {
+        // Wrong
+        span.classList.add('kw-wrong-flash');
+        setTimeout(() => span.classList.remove('kw-wrong-flash'), 500);
+        const card = defCards.querySelector(`.def-card[data-idx="${state.selectedDef}"]`);
+        if (card) { card.classList.add('wrong-flash'); setTimeout(() => card.classList.remove('wrong-flash'), 500); }
+      }
+    });
+  });
+}
+
+function selectDefinition(idx) {
+  if (state.solved.has(idx)) return;
+  defCards.querySelectorAll('.def-card').forEach(c => c.classList.remove('selected'));
+
+  if (state.selectedDef === idx) {
+    state.selectedDef = null;
+    activityBody.classList.remove('activity-mode-active');
+    activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
+    activityInstruct.className   = 'activity-instruction';
+  } else {
+    state.selectedDef = idx;
+    defCards.querySelector(`.def-card[data-idx="${idx}"]`).classList.add('selected');
+    activityBody.classList.add('activity-mode-active');
+    activityInstruct.textContent = '🔍 Now click the word in the text that matches this definition.';
+    activityInstruct.className   = 'activity-instruction step2';
+  }
+}
+
+function updateProgress() {
+  const total = defCards.querySelectorAll('.def-card').length;
+  const done  = state.solved.size;
+  progressFill.style.width = total ? (done / total * 100) + '%' : '0%';
+  progressText.textContent = `${done} / ${total}`;
+  if (total > 0 && done === total) {
+    activityComplete.classList.add('visible');
+    activityInstruct.className = 'activity-instruction hidden';
+  }
+}
+
+resetBtn.addEventListener('click', () => { if (state.current) buildActivity(state.current); });
+hlToggle.addEventListener('change', () => { activityBody.classList.toggle('kw-hints', hlToggle.checked); });
 
 /* ── QUIZ ── */
 const quizPanel      = document.getElementById('quizPanel');
