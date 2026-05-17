@@ -1063,7 +1063,7 @@ function buildActivity(text) {
   const keywords = text.keywords || [];
   const kwData = keywords.map((kw, idx) => ({
     idx,
-    words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
+    words: normalize(kw.word.toLowerCase()).replace(/[^a-záéíóúàâèêîôùûäëïöüçñ\s'-]/gi, '').split(/\s+/).filter(Boolean),
   }));
 
   activityBody.innerHTML = buildActivityHTML(text.text, kwData);
@@ -1094,18 +1094,24 @@ function tokenize(para) {
   while ((m = re.exec(para)) !== null) parts.push(m[1]);
   return parts;
 }
+function normalize(s) {
+  // Decompose accented chars then re-compose — keeps é,â etc. intact for comparison
+  // but allows matching flâneur↔flâneur even if one is NFD and the other NFC
+  return s.normalize('NFC');
+}
 function smartMatch(t, k) {
-  if (t === k) return true;
-  if (k.length >= 4 && t.startsWith(k)) return true;
-  if (t.length >= 4 && k.startsWith(t)) return true;
-  const tc = t.replace(/-/g,''), kc = k.replace(/-/g,'');
+  const tn = normalize(t), kn = normalize(k);
+  if (tn === kn) return true;
+  if (kn.length >= 4 && tn.startsWith(kn)) return true;
+  if (tn.length >= 4 && kn.startsWith(tn)) return true;
+  const tc = tn.replace(/-/g,''), kc = kn.replace(/-/g,'');
   if (tc === kc) return true;
   if (kc.length >= 4 && tc.startsWith(kc)) return true;
   if (tc.length >= 4 && kc.startsWith(tc)) return true;
   return false;
 }
 function tagTokens(tokens, kwData) {
-  const wt = tokens.map(t => ({ token: t, isWord: /[\w'-]/.test(t), clean: t.toLowerCase().replace(/[^a-z'-]/g,''), kwIdx: null }));
+  const wt = tokens.map(t => ({ token: t, isWord: /[\w'-]/.test(t) || /\p{L}/u.test(t), clean: normalize(t.toLowerCase().replace(/[^a-záéíóúàâèêîôùûäëïöüçñ'-]/gi, '')), kwIdx: null }));
   kwData.forEach(kw => kw.words.forEach(kwWord => wt.forEach(w => { if (w.isWord && w.kwIdx === null && smartMatch(w.clean, kwWord)) w.kwIdx = kw.idx; })));
   return wt.map(w => !w.isWord ? w.token : w.kwIdx !== null ? `<span class="kw-span" data-kw-idx="${w.kwIdx}">${w.token}</span>` : w.token).join('');
 }
