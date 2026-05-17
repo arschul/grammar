@@ -190,15 +190,16 @@
     grid-area: main;
     padding: 36px 44px;
     overflow-y: auto;
-    max-width: 780px;
+    min-width: 0;
   }
 
   /* Text list */
   .text-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 12px;
     margin-bottom: 32px;
+    align-content: start;
   }
   .text-card {
     background: var(--surface);
@@ -260,6 +261,7 @@
     justify-content: space-between;
     margin-bottom: 24px;
     gap: 16px;
+    max-width: 72ch;
   }
   .reader-title {
     font-family: var(--font-display);
@@ -338,8 +340,12 @@
     white-space: pre-wrap;
     user-select: text;
     cursor: text;
+    max-width: 72ch;
   }
   .reader-body p { margin-bottom: 1.2em; }
+
+  /* Highlight toolbar — same prose width */
+  .hl-toolbar { max-width: 72ch; }
 
   /* highlighted spans */
   .hl { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: filter .12s; }
@@ -404,7 +410,11 @@
   }
   .quiz-score-badge.visible { display: inline-block; }
 
-  .quiz-questions { display: flex; flex-direction: column; gap: 24px; }
+  .quiz-questions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
 
   .quiz-question {
     background: var(--bg);
@@ -594,11 +604,11 @@
 
   .activity-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 20px;
+    grid-template-columns: 300px 1fr;
+    gap: 24px;
     align-items: start;
   }
-  @media (max-width: 700px) { .activity-layout { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .activity-layout { grid-template-columns: 1fr; } }
 
   .definitions-panel { position: sticky; top: 16px; }
   .definitions-panel-label {
@@ -667,7 +677,7 @@
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     body {
       grid-template-columns: 1fr;
       grid-template-areas:
@@ -677,8 +687,10 @@
         "footer";
     }
     aside { border-right: none; border-bottom: 1.5px solid var(--border); }
-    main { padding: 24px 18px; }
+    main { padding: 20px 18px; }
     .reader-pane { padding: 22px 18px; }
+    .reader-body, .hl-toolbar { max-width: 100%; }
+    .quiz-questions { grid-template-columns: 1fr; }
   }
 </style>
 </head>
