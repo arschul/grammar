@@ -6,802 +6,819 @@
 <title>EFL Reader</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
 <style>
-  /* ── TOKENS ── */
-  :root {
-    --bg:        #f5f0e8;
-    --surface:   #fdfaf4;
-    --ink:       #1e1a14;
-    --ink-soft:  #5a5040;
-    --border:    #d6ccb4;
-    --accent:    #b85c2a;
-    --accent-lt: #e8c9b5;
+/* ── TOKENS ── */
+:root {
+  --bg:        #f5f0e8;
+  --surface:   #fdfaf4;
+  --ink:       #1e1a14;
+  --ink-soft:  #5a5040;
+  --border:    #d6ccb4;
+  --accent:    #b85c2a;
+  --accent-lt: #e8c9b5;
 
-    /* highlight palette */
-    --hl-yellow: #ffe066;
-    --hl-green:  #a8e6a3;
-    --hl-blue:   #a3cde6;
-    --hl-pink:   #f5a3c2;
+  --hl-yellow: #ffe066;
+  --hl-green:  #a8e6a3;
+  --hl-blue:   #a3cde6;
+  --hl-pink:   #f5a3c2;
 
-    --badge-a1: #4caf7d;
-    --badge-a2: #2196a8;
-    --badge-b1: #8559d4;
-    --badge-b2: #c0392b;
+  --badge-a1: #4caf7d;
+  --badge-a2: #2196a8;
+  --badge-b1: #8559d4;
+  --badge-b2: #c0392b;
 
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body:    'Lora', Georgia, serif;
-    --font-mono:    'DM Mono', monospace;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lora', Georgia, serif;
+  --font-mono:    'DM Mono', monospace;
 
-    --radius: 6px;
-    --shadow: 0 2px 12px rgba(30,26,20,.10);
+  --radius: 6px;
+  --shadow: 0 2px 12px rgba(30,26,20,.10);
+  --sidebar-w: 260px;
+  --sidebar-collapsed-w: 0px;
 
-    /* vocab activity */
-    --kw-pending:  #fff3cd;
-    --kw-active:   #ffd54f;
-    --kw-correct:  #c8e6c9;
-    --kw-wrong:    #ffcdd2;
-    --kw-hint-bg:  #ffe082;
-  }
+  --kw-pending:  #fff3cd;
+  --kw-active:   #ffd54f;
+  --kw-correct:  #c8e6c9;
+  --kw-wrong:    #ffcdd2;
+  --kw-hint-bg:  #ffe082;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-body);
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 280px 1fr;
-    grid-template-areas:
-      "header header"
-      "sidebar main"
-      "footer footer";
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-  /* ── HEADER ── */
-  header {
-    grid-area: header;
-    border-bottom: 1.5px solid var(--border);
-    padding: 18px 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: var(--surface);
-  }
-  header .logo {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -.02em;
-  }
-  header .logo span { color: var(--ink); }
-  header .tagline {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    color: var(--ink-soft);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-left: 4px;
-    margin-top: 2px;
-  }
+/* ── HEADER ── */
+header {
+  border-bottom: 1.5px solid var(--border);
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  flex-shrink: 0;
+  z-index: 20;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -.02em;
+}
+.logo span { color: var(--ink); }
+.tagline {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  color: var(--ink-soft);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 
-  /* ── SIDEBAR ── */
-  aside {
-    grid-area: sidebar;
-    background: var(--surface);
-    border-right: 1.5px solid var(--border);
-    padding: 28px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    overflow-y: auto;
-  }
+/* sidebar toggle arrow button in header */
+.sidebar-toggle {
+  margin-left: auto;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  width: 32px; height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.sidebar-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.sidebar-toggle svg { transition: transform .3s; }
+body.sidebar-open .sidebar-toggle svg { transform: rotate(180deg); }
 
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: .65rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-  }
+/* ── BODY LAYOUT ── */
+.layout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
 
-  /* Level pills */
-  .level-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .level-btn {
-    border: 1.5px solid var(--border);
-    background: var(--bg);
-    border-radius: var(--radius);
-    padding: 8px 0;
-    font-family: var(--font-mono);
-    font-size: .85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all .15s;
-    text-align: center;
-    color: var(--ink-soft);
-  }
-  .level-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .level-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .level-btn[data-level="A1"] { --lc: var(--badge-a1); }
-  .level-btn[data-level="A2"] { --lc: var(--badge-a2); }
-  .level-btn[data-level="B1"] { --lc: var(--badge-b1); }
-  .level-btn[data-level="B2"] { --lc: var(--badge-b2); }
-  .level-btn.active { background: var(--lc); border-color: var(--lc); }
+/* ── SIDEBAR ── */
+aside {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width .3s cubic-bezier(.4,0,.2,1), padding .3s, opacity .3s;
+  padding: 22px 16px;
+  opacity: 1;
+}
+body:not(.sidebar-open) aside {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
 
-  /* Topic list */
-  .topic-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .topic-btn {
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 7px 10px;
-    border-radius: var(--radius);
-    font-family: var(--font-body);
-    font-size: .88rem;
-    cursor: pointer;
-    color: var(--ink-soft);
-    transition: all .12s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-  }
-  .topic-btn:hover { background: var(--accent-lt); color: var(--ink); }
-  .topic-btn.active { background: var(--accent); color: #fff; }
-  .topic-btn .count {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    opacity: .6;
-  }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+.level-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.level-btn {
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 7px 0;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .15s;
+  text-align: center;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.level-btn:hover { border-color: var(--accent); color: var(--accent); }
+.level-btn[data-level="A1"] { --lc: var(--badge-a1); }
+.level-btn[data-level="A2"] { --lc: var(--badge-a2); }
+.level-btn[data-level="B1"] { --lc: var(--badge-b1); }
+.level-btn[data-level="B2"] { --lc: var(--badge-b2); }
+.level-btn.active { background: var(--lc); border-color: var(--lc); color: #fff; }
 
-  .random-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 10px;
-    background: var(--ink);
-    color: var(--bg);
-    border: none;
-    border-radius: var(--radius);
-    font-family: var(--font-mono);
-    font-size: .78rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .15s;
-  }
-  .random-btn:hover { background: var(--accent); }
-  .random-btn svg { flex-shrink: 0; }
+.topic-list { display: flex; flex-direction: column; gap: 3px; }
+.topic-btn {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: .84rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all .12s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.topic-btn:hover { background: var(--accent-lt); color: var(--ink); }
+.topic-btn.active { background: var(--accent); color: #fff; }
+.topic-btn .count { font-family: var(--font-mono); font-size: .67rem; opacity: .6; }
 
-  /* ── MAIN ── */
-  main {
-    grid-area: main;
-    padding: 36px 44px;
-    overflow-y: auto;
-    min-width: 0;
-  }
+.random-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .15s;
+  margin-top: auto;
+  white-space: nowrap;
+}
+.random-btn:hover { background: var(--accent); }
 
-  /* Text list */
-  .text-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
-    margin-bottom: 32px;
-    align-content: start;
-  }
-  .text-card {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px 18px;
-    cursor: pointer;
-    transition: all .15s;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .text-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
-  .text-card.selected { border-color: var(--accent); background: var(--accent-lt); }
-  .text-card-info { flex: 1; min-width: 0; }
-  .text-card-title {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .text-card-meta {
-    font-family: var(--font-mono);
-    font-size: .68rem;
-    color: var(--ink-soft);
-    margin-top: 3px;
-    letter-spacing: .04em;
-  }
-  .level-badge {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 20px;
-    color: #fff;
-    flex-shrink: 0;
-  }
-  .badge-A1 { background: var(--badge-a1); }
-  .badge-A2 { background: var(--badge-a2); }
-  .badge-B1 { background: var(--badge-b1); }
-  .badge-B2 { background: var(--badge-b2); }
+/* ── MAIN ── */
+main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-  /* Reader pane */
-  .reader-pane {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 36px 40px;
-    box-shadow: var(--shadow);
-    display: none;
-  }
-  .reader-pane.visible { display: block; }
+/* ── TEXT BROWSER (shown when no text selected) ── */
+.browser-view {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 32px;
+}
+.browser-view.hidden { display: none; }
 
-  .reader-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    gap: 16px;
-    max-width: 72ch;
-  }
-  .reader-title {
-    font-family: var(--font-display);
-    font-size: 1.55rem;
-    font-weight: 700;
-    line-height: 1.2;
-    flex: 1;
-  }
-  .reader-meta {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    color: var(--ink-soft);
-    margin-top: 6px;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-  }
+.empty-state {
+  text-align: center;
+  padding: 80px 32px;
+  color: var(--ink-soft);
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 12px; opacity: .5; }
+.empty-state p { font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
 
-  /* Highlight toolbar */
-  .hl-toolbar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 22px;
-    padding: 10px 14px;
-    background: var(--bg);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .hl-toolbar-label {
-    font-family: var(--font-mono);
-    font-size: .65rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-right: 4px;
-  }
-  .hl-color-btn {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: transform .12s, border-color .12s;
-    flex-shrink: 0;
-  }
-  .hl-color-btn:hover { transform: scale(1.2); }
-  .hl-color-btn.active { border-color: var(--ink); transform: scale(1.15); }
-  .hl-color-btn[data-color="yellow"] { background: var(--hl-yellow); }
-  .hl-color-btn[data-color="green"]  { background: var(--hl-green); }
-  .hl-color-btn[data-color="blue"]   { background: var(--hl-blue); }
-  .hl-color-btn[data-color="pink"]   { background: var(--hl-pink); }
+.text-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.text-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.text-card:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-1px); }
+.text-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.text-card-title { font-family: var(--font-display); font-size: .95rem; font-weight: 600; line-height: 1.3; color: var(--ink); flex: 1; }
+.text-card-meta { font-family: var(--font-mono); font-size: .62rem; color: var(--ink-soft); }
+.level-badge {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 20px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.badge-A1 { background: var(--badge-a1); }
+.badge-A2 { background: var(--badge-a2); }
+.badge-B1 { background: var(--badge-b1); }
+.badge-B2 { background: var(--badge-b2); }
 
-  .hl-sep { width: 1px; height: 18px; background: var(--border); margin: 0 4px; }
+/* ── READER VIEW (shown when text selected) ── */
+.reader-view {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.reader-view.visible { display: flex; }
 
-  .hl-clear-btn {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 3px 10px;
-    font-family: var(--font-mono);
-    font-size: .67rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--ink-soft);
-    transition: all .12s;
-  }
-  .hl-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
+/* ── READER TOP BAR ── */
+.reader-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1.5px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
 
-  /* The text body */
-  .reader-body {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: var(--ink);
-    white-space: pre-wrap;
-    user-select: text;
-    cursor: text;
-    max-width: 72ch;
-  }
-  .reader-body p { margin-bottom: 1.2em; }
+/* back button */
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  height: 46px;
+  background: none;
+  border: none;
+  border-right: 1.5px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.back-btn:hover { color: var(--accent); background: var(--accent-lt); }
 
-  /* Highlight toolbar — same prose width */
-  .hl-toolbar { max-width: 72ch; }
+/* tabs */
+.reader-tabs {
+  display: flex;
+  flex: 1;
+}
+.reader-tab {
+  flex: 1;
+  height: 46px;
+  background: none;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.reader-tab:hover { color: var(--accent); }
+.reader-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--bg); }
 
-  /* highlighted spans */
-  .hl { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: filter .12s; }
-  .hl:hover { filter: brightness(.92); }
-  .hl-yellow { background: var(--hl-yellow); }
-  .hl-green  { background: var(--hl-green); }
-  .hl-blue   { background: var(--hl-blue); }
-  .hl-pink   { background: var(--hl-pink); }
+/* reader title strip */
+.reader-titlebar {
+  padding: 10px 28px 0;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.reader-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.reader-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.reader-meta {
+  font-family: var(--font-mono);
+  font-size: .64rem;
+  color: var(--ink-soft);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 
-  /* empty state */
-  .empty-state {
-    text-align: center;
-    padding: 64px 32px;
-    color: var(--ink-soft);
-  }
-  .empty-state .icon {
-    font-size: 3rem;
-    margin-bottom: 12px;
-    opacity: .5;
-  }
-  .empty-state p {
-    font-family: var(--font-mono);
-    font-size: .8rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-  }
+/* ── TAB PANELS ── */
+.tab-panel {
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+.tab-panel.active { display: flex; flex-direction: column; }
 
-  /* ── QUIZ PANEL ── */
-  .quiz-panel {
-    margin-top: 36px;
-    border-top: 1.5px solid var(--border);
-    padding-top: 28px;
-    display: none;
-  }
-  .quiz-panel.visible { display: block; }
+/* ── READ TAB ── */
+.read-panel {
+  padding: 28px 32px;
+}
 
-  .quiz-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 22px;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .quiz-title {
-    font-family: var(--font-mono);
-    font-size: .65rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .quiz-score-badge {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--ink-soft);
-    display: none;
-  }
-  .quiz-score-badge.visible { display: inline-block; }
+.hl-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  flex-wrap: wrap;
+  max-width: 72ch;
+}
+.hl-toolbar-label {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hl-color-btn {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .12s, border-color .12s;
+  flex-shrink: 0;
+}
+.hl-color-btn:hover { transform: scale(1.2); }
+.hl-color-btn.active { border-color: var(--ink); transform: scale(1.15); }
+.hl-color-btn[data-color="yellow"] { background: var(--hl-yellow); }
+.hl-color-btn[data-color="green"]  { background: var(--hl-green); }
+.hl-color-btn[data-color="blue"]   { background: var(--hl-blue); }
+.hl-color-btn[data-color="pink"]   { background: var(--hl-pink); }
+.hl-sep { width: 1px; height: 16px; background: var(--border); margin: 0 2px; }
+.hl-clear-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2px 9px;
+  font-family: var(--font-mono);
+  font-size: .64rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all .12s;
+}
+.hl-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  .quiz-questions {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 20px;
-  }
+.reader-body {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--ink);
+  user-select: text;
+  cursor: text;
+  max-width: 72ch;
+}
+.reader-body p { margin-bottom: 1.3em; }
 
-  .quiz-question {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-  }
-  .quiz-q-num {
-    font-family: var(--font-mono);
-    font-size: .65rem;
-    color: var(--ink-soft);
-    letter-spacing: .08em;
-    margin-bottom: 6px;
-  }
-  .quiz-q-text {
-    font-family: var(--font-body);
-    font-size: .95rem;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 14px;
-    color: var(--ink);
-  }
-  .quiz-choices { display: flex; flex-direction: column; gap: 8px; }
+.word { border-radius: 3px; padding: 0 1px; cursor: pointer; transition: background .1s; }
+.word:hover { background: rgba(184,92,42,.1); }
+.hl { border-radius: 3px; padding: 0 1px; }
+.hl:hover { filter: brightness(.92); }
+.hl-yellow { background: var(--hl-yellow); }
+.hl-green  { background: var(--hl-green); }
+.hl-blue   { background: var(--hl-blue); }
+.hl-pink   { background: var(--hl-pink); }
 
-  .quiz-choice {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 9px 12px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    cursor: pointer;
-    transition: all .14s;
-    font-family: var(--font-body);
-    font-size: .88rem;
-    line-height: 1.45;
-    color: var(--ink);
-    text-align: left;
-    width: 100%;
-  }
-  .quiz-choice:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-lt); }
-  .quiz-choice:disabled { cursor: default; }
+/* ── VOCAB TAB ── */
+.vocab-panel {
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
 
-  .quiz-choice-letter {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    font-weight: 500;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: var(--border);
-    color: var(--ink-soft);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-    transition: all .14s;
-  }
-  .quiz-choice.correct  { border-color: #4caf7d; background: #eaf7f0; }
-  .quiz-choice.correct  .quiz-choice-letter { background: #4caf7d; color: #fff; }
-  .quiz-choice.wrong    { border-color: #c0392b; background: #fdf0ee; }
-  .quiz-choice.wrong    .quiz-choice-letter { background: #c0392b; color: #fff; }
-  .quiz-choice.reveal-correct { border-color: #4caf7d; background: #eaf7f0; opacity: .7; }
-  .quiz-choice.reveal-correct .quiz-choice-letter { background: #4caf7d; color: #fff; }
+.vocab-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.progress-bar { flex: 1; min-width: 80px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s ease; }
+.progress-text { font-family: var(--font-mono); font-size: .65rem; color: var(--ink-soft); white-space: nowrap; }
+.hl-toggle {
+  display: flex; align-items: center; gap: 7px; font-family: var(--font-mono);
+  font-size: .66rem; color: var(--ink-soft); cursor: pointer; user-select: none; letter-spacing: .04em;
+}
+.hl-toggle input[type="checkbox"] {
+  appearance: none; width: 30px; height: 16px; border-radius: 8px;
+  background: var(--border); position: relative; cursor: pointer; transition: background .2s; flex-shrink: 0;
+}
+.hl-toggle input[type="checkbox"]:checked { background: var(--accent); }
+.hl-toggle input[type="checkbox"]::after {
+  content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
+  background: #fff; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.hl-toggle input[type="checkbox"]:checked::after { left: 16px; }
+.reset-btn {
+  background: none; border: 1.5px solid var(--border); border-radius: var(--radius);
+  padding: 4px 12px; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+  text-transform: uppercase; cursor: pointer; color: var(--ink-soft); transition: all .15s;
+}
+.reset-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  .quiz-feedback {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    letter-spacing: .04em;
-    margin-top: 10px;
-    padding: 6px 10px;
-    border-radius: var(--radius);
-    display: none;
-  }
-  .quiz-feedback.visible { display: block; }
-  .quiz-feedback.ok  { background: #eaf7f0; color: #2e7d55; }
-  .quiz-feedback.err { background: #fdf0ee; color: #a02018; }
+.activity-instruction {
+  background: var(--kw-pending); border: 1px solid #e6c84a; border-radius: var(--radius);
+  padding: 8px 14px; font-family: var(--font-mono); font-size: .7rem;
+  color: #7a6a10; letter-spacing: .04em; flex-shrink: 0;
+}
+.activity-instruction.step2 { background: #e3f2fd; border-color: #90caf9; color: #1565c0; }
+.activity-instruction.hidden { visibility: hidden; }
 
-  .quiz-results {
-    margin-top: 28px;
-    padding: 20px 22px;
-    border-radius: var(--radius);
-    background: var(--bg);
-    border: 1.5px solid var(--border);
-    display: none;
-    text-align: center;
-  }
-  .quiz-results.visible { display: block; }
-  .quiz-results-score {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .quiz-results-label {
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-  }
-  .quiz-retry-btn {
-    background: var(--ink);
-    color: var(--bg);
-    border: none;
-    border-radius: var(--radius);
-    padding: 8px 20px;
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background .15s;
-  }
-  .quiz-retry-btn:hover { background: var(--accent); }
+.activity-complete {
+  display: none; background: var(--kw-correct); border: 1.5px solid #66bb6a;
+  border-radius: var(--radius); padding: 10px 16px; font-family: var(--font-mono);
+  font-size: .78rem; color: #2e7d32; letter-spacing: .06em; text-align: center; flex-shrink: 0;
+}
+.activity-complete.visible { display: block; }
 
-  /* ── VOCAB ACTIVITY ── */
-  .vocab-panel {
-    margin-top: 36px;
-    border-top: 1.5px solid var(--border);
-    padding-top: 28px;
-    display: none;
-  }
-  .vocab-panel.visible { display: block; }
+.activity-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+  flex: 1;
+  min-height: 0;
+}
+@media (max-width: 860px) { .activity-layout { grid-template-columns: 1fr; } }
 
-  .vocab-panel-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  .vocab-panel-title {
-    font-family: var(--font-mono);
-    font-size: .65rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .activity-progress {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    flex-wrap: wrap;
-  }
-  .progress-bar { flex: 1; min-width: 80px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s ease; }
-  .progress-text { font-family: var(--font-mono); font-size: .65rem; color: var(--ink-soft); white-space: nowrap; }
-  .hl-toggle {
-    display: flex; align-items: center; gap: 7px; font-family: var(--font-mono);
-    font-size: .66rem; color: var(--ink-soft); cursor: pointer; user-select: none; letter-spacing: .04em;
-  }
-  .hl-toggle input[type="checkbox"] {
-    appearance: none; width: 30px; height: 16px; border-radius: 8px;
-    background: var(--border); position: relative; cursor: pointer; transition: background .2s; flex-shrink: 0;
-  }
-  .hl-toggle input[type="checkbox"]:checked { background: var(--accent); }
-  .hl-toggle input[type="checkbox"]::after {
-    content: ''; position: absolute; width: 12px; height: 12px; border-radius: 50%;
-    background: #fff; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2);
-  }
-  .hl-toggle input[type="checkbox"]:checked::after { left: 16px; }
-  .reset-btn {
-    background: none; border: 1.5px solid var(--border); border-radius: var(--radius);
-    padding: 4px 12px; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
-    text-transform: uppercase; cursor: pointer; color: var(--ink-soft); transition: all .15s;
-  }
-  .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+.definitions-panel { position: sticky; top: 0; }
+.definitions-panel-label {
+  font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;
+}
+.def-cards { display: flex; flex-direction: column; gap: 6px; }
+.def-card {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 8px 12px; cursor: pointer;
+  transition: all .15s; display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 8px;
+}
+.def-card:hover:not(.done) { border-color: var(--accent); }
+.def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); }
+.def-card.done { opacity: .55; cursor: default; background: var(--kw-correct); }
+.def-card.wrong-flash { animation: wrongFlash .5s ease; }
+@keyframes wrongFlash {
+  0%,100% { background: var(--surface); }
+  30%,70%  { background: var(--kw-wrong); border-color: #e53935; }
+}
+.def-text { font-family: var(--font-body); font-size: .82rem; line-height: 1.4; color: var(--ink); }
+.def-keyword {
+  font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft);
+  font-weight: 500; text-align: right; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; max-width: 90px;
+}
+.def-keyword.hidden { visibility: hidden; }
 
-  .activity-instruction {
-    background: var(--kw-pending); border: 1px solid #e6c84a; border-radius: var(--radius);
-    padding: 8px 14px; font-family: var(--font-mono); font-size: .7rem;
-    color: #7a6a10; letter-spacing: .04em; margin-bottom: 14px;
-  }
-  .activity-instruction.step2 { background: #e3f2fd; border-color: #90caf9; color: #1565c0; }
-  .activity-instruction.hidden { visibility: hidden; }
+.activity-text-side-label {
+  font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;
+}
+.activity-body {
+  font-size: 1rem; line-height: 2; color: var(--ink);
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 20px 24px;
+}
+.activity-body p { margin-bottom: 1.2em; }
+.activity-body p:last-child { margin-bottom: 0; }
 
-  .activity-complete {
-    display: none; background: var(--kw-correct); border: 1.5px solid #66bb6a;
-    border-radius: var(--radius); padding: 12px 18px; font-family: var(--font-mono);
-    font-size: .78rem; color: #2e7d32; letter-spacing: .06em; text-align: center; margin-bottom: 14px;
-  }
-  .activity-complete.visible { display: block; }
+.kw-span { border-radius: 3px; padding: 1px 2px; transition: background .15s; cursor: default; }
+.activity-mode-active .kw-span { cursor: pointer; }
+.activity-mode-active .kw-span:hover { background: rgba(184,92,42,.12); }
+.kw-hints.activity-mode-active .kw-span:not(.kw-correct) { background: var(--kw-hint-bg); }
+.kw-span.kw-correct { background: var(--kw-correct) !important; cursor: default !important; }
+.kw-span.kw-wrong-flash { animation: kwWrongFlash .5s ease; }
+@keyframes kwWrongFlash {
+  0%,100% { background: rgba(184,92,42,.08); }
+  30%,70%  { background: var(--kw-wrong); }
+}
 
-  .activity-layout {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 24px;
-    align-items: start;
-  }
-  @media (max-width: 900px) { .activity-layout { grid-template-columns: 1fr; } }
+/* ── QUIZ TAB ── */
+.quiz-panel {
+  padding: 24px 28px;
+  flex: 1;
+}
 
-  .definitions-panel { position: sticky; top: 16px; }
-  .definitions-panel-label {
-    font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;
-  }
-  .def-cards { display: flex; flex-direction: column; gap: 6px; }
-  .def-card {
-    background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: var(--radius); padding: 8px 12px; cursor: pointer;
-    transition: all .15s; display: grid; grid-template-columns: 1fr auto;
-    align-items: center; gap: 8px;
-  }
-  .def-card:hover:not(.done) { border-color: var(--accent); }
-  .def-card.selected { border-color: var(--accent); background: var(--kw-active); box-shadow: 0 0 0 2px var(--accent); }
-  .def-card.done { opacity: .55; cursor: default; background: var(--kw-correct); }
-  .def-card.wrong-flash { animation: wrongFlash .5s ease; }
-  @keyframes wrongFlash {
-    0%,100% { background: var(--surface); }
-    30%,70%  { background: var(--kw-wrong); border-color: #e53935; }
-  }
-  .def-text { font-family: var(--font-body); font-size: .82rem; line-height: 1.4; color: var(--ink); }
-  .def-keyword {
-    font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft);
-    font-weight: 500; text-align: right; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis; max-width: 90px;
-  }
-  .def-keyword.hidden { visibility: hidden; }
+.quiz-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.quiz-score-badge {
+  font-family: var(--font-mono); font-size: .72rem; font-weight: 500;
+  padding: 3px 10px; border-radius: 20px; background: var(--bg);
+  border: 1px solid var(--border); color: var(--ink-soft); display: none;
+}
+.quiz-score-badge.visible { display: inline-block; }
 
-  .activity-text-panel-label {
-    font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;
-  }
-  .activity-body {
-    font-size: 1rem; line-height: 2; color: var(--ink);
-    background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: var(--radius); padding: 22px 26px;
-  }
-  .activity-body p { margin-bottom: 1.2em; }
-  .activity-body p:last-child { margin-bottom: 0; }
+.quiz-questions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
 
-  .kw-span { border-radius: 3px; padding: 1px 2px; transition: background .15s; cursor: default; }
-  .activity-mode-active .kw-span { cursor: pointer; }
-  .activity-mode-active .kw-span:hover { background: rgba(184,92,42,.12); }
-  .kw-hints.activity-mode-active .kw-span:not(.kw-correct) { background: var(--kw-hint-bg); }
-  .kw-span.kw-correct { background: var(--kw-correct) !important; cursor: default !important; }
-  .kw-span.kw-wrong-flash { animation: kwWrongFlash .5s ease; }
-  @keyframes kwWrongFlash {
-    0%,100% { background: rgba(184,92,42,.08); }
-    30%,70%  { background: var(--kw-wrong); }
-  }
+.quiz-question {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.quiz-q-num {
+  font-family: var(--font-mono); font-size: .63rem;
+  color: var(--ink-soft); letter-spacing: .08em; margin-bottom: 5px;
+}
+.quiz-q-text {
+  font-family: var(--font-body); font-size: .93rem; font-weight: 500;
+  line-height: 1.5; margin-bottom: 12px; color: var(--ink);
+}
+.quiz-choices { display: flex; flex-direction: column; gap: 7px; }
+.quiz-choice {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 11px; border: 1.5px solid var(--border);
+  border-radius: var(--radius); background: var(--bg);
+  cursor: pointer; transition: all .14s; font-family: var(--font-body);
+  font-size: .86rem; line-height: 1.4; color: var(--ink);
+  text-align: left; width: 100%;
+}
+.quiz-choice:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-lt); }
+.quiz-choice:disabled { cursor: default; }
+.quiz-choice-letter {
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 500;
+  width: 18px; height: 18px; border-radius: 50%; background: var(--border);
+  color: var(--ink-soft); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px; transition: all .14s;
+}
+.quiz-choice.correct  { border-color: #4caf7d; background: #eaf7f0; }
+.quiz-choice.correct  .quiz-choice-letter { background: #4caf7d; color: #fff; }
+.quiz-choice.wrong    { border-color: #c0392b; background: #fdf0ee; }
+.quiz-choice.wrong    .quiz-choice-letter { background: #c0392b; color: #fff; }
+.quiz-choice.reveal-correct { border-color: #4caf7d; background: #eaf7f0; opacity: .7; }
+.quiz-choice.reveal-correct .quiz-choice-letter { background: #4caf7d; color: #fff; }
+.quiz-feedback {
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .04em;
+  margin-top: 8px; padding: 5px 9px; border-radius: var(--radius); display: none;
+}
+.quiz-feedback.visible { display: block; }
+.quiz-feedback.ok  { background: #eaf7f0; color: #2e7d55; }
+.quiz-feedback.err { background: #fdf0ee; color: #a02018; }
 
-  /* ── FOOTER ── */
-  footer {
-    grid-area: footer;
-    border-top: 1.5px solid var(--border);
-    padding: 12px 32px;
-    background: var(--surface);
-    font-family: var(--font-mono);
-    font-size: .68rem;
-    color: var(--ink-soft);
-    letter-spacing: .05em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.quiz-results {
+  margin-top: 24px; padding: 20px 22px; border-radius: var(--radius);
+  background: var(--bg); border: 1.5px solid var(--border);
+  display: none; text-align: center;
+}
+.quiz-results.visible { display: block; }
+.quiz-results-score {
+  font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+  color: var(--accent); line-height: 1; margin-bottom: 6px;
+}
+.quiz-results-label {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 16px;
+}
+.retry-btn {
+  background: var(--ink); color: var(--bg); border: none;
+  border-radius: var(--radius); padding: 8px 20px; font-family: var(--font-mono);
+  font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+  cursor: pointer; transition: background .15s;
+}
+.retry-btn:hover { background: var(--accent); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    body {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "header"
-        "sidebar"
-        "main"
-        "footer";
-    }
-    aside { border-right: none; border-bottom: 1.5px solid var(--border); }
-    main { padding: 20px 18px; }
-    .reader-pane { padding: 22px 18px; }
-    .reader-body, .hl-toolbar { max-width: 100%; }
-    .quiz-questions { grid-template-columns: 1fr; }
-  }
+/* ── FOOTER ── */
+footer {
+  border-top: 1.5px solid var(--border); padding: 9px 24px;
+  background: var(--surface); font-family: var(--font-mono);
+  font-size: .65rem; color: var(--ink-soft); letter-spacing: .05em;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .reader-tab span { display: none; }
+  .read-panel, .vocab-panel, .quiz-panel { padding: 16px; }
+  .quiz-questions { grid-template-columns: 1fr; }
+}
 </style>
 </head>
-<body>
+<body class="sidebar-open">
 
 <!-- ── HEADER ── -->
 <header>
-  <div>
-    <div class="logo">EFL <span>Reader</span></div>
-    <div class="tagline">Reading Practice · CEFR A1–B2</div>
-  </div>
+  <div class="logo">EFL <span>Reader</span></div>
+  <div class="tagline">Reading Practice · CEFR A1–B2</div>
+  <button class="sidebar-toggle" id="sidebarToggle" title="Toggle text browser">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
 </header>
 
-<!-- ── SIDEBAR ── -->
-<aside>
-  <div>
-    <div class="section-label">Level</div>
-    <div class="level-grid">
-      <button class="level-btn active" data-level="A1">A1</button>
-      <button class="level-btn" data-level="A2">A2</button>
-      <button class="level-btn" data-level="B1">B1</button>
-      <button class="level-btn" data-level="B2">B2</button>
+<!-- ── LAYOUT ── -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div>
+      <div class="section-label">Level</div>
+      <div class="level-grid">
+        <button class="level-btn active" data-level="A1">A1</button>
+        <button class="level-btn" data-level="A2">A2</button>
+        <button class="level-btn" data-level="B1">B1</button>
+        <button class="level-btn" data-level="B2">B2</button>
+      </div>
     </div>
-  </div>
+    <div>
+      <div class="section-label">Topic</div>
+      <div class="topic-list" id="topicList"></div>
+    </div>
+    <button class="random-btn" id="randomBtn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+      Random Text
+    </button>
+  </aside>
 
-  <div>
-    <div class="section-label">Topic</div>
-    <div class="topic-list" id="topicList"></div>
-  </div>
+  <!-- MAIN -->
+  <main>
 
-  <button class="random-btn" id="randomBtn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-    Random Text
-  </button>
-</aside>
+    <!-- BROWSER VIEW (text picker) -->
+    <div class="browser-view" id="browserView">
+      <div class="empty-state" id="emptyState">
+        <div class="icon">📖</div>
+        <p>Select a level and topic to begin</p>
+      </div>
+      <div class="text-grid" id="textList"></div>
+    </div>
 
-<!-- ── MAIN ── -->
-<main id="mainArea">
-  <div class="text-list" id="textList"></div>
-  <div class="reader-pane" id="readerPane">
-    <div class="reader-header">
-      <div>
+    <!-- READER VIEW -->
+    <div class="reader-view" id="readerView">
+
+      <!-- Top bar: back + tabs -->
+      <div class="reader-topbar">
+        <button class="back-btn" id="backBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          All texts
+        </button>
+        <div class="reader-tabs">
+          <button class="reader-tab active" data-tab="read">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Read</span>
+          </button>
+          <button class="reader-tab" data-tab="vocab">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Vocabulary</span>
+          </button>
+          <button class="reader-tab" data-tab="quiz">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Questions</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Title bar -->
+      <div class="reader-titlebar">
         <div class="reader-title" id="readerTitle"></div>
-        <div class="reader-meta" id="readerMeta"></div>
-      </div>
-      <span class="level-badge" id="readerBadge"></span>
-    </div>
-
-    <!-- Highlight toolbar -->
-    <div class="hl-toolbar">
-      <span class="hl-toolbar-label">Highlight</span>
-      <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
-      <button class="hl-color-btn" data-color="green"  title="Green"></button>
-      <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
-      <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
-      <div class="hl-sep"></div>
-      <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
-    </div>
-
-    <div class="reader-body" id="readerBody"></div>
-
-    <!-- ── VOCAB ACTIVITY ── -->
-    <div class="vocab-panel" id="vocabPanel">
-      <div class="vocab-panel-header">
-        <span class="vocab-panel-title">&#x1F4DA; Vocabulary Activity</span>
-        <div class="activity-progress">
-          <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-          <span class="progress-text" id="progressText">0 / 0</span>
-          <label class="hl-toggle" title="Highlight keyword words in the text when a definition is selected">
-            <input type="checkbox" id="hlToggle"> hint
-          </label>
-          <button class="reset-btn" id="resetBtn">&#x21BA; Reset</button>
+        <div class="reader-meta-row">
+          <span class="level-badge" id="readerBadge"></span>
+          <span class="reader-meta" id="readerMeta"></span>
         </div>
       </div>
-      <div class="activity-instruction" id="activityInstruction">
-        &#x1F446; Click a definition on the left to select it, then click the matching word in the text.
-      </div>
-      <div class="activity-complete" id="activityComplete">&#x1F389; Well done! All keywords found!</div>
-      <div class="activity-layout">
-        <div class="definitions-panel">
-          <div class="definitions-panel-label">Definitions</div>
-          <div class="def-cards" id="defCards"></div>
+
+      <!-- TAB: Read -->
+      <div class="tab-panel active" id="tabRead">
+        <div class="read-panel">
+          <div class="hl-toolbar">
+            <span class="hl-toolbar-label">Highlight</span>
+            <button class="hl-color-btn active" data-color="yellow" title="Yellow"></button>
+            <button class="hl-color-btn" data-color="green"  title="Green"></button>
+            <button class="hl-color-btn" data-color="blue"   title="Blue"></button>
+            <button class="hl-color-btn" data-color="pink"   title="Pink"></button>
+            <div class="hl-sep"></div>
+            <button class="hl-clear-btn" id="clearHlBtn">Clear all</button>
+          </div>
+          <div class="reader-body" id="readerBody"></div>
         </div>
-        <div>
-          <div class="activity-text-panel-label">Text — click words to match definitions</div>
-          <div class="activity-body" id="activityBody"></div>
+      </div>
+
+      <!-- TAB: Vocabulary -->
+      <div class="tab-panel" id="tabVocab">
+        <div class="vocab-panel">
+          <div class="vocab-toolbar">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+            <span class="progress-text" id="progressText">0 / 0</span>
+            <label class="hl-toggle" title="Highlight keyword words when a definition is selected">
+              <input type="checkbox" id="hlToggle"> hint
+            </label>
+            <button class="reset-btn" id="resetBtn">&#x21BA; Reset</button>
+          </div>
+          <div class="activity-instruction" id="activityInstruction">
+            &#x1F446; Click a definition on the left to select it, then click the matching word in the text.
+          </div>
+          <div class="activity-complete" id="activityComplete">&#x1F389; Well done! All keywords found!</div>
+          <div class="activity-layout">
+            <div class="definitions-panel">
+              <div class="definitions-panel-label">Definitions</div>
+              <div class="def-cards" id="defCards"></div>
+            </div>
+            <div>
+              <div class="activity-text-side-label">Text — click words to match definitions</div>
+              <div class="activity-body" id="activityBody"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ── QUIZ PANEL ── -->
-    <div class="quiz-panel" id="quizPanel">
-      <div class="quiz-header">
-        <span class="quiz-title">&#x1F4DD; Comprehension Questions</span>
-        <span class="quiz-score-badge" id="quizScoreBadge"></span>
+      <!-- TAB: Questions -->
+      <div class="tab-panel" id="tabQuiz">
+        <div class="quiz-panel">
+          <div class="quiz-topbar">
+            <span class="quiz-score-badge" id="quizScoreBadge"></span>
+          </div>
+          <div class="quiz-questions" id="quizQuestions"></div>
+          <div class="quiz-results" id="quizResults">
+            <div class="quiz-results-score" id="quizResultsScore"></div>
+            <div class="quiz-results-label" id="quizResultsLabel"></div>
+            <button class="retry-btn" id="quizRetryBtn">&#x21BA; Try again</button>
+          </div>
+        </div>
       </div>
-      <div class="quiz-questions" id="quizQuestions"></div>
-      <div class="quiz-results" id="quizResults">
-        <div class="quiz-results-score" id="quizResultsScore"></div>
-        <div class="quiz-results-label" id="quizResultsLabel"></div>
-        <button class="quiz-retry-btn" id="quizRetryBtn">&#x21BA; Try again</button>
-      </div>
-    </div>
 
-  </div>
-
-  <div class="empty-state" id="emptyState">
-    <div class="icon">📖</div>
-    <p>Select a level and topic to begin</p>
-  </div>
-</main>
+    </div><!-- /reader-view -->
+  </main>
+</div><!-- /layout -->
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -809,91 +826,78 @@
   <span id="footerInfo"></span>
 </footer>
 
-<!-- ── DATA FILES ──
-     Replace YOUR_USER / YOUR_REPO with your GitHub details.
-     Using jsDelivr CDN so plain <script> tags work (no ES module server needed).
--->
 <script>
-// ── CONFIG: point these to your GitHub repo ─────────────────────────────
-// e.g. https://cdn.jsdelivr.net/gh/janedoe/efl-texts@main/texts-a1.js
-const BASE_URL = './'; // change to CDN URL when hosted on GitHub
+// ── CONFIG ───────────────────────────────────────────────────────────────────
+const BASE_URL   = './';
+const FILE_MAP   = { A1: BASE_URL+'texts-a1.js', A2: BASE_URL+'texts-a2.js', B1: BASE_URL+'texts-b1.js', B2: BASE_URL+'texts-b2.js' };
+const GLOBAL_MAP = { A1: 'A1Texts', A2: 'A2Texts', B1: 'B1Texts', B2: 'B2Texts' };
 
-// We'll load the scripts dynamically so we can detect load events.
-// The files expose window.A1Texts, window.A2Texts, window.B1Texts, window.B2Texts.
-const FILE_MAP = {
-  A1: BASE_URL + 'texts-a1.js',
-  A2: BASE_URL + 'texts-a2.js',
-  B1: BASE_URL + 'texts-b1.js',
-  B2: BASE_URL + 'texts-b2.js',
-};
-const GLOBAL_MAP = {
-  A1: 'A1Texts',
-  A2: 'A2Texts',
-  B1: 'B1Texts',
-  B2: 'B2Texts',
-};
-// ────────────────────────────────────────────────────────────────────────
-
-/* ── STATE ── */
+// ── STATE ────────────────────────────────────────────────────────────────────
 const state = {
-  level:       'A1',
-  topic:       null,        // null = all topics
-  allTexts:    [],          // texts for current level
-  filtered:    [],
-  current:     null,
-  hlColor:     'yellow',
-  loaded:      {},          // { A1: true, ... }
+  level: 'A1', topic: null, allTexts: [], filtered: [], current: null,
+  hlColor: 'yellow', loaded: {},
+  selectedDef: null, solved: new Set(),
 };
 
-/* ── DOM ── */
-const topicListEl  = document.getElementById('topicList');
-const textListEl   = document.getElementById('textList');
-const readerPane   = document.getElementById('readerPane');
-const emptyState   = document.getElementById('emptyState');
-const readerTitle  = document.getElementById('readerTitle');
-const readerMeta   = document.getElementById('readerMeta');
-const readerBadge  = document.getElementById('readerBadge');
-const readerBody   = document.getElementById('readerBody');
-const randomBtn    = document.getElementById('randomBtn');
-const clearHlBtn   = document.getElementById('clearHlBtn');
-const footerInfo   = document.getElementById('footerInfo');
+// ── DOM REFS ─────────────────────────────────────────────────────────────────
+const topicListEl      = document.getElementById('topicList');
+const textListEl       = document.getElementById('textList');
+const browserView      = document.getElementById('browserView');
+const emptyState       = document.getElementById('emptyState');
+const readerView       = document.getElementById('readerView');
+const readerTitle      = document.getElementById('readerTitle');
+const readerMeta       = document.getElementById('readerMeta');
+const readerBadge      = document.getElementById('readerBadge');
+const readerBody       = document.getElementById('readerBody');
+const randomBtn        = document.getElementById('randomBtn');
+const clearHlBtn       = document.getElementById('clearHlBtn');
+const footerInfo       = document.getElementById('footerInfo');
+const backBtn          = document.getElementById('backBtn');
+const sidebarToggle    = document.getElementById('sidebarToggle');
+// vocab
+const activityBody     = document.getElementById('activityBody');
+const defCards         = document.getElementById('defCards');
+const progressFill     = document.getElementById('progressFill');
+const progressText     = document.getElementById('progressText');
+const activityInstruct = document.getElementById('activityInstruction');
+const activityComplete = document.getElementById('activityComplete');
+const resetBtn         = document.getElementById('resetBtn');
+const hlToggle         = document.getElementById('hlToggle');
+// quiz
+const quizQuestions    = document.getElementById('quizQuestions');
+const quizResults      = document.getElementById('quizResults');
+const quizResultsScore = document.getElementById('quizResultsScore');
+const quizResultsLabel = document.getElementById('quizResultsLabel');
+const quizScoreBadge   = document.getElementById('quizScoreBadge');
+const quizRetryBtn     = document.getElementById('quizRetryBtn');
 
-/* ── LOAD SCRIPT ──
-   The text files use ES module `export` syntax which breaks classic <script> tags.
-   We fetch them as text, strip the export lines, then evaluate the cleaned code.
-   The files also set window.A1Texts etc. via the browser-global block, so after
-   eval() those globals are available immediately.
-── */
+// ── SIDEBAR TOGGLE ───────────────────────────────────────────────────────────
+sidebarToggle.addEventListener('click', () => {
+  document.body.classList.toggle('sidebar-open');
+});
+
+// ── LOAD SCRIPTS ─────────────────────────────────────────────────────────────
 async function loadScript(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+  if (!res.ok) throw new Error(`Failed: ${url}`);
   let code = await res.text();
-  // Remove ES module export lines (export { ... }; / export default ...; / export const ...)
   code = code
     .replace(/^export\s+\{[^}]*\};?\s*$/gm, '')
     .replace(/^export\s+default\s+\w+;?\s*$/gm, '')
     .replace(/^export\s+(const|let|var|function|class)\s+/gm, '$1 ');
-  // eslint-disable-next-line no-new-func
   new Function(code)();
 }
-
 async function ensureLevel(level) {
   if (state.loaded[level]) return;
-  try {
-    await loadScript(FILE_MAP[level]);
-    state.loaded[level] = true;
-  } catch (e) {
-    console.warn('Could not load texts for', level, e);
-    state.loaded[level] = false;
-  }
+  try { await loadScript(FILE_MAP[level]); state.loaded[level] = true; }
+  catch(e) { console.warn('Could not load', level, e); state.loaded[level] = false; }
 }
-
 function getTextsForLevel(level) {
   const g = window[GLOBAL_MAP[level]];
   return g ? g.texts : [];
 }
 
-/* ── LEVEL BUTTONS ── */
+// ── LEVEL BUTTONS ─────────────────────────────────────────────────────────────
 document.querySelectorAll('.level-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
     document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
@@ -911,21 +915,18 @@ async function loadLevel(level) {
   state.filtered = [...state.allTexts];
   renderTopics();
   renderTextList();
-  hideReader();
+  showBrowser();
 }
 
-/* ── TOPICS ── */
+// ── TOPICS ────────────────────────────────────────────────────────────────────
 function renderTopics() {
   const topics = [...new Set(state.allTexts.map(t => t.topic))].sort();
   topicListEl.innerHTML = '';
-
-  // "All" option
   const allBtn = document.createElement('button');
   allBtn.className = 'topic-btn' + (state.topic === null ? ' active' : '');
   allBtn.innerHTML = `<span>All topics</span><span class="count">${state.allTexts.length}</span>`;
   allBtn.addEventListener('click', () => selectTopic(null));
   topicListEl.appendChild(allBtn);
-
   topics.forEach(topic => {
     const count = state.allTexts.filter(t => t.topic === topic).length;
     const btn = document.createElement('button');
@@ -935,101 +936,103 @@ function renderTopics() {
     topicListEl.appendChild(btn);
   });
 }
-
 function selectTopic(topic) {
   state.topic = topic;
   state.current = null;
-  state.filtered = topic === null
-    ? [...state.allTexts]
-    : state.allTexts.filter(t => t.topic === topic);
+  state.filtered = topic === null ? [...state.allTexts] : state.allTexts.filter(t => t.topic === topic);
   renderTopics();
   renderTextList();
-  hideReader();
+  showBrowser();
 }
 
-/* ── TEXT LIST ── */
+// ── TEXT LIST ─────────────────────────────────────────────────────────────────
 function renderTextList() {
   textListEl.innerHTML = '';
-  if (state.filtered.length === 0) {
-    emptyState.style.display = '';
-    footerInfo.textContent = '';
-    return;
-  }
-  emptyState.style.display = 'none';
-  footerInfo.textContent = `${state.filtered.length} text${state.filtered.length !== 1 ? 's' : ''} available`;
-
+  const count = state.filtered.length;
+  footerInfo.textContent = count ? `${count} text${count !== 1 ? 's' : ''} available` : '';
+  emptyState.style.display = count ? 'none' : '';
   state.filtered.forEach(text => {
     const card = document.createElement('div');
-    card.className = 'text-card' + (state.current?.id === text.id ? ' selected' : '');
+    card.className = 'text-card';
     card.innerHTML = `
-      <div class="text-card-info">
+      <div class="text-card-top">
         <div class="text-card-title">${text.title}</div>
-        <div class="text-card-meta">${capitalize(text.topic)} · ~${text.wordCount} words</div>
+        <span class="level-badge badge-${text.level}">${text.level}</span>
       </div>
-      <span class="level-badge badge-${text.level}">${text.level}</span>
+      <div class="text-card-meta">${capitalize(text.topic)} · ~${text.wordCount} words</div>
     `;
     card.addEventListener('click', () => openText(text));
     textListEl.appendChild(card);
   });
 }
 
-/* ── READER ── */
+// ── SHOW / HIDE VIEWS ─────────────────────────────────────────────────────────
+function showBrowser() {
+  browserView.classList.remove('hidden');
+  readerView.classList.remove('visible');
+  // Re-open sidebar when going back to browser
+  document.body.classList.add('sidebar-open');
+}
+function showReader() {
+  browserView.classList.add('hidden');
+  readerView.classList.add('visible');
+  // Collapse sidebar to give full space to reader
+  document.body.classList.remove('sidebar-open');
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.reader-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+function switchTab(name) {
+  document.querySelectorAll('.reader-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.getElementById('tabRead').classList.toggle('active',  name === 'read');
+  document.getElementById('tabVocab').classList.toggle('active', name === 'vocab');
+  document.getElementById('tabQuiz').classList.toggle('active',  name === 'quiz');
+}
+
+// ── BACK BUTTON ───────────────────────────────────────────────────────────────
+backBtn.addEventListener('click', () => {
+  state.current = null;
+  showBrowser();
+  renderTextList();
+});
+
+// ── OPEN TEXT ─────────────────────────────────────────────────────────────────
 function openText(text) {
   state.current = text;
-  renderTextList(); // refresh selection highlight
-
   readerTitle.textContent = text.title;
-  readerMeta.textContent  = `${capitalize(text.topic)} · ${text.level} · ~${text.wordCount} words`;
+  readerMeta.textContent  = `${capitalize(text.topic)} · ~${text.wordCount} words`;
   readerBadge.textContent = text.level;
   readerBadge.className   = `level-badge badge-${text.level}`;
-
-  // Wrap each word in a span for click-to-highlight
-  readerBody.innerHTML = wrapWords(text.text);
+  readerBody.innerHTML    = wrapWords(text.text);
   attachWordHighlight();
-
-  // Render comprehension questions
-  renderQuiz(text);
-
-  // Build vocabulary activity
   buildActivity(text);
-
-  readerPane.classList.add('visible');
-  readerPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  renderQuiz(text);
+  switchTab('read');
+  showReader();
 }
 
-function hideReader() {
-  readerPane.classList.remove('visible');
-  emptyState.style.display = state.filtered.length ? 'none' : '';
-}
-
-/* ── WORD WRAPPING ── */
+// ── WORD WRAPPING & HIGHLIGHT ─────────────────────────────────────────────────
 function wrapWords(raw) {
-  // Split into paragraphs, then wrap words in spans
   return raw.split(/\n+/).map(para => {
     if (!para.trim()) return '';
-    const wrapped = para.replace(/(\S+)/g, '<span class="word">$1</span>');
-    return `<p>${wrapped}</p>`;
+    return `<p>${para.replace(/(\S+)/g, '<span class="word">$1</span>')}</p>`;
   }).filter(Boolean).join('');
 }
-
-/* ── WORD HIGHLIGHT ON CLICK ── */
 function attachWordHighlight() {
   readerBody.querySelectorAll('.word').forEach(span => {
     span.addEventListener('click', () => {
       const color = state.hlColor;
-      // Toggle: if already highlighted with this color, remove; else apply
       if (span.classList.contains('hl') && span.classList.contains(`hl-${color}`)) {
         span.classList.remove('hl', `hl-${color}`);
       } else {
-        // Remove any existing highlight color then apply new
-        span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
+        span.classList.remove('hl','hl-yellow','hl-green','hl-blue','hl-pink');
         span.classList.add('hl', `hl-${color}`);
       }
     });
   });
 }
-
-/* ── HIGHLIGHT TOOLBAR ── */
 document.querySelectorAll('.hl-color-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.hl-color-btn').forEach(b => b.classList.remove('active'));
@@ -1037,73 +1040,44 @@ document.querySelectorAll('.hl-color-btn').forEach(btn => {
     state.hlColor = btn.dataset.color;
   });
 });
-
 clearHlBtn.addEventListener('click', () => {
-  readerBody.querySelectorAll('.word.hl').forEach(span => {
-    span.classList.remove('hl', 'hl-yellow', 'hl-green', 'hl-blue', 'hl-pink');
-  });
+  readerBody.querySelectorAll('.word.hl').forEach(s => s.classList.remove('hl','hl-yellow','hl-green','hl-blue','hl-pink'));
 });
 
-/* ── RANDOM ── */
+// ── RANDOM ────────────────────────────────────────────────────────────────────
 randomBtn.addEventListener('click', async () => {
   await loadLevel(state.level);
-  if (state.allTexts.length === 0) return;
-  const pool = state.topic
-    ? state.allTexts.filter(t => t.topic === state.topic)
-    : state.allTexts;
-  const pick = pool[Math.floor(Math.random() * pool.length)];
-  openText(pick);
+  if (!state.allTexts.length) return;
+  const pool = state.topic ? state.allTexts.filter(t => t.topic === state.topic) : state.allTexts;
+  openText(pool[Math.floor(Math.random() * pool.length)]);
 });
 
-/* ── VOCAB ACTIVITY ── */
-const vocabPanel       = document.getElementById('vocabPanel');
-const activityBody     = document.getElementById('activityBody');
-const defCards         = document.getElementById('defCards');
-const progressFill     = document.getElementById('progressFill');
-const progressText     = document.getElementById('progressText');
-const activityInstruct = document.getElementById('activityInstruction');
-const activityComplete = document.getElementById('activityComplete');
-const resetBtn         = document.getElementById('resetBtn');
-const hlToggle         = document.getElementById('hlToggle');
-
-// activity sub-state (lives inside main state object too)
-state.selectedDef = null;
-state.solved      = new Set();
-
+// ── VOCAB ACTIVITY ────────────────────────────────────────────────────────────
 function buildActivity(text) {
-  const keywords = text.keywords || [];
-  if (keywords.length === 0) { vocabPanel.classList.remove('visible'); return; }
-  vocabPanel.classList.add('visible');
-
   state.selectedDef = null;
-  state.solved      = new Set();
+  state.solved = new Set();
   activityComplete.classList.remove('visible');
   activityBody.classList.remove('activity-mode-active');
   activityBody.classList.toggle('kw-hints', hlToggle.checked);
   activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
-  activityInstruct.className   = 'activity-instruction';
+  activityInstruct.className = 'activity-instruction';
 
+  const keywords = text.keywords || [];
   const kwData = keywords.map((kw, idx) => ({
     idx,
     words: kw.word.toLowerCase().replace(/[^a-z\s'-]/g, '').split(/\s+/).filter(Boolean),
   }));
 
   activityBody.innerHTML = buildActivityHTML(text.text, kwData);
-
-  const foundIndices = new Set(
-    [...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx))
-  );
+  const foundIndices = new Set([...activityBody.querySelectorAll('.kw-span')].map(s => parseInt(s.dataset.kwIdx)));
 
   defCards.innerHTML = '';
   keywords.forEach((kw, idx) => {
     if (!foundIndices.has(idx)) return;
     const card = document.createElement('div');
-    card.className   = 'def-card';
+    card.className = 'def-card';
     card.dataset.idx = idx;
-    card.innerHTML   = `
-      <span class="def-text">${kw.definition}</span>
-      <span class="def-keyword hidden" id="defKw_${idx}">${kw.word}</span>
-    `;
+    card.innerHTML = `<span class="def-text">${kw.definition}</span><span class="def-keyword hidden" id="defKw_${idx}">${kw.word}</span>`;
     card.addEventListener('click', () => selectDefinition(idx));
     defCards.appendChild(card);
   });
@@ -1113,87 +1087,51 @@ function buildActivity(text) {
 }
 
 function buildActivityHTML(raw, kwData) {
-  return raw.split(/\n+/).filter(p => p.trim()).map(para => {
-    const tokens = tokenize(para);
-    return `<p>${tagTokens(tokens, kwData)}</p>`;
-  }).join('');
+  return raw.split(/\n+/).filter(p => p.trim()).map(para =>
+    `<p>${tagTokens(tokenize(para), kwData)}</p>`
+  ).join('');
 }
-
 function tokenize(para) {
-  const parts = [];
-  const re = /([^\w'-]+|[\w'-]+)/g;
-  let m;
+  const parts = [], re = /([^\w'-]+|[\w'-]+)/g; let m;
   while ((m = re.exec(para)) !== null) parts.push(m[1]);
   return parts;
 }
-
-function smartMatch(textWord, kwWord) {
-  if (textWord === kwWord) return true;
-  if (kwWord.length >= 4 && textWord.startsWith(kwWord)) return true;
-  if (textWord.length >= 4 && kwWord.startsWith(textWord)) return true;
-  const tc = textWord.replace(/-/g, '');
-  const kc = kwWord.replace(/-/g, '');
+function smartMatch(t, k) {
+  if (t === k) return true;
+  if (k.length >= 4 && t.startsWith(k)) return true;
+  if (t.length >= 4 && k.startsWith(t)) return true;
+  const tc = t.replace(/-/g,''), kc = k.replace(/-/g,'');
   if (tc === kc) return true;
   if (kc.length >= 4 && tc.startsWith(kc)) return true;
   if (tc.length >= 4 && kc.startsWith(tc)) return true;
   return false;
 }
-
 function tagTokens(tokens, kwData) {
-  const wordTokens = tokens.map(t => ({
-    token: t,
-    isWord: /[\w'-]/.test(t),
-    clean: t.toLowerCase().replace(/[^a-z'-]/g, ''),
-    kwIdx: null,
-  }));
-
-  kwData.forEach(kw => {
-    kw.words.forEach(kwWord => {
-      wordTokens.forEach(wt => {
-        if (wt.isWord && wt.kwIdx === null && smartMatch(wt.clean, kwWord)) {
-          wt.kwIdx = kw.idx;
-        }
-      });
-    });
-  });
-
-  return wordTokens.map(wt => {
-    if (!wt.isWord) return wt.token;
-    if (wt.kwIdx !== null) return `<span class="kw-span" data-kw-idx="${wt.kwIdx}">${wt.token}</span>`;
-    return wt.token;
-  }).join('');
+  const wt = tokens.map(t => ({ token: t, isWord: /[\w'-]/.test(t), clean: t.toLowerCase().replace(/[^a-z'-]/g,''), kwIdx: null }));
+  kwData.forEach(kw => kw.words.forEach(kwWord => wt.forEach(w => { if (w.isWord && w.kwIdx === null && smartMatch(w.clean, kwWord)) w.kwIdx = kw.idx; })));
+  return wt.map(w => !w.isWord ? w.token : w.kwIdx !== null ? `<span class="kw-span" data-kw-idx="${w.kwIdx}">${w.token}</span>` : w.token).join('');
 }
-
 function attachActivityWordListeners() {
   activityBody.querySelectorAll('.kw-span').forEach(span => {
     span.addEventListener('click', () => {
       const kwIdx = parseInt(span.dataset.kwIdx);
       if (state.solved.has(kwIdx)) return;
-
       if (state.selectedDef === null) {
-        // Flash instruction to prompt them to pick a definition first
         activityInstruct.style.background = '#ffd54f';
         setTimeout(() => activityInstruct.style.background = '', 500);
         return;
       }
-
       if (state.selectedDef === kwIdx) {
-        // Correct!
         state.solved.add(kwIdx);
         activityBody.querySelectorAll(`.kw-span[data-kw-idx="${kwIdx}"]`).forEach(s => s.classList.add('kw-correct'));
         const card = defCards.querySelector(`.def-card[data-idx="${kwIdx}"]`);
-        if (card) {
-          card.classList.remove('selected');
-          card.classList.add('done');
-          card.querySelector('.def-keyword')?.classList.remove('hidden');
-        }
+        if (card) { card.classList.remove('selected'); card.classList.add('done'); card.querySelector('.def-keyword')?.classList.remove('hidden'); }
         state.selectedDef = null;
         activityBody.classList.remove('activity-mode-active');
         activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
-        activityInstruct.className   = 'activity-instruction';
+        activityInstruct.className = 'activity-instruction';
         updateProgress();
       } else {
-        // Wrong
         span.classList.add('kw-wrong-flash');
         setTimeout(() => span.classList.remove('kw-wrong-flash'), 500);
         const card = defCards.querySelector(`.def-card[data-idx="${state.selectedDef}"]`);
@@ -1202,147 +1140,83 @@ function attachActivityWordListeners() {
     });
   });
 }
-
 function selectDefinition(idx) {
   if (state.solved.has(idx)) return;
   defCards.querySelectorAll('.def-card').forEach(c => c.classList.remove('selected'));
-
   if (state.selectedDef === idx) {
     state.selectedDef = null;
     activityBody.classList.remove('activity-mode-active');
     activityInstruct.textContent = '👆 Click a definition on the left to select it, then click the matching word in the text.';
-    activityInstruct.className   = 'activity-instruction';
+    activityInstruct.className = 'activity-instruction';
   } else {
     state.selectedDef = idx;
     defCards.querySelector(`.def-card[data-idx="${idx}"]`).classList.add('selected');
     activityBody.classList.add('activity-mode-active');
     activityInstruct.textContent = '🔍 Now click the word in the text that matches this definition.';
-    activityInstruct.className   = 'activity-instruction step2';
+    activityInstruct.className = 'activity-instruction step2';
   }
 }
-
 function updateProgress() {
   const total = defCards.querySelectorAll('.def-card').length;
   const done  = state.solved.size;
   progressFill.style.width = total ? (done / total * 100) + '%' : '0%';
   progressText.textContent = `${done} / ${total}`;
-  if (total > 0 && done === total) {
-    activityComplete.classList.add('visible');
-    activityInstruct.className = 'activity-instruction hidden';
-  }
+  if (total > 0 && done === total) { activityComplete.classList.add('visible'); activityInstruct.className = 'activity-instruction hidden'; }
 }
-
 resetBtn.addEventListener('click', () => { if (state.current) buildActivity(state.current); });
 hlToggle.addEventListener('change', () => { activityBody.classList.toggle('kw-hints', hlToggle.checked); });
 
-/* ── QUIZ ── */
-const quizPanel      = document.getElementById('quizPanel');
-const quizQuestions  = document.getElementById('quizQuestions');
-const quizResults    = document.getElementById('quizResults');
-const quizResultsScore = document.getElementById('quizResultsScore');
-const quizResultsLabel = document.getElementById('quizResultsLabel');
-const quizScoreBadge = document.getElementById('quizScoreBadge');
-const quizRetryBtn   = document.getElementById('quizRetryBtn');
-
-const LETTERS = ['A', 'B', 'C', 'D'];
-
+// ── QUIZ ──────────────────────────────────────────────────────────────────────
+const LETTERS = ['A','B','C','D'];
 function renderQuiz(text) {
   const qs = text.questions;
-  if (!qs || qs.length === 0) {
-    quizPanel.classList.remove('visible');
-    return;
-  }
-
-  quizPanel.classList.add('visible');
   quizResults.classList.remove('visible');
   quizScoreBadge.classList.remove('visible');
   quizQuestions.innerHTML = '';
+  if (!qs || !qs.length) return;
 
-  let answered = 0;
-  let correct  = 0;
-
+  let answered = 0, correct = 0;
   qs.forEach((q, qi) => {
     const qEl = document.createElement('div');
     qEl.className = 'quiz-question';
-    qEl.innerHTML = `
-      <div class="quiz-q-num">Question ${qi + 1} of ${qs.length}</div>
-      <div class="quiz-q-text">${q.q}</div>
-      <div class="quiz-choices" id="choices-${qi}"></div>
-      <div class="quiz-feedback" id="feedback-${qi}"></div>
-    `;
+    qEl.innerHTML = `<div class="quiz-q-num">Question ${qi+1} of ${qs.length}</div><div class="quiz-q-text">${q.q}</div><div class="quiz-choices" id="qc-${qi}"></div><div class="quiz-feedback" id="qf-${qi}"></div>`;
     quizQuestions.appendChild(qEl);
-
-    const choicesEl  = qEl.querySelector(`#choices-${qi}`);
-    const feedbackEl = qEl.querySelector(`#feedback-${qi}`);
-
+    const choicesEl = qEl.querySelector(`#qc-${qi}`);
+    const feedbackEl = qEl.querySelector(`#qf-${qi}`);
     q.choices.forEach((choice, ci) => {
       const btn = document.createElement('button');
       btn.className = 'quiz-choice';
       btn.innerHTML = `<span class="quiz-choice-letter">${LETTERS[ci]}</span><span>${choice}</span>`;
-
       btn.addEventListener('click', () => {
-        // Disable all choices for this question
         choicesEl.querySelectorAll('.quiz-choice').forEach(b => b.disabled = true);
-
-        const isCorrect = ci === q.answer;
-        answered++;
-        if (isCorrect) correct++;
-
-        // Mark chosen button
-        btn.classList.add(isCorrect ? 'correct' : 'wrong');
-
-        // If wrong, reveal the correct answer
-        if (!isCorrect) {
-          choicesEl.querySelectorAll('.quiz-choice')[q.answer]
-            .classList.add('reveal-correct');
-        }
-
-        // Feedback text
-        feedbackEl.textContent = isCorrect
-          ? '✓ Correct!'
-          : `✗ The correct answer is ${LETTERS[q.answer]}.`;
-        feedbackEl.className = `quiz-feedback visible ${isCorrect ? 'ok' : 'err'}`;
-
-        // Update live score badge
+        const ok = ci === q.answer;
+        answered++; if (ok) correct++;
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        if (!ok) choicesEl.querySelectorAll('.quiz-choice')[q.answer].classList.add('reveal-correct');
+        feedbackEl.textContent = ok ? '✓ Correct!' : `✗ The correct answer is ${LETTERS[q.answer]}.`;
+        feedbackEl.className = `quiz-feedback visible ${ok ? 'ok' : 'err'}`;
         quizScoreBadge.textContent = `${correct} / ${answered} correct`;
         quizScoreBadge.classList.add('visible');
-
-        // If all answered, show results
         if (answered === qs.length) showResults(correct, qs.length);
       });
-
       choicesEl.appendChild(btn);
     });
   });
-
   quizRetryBtn.onclick = () => renderQuiz(text);
 }
-
 function showResults(correct, total) {
-  const pct = Math.round((correct / total) * 100);
-  const messages = [
-    [100, '🎉 Perfect score!'],
-    [80,  '⭐ Great job!'],
-    [60,  '👍 Good effort — review the ones you missed.'],
-    [40,  '📖 Keep practising — re-read the text and try again.'],
-    [0,   '💪 Don\'t give up — read the text again carefully.'],
-  ];
-  const msg = messages.find(([threshold]) => pct >= threshold)[1];
-
+  const pct = Math.round(correct/total*100);
+  const msg = [[100,'🎉 Perfect score!'],[80,'⭐ Great job!'],[60,'👍 Good effort — review the ones you missed.'],[40,'📖 Keep practising — re-read the text and try again.'],[0,'💪 Don\'t give up — read the text again carefully.']].find(([t]) => pct >= t)[1];
   quizResultsScore.textContent = `${correct} / ${total}`;
   quizResultsLabel.textContent = msg;
   quizResults.classList.add('visible');
-  quizResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-/* ── UTIL ── */
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+// ── UTIL ──────────────────────────────────────────────────────────────────────
+function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
 
-/* ── INIT ── */
+// ── INIT ──────────────────────────────────────────────────────────────────────
 loadLevel('A1');
-emptyState.style.display = '';
 </script>
 </body>
 </html>
