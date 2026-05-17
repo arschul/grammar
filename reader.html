@@ -655,6 +655,143 @@ main {
 }
 .retry-btn:hover { background: var(--accent); }
 
+/* ── SPEED READ TAB ── */
+.speed-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 28px 32px;
+}
+.speed-display {
+  width: 100%;
+  max-width: 680px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.speed-progress-bar { height: 3px; background: var(--border); }
+.speed-progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width .15s linear; }
+.speed-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  padding: 24px 40px;
+}
+.speed-focus-line {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 52px;
+  background: var(--kw-pending);
+  border-top: 1.5px solid #e6c84a;
+  border-bottom: 1.5px solid #e6c84a;
+  pointer-events: none;
+}
+.speed-word-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.3em;
+  width: 100%;
+}
+.speed-word-context {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  opacity: 0.4;
+  max-width: 28%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.speed-word-context.before { direction: rtl; text-align: right; }
+.speed-word-context.after  { direction: ltr; text-align: left; }
+.speed-word-focus {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  line-height: 1.1;
+  text-align: center;
+  flex-shrink: 0;
+  transition: opacity .07s;
+}
+.speed-word-focus.flash { opacity: 0; }
+.speed-counter {
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  color: var(--ink-soft);
+  letter-spacing: .08em;
+  text-align: center;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+}
+.speed-controls {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.speed-wpm-wrap { display: flex; align-items: center; gap: 8px; }
+.speed-wpm-btn {
+  width: 30px; height: 30px;
+  background: none; border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-size: 1.1rem; font-weight: 600;
+  cursor: pointer; color: var(--ink-soft); transition: all .12s;
+  display: flex; align-items: center; justify-content: center;
+}
+.speed-wpm-btn:hover { border-color: var(--accent); color: var(--accent); }
+.speed-wpm-display { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+.speed-wpm-val { font-family: var(--font-mono); font-size: 1.35rem; font-weight: 500; color: var(--ink); line-height: 1; }
+.speed-wpm-label { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
+.speed-transport { display: flex; align-items: center; gap: 8px; }
+.speed-btn {
+  width: 38px; height: 38px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-soft); transition: all .15s;
+}
+.speed-btn:hover { border-color: var(--accent); color: var(--accent); }
+.speed-btn-primary {
+  width: 52px; height: 52px;
+  background: var(--ink); border-color: var(--ink); color: var(--bg);
+}
+.speed-btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.speed-chunk-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.speed-chunk-label { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.speed-chunk-btns { display: flex; gap: 4px; }
+.speed-chunk-btn {
+  width: 30px; height: 26px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-family: var(--font-mono); font-size: .78rem;
+  cursor: pointer; color: var(--ink-soft); transition: all .12s;
+}
+.speed-chunk-btn:hover { border-color: var(--accent); }
+.speed-chunk-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.speed-finished {
+  text-align: center; display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+}
+.speed-finished.hidden { display: none; }
+.speed-finished-icon { font-size: 2.4rem; }
+.speed-finished-text { font-family: var(--font-body); font-size: 1rem; color: var(--ink-soft); }
+.speed-finished-text strong { color: var(--accent); }
+
 /* ── FOOTER ── */
 footer {
   border-top: 1.5px solid var(--border); padding: 9px 24px;
@@ -743,6 +880,10 @@ footer {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             <span>Questions</span>
           </button>
+          <button class="reader-tab" data-tab="speed">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Speed Read</span>
+          </button>
         </div>
       </div>
 
@@ -811,6 +952,73 @@ footer {
             <div class="quiz-results-label" id="quizResultsLabel"></div>
             <button class="retry-btn" id="quizRetryBtn">&#x21BA; Try again</button>
           </div>
+        </div>
+      </div>
+
+    </div><!-- /reader-view -->
+
+      <!-- TAB: Speed Read -->
+      <div class="tab-panel" id="tabSpeed">
+        <div class="speed-panel">
+
+          <!-- Display -->
+          <div class="speed-display" id="speedDisplay">
+            <div class="speed-progress-bar"><div class="speed-progress-fill" id="speedProgressFill"></div></div>
+            <div class="speed-stage">
+              <div class="speed-focus-line"></div>
+              <div class="speed-word-wrap">
+                <span class="speed-word-context before" id="speedBefore"></span>
+                <span class="speed-word-focus" id="speedFocus"></span>
+                <span class="speed-word-context after" id="speedAfter"></span>
+              </div>
+            </div>
+            <div class="speed-counter" id="speedCounter">— / —</div>
+          </div>
+
+          <!-- Controls -->
+          <div class="speed-controls">
+            <div class="speed-wpm-wrap">
+              <button class="speed-wpm-btn" id="wpmDown">&#x2212;</button>
+              <div class="speed-wpm-display">
+                <span class="speed-wpm-val" id="wpmVal">250</span>
+                <span class="speed-wpm-label">WPM</span>
+              </div>
+              <button class="speed-wpm-btn" id="wpmUp">+</button>
+            </div>
+
+            <div class="speed-transport">
+              <button class="speed-btn" id="speedRestart" title="Restart">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.94"/></svg>
+              </button>
+              <button class="speed-btn speed-btn-primary" id="speedPlayPause" title="Play / Pause">
+                <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+              <button class="speed-btn" id="speedBack" title="Back 10 words">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/><polyline points="22 18 16 12 22 6"/></svg>
+              </button>
+              <button class="speed-btn" id="speedSkip" title="Skip 10 words">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/><polyline points="2 18 8 12 2 6"/></svg>
+              </button>
+            </div>
+
+            <div class="speed-chunk-wrap">
+              <span class="speed-chunk-label">Words at a time</span>
+              <div class="speed-chunk-btns">
+                <button class="speed-chunk-btn active" data-chunk="1">1</button>
+                <button class="speed-chunk-btn" data-chunk="2">2</button>
+                <button class="speed-chunk-btn" data-chunk="3">3</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Finished state -->
+          <div class="speed-finished hidden" id="speedFinished">
+            <div class="speed-finished-icon">&#x1F3C1;</div>
+            <div class="speed-finished-text">Done! You read <strong id="speedFinishedWPM"></strong> WPM.</div>
+            <button class="retry-btn" id="speedAgainBtn">&#x21BA; Read again</button>
+          </div>
+
         </div>
       </div>
 
@@ -984,9 +1192,11 @@ document.querySelectorAll('.reader-tab').forEach(tab => {
 });
 function switchTab(name) {
   document.querySelectorAll('.reader-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
-  document.getElementById('tabRead').classList.toggle('active',  name === 'read');
-  document.getElementById('tabVocab').classList.toggle('active', name === 'vocab');
-  document.getElementById('tabQuiz').classList.toggle('active',  name === 'quiz');
+  document.getElementById('tabRead').classList.toggle('active',   name === 'read');
+  document.getElementById('tabVocab').classList.toggle('active',  name === 'vocab');
+  document.getElementById('tabQuiz').classList.toggle('active',   name === 'quiz');
+  document.getElementById('tabSpeed').classList.toggle('active',  name === 'speed');
+  if (name !== 'speed') speedPause();
 }
 
 // ── BACK BUTTON ───────────────────────────────────────────────────────────────
@@ -1007,6 +1217,7 @@ function openText(text) {
   attachWordHighlight();
   buildActivity(text);
   renderQuiz(text);
+  speedInit(text);
   switchTab('read');
   showReader();
 }
@@ -1214,6 +1425,185 @@ function showResults(correct, total) {
   quizResultsLabel.textContent = msg;
   quizResults.classList.add('visible');
 }
+
+// ── SPEED READER ─────────────────────────────────────────────────────────────
+const speedFocus       = document.getElementById('speedFocus');
+const speedBefore      = document.getElementById('speedBefore') || document.querySelector('.speed-word-context.before');
+const speedAfter       = document.getElementById('speedAfter')  || document.querySelector('.speed-word-context.after');
+const speedCounter     = document.getElementById('speedCounter');
+const speedProgressFill= document.getElementById('speedProgressFill');
+const speedFinished    = document.getElementById('speedFinished');
+const speedFinishedWPM = document.getElementById('speedFinishedWPM');
+const speedPlayPause   = document.getElementById('speedPlayPause');
+const speedRestart     = document.getElementById('speedRestart');
+const speedBack        = document.getElementById('speedBack');
+const speedSkip        = document.getElementById('speedSkip');
+const speedAgainBtn    = document.getElementById('speedAgainBtn');
+const wpmVal           = document.getElementById('wpmVal');
+const wpmDownBtn       = document.getElementById('wpmDown');
+const wpmUpBtn         = document.getElementById('wpmUp');
+
+const sr = {
+  words:     [],
+  idx:       0,
+  wpm:       250,
+  chunk:     1,
+  playing:   false,
+  timer:     null,
+  startTime: null,
+  startIdx:  0,
+};
+
+function speedInit(text) {
+  // Tokenise into words, preserving punctuation attached to words
+  sr.words = text.text.match(/\S+/g) || [];
+  sr.idx = 0;
+  sr.playing = false;
+  speedFinished.classList.add('hidden');
+  speedRender();
+  speedSetPlayIcon(false);
+}
+
+function speedRender() {
+  const w = sr.words;
+  const i = sr.idx;
+  if (!w.length) return;
+
+  // Build chunk string
+  const chunk = w.slice(i, i + sr.chunk).join(' ');
+  // Context words
+  const beforeWords = w.slice(Math.max(0, i - 3), i).join(' ');
+  const afterWords  = w.slice(i + sr.chunk, i + sr.chunk + 3).join(' ');
+
+  // Flash transition
+  speedFocus.classList.add('flash');
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      speedFocus.textContent   = chunk;
+      speedFocus.classList.remove('flash');
+    });
+  });
+
+  // Context (look up by class since ids were renamed)
+  document.querySelector('.speed-word-context.before').textContent = beforeWords;
+  document.querySelector('.speed-word-context.after').textContent  = afterWords;
+
+  // Counter & progress
+  const total = w.length;
+  speedCounter.textContent = `${Math.min(i + sr.chunk, total)} / ${total}`;
+  speedProgressFill.style.width = `${Math.min(((i + sr.chunk) / total) * 100, 100)}%`;
+}
+
+function speedTick() {
+  if (!sr.playing) return;
+  sr.idx += sr.chunk;
+  if (sr.idx >= sr.words.length) {
+    sr.idx = sr.words.length - 1;
+    speedRender();
+    speedPause();
+    const elapsed = (Date.now() - sr.startTime) / 60000; // minutes
+    const wordsRead = sr.words.length - sr.startIdx;
+    const actualWPM = Math.round(wordsRead / elapsed);
+    speedFinishedWPM.textContent = actualWPM;
+    speedFinished.classList.remove('hidden');
+    return;
+  }
+  speedRender();
+  // Longer pause on sentence-ending punctuation
+  const word = sr.words[sr.idx - sr.chunk] || '';
+  const pause = /[.!?]$/.test(word) ? 1.6 : /[,;:]$/.test(word) ? 1.2 : 1;
+  const delay = (60000 / sr.wpm) * pause;
+  sr.timer = setTimeout(speedTick, delay);
+}
+
+function speedPlay() {
+  if (sr.idx >= sr.words.length) { sr.idx = 0; speedFinished.classList.add('hidden'); }
+  sr.playing = true;
+  sr.startTime = Date.now();
+  sr.startIdx  = sr.idx;
+  speedSetPlayIcon(true);
+  sr.timer = setTimeout(speedTick, 60000 / sr.wpm);
+}
+
+function speedPause() {
+  sr.playing = false;
+  clearTimeout(sr.timer);
+  speedSetPlayIcon(false);
+}
+
+function speedSetPlayIcon(playing) {
+  speedPlayPause.querySelector('.icon-play').style.display  = playing ? 'none' : '';
+  speedPlayPause.querySelector('.icon-pause').style.display = playing ? '' : 'none';
+}
+
+speedPlayPause.addEventListener('click', () => {
+  sr.playing ? speedPause() : speedPlay();
+});
+
+speedRestart.addEventListener('click', () => {
+  speedPause();
+  sr.idx = 0;
+  speedFinished.classList.add('hidden');
+  speedRender();
+});
+
+speedBack.addEventListener('click', () => {
+  const wasPl = sr.playing;
+  speedPause();
+  sr.idx = Math.max(0, sr.idx - 10);
+  speedRender();
+  if (wasPl) speedPlay();
+});
+
+speedSkip.addEventListener('click', () => {
+  const wasPl = sr.playing;
+  speedPause();
+  sr.idx = Math.min(sr.words.length - 1, sr.idx + 10);
+  speedRender();
+  if (wasPl) speedPlay();
+});
+
+speedAgainBtn.addEventListener('click', () => {
+  speedFinished.classList.add('hidden');
+  sr.idx = 0;
+  speedRender();
+  speedPlay();
+});
+
+// WPM controls
+const WPM_STEPS = [100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800];
+function setWPM(wpm) {
+  sr.wpm = wpm;
+  wpmVal.textContent = wpm;
+}
+wpmDownBtn.addEventListener('click', () => {
+  const i = WPM_STEPS.indexOf(sr.wpm);
+  if (i > 0) setWPM(WPM_STEPS[i - 1]);
+});
+wpmUpBtn.addEventListener('click', () => {
+  const i = WPM_STEPS.indexOf(sr.wpm);
+  if (i < WPM_STEPS.length - 1) setWPM(WPM_STEPS[i + 1]);
+});
+
+// Chunk controls
+document.querySelectorAll('.speed-chunk-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.speed-chunk-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    sr.chunk = parseInt(btn.dataset.chunk);
+  });
+});
+
+// Keyboard shortcuts when speed tab is active
+document.addEventListener('keydown', e => {
+  const tabActive = document.getElementById('tabSpeed').classList.contains('active');
+  if (!tabActive) return;
+  if (e.code === 'Space') { e.preventDefault(); sr.playing ? speedPause() : speedPlay(); }
+  if (e.code === 'ArrowLeft')  { e.preventDefault(); speedBack.click(); }
+  if (e.code === 'ArrowRight') { e.preventDefault(); speedSkip.click(); }
+  if (e.code === 'ArrowUp')    { e.preventDefault(); wpmUpBtn.click(); }
+  if (e.code === 'ArrowDown')  { e.preventDefault(); wpmDownBtn.click(); }
+});
 
 // ── UTIL ──────────────────────────────────────────────────────────────────────
 function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
