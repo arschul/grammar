@@ -29,25 +29,6 @@ const texts = [
     topic: "work",
     level: "A2",
     wordCount: 197,
-    keywords: [
-      { word: 'remote work', definition: 'working from a place other than the main office, usually at home' },
-      { word: 'pandemic', definition: 'a disease that spreads across many countries at the same time' },
-      { word: 'environment', definition: 'the conditions and surroundings in which you live or work' },
-      { word: 'interaction', definition: 'communication or contact between people' },
-      { word: 'dedicated', definition: 'used only for one specific purpose' },
-      { word: 'connected', definition: 'staying in contact with other people' },
-      { word: 'routine', definition: 'a regular set of actions done at the same time each day' },
-      { word: 'traditional', definition: 'following long-established customs or ways of doing things' },
-      { word: 'challenges', definition: 'difficult situations that test your abilities' },
-      { word: 'focus', definition: 'to give all your attention to one thing' },
-    ],
-    questions: [
-      { q: "What does 'remote work' mean according to the text?", choices: ["Working very hard", "Working from home", "Working in another country", "Working at night"], answer: 1 },
-      { q: "How long has Lena been working remotely?", choices: ["Six months", "One year", "Two years", "Three years"], answer: 2 },
-      { q: "What does Lena do to stay connected with her team?", choices: ["She sends emails every hour", "She goes to the office once a week", "She has a video call with her team every morning", "She calls her manager every evening"], answer: 2 },
-      { q: "Which of these is mentioned as a challenge of working from home?", choices: ["The internet connection is slow", "It is difficult to separate work and personal life", "The salary is lower", "There are too many meetings"], answer: 1 },
-      { q: "What is Lena's key strategy for making remote work successful?", choices: ["Working more hours than in the office", "Having a clear routine and a dedicated workspace", "Avoiding all social media during the day", "Contacting her manager frequently"], answer: 1 },
-    ],
     text: `In recent years, many companies have started to allow their employees to work from home. This arrangement is called remote work, and it has become very popular since the pandemic.
 
 Working from home has several advantages. You do not need to travel to the office every day, which saves time and money. You can also organize your workspace the way you like and often feel more comfortable at home than in a formal office environment.
@@ -66,25 +47,6 @@ She also has a video call with her team every morning to stay connected. She thi
     topic: "travel",
     level: "A2",
     wordCount: 210,
-    keywords: [
-      { word: 'visa', definition: 'an official stamp in a passport that allows you to enter a country' },
-      { word: 'nationality', definition: 'the country that a person officially belongs to' },
-      { word: 'insurance', definition: 'an agreement to pay for costs if something goes wrong' },
-      { word: 'itinerary', definition: 'a detailed plan for a journey or trip' },
-      { word: 'accommodation', definition: 'a place to stay, such as a hotel or apartment' },
-      { word: 'authentic', definition: 'real and genuine, not a copy or imitation' },
-      { word: 'application', definition: 'a formal request for something, such as a visa' },
-      { word: 'expenses', definition: 'money you spend on things, such as food or travel' },
-      { word: 'phrase', definition: 'a short group of words used together with a meaning' },
-      { word: 'culture', definition: 'the customs, arts, and ideas of a particular group of people' },
-    ],
-    questions: [
-      { q: "Why is it important to check the visa situation before travelling?", choices: ["Visas are very expensive", "Some countries require you to apply in advance, which takes time", "You need a visa to buy a plane ticket", "Visa applications are always refused"], answer: 1 },
-      { q: "What can travel insurance protect you from?", choices: ["Bad weather and cancelled tours", "Medical expenses, cancelled flights, and lost luggage", "Long queues and language problems", "High food prices and bad hotels"], answer: 1 },
-      { q: "Where is Tom planning to travel?", choices: ["China", "South Korea", "Japan", "Thailand"], answer: 2 },
-      { q: "What is Tom doing to prepare for his trip?", choices: ["He is saving money and buying a guidebook", "He is learning the language and researching places to visit", "He is taking cooking classes and buying a camera", "He is learning to drive and booking car hire"], answer: 1 },
-      { q: "What does the text suggest about learning basic phrases in a foreign language?", choices: ["It is not very important for most travellers", "It makes local people uncomfortable", "It is appreciated by local people and improves the experience", "It is only useful in countries that don't speak English"], answer: 2 },
-    ],
     text: `Travelling to another country requires more preparation than a simple weekend trip. You need to think about several things before you leave.
 
 First, you have to check whether you need a visa. This depends on your nationality and the country you are visiting. Some countries allow tourists to enter without a visa for a limited period, while others require you to apply in advance. The application process can take a few weeks, so it is important to plan early.
@@ -105,25 +67,6 @@ He says the planning process is almost as exciting as the trip itself. He cannot
     topic: "technology",
     level: "A2",
     wordCount: 205,
-    keywords: [
-      { word: 'artificial intelligence', definition: 'technology that allows computers to perform tasks that normally require human thinking' },
-      { word: 'recommend', definition: 'to suggest something to someone because you think it is good' },
-      { word: 'predict', definition: 'to say what you think will happen in the future' },
-      { word: 'diagnose', definition: 'to identify an illness or problem after examination' },
-      { word: 'fraud', definition: 'the crime of deceiving someone to get money or an advantage' },
-      { word: 'privacy', definition: 'the right to keep your personal information and life secret' },
-      { word: 'unemployment', definition: 'the state of not having a paid job' },
-      { word: 'transaction', definition: 'an act of buying or selling something' },
-      { word: 'responsibly', definition: 'in a way that is careful and does not harm others' },
-      { word: 'analyze', definition: 'to look at something carefully to understand it' },
-    ],
-    questions: [
-      { q: "Which of these is an example of AI in everyday life according to the text?", choices: ["Cooking recipes on a website", "Music recommendations based on your listening history", "Calling a friend on the phone", "Reading a newspaper"], answer: 1 },
-      { q: "How does AI in streaming apps learn what you like?", choices: ["It asks you questions every week", "It reads your messages", "It learns from your behavior and listening history", "It uses information from your friends"], answer: 2 },
-      { q: "In which area do doctors use AI tools?", choices: ["To write medical reports", "To analyze medical images and help diagnose diseases", "To book appointments for patients", "To order medicines automatically"], answer: 1 },
-      { q: "What is one concern people have about AI?", choices: ["AI systems are too expensive for most people", "AI makes technology too complicated to use", "AI systems collect and analyze enormous amounts of personal data", "AI only works in certain countries"], answer: 2 },
-      { q: "What do most experts agree about AI?", choices: ["AI will stop developing soon", "AI is already at its maximum potential", "AI will continue to develop rapidly", "AI is only useful for large companies"], answer: 2 },
-    ],
     text: `Artificial intelligence, or AI, is no longer something from science fiction movies. It is already part of our everyday lives, even if we do not always notice it.
 
 When you use a music streaming app, AI recommends songs based on what you have listened to before. When you type a message on your phone, AI suggests the next word. When you shop online, AI shows you products similar to the ones you have already looked at. These systems learn from your behavior and try to predict what you want.
@@ -142,25 +85,6 @@ Despite these concerns, most experts agree that AI will continue to develop rapi
     topic: "food",
     level: "A2",
     wordCount: 208,
-    keywords: [
-      { word: 'affordable', definition: 'not too expensive; easy to pay for' },
-      { word: 'vendor', definition: 'a person who sells food or goods on the street or at a market' },
-      { word: 'flavor', definition: 'the taste of food or drink' },
-      { word: 'tortilla', definition: 'a thin, flat bread made from corn or wheat, used in Mexican food' },
-      { word: 'recipe', definition: 'a set of instructions for cooking a particular dish' },
-      { word: 'generation', definition: 'all the people born and living at about the same time' },
-      { word: 'queue', definition: 'a line of people waiting for something' },
-      { word: 'vendor', definition: 'a person who sells food or goods at a market or on the street' },
-      { word: 'spicy', definition: 'having a strong, hot taste from spices or chili' },
-      { word: 'guidebook', definition: 'a book with information to help travellers visit a place' },
-    ],
-    questions: [
-      { q: "Why is street food a good way to experience a country's culture?", choices: ["It is always the cheapest food available", "It is affordable and reflects traditional recipes", "It is always cooked by famous chefs", "It is safer than restaurant food"], answer: 1 },
-      { q: "What is pad thai cooked in?", choices: ["A clay pot", "An oven", "A large wok", "A pressure cooker"], answer: 2 },
-      { q: "What is chaat?", choices: ["A spicy soup from Thailand", "A popular Indian street snack with crispy dough and chutneys", "A type of Mexican taco", "A fermented drink from Japan"], answer: 1 },
-      { q: "What is Sara's advice for finding the best street food?", choices: ["Look for a restaurant with a lot of decoration", "Find the cheapest vendor in the area", "Find the vendor with the longest queue of local people", "Ask your hotel for a recommendation"], answer: 2 },
-      { q: "What flavors does chaat combine?", choices: ["Sweet and salty", "Spicy and smoky", "Sweet, sour, and spicy", "Salty, sour, and bitter"], answer: 2 },
-    ],
     text: `Street food is one of the best ways to experience a country's culture. It is affordable, delicious, and often reflects recipes that have been passed down through generations.
 
 In Thailand, one of the most popular street foods is pad thai — a stir-fried noodle dish with shrimp, tofu, eggs, and a tangy sauce made from tamarind. Vendors cook it quickly on high heat in a large wok, and the result is a rich, smoky flavor that is hard to find in restaurants.
@@ -179,25 +103,6 @@ Sara has tried street food in several countries during her travels. She says it 
     topic: "habits and routine",
     level: "A2",
     wordCount: 200,
-    keywords: [
-      { word: 'habit', definition: 'something you do regularly, often without thinking about it' },
-      { word: 'automatically', definition: 'without thinking; done by itself' },
-      { word: 'anxious', definition: 'feeling worried and nervous' },
-      { word: 'behavior', definition: 'the way a person acts or does things' },
-      { word: 'effective', definition: 'producing the result that you want' },
-      { word: 'replace', definition: 'to put something new in the place of something old' },
-      { word: 'productive', definition: 'doing or achieving a lot in the available time' },
-      { word: 'consistent', definition: 'always behaving or happening in the same way' },
-      { word: 'overwhelmed', definition: 'feeling that there is too much to deal with' },
-      { word: 'charger', definition: 'a device used to put electricity back into a battery' },
-    ],
-    questions: [
-      { q: "What was David's bad habit?", choices: ["Eating too much sugar before bed", "Checking his phone immediately after waking up", "Watching too much television in the evening", "Spending too much money on apps"], answer: 1 },
-      { q: "How did David's habit make him feel at the start of the day?", choices: ["Energetic and ready to work", "Happy and motivated", "Anxious and unmotivated", "Calm and relaxed"], answer: 2 },
-      { q: "What did David replace his phone habit with?", choices: ["A short exercise routine", "Reading a few pages of a book", "Making a healthy breakfast", "Listening to a podcast"], answer: 1 },
-      { q: "What small change helped David stop reaching for his phone?", choices: ["He turned off his phone at night", "He moved his phone charger to another room", "He asked his family to hide his phone", "He deleted his social media apps"], answer: 1 },
-      { q: "According to the text, which approach is more effective for changing habits?", choices: ["Making dramatic decisions all at once", "Using willpower to stop the habit immediately", "Replacing the habit with a new one", "Punishing yourself when you fail"], answer: 2 },
-    ],
     text: `Everyone has habits — some good and some bad. A habit is something we do automatically, without really thinking about it. The challenge is that bad habits can be very difficult to change, even when we know they are harmful.
 
 David had a habit of checking his phone immediately after waking up. He would spend thirty to forty-five minutes scrolling through news and social media before even getting out of bed. He noticed that this made him feel anxious and unmotivated at the start of every day.
@@ -218,25 +123,6 @@ His experience shows that small, consistent changes are often more powerful than
     topic: "health",
     level: "A2",
     wordCount: 203,
-    keywords: [
-      { word: 'deprivation', definition: 'not having enough of something you need, such as sleep' },
-      { word: 'concentration', definition: 'the ability to give your full attention to something' },
-      { word: 'immune system', definition: 'the body\'s natural defense against illness and infection' },
-      { word: 'caffeine', definition: 'a substance in coffee and tea that keeps you awake' },
-      { word: 'strategies', definition: 'plans or methods used to achieve a goal' },
-      { word: 'reaction time', definition: 'how quickly you respond to something happening' },
-      { word: 'infection', definition: 'an illness caused by bacteria or a virus entering the body' },
-      { word: 'essential', definition: 'completely necessary; you cannot do without it' },
-      { word: 'focused', definition: 'giving full attention to something; not distracted' },
-      { word: 'obesity', definition: 'a medical condition in which a person has too much body fat' },
-    ],
-    questions: [
-      { q: "How many hours of sleep do most adults need each night?", choices: ["Five to six hours", "Six to seven hours", "Seven to nine hours", "Nine to ten hours"], answer: 2 },
-      { q: "What happens to the brain during sleep?", choices: ["It completely stops working", "It processes and stores information learned during the day", "It uses more energy than during the day", "It controls body temperature"], answer: 1 },
-      { q: "What can long-term sleep deprivation be linked to?", choices: ["Better memory and concentration", "High blood pressure and a weakened immune system", "Increased physical energy", "Stronger social relationships"], answer: 1 },
-      { q: "What strategy does Ana use to improve her sleep?", choices: ["She exercises in the evening", "She avoids all food after midday", "She uses blackout curtains and avoids caffeine after midday", "She takes sleep medication prescribed by her doctor"], answer: 2 },
-      { q: "How does Ana describe sleep?", choices: ["A luxury that some people can afford", "Something that can be reduced without consequence", "An optional health improvement", "As essential as food and water"], answer: 3 },
-    ],
     text: `Most adults need between seven and nine hours of sleep per night, but many people regularly sleep much less than this. Sleep deprivation has become a common problem in modern society, and its effects on health are more serious than many people realize.
 
 When we sleep, our bodies repair damaged cells and our brains process and store the information we have learned during the day. Without enough sleep, concentration and memory are significantly affected. People who are sleep-deprived tend to make more mistakes and have slower reaction times. This can be dangerous, especially when driving.
@@ -255,25 +141,6 @@ She says there is no perfect solution, but these changes made a noticeable diffe
     topic: "sports",
     level: "A2",
     wordCount: 206,
-    keywords: [
-      { word: 'spectator', definition: 'a person who watches an event or sport' },
-      { word: 'mainstream', definition: 'considered normal and accepted by most people' },
-      { word: 'investment', definition: 'money spent on something to improve or develop it' },
-      { word: 'sponsorship', definition: 'money given to support a person or event in return for advertising' },
-      { word: 'counterpart', definition: 'a person who has the same job or role as someone else in a different context' },
-      { word: 'ambition', definition: 'a strong desire to achieve something important' },
-      { word: 'coverage', definition: 'the amount of attention given to an event by the media' },
-      { word: 'role model', definition: 'a person that others admire and want to be like' },
-      { word: 'competitive', definition: 'involving competition; trying hard to win' },
-      { word: 'broadcast', definition: 'to send out a programme on television or radio' },
-    ],
-    questions: [
-      { q: "How has women's football changed in the past decade?", choices: ["It has become less popular in most countries", "It has grown enormously in popularity", "It has moved from stadiums to small local parks", "The number of players has decreased significantly"], answer: 1 },
-      { q: "Approximately how many people watched the 2019 Women's World Cup final?", choices: ["One hundred million", "Five hundred million", "Nearly 1.2 billion", "Nearly three billion"], answer: 2 },
-      { q: "What is one challenge that women's football still faces?", choices: ["Female players generally earn much less than male players", "There are not enough women who want to play professionally", "Women's matches are not broadcast on television", "Women's clubs do not have any sponsors"], answer: 0 },
-      { q: "What has Carlos noticed about the attitude of young girls in his team?", choices: ["They prefer individual sports to team sports", "They talk confidently about professional female players and their ambitions", "They are less interested in football than boys of the same age", "They want to watch more games but not play themselves"], answer: 1 },
-      { q: "What does the text say about sponsorship deals for women's football?", choices: ["They have decreased in recent years", "They have stayed the same", "They have grown", "They are only available for national teams"], answer: 2 },
-    ],
     text: `Women's football has grown enormously in popularity over the past decade. Matches that once attracted only a few hundred spectators now fill large stadiums, and international tournaments are broadcast to millions of viewers around the world.
 
 One of the most significant moments was the 2019 FIFA Women's World Cup, held in France, which broke television viewing records in many countries. The final match was watched by nearly 1.2 billion people globally. This was a clear sign that the sport had moved into the mainstream.
@@ -292,25 +159,6 @@ Carlos, who coaches a youth football team with both boys and girls, says the att
     topic: "nature",
     level: "A2",
     wordCount: 211,
-    keywords: [
-      { word: 'ecosystem', definition: 'all the living things in an area and how they depend on each other' },
-      { word: 'habitat', definition: 'the natural environment where an animal or plant lives' },
-      { word: 'coral bleaching', definition: 'a process where coral turns white and dies when water is too warm' },
-      { word: 'algae', definition: 'simple plant-like organisms that grow in or near water' },
-      { word: 'marine', definition: 'relating to the sea or ocean' },
-      { word: 'pollution', definition: 'harmful substances in the air, water, or land' },
-      { word: 'emissions', definition: 'gases released into the air, often from burning fuel' },
-      { word: 'restore', definition: 'to bring something back to its original condition' },
-      { word: 'bleaching', definition: 'the process where coral turns white and dies when water is too warm' },
-      { word: 'transplant', definition: 'to move a living thing from one place and put it in another' },
-    ],
-    questions: [
-      { q: "What percentage of all marine species depend on coral reefs?", choices: ["About five percent", "About ten percent", "About twenty-five percent", "About fifty percent"], answer: 2 },
-      { q: "What is coral bleaching?", choices: ["Corals turning white due to pollution", "Corals expelling the algae inside them when water is too warm", "Corals being painted white for scientific research", "Corals dying due to cold water"], answer: 1 },
-      { q: "What is one human activity that damages coral reefs?", choices: ["Scuba diving for recreation", "Planting trees near the ocean", "Destructive fishing practices", "Building ships that use clean energy"], answer: 2 },
-      { q: "What are some scientists doing to help coral reefs?", choices: ["Building artificial islands near damaged reefs", "Growing coral in laboratories and transplanting it onto damaged reefs", "Removing fish from endangered reef areas", "Lowering the temperature of the ocean with machines"], answer: 1 },
-      { q: "What do experts say is the most important step to protect coral reefs?", choices: ["Building more marine protected areas", "Stopping all fishing near reefs", "Reducing carbon emissions globally to slow ocean warming", "Increasing the acidity of the ocean"], answer: 2 },
-    ],
     text: `Coral reefs are among the most diverse ecosystems on Earth. Although they cover less than one percent of the ocean floor, they provide a habitat for roughly twenty-five percent of all marine species. Fish, turtles, sharks, and thousands of other creatures depend on coral reefs to feed, shelter, and reproduce.
 
 Unfortunately, coral reefs around the world are in serious trouble. The main threat is rising ocean temperatures caused by climate change. When water becomes too warm, corals expel the tiny algae that live inside them and give them color and nutrients. This process is called coral bleaching. If the water stays warm for too long, the coral dies.
@@ -331,25 +179,6 @@ Experts agree that the most important step is reducing carbon emissions globally
     topic: "movies and series",
     level: "A2",
     wordCount: 207,
-    keywords: [
-      { word: 'streaming', definition: 'watching or listening to content directly from the internet' },
-      { word: 'subscription', definition: 'a regular payment to use a service for a period of time' },
-      { word: 'phenomenon', definition: 'something remarkable or unusual that attracts attention' },
-      { word: 'content', definition: 'films, programmes, or other material available to watch or read' },
-      { word: 'platform', definition: 'an online service used to share or access content' },
-      { word: 'decision fatigue', definition: 'tiredness caused by making too many choices' },
-      { word: 'personalized', definition: 'designed or made to suit one particular person' },
-      { word: 'international', definition: 'involving more than one country' },
-      { word: 'thriller', definition: 'a film or book with an exciting, suspenseful story' },
-      { word: 'production', definition: 'the process of making a film, TV show, or product' },
-    ],
-    questions: [
-      { q: "Who has streaming platforms mainly replaced as the primary way to watch content?", choices: ["Cinema", "Traditional television", "DVD rentals", "Satellite radio"], answer: 1 },
-      { q: "Which of these is an advantage of streaming services?", choices: ["Content is always free", "You can watch without any internet connection", "You can access thousands of films and series at any time without commercial breaks", "The content is always in your native language"], answer: 2 },
-      { q: "\"Money Heist\" is a series originally from which country?", choices: ["Brazil", "South Korea", "Mexico", "Spain"], answer: 3 },
-      { q: "What is 'decision fatigue' as described in the text?", choices: ["Feeling tired after watching too many programmes", "Spending more time choosing what to watch than actually watching", "Paying too much money for streaming subscriptions", "Feeling disappointed after a series ends"], answer: 1 },
-      { q: "What does Julia believe the future of streaming will look like?", choices: ["People will go back to watching traditional television", "Streaming services will become too expensive for most people", "AI will help match viewers with shows suited to their tastes", "All content will be produced in English"], answer: 2 },
-    ],
     text: `The way people watch films and television series has changed dramatically in the last ten years. Streaming platforms have replaced traditional television as the primary way that most people consume video content, particularly among younger generations.
 
 The appeal is easy to understand. Streaming services give users access to thousands of films and series at any time, without commercial breaks, for a monthly subscription fee. You can watch on a television, a laptop, a tablet, or a phone. You can pause, rewind, and watch at your own pace.
@@ -368,25 +197,6 @@ Julia, who works in film production, says the industry has changed more in the l
     topic: "music",
     level: "A2",
     wordCount: 198,
-    keywords: [
-      { word: 'nostalgic', definition: 'feeling happy or sad when thinking about the past' },
-      { word: 'memory', definition: 'something from the past that you can remember' },
-      { word: 'therapeutic', definition: 'helping to treat illness or improve health and well-being' },
-      { word: 'dementia', definition: 'a medical condition that affects memory and thinking, especially in older people' },
-      { word: 'motivation', definition: 'the feeling of enthusiasm and drive that makes you want to do something' },
-      { word: 'nervous system', definition: 'the network of nerves in your body that controls your feelings and movements' },
-      { word: 'rhythm', definition: 'a regular repeated pattern of sounds in music' },
-      { word: 'brain', definition: 'the organ inside your head that controls your body and thoughts' },
-      { word: 'emotion', definition: 'a strong feeling such as happiness, sadness, or anger' },
-      { word: 'upbeat', definition: 'lively and positive in mood or sound' },
-    ],
-    questions: [
-      { q: "What does research show about listening to music?", choices: ["It only affects one area of the brain", "It activates multiple areas of the brain including emotion and memory", "It has no measurable effect on the brain", "It reduces brain activity significantly"], answer: 1 },
-      { q: "Where has music therapy been used?", choices: ["In supermarkets and shopping centers", "In schools and universities", "In hospitals and care homes", "In gyms and sports centers"], answer: 2 },
-      { q: "What type of music tends to increase energy and motivation?", choices: ["Slow, quiet music", "Classical orchestral music", "Fast, rhythmic music", "Acoustic guitar music"], answer: 2 },
-      { q: "Why did Mike start learning the guitar?", choices: ["To become a professional musician", "To impress his friends and family", "To express emotions he found difficult to put into words", "To make money playing at events"], answer: 2 },
-      { q: "What does Mike compare playing an instrument to?", choices: ["A social activity", "A competition", "A form of meditation", "A physical exercise"], answer: 2 },
-    ],
     text: `It is something almost everyone has experienced: you hear a song and suddenly you feel happy, sad, nostalgic, or energized. Music has a powerful effect on our emotions, and scientists have been studying this connection for many years.
 
 Research shows that listening to music activates multiple areas of the brain simultaneously, including regions associated with emotion, memory, and movement. This is why a song from your teenage years can instantly bring back vivid memories and feelings from that time.
@@ -407,25 +217,6 @@ For him, music is both an emotional outlet and a form of meditation.`
     topic: "shopping",
     level: "A2",
     wordCount: 204,
-    keywords: [
-      { word: 'convenient', definition: 'easy to use or do, saving you time or effort' },
-      { word: 'delivery', definition: 'the act of bringing goods to a person\'s address' },
-      { word: 'returns', definition: 'sending a product back to the seller because you are not satisfied' },
-      { word: 'review', definition: 'a written opinion about a product or service after using it' },
-      { word: 'retailers', definition: 'businesses that sell goods to customers, either in shops or online' },
-      { word: 'reviews', definition: 'written opinions left by customers about a product or service' },
-      { word: 'platform', definition: 'an online service that connects buyers and sellers' },
-      { word: 'convenience', definition: 'the quality of being easy to use and saving time or effort' },
-      { word: 'purchase', definition: 'something that you buy; also the act of buying' },
-      { word: 'community', definition: 'a group of people who live in the same area and share a connection' },
-    ],
-    questions: [
-      { q: "What was online shopping originally mainly used for?", choices: ["Clothes and food", "Books and electronics", "Furniture and art", "Medicine and sports equipment"], answer: 1 },
-      { q: "Which of these is mentioned as a drawback of online shopping?", choices: ["Products are always more expensive online", "You cannot try on clothes before buying them", "Delivery takes too long", "Online shops are difficult to use"], answer: 1 },
-      { q: "What happened to Grace's shopping habits after the pandemic?", choices: ["She stopped shopping altogether for a while", "She only bought food and basic necessities", "She shifted most of her shopping online", "She started making her own clothes"], answer: 2 },
-      { q: "What does Grace still visit in person every week?", choices: ["The supermarket and the post office", "The pharmacy and the bank", "Her local bookshop and bakery", "The market and the gym"], answer: 2 },
-      { q: "What does Grace say physical shops offer that online platforms cannot?", choices: ["Lower prices and faster service", "A wider range of products", "A sense of community and personal recommendation", "Free delivery and easy returns"], answer: 2 },
-    ],
     text: `Online shopping has transformed the way people buy goods. What began as a convenient way to purchase books and electronics has expanded to cover almost every product imaginable, from groceries to furniture to luxury fashion.
 
 The advantages are clear. You can shop at any hour of the day without leaving your home. You can easily compare prices from multiple sellers in seconds. Product reviews written by other customers help you make more informed decisions. And most platforms offer free returns if you are not satisfied.
@@ -444,25 +235,6 @@ She still visits her local bookshop and bakery every week. She says these places
     topic: "animals and pets",
     level: "A2",
     wordCount: 196,
-    keywords: [
-      { word: 'companionship', definition: 'the feeling of being with someone friendly; not being alone' },
-      { word: 'cortisol', definition: 'a hormone your body produces when you are stressed' },
-      { word: 'serotonin', definition: 'a chemical in the brain that helps you feel happy' },
-      { word: 'veterinary', definition: 'relating to the medical care of animals' },
-      { word: 'commitment', definition: 'a promise or duty to do something regularly' },
-      { word: 'elderly', definition: 'old; used politely to describe older people' },
-      { word: 'well-being', definition: 'the state of being comfortable, healthy, and happy' },
-      { word: 'routine', definition: 'a regular set of actions done at the same time each day' },
-      { word: 'responsibility', definition: 'something that it is your duty to look after or deal with' },
-      { word: 'bond', definition: 'a close connection between people or between a person and an animal' },
-    ],
-    questions: [
-      { q: "What does research consistently show about pet owners?", choices: ["They tend to eat less and sleep more", "They spend more money on health care", "They experience lower stress and reduced loneliness", "They are generally less sociable than non-pet owners"], answer: 2 },
-      { q: "What is one health benefit of owning a dog?", choices: ["Dogs help reduce back pain", "Dog owners get considerably more exercise by walking their dogs", "Dogs improve their owners' concentration at work", "Dogs help owners sleep longer"], answer: 1 },
-      { q: "What does stroking a cat do to cortisol levels?", choices: ["It increases them", "It has no effect", "It lowers them", "It makes them unpredictable"], answer: 2 },
-      { q: "Why are pets particularly beneficial for elderly people who live alone?", choices: ["They provide entertainment and distraction", "They provide companionship, purpose, and routine", "They keep the house warm and safe", "They encourage elderly people to eat more regularly"], answer: 1 },
-      { q: "What does the text say about the responsibility of owning a pet?", choices: ["It is minimal for small animals like cats", "It is significant and requires time, attention, and financial commitment", "It is easy to manage with modern technology", "It is mainly the responsibility of children in the family"], answer: 1 },
-    ],
     text: `Research consistently shows that having a pet can have a positive impact on a person's mental and physical health. Pet owners tend to experience lower levels of stress, reduced feelings of loneliness, and even lower blood pressure compared to people who do not have pets.
 
 Dogs in particular encourage physical activity. Owners who walk their dogs regularly get considerably more exercise than people without dogs. This not only benefits physical health but also provides regular opportunities to spend time outdoors and interact with other people.
@@ -483,25 +255,6 @@ Despite the responsibilities involved, many pet owners say they cannot imagine l
     topic: "education",
     level: "A2",
     wordCount: 201,
-    keywords: [
-      { word: 'neurological', definition: 'relating to the brain and nervous system' },
-      { word: 'motivated', definition: 'feeling enthusiastic and driven to do something' },
-      { word: 'consistency', definition: 'doing something regularly and in the same way' },
-      { word: 'commute', definition: 'the journey you make regularly between home and work' },
-      { word: 'exchange partner', definition: 'a person from another country you talk to in order to practice each other\'s languages' },
-      { word: 'inevitable', definition: 'certain to happen and impossible to avoid' },
-      { word: 'deliberate', definition: 'done on purpose; planned and intentional' },
-      { word: 'confident', definition: 'feeling sure of yourself and your abilities' },
-      { word: 'progress', definition: 'improvement or development over time' },
-      { word: 'grammar', definition: 'the rules about how words are used in a language' },
-    ],
-    questions: [
-      { q: "What is a common belief about children and language learning?", choices: ["Children learn languages more slowly than adults", "Children learn languages more easily than adults", "Children and adults learn languages at the same speed", "Children find grammar easier but vocabulary harder"], answer: 1 },
-      { q: "What is one advantage adults have when learning a new language?", choices: ["They have more free time to study", "They can already understand grammar concepts from their native language", "They are not afraid of making mistakes", "They have better memories than children"], answer: 1 },
-      { q: "What does research suggest produces better results for adult learners?", choices: ["One long study session per week", "Fifteen minutes of daily practice", "Studying only in a formal classroom", "Watching films without subtitles from the very beginning"], answer: 1 },
-      { q: "What methods does Paulo use to learn English?", choices: ["Formal classes, a vocabulary app, watching series, and a language exchange partner", "Only formal classes twice a week", "An online course and a textbook", "Travelling to an English-speaking country"], answer: 0 },
-      { q: "What does Paulo say is the most important lesson he has learned?", choices: ["To study for at least one hour every day", "To avoid making mistakes at all costs", "Not to be afraid of making mistakes", "To find the best teacher possible"], answer: 2 },
-    ],
     text: `There is a common belief that children learn languages more easily than adults. While it is true that children have certain neurological advantages, research suggests that adults are actually capable of making very rapid progress, especially in the early stages.
 
 Adults have significant advantages that children do not. They already understand grammar concepts in their native language, they have a larger vocabulary to draw from when making connections, and they can use deliberate study strategies. Adults are also highly motivated when they choose to learn a language, which is a powerful driver of success.
@@ -520,25 +273,6 @@ He says the most important thing he has learned is not to be afraid of making mi
     topic: "weather",
     level: "A2",
     wordCount: 202,
-    keywords: [
-      { word: 'heatwave', definition: 'a period of unusually hot weather' },
-      { word: 'drought', definition: 'a long period with very little or no rain' },
-      { word: 'infrastructure', definition: 'the basic systems that a country needs, such as roads and water supplies' },
-      { word: 'evacuate', definition: 'to leave a dangerous place quickly for safety' },
-      { word: 'emissions', definition: 'gases released into the air, especially from burning fuel' },
-      { word: 'unpredictable', definition: 'not able to be forecast or expected' },
-      { word: 'flood', definition: 'a large amount of water covering an area that is usually dry' },
-      { word: 'agricultural', definition: 'relating to farming and the growing of crops or raising of animals' },
-      { word: 'wildfire', definition: 'a large fire that spreads quickly over land' },
-      { word: 'coordinated', definition: 'organized so that different parts work together effectively' },
-    ],
-    questions: [
-      { q: "What have scientists linked the increase in extreme weather events to?", choices: ["Natural climate cycles", "Global climate change caused by human activity", "Changes in ocean currents", "Increased use of air conditioning worldwide"], answer: 1 },
-      { q: "What happened in Europe in the summer of 2023?", choices: ["Heavy snowfall broke records across the continent", "Temperatures broke historical records and wildfires burned for weeks", "Flooding caused widespread damage across northern countries", "A series of powerful earthquakes affected southern Europe"], answer: 1 },
-      { q: "Why do extreme weather events affect low-income countries more severely?", choices: ["They are located in more dangerous geographical areas", "They have fewer financial resources to absorb shocks", "Their populations are larger and more vulnerable", "Their governments refuse international help"], answer: 1 },
-      { q: "According to climate scientists, what makes weather patterns more extreme?", choices: ["More frequent volcanic eruptions", "Increased solar activity", "Rising global temperatures that add energy to the atmosphere", "Deforestation near coastal areas"], answer: 2 },
-      { q: "Which of these is mentioned as a strategy for responding to extreme weather?", choices: ["Building higher walls around cities", "Reducing carbon emissions through cleaner energy sources", "Moving entire populations to safer regions", "Banning all international flights"], answer: 1 },
-    ],
     text: `In recent years, extreme weather events have become more frequent and more intense around the world. Heatwaves, floods, droughts, and powerful storms are occurring in places that historically experienced relatively mild conditions. Scientists are increasingly confident that these changes are linked to global climate change caused by human activity.
 
 In the summer of 2023, several European countries experienced temperatures that broke historical records. Wildfires burned for weeks across parts of southern Europe and North Africa. At the same time, other regions were dealing with severe flooding caused by unusually heavy rainfall.
@@ -559,25 +293,6 @@ Many experts warn that the time for gradual, comfortable change has passed. Urge
     topic: "technology",
     level: "A2",
     wordCount: 209,
-    keywords: [
-      { word: 'anxiety', definition: 'a feeling of worry and nervousness that is hard to control' },
-      { word: 'self-esteem', definition: 'the opinion you have of yourself and your own abilities' },
-      { word: 'curated', definition: 'carefully selected and presented to look its best' },
-      { word: 'validation', definition: 'the feeling of being accepted or approved of by others' },
-      { word: 'disproportionate', definition: 'too large or too small compared with what is normal' },
-      { word: 'stimulation', definition: 'activity or interest that keeps the mind active' },
-      { word: 'concentrate', definition: 'to give your full attention to one thing' },
-      { word: 'platform', definition: 'an online service used to share content and communicate' },
-      { word: 'depression', definition: 'a medical condition that makes a person feel very sad for a long time' },
-      { word: 'impression', definition: 'an idea or image of something formed in your mind' },
-    ],
-    questions: [
-      { q: "What does research increasingly associate heavy social media use with?", choices: ["Better social skills and more confidence", "Increased levels of anxiety, depression, and low self-esteem", "Higher academic performance", "Stronger relationships with family members"], answer: 1 },
-      { q: "Why can social media create unrealistic impressions of other people's lives?", choices: ["Because users always lie about their activities", "Because users tend to post only their best moments", "Because social media platforms edit photos automatically", "Because only wealthy people use social media"], answer: 1 },
-      { q: "What problem is the 'like' system associated with?", choices: ["It slows down the platform", "It encourages users to post too frequently", "It encourages users to seek validation and can make them feel rejected", "It causes arguments between users"], answer: 2 },
-      { q: "What has Grace noticed about her students in the past five years?", choices: ["They are becoming more interested in reading books", "They struggle to concentrate for long periods", "They are spending less time on social media", "They prefer face-to-face communication over digital"], answer: 1 },
-      { q: "What does Grace encourage her students to do?", choices: ["Delete all their social media accounts", "Use only one social media platform", "Take regular breaks from phones and practice activities requiring sustained attention", "Post more positive content online"], answer: 2 },
-    ],
     text: `Social media platforms have connected billions of people around the world, allowing friends and family to stay in touch regardless of distance. They have also given ordinary people the ability to share ideas, start businesses, and participate in global conversations.
 
 However, a growing body of research suggests that heavy use of social media, particularly among teenagers and young adults, is associated with increased levels of anxiety, depression, and low self-esteem. One reason is the constant exposure to carefully curated images of other people's lives. Users tend to post their best moments — holidays, achievements, social events — which creates an unrealistic impression that everyone else is living a happier and more successful life.
@@ -598,25 +313,6 @@ She encourages her students to take regular breaks from their phones and to prac
     topic: "holidays and celebrations",
     level: "A2",
     wordCount: 200,
-    keywords: [
-      { word: 'carnival', definition: 'a public celebration with music, dancing, and colourful costumes' },
-      { word: 'elaborate', definition: 'very detailed and complicated; with a lot of decoration' },
-      { word: 'infectious', definition: 'spreading quickly; used to describe enthusiasm or laughter as well as illness' },
-      { word: 'costume', definition: 'clothes worn to represent a character or for a special event' },
-      { word: 'parade', definition: 'a celebration where people walk or ride through the streets' },
-      { word: 'dazzling', definition: 'very bright and impressive; almost too beautiful to look at' },
-      { word: 'masked', definition: 'wearing a covering over the face' },
-      { word: 'tradition', definition: 'something people do regularly because they have always done it' },
-      { word: 'compete', definition: 'to try to win against others in a game or contest' },
-      { word: 'collective', definition: 'shared by or including all members of a group' },
-    ],
-    questions: [
-      { q: "With which country is carnival most famously associated?", choices: ["Italy", "Trinidad and Tobago", "Brazil", "Spain"], answer: 2 },
-      { q: "What is the Sambadrome?", choices: ["A type of Brazilian music", "A purpose-built stadium where samba schools parade", "A traditional carnival costume", "A famous square in Rio de Janeiro"], answer: 1 },
-      { q: "What is Venice's carnival famous for?", choices: ["Its enormous floats and samba music", "Its street food and live concerts", "Its elegant masked costumes dating back to medieval times", "Its fireworks and outdoor dances"], answer: 2 },
-      { q: "What music is associated with Trinidad and Tobago's carnival?", choices: ["Samba and bossa nova", "Calypso and soca", "Jazz and blues", "Reggae and dancehall"], answer: 1 },
-      { q: "What does carnival represent in all its forms?", choices: ["A time for religious reflection and prayer", "A commercial opportunity for local businesses", "A time for communities to come together through music, dance, and creativity", "A way to celebrate a country's political history"], answer: 2 },
-    ],
     text: `Carnival is one of the most celebrated festivals in the world. Although it is most famously associated with Brazil, it is actually observed in hundreds of countries across different continents, each with its own unique traditions and character.
 
 In Brazil, the most spectacular celebrations take place in Rio de Janeiro. Samba schools — large community organizations that spend the entire year preparing — compete in an enormous parade through a purpose-built stadium called the Sambadrome. The floats are elaborately decorated, the costumes are dazzling, and the music is constant and infectious.
@@ -637,25 +333,6 @@ Many people who experience carnival for the first time say it is unlike anything
     topic: "travel",
     level: "A2",
     wordCount: 203,
-    keywords: [
-      { word: 'urban', definition: 'relating to a town or city, not the countryside' },
-      { word: 'innovation', definition: 'a new idea or method that is better than the old one' },
-      { word: 'sensor', definition: 'a device that detects and measures information from the environment' },
-      { word: 'congestion', definition: 'when roads are so full of traffic that vehicles move very slowly' },
-      { word: 'smart', definition: 'using technology and data to make systems more efficient and responsive' },
-      { word: 'infrastructure', definition: 'the basic systems a city needs, such as roads, water, and power' },
-      { word: 'resident', definition: 'a person who lives in a particular place' },
-      { word: 'dependency', definition: 'needing something or someone too much' },
-      { word: 'liveable', definition: 'pleasant and comfortable to live in' },
-      { word: 'efficient', definition: 'doing a task well without wasting time or energy' },
-    ],
-    questions: [
-      { q: "What percentage of all people are estimated to live in cities by 2050?", choices: ["About fifty percent", "About sixty percent", "Nearly seventy percent", "Nearly ninety percent"], answer: 2 },
-      { q: "What do smart cities use to improve residents' lives?", choices: ["Traditional building methods and paper-based systems", "Technology and sensors to collect data and make real-time adjustments", "Large numbers of government officials to manage services", "Private companies to control all public services"], answer: 1 },
-      { q: "What is the idea behind 'walkable neighborhoods'?", choices: ["People should walk everywhere instead of using any transport", "Residents can access schools, shops, and workplaces within a short walk or cycle", "All streets should be pedestrianized", "Cars should be completely banned from city centers"], answer: 1 },
-      { q: "What benefits do trees and parks in cities provide?", choices: ["They attract more tourists and increase property prices", "They reduce temperatures, improve air quality, and provide relaxation spaces", "They produce food and clean water for residents", "They replace the need for air conditioning in all buildings"], answer: 1 },
-      { q: "What does Elena, the urban planner, believe the most livable future cities will do?", choices: ["Build more highways and parking facilities", "Focus on attracting major international businesses", "Put people before cars by investing in public spaces and transport", "Increase the height of buildings to fit more residents"], answer: 2 },
-    ],
     text: `Urban populations around the world are growing rapidly. By 2050, it is estimated that nearly seventy percent of all people will live in cities. This creates significant challenges around housing, transport, energy, and the environment — but it also creates exciting opportunities for innovation.
 
 The concept of the "smart city" is already being tested in various places. Smart cities use technology to improve the lives of residents and make urban systems more efficient. Sensors placed around the city collect data on traffic, air quality, energy use, and waste. This information is then used to make real-time adjustments that reduce congestion, pollution, and costs.
@@ -674,25 +351,6 @@ Elena, who works as an urban planner, says the most livable cities of the future
     topic: "sports",
     level: "A2",
     wordCount: 197,
-    keywords: [
-      { word: 'spontaneous', definition: 'happening naturally without being planned' },
-      { word: 'intrinsically', definition: 'in a way that comes from inside, not from outside pressure' },
-      { word: 'neural pathway', definition: 'a connection in the brain through which signals travel' },
-      { word: 'leisure', definition: 'free time when you are not working' },
-      { word: 'creativity', definition: 'the ability to produce new and original ideas or things' },
-      { word: 'coordination', definition: 'the ability to control your body\'s movements smoothly' },
-      { word: 'spontaneous', definition: 'happening naturally without being planned in advance' },
-      { word: 'stress', definition: 'a feeling of worry and pressure caused by difficult situations' },
-      { word: 'competitive', definition: 'involving competition; trying hard to win' },
-      { word: 'retirement', definition: 'the time in life when a person stops working permanently' },
-    ],
-    questions: [
-      { q: "What do children gain through play according to the text?", choices: ["Academic knowledge and reading skills", "Social skills, creativity, and physical coordination", "Discipline, obedience, and patience", "Financial awareness and logical thinking"], answer: 1 },
-      { q: "What is the key characteristic of 'play' according to the text?", choices: ["It always involves other people", "It requires specific equipment or a space", "It is intrinsically motivated — done purely for enjoyment", "It must have a competitive element"], answer: 2 },
-      { q: "What does research suggest about adults who engage in regular play?", choices: ["They earn more money but work longer hours", "They have lower stress, better relationships, and higher creativity", "They are less focused at work but happier at home", "They need less sleep than people who don't play"], answer: 1 },
-      { q: "When does Carlos play five-a-side football?", choices: ["Every Saturday morning", "Every Sunday afternoon", "Every Thursday evening", "Every Wednesday lunchtime"], answer: 2 },
-      { q: "What does Carlos believe society places too much value on?", choices: ["Sport and physical fitness", "Productivity, and too little on leisure and play", "Technology and social media", "Work and family obligations"], answer: 1 },
-    ],
     text: `In childhood, play is recognized as essential for development. Children learn social skills, develop creativity, and build physical coordination through playing. But somewhere in the transition to adulthood, most people stop playing altogether. This, according to many psychologists and health experts, is a serious mistake.
 
 Play for adults does not have to mean competitive sports, though it can. It includes any activity done purely for enjoyment and without a specific goal or outcome — a spontaneous game, an improvised dance, building something just for fun. The key characteristic of play is that it is intrinsically motivated, meaning you do it because you enjoy it, not because you have to.
@@ -711,25 +369,6 @@ He believes that society places too much value on productivity and too little on
     topic: "food",
     level: "A2",
     wordCount: 207,
-    keywords: [
-      { word: 'consumption', definition: 'the act of eating, drinking, or using something' },
-      { word: 'greenhouse gas', definition: 'a gas like carbon dioxide that traps heat in the atmosphere' },
-      { word: 'livestock', definition: 'animals kept on a farm, such as cows, pigs, and chickens' },
-      { word: 'legume', definition: 'a plant whose seeds are eaten, such as beans, lentils, or chickpeas' },
-      { word: 'welfare', definition: 'the health and happiness of a person or animal' },
-      { word: 'plant-based', definition: 'made from plants rather than meat or animal products' },
-      { word: 'sceptical', definition: 'not sure that something is true or good; having doubts' },
-      { word: 'processed', definition: 'food that has been changed from its natural state by adding chemicals' },
-      { word: 'emissions', definition: 'gases released into the air, especially from burning fuel' },
-      { word: 'technique', definition: 'a particular way of doing something that requires skill' },
-    ],
-    questions: [
-      { q: "Why are younger generations increasingly choosing to reduce meat consumption?", choices: ["Meat has become too expensive for most families", "For reasons related to health, the environment, and animal welfare", "Vegetarian food has become tastier in recent years", "Governments have introduced taxes on meat products"], answer: 1 },
-      { q: "What environmental problem is associated with red meat production?", choices: ["It produces large amounts of noise pollution", "It uses too much electricity", "It generates far more greenhouse gas emissions than vegetables", "It contaminates drinking water in all countries"], answer: 2 },
-      { q: "What health risk is associated with diets high in processed and red meat?", choices: ["A higher risk of certain diseases including heart disease", "A deficiency of vitamins A and C", "Lower energy levels throughout the day", "Increased risk of dental problems"], answer: 0 },
-      { q: "How are many people who reduce meat consumption described in the text?", choices: ["They are all becoming vegan", "They eat meat less often and focus on where it comes from", "They have completely stopped eating animal products", "They are replacing all meat with fish"], answer: 1 },
-      { q: "What did Jack discover after cooking more plant-based meals?", choices: ["It was much more expensive than he expected", "Vegetables can be genuinely exciting when prepared well", "It was very difficult to find interesting plant-based recipes", "His friends and family refused to try the food"], answer: 1 },
-    ],
     text: `In many parts of the world, meat has traditionally been considered the centerpiece of a meal. However, attitudes toward meat consumption are changing, particularly among younger generations. A growing number of people are choosing to reduce or eliminate meat from their diets for reasons related to health, the environment, and animal welfare.
 
 From an environmental perspective, the arguments are significant. The production of red meat, especially beef, generates far more greenhouse gas emissions per kilogram than the production of vegetables, legumes, or grains. Livestock farming also uses large amounts of land and water.
@@ -748,25 +387,6 @@ Jack started cooking plant-based meals twice a week about a year ago. He admits 
     topic: "nature",
     level: "A2",
     wordCount: 208,
-    keywords: [
-      { word: 'linear', definition: 'going in a straight line from start to end, without looping back' },
-      { word: 'circular economy', definition: 'an economic system where products and materials are reused instead of thrown away' },
-      { word: 'refurbish', definition: 'to clean and repair something to make it look or work like new' },
-      { word: 'disassemble', definition: 'to take something apart into its separate pieces' },
-      { word: 'raw material', definition: 'a natural substance used to make products, such as wood or metal' },
-      { word: 'sustainable', definition: 'able to continue without damaging the environment' },
-      { word: 'resilient', definition: 'able to recover quickly from difficulties' },
-      { word: 'transition', definition: 'the process of changing from one state or system to another' },
-      { word: 'consumer', definition: 'a person who buys and uses goods or services' },
-      { word: 'regulation', definition: 'an official rule made by a government or authority' },
-    ],
-    questions: [
-      { q: "How is the current economy described in the text?", choices: ["Circular", "Digital", "Linear", "Sustainable"], answer: 2 },
-      { q: "What is the main aim of a circular economy?", choices: ["To produce as many goods as possible at the lowest cost", "To keep materials and products in use for as long as possible", "To reduce the number of products available in shops", "To move all production to developing countries"], answer: 1 },
-      { q: "Which of these is an example of a company adopting circular principles?", choices: ["A company that increases its production every year", "A company that offers repair services and take-back programs for old garments", "A company that uses cheaper materials to reduce costs", "A company that opens new factories in different countries"], answer: 1 },
-      { q: "What is one economic benefit of circular business models?", choices: ["They always produce higher profits immediately", "They attract more government subsidies", "They reduce costs by using fewer raw materials", "They allow companies to pay lower wages"], answer: 2 },
-      { q: "What does the text say is required for a transition to a circular economy?", choices: ["Only changes in consumer behavior", "Only government regulation and new laws", "Only innovation in product design", "Changes at every level: design, business, consumer behavior, and government"], answer: 3 },
-    ],
     text: `The way our economy currently works is often described as "linear." We extract raw materials from the earth, use them to make products, and then throw those products away when we no longer need them. This linear model generates enormous amounts of waste and puts constant pressure on natural resources.
 
 An alternative model, called the circular economy, is attracting increasing interest from businesses, governments, and environmental organizations. In a circular economy, the aim is to keep materials and products in use for as long as possible. Rather than disposing of a product at the end of its life, it is repaired, refurbished, remanufactured, or recycled so that its materials can be used again.
