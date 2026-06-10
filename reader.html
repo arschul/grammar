@@ -2918,8 +2918,18 @@ function getQuestions(textId)  { return _qMap[textId]   || []; }
 // ═══════════════════════════════════════════════════════════════════════
 
 const BASE_URL   = './';
-const FILE_MAP   = { A1: BASE_URL+'texts-a1.js', A2: BASE_URL+'texts-a2.js', B1: BASE_URL+'texts-b1.js', B2: BASE_URL+'texts-b2.js' };
-const GLOBAL_MAP = { A1: 'A1Texts', A2: 'A2Texts', B1: 'B1Texts', B2: 'B2Texts' };
+const FILE_MAP = {
+  A1: [BASE_URL+'texts-a1.js', BASE_URL+'texts-a1-new.js'],
+  A2: [BASE_URL+'texts-a2.js', BASE_URL+'texts-a2-new.js'],
+  B1: [BASE_URL+'texts-b1.js', BASE_URL+'texts-b1-new.js'],
+  B2: [BASE_URL+'texts-b2.js', BASE_URL+'texts-b2-new.js'],
+};
+const GLOBAL_MAP = {
+  A1: ['A1Texts', 'A1TextsNew'],
+  A2: ['A2Texts', 'A2TextsNew'],
+  B1: ['B1Texts', 'B1TextsNew'],
+  B2: ['B2Texts', 'B2TextsNew'],
+};
 
 const state = {
   level: 'A1', topic: null, allTexts: [], filtered: [], current: null,
@@ -2965,12 +2975,15 @@ async function loadScript(url) {
 }
 async function ensureLevel(level) {
   if (state.loaded[level]) return;
-  try { await loadScript(FILE_MAP[level]); state.loaded[level] = true; }
-  catch(e) { console.warn('Could not load', level, e); state.loaded[level] = false; }
+  const files   = FILE_MAP[level];
+  const globals = GLOBAL_MAP[level];
+  await Promise.all(files.map(url =>
+    loadScript(url).catch(e => console.warn('Could not load', url, e))
+  ));
+  state.loaded[level] = true;
 }
 function getTextsForLevel(level) {
-  const g = window[GLOBAL_MAP[level]];
-  return g ? g.texts : [];
+  return GLOBAL_MAP[level].flatMap(g => (window[g] ? window[g].texts : []));
 }
 
 // ── LEVEL BUTTONS ─────────────────────────────────────────────────────────────
