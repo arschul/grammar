@@ -6094,6 +6094,19 @@ $('compRetryBtn').addEventListener('click', () => { if (state.current) buildQues
 
 // ── Shared MCQ renderer ───────────────────────────────────────────────────────
 const LETTERS = ['A','B','C','D'];
+function shuffleChoices(q) {
+  // Returns { choices, answer } with choices in a new random order
+  const indexed = q.choices.map((text, i) => ({ text, correct: i === q.answer }));
+  for (let i = indexed.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
+  }
+  return {
+    choices: indexed.map(c => c.text),
+    answer:  indexed.findIndex(c => c.correct),
+  };
+}
+
 function renderMcqSet(gridId, badgeId, resultsId, scoreId, labelId, questions, retryFn, label) {
   const grid = $(gridId), badge = $(badgeId), results = $(resultsId);
   grid.innerHTML = '';
@@ -6101,23 +6114,24 @@ function renderMcqSet(gridId, badgeId, resultsId, scoreId, labelId, questions, r
   badge.classList.remove('visible');
   let answered = 0, correct = 0;
   questions.forEach((q, qi) => {
+    const { choices, answer } = shuffleChoices(q);   // shuffle on every render
     const card = document.createElement('div');
     card.className = 'mcq-card';
     card.innerHTML = `<div class="mcq-num">${label} ${qi+1} of ${questions.length}</div><div class="mcq-q">${q.q}</div><div class="mcq-choices" id="${gridId}_c${qi}"></div><div class="mcq-feedback" id="${gridId}_f${qi}"></div>`;
     grid.appendChild(card);
     const choicesEl = card.querySelector(`#${gridId}_c${qi}`);
     const feedbackEl= card.querySelector(`#${gridId}_f${qi}`);
-    q.choices.forEach((choice, ci) => {
+    choices.forEach((choice, ci) => {
       const btn = document.createElement('button');
       btn.className = 'mcq-choice';
       btn.innerHTML = `<span class="mcq-letter">${LETTERS[ci]}</span><span>${choice}</span>`;
       btn.addEventListener('click', () => {
         choicesEl.querySelectorAll('.mcq-choice').forEach(b => b.disabled = true);
-        const ok = ci === q.answer;
+        const ok = ci === answer;
         answered++; if (ok) correct++;
         btn.classList.add(ok ? 'correct' : 'wrong');
-        if (!ok) choicesEl.querySelectorAll('.mcq-choice')[q.answer].classList.add('reveal-correct');
-        feedbackEl.textContent = ok ? '✓ Correct!' : `✗ The correct answer is ${LETTERS[q.answer]}.`;
+        if (!ok) choicesEl.querySelectorAll('.mcq-choice')[answer].classList.add('reveal-correct');
+        feedbackEl.textContent = ok ? '✓ Correct!' : `✗ The correct answer is ${LETTERS[answer]}.`;
         feedbackEl.className = `mcq-feedback visible ${ok ? 'ok' : 'err'}`;
         badge.textContent = `${correct} / ${answered} correct`;
         badge.classList.add('visible');
