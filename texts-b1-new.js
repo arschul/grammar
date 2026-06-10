@@ -82,7 +82,7 @@ The practical implication of this approach is that targeted improvement of physi
 
 Research consistently shows that poverty and inequality are among the strongest predictors of urban crime rates. When large numbers of people lack access to secure employment, quality education, and economic opportunity, crime becomes a more rational-seeming option for some. Addressing crime therefore requires not only policing and environmental design but also investment in education, social services, and economic development in the communities most affected.
 
-Elena, a social worker in an urban neighborhood, says the most effective interventions she has seen are those that address multiple factors simultaneously: improving public spaces, providing youth programs, building trust between police and communities, and creating economic opportunities. "There is no single solution," she says. "Crime is a social problem, and it requires social solutions."``
+Elena, a social worker in an urban neighborhood, says the most effective interventions she has seen are those that address multiple factors simultaneously: improving public spaces, providing youth programs, building trust between police and communities, and creating economic opportunities. "There is no single solution," she says. "Crime is a social problem, and it requires social solutions."`
   },
   {
     id: 127, title: "The Science of Sleep", topic: "health", level: "B1", wordCount: 304,
