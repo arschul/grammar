@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Past Passive – GrammarHub</title>
+<title>Expressing Abilities – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
   .nav-logo span{color:var(--accent2);}
-  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:100px;padding:0.3rem 0.9rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;transition:all 0.2s;}
-  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
   .topic-header{margin-bottom:3rem;}
   .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
@@ -88,148 +90,141 @@
   .score-badge span{color:var(--accent);font-weight:600;}
   .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
   .back-home:hover{color:var(--accent);}
-
-  /* Light mode */
-  body.light{--bg:#f7f5f0;--surface:#ffffff;--surface2:#edeae3;--accent:#b8960c;--accent2:#c9601a;--text:#1a1915;--text-muted:#6b6760;--border:#d8d4cc;}
-  body.light .gap-input{color:var(--text);}
-  body.light .open-answer-area{color:var(--text);}
-
   @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
-  <button class="theme-toggle" onclick="toggleTheme()">☀ Light</button>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
       <span class="cefr-badge">B1</span>
-      <div class="topic-label">Passive Voice</div>
+      <div class="topic-label">Modals &amp; Expressions</div>
     </div>
-    <h1>Simple Past Passive</h1>
+    <h1>Expressing Abilities</h1>
   </div>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'spp-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'spp-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'ab-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'ab-activities')">Activities</button>
   </div>
+  <div id="ab-explanation" class="tab-content active">
 
-  <!-- EXPLANATION TAB -->
-  <div id="spp-explanation" class="tab-content active">
     <div class="explanation-section">
-      <h2>What Is the Simple Past Passive?</h2>
-      <p>In an active sentence, the subject does the action. In a passive sentence, the subject <em>receives</em> the action. We use the simple past passive when we want to talk about something that happened in the past and we want to focus on what happened — not on who did it.</p>
+      <h2>Five Ways to Express Ability</h2>
+      <p>English has several ways to talk about what someone can or cannot do. Each one has a slightly different meaning or use.</p>
       <div class="formula-box">
-        <strong>Subject + was / were + past participle</strong><br><br>
-        <em>The window <strong>was broken</strong>.</em> &nbsp;|&nbsp; <em>The letters <strong>were sent</strong> yesterday.</em>
+        <strong>can</strong> + base verb — general ability in the present<br>
+        <strong>could</strong> + base verb — general ability in the past<br>
+        <strong>be able to</strong> + base verb — general ability in the present (more formal)<br>
+        <strong>manage to</strong> + base verb — achieved something despite difficulty<br>
+        <strong>succeed in</strong> + verb+ing — achieved something despite difficulty
       </div>
     </div>
-
     <div class="explanation-section">
-      <h2>When Do We Use It?</h2>
-      <p>Use the simple past passive in three main situations:</p>
+      <h2>Can and Could</h2>
+      <p><em>Can</em> is used for general abilities in the present. <em>Could</em> is used for general abilities in the past — things you were able to do at some point in your life, but not necessarily now.</p>
       <div class="examples-grid">
-        <div class="example-item">We want to <strong>focus on what happened</strong>, not on who did it.<br><em>The phone <strong>was found</strong> on the bus.</em></div>
-        <div class="example-item">We <strong>don't know</strong> who did something.<br><em>My bag <strong>was stolen</strong> at the station.</em></div>
-        <div class="example-item">It is <strong>unimportant</strong> who did something.<br><em>The pyramids <strong>were built</strong> thousands of years ago.</em></div>
+        <div class="example-item"><em>She <strong>can</strong> speak three languages.</em> (present ability)</div>
+        <div class="example-item"><em>I <strong>can't</strong> swim very well.</em> (lack of ability)</div>
+        <div class="example-item"><em>When I was six, I <strong>could</strong> already read.</em> (past ability)</div>
+        <div class="example-item"><em>He <strong>couldn't</strong> ride a bike until he was ten.</em> (past lack of ability)</div>
       </div>
     </div>
-
     <div class="explanation-section">
-      <h2>Positive, Negative and Question Forms</h2>
-      <div class="formula-box">
-        <strong>Positive:</strong> The cake <em>was made</em> by my mum.<br>
-        <strong>Negative:</strong> The exam <em>wasn't cancelled</em>.<br>
-        <strong>Question:</strong> <em>Was</em> the letter <em>delivered</em> on time?<br>
-        <strong>Question (plural):</strong> <em>Were</em> the students <em>told</em> about the change?
-      </div>
-    </div>
-
-    <div class="explanation-section">
-      <h2>Using "by" to Mention the Agent</h2>
-      <p>If the person who did the action is important or interesting, we can add <em>by</em> + agent at the end of the sentence.</p>
+      <h2>Be Able To</h2>
+      <p><em>Be able to</em> has the same meaning as <em>can</em> for general present ability, but it is more formal. It is also useful in tenses where <em>can</em> cannot be used.</p>
       <div class="examples-grid">
-        <div class="example-item"><em>The painting <strong>was created</strong> by Da Vinci.</em></div>
-        <div class="example-item"><em>The new school <strong>was opened</strong> by the mayor.</em></div>
-        <div class="example-item"><em>The song <strong>was written</strong> by a teenager.</em></div>
+        <div class="example-item"><em>She <strong>is able to</strong> work under pressure.</em> (= she can work under pressure)</div>
+        <div class="example-item"><em>Are you <strong>able to</strong> come on Friday?</em></div>
+        <div class="example-item"><em>I <strong>wasn't able to</strong> finish the test in time.</em></div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Manage To and Succeed In</h2>
+      <p>Both expressions mean that someone achieved something that was difficult. They are not used for general abilities — only for specific situations where effort was needed.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>We <strong>managed to</strong> find a taxi at midnight.</em> (it was hard, but we did it)</div>
+        <div class="example-item"><em>She <strong>managed to</strong> finish the report before the deadline.</em></div>
+        <div class="example-item"><em>He <strong>succeeded in</strong> passing the exam after three attempts.</em></div>
+        <div class="example-item"><em>They <strong>succeeded in</strong> fixing the problem before the show started.</em></div>
       </div>
       <div class="note-box">
         <strong>⚠ Common mistakes:</strong><br>
-        ✗ <em>The letter was sended yesterday.</em> → ✓ <em>The letter <strong>was sent</strong> yesterday.</em> (use the past participle, not the simple past)<br>
-        ✗ <em>The cake were eaten.</em> → ✓ <em>The cake <strong>was</strong> eaten.</em> (singular subject → <em>was</em>)<br>
-        ✗ <em>The films was enjoyed by everyone.</em> → ✓ <em>The films <strong>were</strong> enjoyed by everyone.</em> (plural subject → <em>were</em>)
+        ✗ <em>She succeeded to pass the exam.</em> → ✓ <em>She succeeded in passing the exam.</em> (succeed in + -ing)<br>
+        ✗ <em>I managed passing the test.</em> → ✓ <em>I managed to pass the test.</em> (manage to + base verb)<br>
+        ✗ <em>When I was young, I can swim very fast.</em> → ✓ <em>When I was young, I could swim very fast.</em> (past ability = could)
       </div>
     </div>
   </div>
-
-  <!-- ACTIVITIES TAB -->
-  <div id="spp-activities" class="tab-content">
+  <div id="ab-activities" class="tab-content">
     <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'spp-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'spp-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'spp-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'spp-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'spp-act5')">5. Open Questions</button>
+      <button class="act-btn active" onclick="switchActivity(this,'ab-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'ab-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'ab-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'ab-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'ab-act5')">5. Open Questions</button>
     </div>
-
-    <div id="spp-act1" class="activity-section active">
+    <div id="ab-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
       <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
-      <div class="score-badge">Matched: <span id="spp-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="spp-left"></div><div class="match-col" id="spp-right"></div></div>
+      <div class="score-badge">Matched: <span id="ab-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="ab-left"></div><div class="match-col" id="ab-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-
-    <div id="spp-act2" class="activity-section">
+    <div id="ab-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence using the simple past passive form of the verb in brackets.</div>
-      <div id="spp-fill-exercises"></div>
-      <div><button class="check-btn" onclick="checkFill('spp-fill-exercises','spp-fill-feedback',FILL)">Check Answers</button>
-      <button class="reset-btn" onclick="buildFillHTML('spp-fill-exercises',FILL);document.getElementById('spp-fill-feedback').classList.remove('show')">↺ Reset</button></div>
-      <div id="spp-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence with the correct expression of ability. Use the word(s) in brackets.</div>
+      <div id="ab-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('ab-fill-exercises','ab-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('ab-fill-exercises',FILL);document.getElementById('ab-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="ab-fill-feedback" class="feedback"></div>
     </div>
-
-    <div id="spp-act3" class="activity-section">
+    <div id="ab-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
       <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
-      <div id="spp-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('spp-mistake-exercises','spp-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('spp-mistake-exercises',MISTAKE);document.getElementById('spp-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="spp-mistake-feedback" class="feedback"></div>
+      <div id="ab-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('ab-mistake-exercises','ab-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('ab-mistake-exercises',MISTAKE);document.getElementById('ab-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ab-mistake-feedback" class="feedback"></div>
     </div>
-
-    <div id="spp-act4" class="activity-section">
+    <div id="ab-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="spp-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('spp-order-exercises','spp-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('spp-order-exercises',ORDER);document.getElementById('spp-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="spp-order-feedback" class="feedback"></div>
+      <div id="ab-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('ab-order-exercises','ab-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('ab-order-exercises',ORDER);document.getElementById('ab-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ab-order-feedback" class="feedback"></div>
     </div>
-
-    <div id="spp-act5" class="activity-section">
+    <div id="ab-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own sentences using the simple past passive. Then click "Show Model Answer" to compare.</div>
-      <div id="spp-open-exercises"></div>
+      <div class="activity-desc">Write your own answers using the five expressions of ability. Then click "Show Model Answer" to compare.</div>
+      <div id="ab-open-exercises"></div>
     </div>
   </div>
 </div>
-
 <script>
-// ── Theme ──────────────────────────────────────────────────────────────
 function toggleTheme(){
-  const isLight=document.body.classList.toggle('light');
-  document.querySelector('.theme-toggle').textContent=isLight?'🌙 Dark':'☀ Light';
-  localStorage.setItem('gh-theme',isLight?'light':'dark');
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
 }
 (function(){
-  const t=localStorage.getItem('gh-theme');
-  if(t==='light'){document.body.classList.add('light');document.addEventListener('DOMContentLoaded',()=>{const b=document.querySelector('.theme-toggle');if(b)b.textContent='🌙 Dark';});}
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
 })();
 
-// ── Tab / Activity Switchers ───────────────────────────────────────────
 function switchTab(btn,contentId){
   const p=btn.closest('.topic-page');
   p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -244,8 +239,6 @@ function switchActivity(btn,contentId){
   p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
   document.getElementById(contentId).classList.add('active');
 }
-
-// ── Match ──────────────────────────────────────────────────────────────
 function initMatch(prefix,data){
   const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
   const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
@@ -279,14 +272,12 @@ function initMatch(prefix,data){
   }
   lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
 }
-
-// ── Fill ───────────────────────────────────────────────────────────────
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>`;
     c.appendChild(d);
   });
 }
@@ -295,16 +286,13 @@ function checkFill(cid,fid,data){
   inputs.forEach(inp=>{
     const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
     const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
-    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
-    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
-
-// ── Mistake ────────────────────────────────────────────────────────────
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -327,8 +315,6 @@ function checkMistake(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
 }
-
-// ── Word Order ─────────────────────────────────────────────────────────
 const orderState={};
 function buildOrderHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
@@ -366,8 +352,6 @@ function checkOrder(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
-
-// ── Open ───────────────────────────────────────────────────────────────
 function buildOpenHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -384,70 +368,53 @@ function toggleModel(btn){
   btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
 }
 
-// ── DATA ───────────────────────────────────────────────────────────────
+
+
+
 const MATCH = [
-  {left:"1. The Eiffel Tower was designed",        right:"a. by the engineer Gustave Eiffel."},
-  {left:"2. The Great Wall of China was built",    right:"b. by thousands of workers."},
-  {left:"3. The famous painting was stolen",       right:"c. and was never found."},
-  {left:"4. The new hospital was opened",          right:"d. by the president last year."},
-  {left:"5. Two windows were broken in the storm", right:"e. but nobody was hurt."}
+  {left:"1. She can play the piano beautifully,", right:"a. but she couldn't read music when she started."},
+  {left:"2. After hours of trying, he managed to", right:"b. fix the computer before the presentation."},
+  {left:"3. I wasn't able to sleep last night", right:"c. because it was so hot in the room."},
+  {left:"4. They succeeded in finishing", right:"d. the project on time despite all the problems."},
+  {left:"5. Are you able to drive?", right:"e. Yes, but I couldn't drive at all two years ago."}
 ];
-
 const FILL = [
-  {sentence:"The car _____ (repair) by a mechanic yesterday.", answer:"was repaired", explanation:"'The car was repaired' — singular subject, so use 'was' + past participle of 'repair'."},
-  {sentence:"All the tickets _____ (sell) before midday.", answer:"were sold", explanation:"'All the tickets were sold' — plural subject, so use 'were' + past participle of 'sell'."},
-  {sentence:"The letter _____ (not / send) on time.", answer:"wasn't sent", alt:["was not sent"], explanation:"'The letter wasn't sent' — negative: 'was not' + past participle."},
-  {sentence:"_____ the report _____ (finish) before the meeting?", answer:"Was / finished", alt:["was / finished","Was/finished","was/finished"], explanation:"'Was the report finished?' — question form: 'Was' + subject + past participle."},
-  {sentence:"Three students _____ (choose) to represent the school.", answer:"were chosen", explanation:"'Three students were chosen' — plural subject, so use 'were' + past participle of 'choose'."}
+  {sentence:"My little sister _____ (can) already read and she is only four years old.", answer:"can"},
+  {sentence:"We _____ (manage to) get tickets for the concert even though it was sold out.", answer:"managed to"},
+  {sentence:"He _____ (could) run very fast when he was at school, but not anymore.", answer:"could"},
+  {sentence:"After a lot of hard work, she _____ (succeed in) getting the job she wanted.", answer:"succeeded in"},
+  {sentence:"I'm not _____ (be able to) come to the meeting on Monday — I have another appointment.", answer:"able to"}
 ];
-
 const MISTAKE = [
-  {sentence:"The homework was gave back by the teacher.", options:["The homework","was gave back","by the teacher."], correct:1, explanation:"Use the past participle: 'was given back', not 'was gave back'."},
-  {sentence:"The windows were broke during the storm.", options:["The windows","were broke","during the storm."], correct:1, explanation:"The past participle of 'break' is 'broken': 'were broken'."},
-  {sentence:"The emails was sent early in the morning.", options:["The emails","was sent","early in the morning."], correct:1, explanation:"'Emails' is plural, so use 'were': 'The emails were sent'."},
-  {sentence:"The trophy was win by a young student.", options:["The trophy was","win by","a young student."], correct:1, explanation:"Use the past participle: 'won', not 'win': 'was won by'."},
-  {sentence:"Was the package delivered by the postman yesterday?", options:["Was the package","delivered","by the postman yesterday?"], correct:2, explanation:"Actually this sentence is correct — 'by the postman' is the agent and 'delivered' is the right past participle. Wait — let me rephrase: Were the packages delivered by the postman yesterday is correct; the original has a different issue. The mistake is none — see replacement below."}
+  {sentence:"He studied really hard for months and then he succeeded to pass all his exams.", options:["He studied really hard for months","and then he succeeded to pass","all his exams."], correct:1, explanation:"'Succeed' is always followed by 'in' + -ing form: 'he succeeded in passing all his exams.'"},
+  {sentence:"When she was a child, she can swim across the whole pool.", options:["When she was a child,","she can swim","across the whole pool."], correct:1, explanation:"For past abilities, use 'could': 'she could swim across the whole pool.'"},
+  {sentence:"After three hours of hard work, they finally managed to completing the task.", options:["After three hours of hard work,","they finally managed to","completing the task."], correct:2, explanation:"'Manage to' is followed by the base verb, not -ing: 'they managed to complete the task.'"},
+  {sentence:"My grandfather could speaks five languages and he travelled all over the world.", options:["My grandfather could speaks","five languages","and he travelled all over the world."], correct:0, explanation:"After 'could', use the base form: 'My grandfather could speak five languages.'"},
+  {sentence:"We worked on it all afternoon but in the end we weren't able finish it before dinner.", options:["We worked on it all afternoon","but in the end we weren't able finish it","before dinner."], correct:1, explanation:"'Be able to' needs 'to' before the verb: 'we weren't able to finish it.'"}
 ];
-
-// Replace last mistake item with a clearly incorrect one
-MISTAKE[4] = {
-  sentence:"The concert were enjoyed by everyone in the audience.",
-  options:["The concert","were enjoyed","by everyone in the audience."],
-  correct:1,
-  explanation:"'Concert' is singular, so use 'was': 'The concert was enjoyed by everyone.'"
-};
-
 const ORDER = [
-  {words:["built","The","was","by","bridge","engineers.","local"], answer:"The bridge was built by local engineers."},
-  {words:["wasn't","The","on","match","broadcast","TV."], answer:"The match wasn't broadcast on TV."},
-  {words:["stolen","Was","museum?","the","from","painting","the"], answer:"Was the painting stolen from the museum?"},
-  {words:["the","sent","were","All","invitations","week.","last"], answer:"All the invitations were sent last week."},
-  {words:["the","The","president.","school","opened","new","was","by"], answer:"The new school was opened by the president."}
+  {words:["the","She","fix","to","managed","problem."], answer:"She managed to fix the problem."},
+  {words:["could","He","really","when","fast","run","was","young.","he"], answer:"He could run really fast when he was young."},
+  {words:["in","They","the","succeeded","winning","competition."], answer:"They succeeded in winning the competition."},
+  {words:["speak","Can","any","you","other","languages?"], answer:"Can you speak any other languages?"},
+  {words:["able","I","to","finish","the","test","wasn't","in","time."], answer:"I wasn't able to finish the test in time."}
 ];
-
 const OPEN = [
-  {question:"Write two sentences about things that were invented or discovered in the past. Use 'was invented / was discovered'.",
-   model:"The telephone was invented by Alexander Graham Bell. America was discovered by Christopher Columbus in 1492."},
-  {question:"Write two sentences about things that happened in your school or city recently. Use the simple past passive.",
-   model:"A new sports court was built near our school last year. The old library was renovated and reopened in March."},
-  {question:"Write two negative sentences using the simple past passive.",
-   model:"The problem wasn't solved during the meeting. The students weren't told about the change in schedule."},
-  {question:"Write two questions using the simple past passive.",
-   model:"Was the film directed by the same person? Were all the students given the results?"},
-  {question:"Think of a famous event from history. Write three sentences about it using the simple past passive.",
-   model:"The Berlin Wall was built in 1961. It was divided into sections guarded by soldiers. Finally, it was torn down in 1989."}
+  {question:"Write two sentences about things you can do well and one thing you can't do.", model:"I can speak two languages and I can cook quite well. I can't draw at all — my pictures always look terrible."},
+  {question:"Write two sentences about things you could or couldn't do when you were younger.", model:"When I was little, I could run really fast. I couldn't ride a bike until I was eight, but after that I went everywhere on it."},
+  {question:"Think of something difficult you achieved. Write a sentence using 'managed to' and one using 'succeeded in'.", model:"Last year I managed to finish a 10km race even though I hadn't trained much. I also succeeded in learning enough French to have a basic conversation on my holiday."},
+  {question:"Write two sentences using 'be able to' — one positive and one negative.", model:"My sister is able to work very long hours without getting tired. I'm not able to do that — I need at least eight hours of sleep."},
+  {question:"Write a short paragraph (3–4 sentences) about a skill you have or want to develop. Use at least two different ability expressions.", model:"I can play the guitar, but I'm not able to read music very well. When I was younger, I could only play a few chords. Last month I managed to learn a full song for the first time, and I succeeded in playing it at a family dinner."}
 ];
-
-// ── Init ───────────────────────────────────────────────────────────────
 function init(){
-  initMatch('spp', MATCH);
-  buildFillHTML('spp-fill-exercises', FILL);
-  document.getElementById('spp-fill-feedback').classList.remove('show');
-  buildMistakeHTML('spp-mistake-exercises', MISTAKE);
-  document.getElementById('spp-mistake-feedback').classList.remove('show');
-  buildOrderHTML('spp-order-exercises', ORDER);
-  document.getElementById('spp-order-feedback').classList.remove('show');
-  buildOpenHTML('spp-open-exercises', OPEN);
+  initMatch('ab', MATCH);
+  buildFillHTML('ab-fill-exercises', FILL);
+  document.getElementById('ab-fill-feedback').classList.remove('show');
+  buildMistakeHTML('ab-mistake-exercises', MISTAKE);
+  document.getElementById('ab-mistake-feedback').classList.remove('show');
+  buildOrderHTML('ab-order-exercises', ORDER);
+  document.getElementById('ab-order-feedback').classList.remove('show');
+  buildOpenHTML('ab-open-exercises', OPEN);
 }
 window.addEventListener('DOMContentLoaded', init);
 </script>

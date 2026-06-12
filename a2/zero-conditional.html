@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Present: Do / Does – GrammarHub</title>
+<title>Zero Conditional – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
@@ -95,110 +95,93 @@
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
-      <span class="cefr-badge">A1</span>
-      <div class="topic-label">Present Tenses</div>
+      <span class="cefr-badge">A2</span>
+      <div class="topic-label">Conditionals</div>
     </div>
-    <h1>Simple Present: Do / Does</h1>
+    <h1>Zero Conditional</h1>
   </div>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'dd-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'dd-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'zc-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'zc-activities')">Activities</button>
   </div>
-  <div id="dd-explanation" class="tab-content active">
+  <div id="zc-explanation" class="tab-content active">
 
     <div class="explanation-section">
-      <h2>Simple Present with Other Verbs</h2>
-      <p>For all verbs except <em>to be</em>, we use the base form of the verb in the present simple. For <strong>he / she / it</strong>, we add <strong>-s</strong> or <strong>-es</strong> to the verb. For questions and negatives, we use <strong>do</strong> or <strong>does</strong> as an auxiliary.</p>
-      <div class="formula-box">
-        <strong>Positive:</strong> I / You / We / They + base verb &nbsp;|&nbsp; He / She / It + verb + <strong>-s / -es</strong><br>
-        <strong>Negative:</strong> subject + <strong>don't / doesn't</strong> + base verb<br>
-        <strong>Question:</strong> <strong>Do / Does</strong> + subject + base verb?
+      <h2>What is the Zero Conditional?</h2>
+      <p>The zero conditional is used to talk about things that are always true — scientific facts, general truths, and situations where one thing always causes another. It is not about a specific moment in time, but about what happens in general.</p>
+      <div class="formula-box"><strong>IF clause:</strong> if + present simple<br><strong>Main clause:</strong> present simple</div>
+      <p>Both clauses use the present simple. The word <em>when</em> can often replace <em>if</em> with no change in meaning.</p>
+    </div>
+    <div class="explanation-section">
+      <h2>Examples</h2>
+      <div class="examples-grid">
+        <div class="example-item"><em>If you heat water to 100°C, it boils.</em> (scientific fact)</div>
+        <div class="example-item"><em>If it rains, the ground gets wet.</em> (general truth)</div>
+        <div class="example-item"><em>Plants die if they don't get enough water.</em> (natural law)</div>
+        <div class="example-item"><em>If you mix red and blue, you get purple.</em> (always true)</div>
+        <div class="example-item"><em>When I'm tired, I make mistakes.</em> (personal truth)</div>
       </div>
     </div>
     <div class="explanation-section">
-      <h2>Positive Sentences</h2>
+      <h2>Zero vs First Conditional</h2>
+      <p>The zero conditional describes what <em>always</em> happens. The first conditional describes what <em>will probably</em> happen in a specific future situation.</p>
       <div class="examples-grid">
-        <div class="example-item"><em>I <strong>work</strong> in a hospital.</em></div>
-        <div class="example-item"><em>She <strong>studies</strong> English every day.</em> (+es after consonant + y → ies)</div>
-        <div class="example-item"><em>He <strong>watches</strong> TV in the evening.</em> (+es after ch, sh, x, o, s)</div>
-        <div class="example-item"><em>They <strong>live</strong> in London.</em></div>
+        <div class="example-item"><strong>Zero:</strong> <em>If you touch fire, it burns you.</em> (always true)</div>
+        <div class="example-item"><strong>First:</strong> <em>If you touch that fire, you will burn yourself.</em> (specific warning)</div>
       </div>
-    </div>
-    <div class="explanation-section">
-      <h2>Negative Sentences</h2>
-      <p>Use <em>don't</em> (I/you/we/they) or <em>doesn't</em> (he/she/it) + base verb. The main verb never takes -s in the negative.</p>
-      <div class="examples-grid">
-        <div class="example-item"><em>I <strong>don't</strong> like coffee.</em></div>
-        <div class="example-item"><em>She <strong>doesn't</strong> work on Sundays.</em></div>
-        <div class="example-item"><em>They <strong>don't</strong> speak French.</em></div>
-      </div>
-    </div>
-    <div class="explanation-section">
-      <h2>Questions</h2>
-      <p>Use <em>Do</em> or <em>Does</em> at the start of the question. The main verb stays in the base form.</p>
-      <div class="examples-grid">
-        <div class="example-item"><em><strong>Do</strong> you like pizza?</em></div>
-        <div class="example-item"><em><strong>Does</strong> he play football?</em></div>
-        <div class="example-item"><em>Where <strong>do</strong> they live?</em></div>
-      </div>
-      <div class="note-box">
-        <strong>⚠ Common mistakes:</strong><br>
-        ✗ <em>She don't like it.</em> → ✓ <em>She doesn't like it.</em><br>
-        ✗ <em>Does he works here?</em> → ✓ <em>Does he work here?</em> (no -s after does)<br>
-        ✗ <em>He don't speaks English.</em> → ✓ <em>He doesn't speak English.</em>
-      </div>
+      <div class="note-box"><strong>💡 Tip:</strong> In zero conditional sentences, <em>if</em> and <em>when</em> are interchangeable.<br><em>If you freeze water, it becomes ice.</em> = <em>When you freeze water, it becomes ice.</em></div>
     </div>
   </div>
-  <div id="dd-activities" class="tab-content">
+  <div id="zc-activities" class="tab-content">
     <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'dd-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'dd-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'dd-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'dd-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'dd-act5')">5. Open Questions</button>
+      <button class="act-btn active" onclick="switchActivity(this,'zc-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'zc-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'zc-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'zc-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'zc-act5')">5. Open Questions</button>
     </div>
-    <div id="dd-act1" class="activity-section active">
+    <div id="zc-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
       <div class="activity-desc">Click a sentence beginning on the left, then click its matching ending on the right.</div>
-      <div class="score-badge">Matched: <span id="dd-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="dd-left"></div><div class="match-col" id="dd-right"></div></div>
+      <div class="score-badge">Matched: <span id="zc-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="zc-left"></div><div class="match-col" id="zc-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-    <div id="dd-act2" class="activity-section">
+    <div id="zc-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence with the correct present simple form of the verb in brackets. Use <em>do / does / don't / doesn't</em> where needed.</div>
-      <div id="dd-fill-exercises"></div>
-      <div><button class="check-btn" onclick="checkFill('dd-fill-exercises','dd-fill-feedback',FILL)">Check Answers</button>
-      <button class="reset-btn" onclick="buildFillHTML('dd-fill-exercises',FILL);document.getElementById('dd-fill-feedback').classList.remove('show')">↺ Reset</button></div>
-      <div id="dd-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence with the correct present simple form of the verb in brackets.</div>
+      <div id="zc-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('zc-fill-exercises','zc-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('zc-fill-exercises',FILL);document.getElementById('zc-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="zc-fill-feedback" class="feedback"></div>
     </div>
-    <div id="dd-act3" class="activity-section">
+    <div id="zc-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
       <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
-      <div id="dd-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('dd-mistake-exercises','dd-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('dd-mistake-exercises',MISTAKE);document.getElementById('dd-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="dd-mistake-feedback" class="feedback"></div>
+      <div id="zc-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('zc-mistake-exercises','zc-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('zc-mistake-exercises',MISTAKE);document.getElementById('zc-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="zc-mistake-feedback" class="feedback"></div>
     </div>
-    <div id="dd-act4" class="activity-section">
+    <div id="zc-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="dd-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('dd-order-exercises','dd-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('dd-order-exercises',ORDER);document.getElementById('dd-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="dd-order-feedback" class="feedback"></div>
+      <div id="zc-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('zc-order-exercises','zc-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('zc-order-exercises',ORDER);document.getElementById('zc-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="zc-order-feedback" class="feedback"></div>
     </div>
-    <div id="dd-act5" class="activity-section">
+    <div id="zc-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own answers using the simple present. Then click "Show Model Answer" to compare.</div>
-      <div id="dd-open-exercises"></div>
+      <div class="activity-desc">Write your own answers using the zero conditional. Then click "Show Model Answer" to compare.</div>
+      <div id="zc-open-exercises"></div>
     </div>
   </div>
 </div>
@@ -366,49 +349,49 @@ function toggleModel(btn){
 
 
 const MATCH = [
-  {left:"1. She studies every night because", right:"a. she has an important exam next week."},
-  {left:"2. My brother doesn't eat meat —", right:"b. he has been vegetarian since he was a child."},
-  {left:"3. Do you know", right:"c. what time the library closes?"},
-  {left:"4. Our teacher always arrives early and", right:"d. starts the lesson before the bell rings."},
-  {left:"5. They don't own a car, so", right:"e. they take the bus to work every day."}
+  {left:"1. If you heat ice,", right:"a. it melts."},
+  {left:"2. If a plant doesn't get water,", right:"b. it dies."},
+  {left:"3. If you press this button,", right:"c. the light comes on."},
+  {left:"4. If you take this medicine,", right:"d. you feel better."},
+  {left:"5. If you mix yellow and blue,", right:"e. you get green."}
 ];
 const FILL = [
-  {sentence:"My father _____ (work) in a big company in the city centre.", answer:"works"},
-  {sentence:"We _____ (not have) classes on Saturdays.", answer:"don't have", alt:["do not have"]},
-  {sentence:"_____ your sister speak any languages apart from English?", answer:"Does"},
-  {sentence:"The shop _____ (close) at 9 p.m. every day.", answer:"closes"},
-  {sentence:"They _____ (not know) anyone in this neighbourhood yet.", answer:"don't know", alt:["do not know"]}
+  {sentence:"If you _____ (drop) something, it falls to the ground.", answer:"drop"},
+  {sentence:"Water _____ (freeze) if the temperature goes below 0°C.", answer:"freezes"},
+  {sentence:"If you _____ (not eat), you feel hungry.", answer:"don't eat", alt:["do not eat"]},
+  {sentence:"If he _____ (work) late, he always takes a taxi home.", answer:"works"},
+  {sentence:"Metal _____ (expand) if you heat it.", answer:"expands"}
 ];
 const MISTAKE = [
-  {sentence:"She don't like spicy food.", options:["She don't like","spicy food.",""], correct:0, explanation:"With 'she', use 'doesn't': 'She doesn't like spicy food.'"},
-  {sentence:"Does he works in a hospital?", options:["Does he works","in a hospital?",""], correct:0, explanation:"After 'does', use the base form (no -s): 'Does he work in a hospital?'"},
-  {sentence:"They doesn't have a car.", options:["They doesn't","have a car.",""], correct:0, explanation:"'They' takes 'don't', not 'doesn't': 'They don't have a car.'"},
-  {sentence:"My brother don't speaks French.", options:["My brother","don't speaks","French."], correct:1, explanation:"With 'my brother', use 'doesn't' + base verb: 'My brother doesn't speak French.'"},
-  {sentence:"Do she live near here?", options:["Do she","live near","here?"], correct:0, explanation:"'She' needs 'does', not 'do': 'Does she live near here?'"}
+  {sentence:"If you will mix red and blue, you get purple.", options:["If you will mix","red and blue,","you get purple."], correct:0, explanation:"No 'will' in zero conditional. Use present simple: 'If you mix'"},
+  {sentence:"If water reaches 100°C, it will boil.", options:["If water reaches 100°C,","it will boil.",""], correct:1, explanation:"Zero conditional uses present simple in both clauses: 'it boils'"},
+  {sentence:"If you freeze water, it will becomes ice.", options:["If you freeze water,","it will becomes","ice."], correct:1, explanation:"Zero conditional doesn't use 'will'. Correct: 'it becomes ice'"},
+  {sentence:"Peoples feel cold if the temperature drops.", options:["Peoples feel cold","if the temperature","drops."], correct:0, explanation:"'Peoples' is wrong. 'People' is already plural: 'People feel cold'"},
+  {sentence:"If you don't watered plants, they die.", options:["If you don't watered plants,","they die.",""], correct:0, explanation:"After 'don't', use the base form: 'don't water'"}
 ];
 const ORDER = [
-  {words:["every","She","morning.","jogs"], answer:"She jogs every morning."},
-  {words:["eat","don't","They","at","home."], answer:"They don't eat at home."},
-  {words:["speak","Does","he","English?"], answer:"Does he speak English?"},
-  {words:["doesn't","My","work","sister","on","Fridays."], answer:"My sister doesn't work on Fridays."},
-  {words:["Where","parents","your","do","live?"], answer:"Where do your parents live?"}
+  {words:["heat","you","If","melts.","ice,","it","the"], answer:"If you heat the ice, it melts."},
+  {words:["you","mix","If","yellow,","red","get","orange.","and","you"], answer:"If you mix red and yellow, you get orange."},
+  {words:["temperature","the","drops,","water","If","freezes."], answer:"If the temperature drops, water freezes."},
+  {words:["don't","sleep,","tired.","you","you","feel","If"], answer:"If you don't sleep, you feel tired."},
+  {words:["the","If","shines,","warm.","sun","it","feels"], answer:"If the sun shines, it feels warm."}
 ];
 const OPEN = [
-  {question:"Write three true sentences about what you do every day using the simple present.", model:"I wake up at seven o'clock. I have breakfast at home. I study English in the evening."},
-  {question:"Write two sentences about what a person you know does and doesn't do.", model:"My friend Tom plays football every weekend. He doesn't watch much television."},
-  {question:"Write two yes/no questions you could ask a classmate using 'Do you...?'", model:"Do you live far from school? Do you like cooking at home?"},
-  {question:"Write two sentences about your habits — one positive and one negative.", model:"I exercise three times a week. I don't drink coffee in the evening."},
-  {question:"Write a short paragraph (3–4 sentences) about what someone in your family does using he/she + verb.", model:"My mother works as a nurse. She starts work early in the morning. She doesn't finish until late. She loves her job but it tires her out."}
+  {question:"What happens if you don't drink enough water?", model:"If you don't drink enough water, you feel thirsty and get headaches."},
+  {question:"What happens to ice if you leave it outside on a hot day?", model:"If you leave ice outside on a hot day, it melts quickly."},
+  {question:"What do you do if you feel stressed?", model:"If I feel stressed, I go for a walk or listen to music."},
+  {question:"What happens if a person doesn't exercise regularly?", model:"If a person doesn't exercise regularly, they often feel less energetic and less healthy."},
+  {question:"What happens if you mix two colours? Give an example.", model:"If you mix blue and yellow, you get green. If you mix red and white, you get pink."}
 ];
 function init(){
-  initMatch('dd', MATCH);
-  buildFillHTML('dd-fill-exercises', FILL);
-  document.getElementById('dd-fill-feedback').classList.remove('show');
-  buildMistakeHTML('dd-mistake-exercises', MISTAKE);
-  document.getElementById('dd-mistake-feedback').classList.remove('show');
-  buildOrderHTML('dd-order-exercises', ORDER);
-  document.getElementById('dd-order-feedback').classList.remove('show');
-  buildOpenHTML('dd-open-exercises', OPEN);
+  initMatch('zc', MATCH);
+  buildFillHTML('zc-fill-exercises', FILL);
+  document.getElementById('zc-fill-feedback').classList.remove('show');
+  buildMistakeHTML('zc-mistake-exercises', MISTAKE);
+  document.getElementById('zc-mistake-feedback').classList.remove('show');
+  buildOrderHTML('zc-order-exercises', ORDER);
+  document.getElementById('zc-order-feedback').classList.remove('show');
+  buildOpenHTML('zc-open-exercises', OPEN);
   
 }
 window.addEventListener('DOMContentLoaded', init);

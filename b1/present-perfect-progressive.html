@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Present Perfect – GrammarHub</title>
+<title>Present Perfect Progressive – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
   nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
   :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
-  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
-  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
   .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
   .topic-header{margin-bottom:3rem;}
   .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
@@ -95,122 +96,143 @@
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
       <span class="cefr-badge">B1</span>
       <div class="topic-label">Perfect Tenses</div>
     </div>
-    <h1>Present Perfect</h1>
+    <h1>Present Perfect Progressive</h1>
   </div>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'pp-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'pp-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'ppp-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'ppp-activities')">Activities</button>
   </div>
-  <div id="pp-explanation" class="tab-content active">
+  <div id="ppp-explanation" class="tab-content active">
 
     <div class="explanation-section">
-      <h2>What is the Present Perfect?</h2>
-      <p>The present perfect connects the past to the present. We use it to talk about experiences and things that happened at some point in the past, when the exact time is not important.</p>
+      <h2>What is the Present Perfect Progressive?</h2>
+      <p>The present perfect progressive describes an activity that <strong>started in the past and is still in progress now</strong>, or a <strong>recent continuing action whose result we can see</strong>. It emphasises the duration or ongoing nature of the action.</p>
       <div class="formula-box">
-        <strong>Positive:</strong> subject + <strong>have / has</strong> + past participle<br>
-        <strong>Negative:</strong> subject + <strong>haven't / hasn't</strong> + past participle<br>
-        <strong>Question:</strong> <strong>Have / Has</strong> + subject + past participle?
-      </div>
-      <p>Use <strong>have</strong> with I, you, we, they. Use <strong>has</strong> with he, she, it.</p>
-    </div>
-    <div class="explanation-section">
-      <h2>Positive Sentences</h2>
-      <div class="examples-grid">
-        <div class="example-item"><em>I <strong>have visited</strong> Paris.</em></div>
-        <div class="example-item"><em>She <strong>has eaten</strong> sushi before.</em></div>
-        <div class="example-item"><em>We <strong>have seen</strong> that film.</em></div>
-        <div class="example-item"><em>He <strong>has tried</strong> surfing.</em></div>
+        <strong>Positive:</strong> subject + have / has + been + verb+ing<br>
+        <strong>Negative:</strong> subject + haven't / hasn't + been + verb+ing<br>
+        <strong>Question:</strong> Have / Has + subject + been + verb+ing?
       </div>
     </div>
     <div class="explanation-section">
-      <h2>Negative Sentences</h2>
+      <h2>Still in Progress Now</h2>
+      <p>Use the present perfect progressive when the action started in the past and is <strong>still happening</strong>.</p>
       <div class="examples-grid">
-        <div class="example-item"><em>I <strong>haven't been</strong> to Japan.</em></div>
-        <div class="example-item"><em>She <strong>hasn't tried</strong> Indian food.</em></div>
-        <div class="example-item"><em>They <strong>haven't seen</strong> that show.</em></div>
+        <div class="example-item"><em>I <strong>have been studying</strong> English for three years.</em> (I started three years ago and I'm still studying)</div>
+        <div class="example-item"><em>She <strong>has been working</strong> here since 2020.</em> (she started in 2020 and still works here)</div>
+        <div class="example-item"><em>They <strong>haven't been sleeping</strong> well lately.</em></div>
       </div>
     </div>
     <div class="explanation-section">
-      <h2>Questions</h2>
+      <h2>Recent Action with a Visible Result</h2>
+      <p>Use it when a recent continuous action explains a present situation or result.</p>
       <div class="examples-grid">
-        <div class="example-item"><em><strong>Have</strong> you ever been to London?</em></div>
-        <div class="example-item"><em><strong>Has</strong> she ever tried skiing?</em></div>
-        <div class="example-item"><em><strong>Have</strong> they visited that museum?</em></div>
+        <div class="example-item"><em>Your eyes are red. <strong>Have you been crying</strong>?</em> (recent action explains current state)</div>
+        <div class="example-item"><em>I'm exhausted — I <strong>have been running</strong>.</em></div>
+        <div class="example-item"><em>The ground is wet. It <strong>has been raining</strong>.</em></div>
       </div>
     </div>
     <div class="explanation-section">
-      <h2>Regular and Irregular Past Participles</h2>
-      <p>Regular verbs add <strong>-ed</strong> (same as past simple). Irregular verbs have special forms.</p>
+      <h2>For and Since</h2>
+      <p>Use <strong>for</strong> to say how long the action has been happening. Use <strong>since</strong> to say when it started.</p>
       <div class="examples-grid">
-        <div class="example-item">visit → <strong>visited</strong> &nbsp;|&nbsp; try → <strong>tried</strong> &nbsp;|&nbsp; watch → <strong>watched</strong></div>
-        <div class="example-item">go → <strong>gone</strong> &nbsp;|&nbsp; see → <strong>seen</strong> &nbsp;|&nbsp; eat → <strong>eaten</strong> &nbsp;|&nbsp; be → <strong>been</strong></div>
-        <div class="example-item">do → <strong>done</strong> &nbsp;|&nbsp; have → <strong>had</strong> &nbsp;|&nbsp; ride → <strong>ridden</strong> &nbsp;|&nbsp; win → <strong>won</strong></div>
+        <div class="example-item"><em>I have been learning guitar <strong>for</strong> six months.</em> (duration)</div>
+        <div class="example-item"><em>She has been living here <strong>since</strong> January.</em> (starting point)</div>
+        <div class="example-item"><strong>for</strong>: for two hours, for a week, for years, for a long time</div>
+        <div class="example-item"><strong>since</strong>: since Monday, since 2019, since she was a child</div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Present Perfect vs Present Perfect Progressive</h2>
+      <p>Use the <strong>present perfect</strong> to focus on a completed action or its result. Use the <strong>present perfect progressive</strong> to focus on the activity itself and how long it has been happening.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>I <strong>have read</strong> three books this month.</em> (completed — how many)</div>
+        <div class="example-item"><em>I <strong>have been reading</strong> all afternoon.</em> (ongoing — how long)</div>
+        <div class="example-item"><em>She <strong>has written</strong> the report.</em> (it's finished)</div>
+        <div class="example-item"><em>She <strong>has been writing</strong> the report all day.</em> (still in progress)</div>
       </div>
       <div class="note-box">
         <strong>⚠ Common mistakes:</strong><br>
-        ✗ <em>I have went to Paris.</em> → ✓ <em>I have gone to Paris.</em><br>
-        ✗ <em>She has saw that film.</em> → ✓ <em>She has seen that film.</em><br>
-        ✗ <em>He have eaten sushi.</em> → ✓ <em>He has eaten sushi.</em>
+        ✗ <em>I have been knowing her for years.</em> → ✓ <em>I have known her for years.</em> (stative verbs like <em>know, love, believe</em> don't use progressive forms)<br>
+        ✗ <em>She has been working here since two years.</em> → ✓ <em>She has been working here for two years.</em> (duration = for)<br>
+        ✗ <em>I have been working here since 3 years ago.</em> → ✓ <em>I have been working here for 3 years.</em>
       </div>
     </div>
   </div>
-  <div id="pp-activities" class="tab-content">
+  <div id="ppp-activities" class="tab-content">
     <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'pp-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act5')">5. Open Questions</button>
+      <button class="act-btn active" onclick="switchActivity(this,'ppp-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'ppp-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'ppp-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'ppp-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'ppp-act5')">5. Open Questions</button>
     </div>
-    <div id="pp-act1" class="activity-section active">
+    <div id="ppp-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
-      <div class="activity-desc">Click a sentence beginning on the left, then click its matching ending on the right.</div>
-      <div class="score-badge">Matched: <span id="pp-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="pp-left"></div><div class="match-col" id="pp-right"></div></div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="ppp-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="ppp-left"></div><div class="match-col" id="ppp-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-    <div id="pp-act2" class="activity-section">
+    <div id="ppp-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence with the correct present perfect form of the verb in brackets.</div>
-      <div id="pp-fill-exercises"></div>
-      <div><button class="check-btn" onclick="checkFill('pp-fill-exercises','pp-fill-feedback',FILL)">Check Answers</button>
-      <button class="reset-btn" onclick="buildFillHTML('pp-fill-exercises',FILL);document.getElementById('pp-fill-feedback').classList.remove('show')">↺ Reset</button></div>
-      <div id="pp-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence with the correct present perfect progressive form of the verb in brackets.</div>
+      <div id="ppp-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('ppp-fill-exercises','ppp-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('ppp-fill-exercises',FILL);document.getElementById('ppp-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="ppp-fill-feedback" class="feedback"></div>
     </div>
-    <div id="pp-act3" class="activity-section">
+    <div id="ppp-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
-      <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
-      <div id="pp-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('pp-mistake-exercises','pp-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('pp-mistake-exercises',MISTAKE);document.getElementById('pp-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="pp-mistake-feedback" class="feedback"></div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="ppp-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('ppp-mistake-exercises','ppp-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('ppp-mistake-exercises',MISTAKE);document.getElementById('ppp-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ppp-mistake-feedback" class="feedback"></div>
     </div>
-    <div id="pp-act4" class="activity-section">
+    <div id="ppp-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="pp-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('pp-order-exercises','pp-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('pp-order-exercises',ORDER);document.getElementById('pp-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="pp-order-feedback" class="feedback"></div>
+      <div id="ppp-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('ppp-order-exercises','ppp-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('ppp-order-exercises',ORDER);document.getElementById('ppp-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ppp-order-feedback" class="feedback"></div>
     </div>
-    <div id="pp-act5" class="activity-section">
+    <div id="ppp-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own answers using the present perfect. Then click "Show Model Answer" to compare.</div>
-      <div id="pp-open-exercises"></div>
+      <div class="activity-desc">Write your own sentences using the present perfect progressive. Then click "Show Model Answer" to compare.</div>
+      <div id="ppp-open-exercises"></div>
     </div>
   </div>
 </div>
 <script>
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
 function toggleTheme(){
   const root=document.documentElement;
   const isLight=root.getAttribute('data-theme')==='light';
@@ -281,7 +303,7 @@ function buildFillHTML(cid,data){
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
     c.appendChild(d);
   });
 }
@@ -290,8 +312,9 @@ function checkFill(cid,fid,data){
   inputs.forEach(inp=>{
     const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
     const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;}
-    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');}
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
@@ -373,51 +396,76 @@ function toggleModel(btn){
 }
 
 
+
+
+
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`; 
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
 const MATCH = [
-  {left:"1. Have you ever been to another country?", right:"a. Yes, I have. I've been to France and Spain."},
-  {left:"2. Has she tried Thai food before?", right:"b. No, she hasn't. She wants to try it."},
-  {left:"3. Have they seen the new museum?", right:"c. Yes, they have. They went last Sunday."},
-  {left:"4. Has he ever won a competition?", right:"d. No, he hasn't. But he has been in two."},
-  {left:"5. Have you and your sister met her new teacher?", right:"e. Yes, we have. She seems very nice."}
+  {left:"1. She has been studying medicine", right:"a. for five years and graduates next summer."},
+  {left:"2. You look exhausted —", right:"b. have you been working all night?"},
+  {left:"3. They have been living in Paris", right:"c. since they got married."},
+  {left:"4. The kids are covered in mud.", right:"d. They have been playing outside."},
+  {left:"5. I haven't been sleeping well", right:"e. lately and I feel really tired."}
 ];
 const FILL = [
-  {sentence:"I _____ (visit) three different countries in my life.", answer:"have visited"},
-  {sentence:"She _____ (not try) sushi before. It is her first time.", answer:"hasn't tried", alt:["has not tried"]},
-  {sentence:"_____ you ever been to a live concert? I went to one last year.", answer:"Have"},
-  {sentence:"My brother _____ (win) a football competition at school.", answer:"has won"},
-  {sentence:"We _____ (not see) that film. Can we watch it tonight?", answer:"haven't seen", alt:["have not seen"]}
+  {sentence:"I _____ (study) for this exam all week and I'm exhausted.", answer:"have been studying", explanation:"Present perfect progressive: have/has + been + verb-ing for ongoing actions."},
+  {sentence:"She _____ (work) at that company since she finished university.", answer:"has been working", explanation:"Use 'since' with a starting point: 'has been working since she finished.'"},
+  {sentence:"_____ you been learning English for long? How did you start?", answer:"Have", explanation:"Question form: Have/Has + subject + been + verb-ing?"},
+  {sentence:"It _____ (rain) all morning — the streets are completely flooded.", answer:"has been raining", explanation:"Recent continuous action explaining a current result."},
+  {sentence:"They _____ (not practise) enough and they lost the match.", answer:"haven't been practising", alt:["have not been practising"], explanation:"Negative form: haven't/hasn't + been + verb-ing."}
 ];
 const MISTAKE = [
-  {sentence:"I have went to London twice and I loved it.", options:["I have went to London","twice","and I loved it."], correct:0, explanation:"'Go' is irregular. The past participle is 'gone': 'I have gone to London twice.'"},
-  {sentence:"She has visited Paris and she has saw the Eiffel Tower.", options:["She has visited Paris","and she has saw","the Eiffel Tower."], correct:1, explanation:"'See' is irregular. The past participle is 'seen': 'she has seen the Eiffel Tower.'"},
-  {sentence:"My parents have travalled to many places around the world.", options:["My parents have travalled","to many places","around the world."], correct:0, explanation:"The correct spelling is 'travelled': 'My parents have travelled to many places.'"},
-  {sentence:"We have watch that show three times and we still love it.", options:["We have watch","that show three times","and we still love it."], correct:0, explanation:"The past participle of 'watch' is 'watched': 'We have watched that show three times.'"},
-  {sentence:"Tom has read the book and he have done all the exercises too.", options:["Tom has read the book","and he have done","all the exercises too."], correct:1, explanation:"'He' takes 'has', not 'have': 'he has done all the exercises too.'"}
+  {sentence:"I have been knowing her since we were children.", options:["I have been knowing her","since we","were children."], correct:0, explanation:"Stative verbs like 'know' don't use progressive forms: 'I have known her since we were children.'"},
+  {sentence:"She has been working here since two years.", options:["She has been working here","since two years","and she loves it."], correct:1, explanation:"Use 'for' with a duration, not 'since': 'She has been working here for two years.'"},
+  {sentence:"He look tired because he has been running all morning.", options:["He look tired","because he","has been running all morning."], correct:0, explanation:"'He' needs 'looks' (third person present simple): 'He looks tired because he has been running.'"},
+  {sentence:"They have been waiting since two hours for the bus.", options:["They have been waiting","since two hours","for the bus."], correct:1, explanation:"Use 'for' with a duration: 'They have been waiting for two hours.'"},
+  {sentence:"I've been feeling tired lately and I haven't been sleeping since weeks.", options:["I've been feeling tired lately","and I haven't been sleeping","since weeks."], correct:2, explanation:"Use 'for' with a duration, not 'since': 'I haven't been sleeping well for weeks.'"}
 ];
 const ORDER = [
-  {words:["never","I","have","ridden","horse.","a"], answer:"I have never ridden a horse."},
-  {words:["Has","tried","she","ever","food?","Japanese"], answer:"Has she ever tried Japanese food?"},
-  {words:["haven't","We","that","seen","film."], answer:"We haven't seen that film."},
-  {words:["He","two","has","visited","countries."], answer:"He has visited two countries."},
-  {words:["Have","been","you","before?","here"], answer:"Have you been here before?"}
+  {words:["studying","I've","been","hours.","for","two"], answer:"I've been studying for two hours."},
+  {words:["Has","been","she","since","here","working","Monday?"], answer:"Has she been working here since Monday?"},
+  {words:["been","They","haven't","practising."], answer:"They haven't been practising."},
+  {words:["raining","been","It","has","morning.","all"], answer:"It has been raining all morning."},
+  {words:["long","How","you","have","waiting?","been"], answer:"How long have you been waiting?"}
 ];
 const OPEN = [
-  {question:"Write two sentences about places you have or haven't been to.", model:"I have been to Italy. It was beautiful. I haven't been to Asia, but I want to go one day."},
-  {question:"Write two sentences about food you have tried and food you haven't tried.", model:"I have tried sushi and I loved it. I haven't tried Thai food, but my friends say it is delicious."},
-  {question:"Ask a classmate two questions using 'Have you ever...?' and write what they say.", model:"Have you ever been to another country? Yes, I have. I went to France last summer. Have you ever eaten sushi? No, I haven't."},
-  {question:"Write two sentences about films or TV shows you have seen.", model:"I have seen all the Harry Potter films. My sister has watched them too. We haven't seen the new one — it comes out next month."},
-  {question:"Write three sentences about things you have done in your life. Use I have... and I haven't...", model:"I have visited three countries. I have tried many different kinds of food. I haven't ridden a horse, but I would like to."}
+  {question:"Write two sentences about activities you have been doing lately. Use 'for' in one and 'since' in the other.", model:"I have been learning to cook for about six months. I have been going to the gym since January."},
+  {question:"Write two sentences where a recent action explains a current situation.", model:"I'm really tired — I have been working all day. Her eyes are red because she has been crying."},
+  {question:"Write a negative sentence and a question using the present perfect progressive.", model:"He hasn't been eating well lately — he needs to look after himself. Have you been waiting long? I'm so sorry I'm late."},
+  {question:"Write two sentences contrasting the present perfect and the present perfect progressive.", model:"I have read two chapters today. I have been reading all afternoon. She has written three emails. She has been writing reports since nine o'clock."},
+  {question:"Write three sentences about yourself using the present perfect progressive.", model:"I have been studying English for four years. I have been living in this city since I was a teenager. I haven't been watching much TV lately because I've been too busy."}
 ];
 function init(){
-  initMatch('pp', MATCH);
-  buildFillHTML('pp-fill-exercises', FILL);
-  document.getElementById('pp-fill-feedback').classList.remove('show');
-  buildMistakeHTML('pp-mistake-exercises', MISTAKE);
-  document.getElementById('pp-mistake-feedback').classList.remove('show');
-  buildOrderHTML('pp-order-exercises', ORDER);
-  document.getElementById('pp-order-feedback').classList.remove('show');
-  buildOpenHTML('pp-open-exercises', OPEN);
-  
+  initMatch('ppp', MATCH);
+  buildFillHTML('ppp-fill-exercises', FILL);
+  document.getElementById('ppp-fill-feedback').classList.remove('show');
+  buildMistakeHTML('ppp-mistake-exercises', MISTAKE);
+  document.getElementById('ppp-mistake-feedback').classList.remove('show');
+  buildOrderHTML('ppp-order-exercises', ORDER);
+  document.getElementById('ppp-order-feedback').classList.remove('show');
+  buildOpenHTML('ppp-open-exercises', OPEN);
 }
 window.addEventListener('DOMContentLoaded', init);
 </script>

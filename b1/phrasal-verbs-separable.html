@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Used To – GrammarHub</title>
+<title>Separable and Non-Separable Phrasal Verbs – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
   nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
   :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
-  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
-  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
   .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
   .topic-header{margin-bottom:3rem;}
   .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
@@ -95,100 +96,140 @@
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
-      <span class="cefr-badge">A2</span>
-      <div class="topic-label">Past Habits</div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Phrasal Verbs</div>
     </div>
-    <h1>Used To</h1>
+    <h1>Separable and Non-Separable Phrasal Verbs</h1>
   </div>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'ut-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'ut-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'pv-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'pv-activities')">Activities</button>
   </div>
-  <div id="ut-explanation" class="tab-content active">
+  <div id="pv-explanation" class="tab-content active">
 
     <div class="explanation-section">
-      <h2>What is Used To?</h2>
-      <p><em>Used to</em> describes habits, repeated actions, or states that existed in the past but no longer happen or exist now. It implies that things have changed since then.</p>
-      <div class="formula-box"><strong>Positive:</strong> subject + used to + infinitive<br><strong>Negative:</strong> subject + didn't use to + infinitive<br><strong>Question:</strong> Did + subject + use to + infinitive?</div>
-      <p>Note: in negatives and questions, the form is <em>use to</em> (no <em>d</em>), because the past tense is carried by <em>did/didn't</em>.</p>
+      <h2>What is a Phrasal Verb?</h2>
+      <p>A phrasal verb is a verb combined with a particle (a preposition or adverb) that together create a new meaning. Some phrasal verbs are <strong>separable</strong> and some are <strong>non-separable</strong>.</p>
     </div>
     <div class="explanation-section">
-      <h2>Positive Examples</h2>
+      <h2>Separable Phrasal Verbs</h2>
+      <p>With separable phrasal verbs, you <strong>can</strong> put a noun between the verb and the particle. Both positions are correct.</p>
       <div class="examples-grid">
-        <div class="example-item"><em>I used to live in London.</em> (I don't live there now)</div>
-        <div class="example-item"><em>She used to play the piano every day.</em> (she doesn't anymore)</div>
-        <div class="example-item"><em>They used to be best friends.</em> (they aren't now)</div>
+        <div class="example-item"><em>I <strong>looked up</strong> "body language" online.</em> ✓</div>
+        <div class="example-item"><em>I <strong>looked</strong> "body language" <strong>up</strong> online.</em> ✓</div>
+      </div>
+      <p style="margin-top:1rem">However, when the object is a <strong>pronoun</strong> (it, them, her, him, us), you <strong>must always</strong> put it between the verb and the particle.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>I <strong>looked it up</strong> online.</em> ✓ (pronoun must go in the middle)</div>
+        <div class="example-item"><em>I looked up it online.</em> ✗</div>
+        <div class="example-item"><em>She was <strong>making it up</strong>.</em> ✓</div>
+        <div class="example-item"><em>I told him you would <strong>call him back</strong>.</em> ✓</div>
+      </div>
+      <div class="formula-box">
+        <strong>Separable examples:</strong> look up, make up, call back, take up, turn off, put on, pick up, write down
       </div>
     </div>
     <div class="explanation-section">
-      <h2>Negative &amp; Question Examples</h2>
+      <h2>Non-Separable Phrasal Verbs</h2>
+      <p>With non-separable phrasal verbs, you <strong>cannot</strong> put anything between the verb and the particle. The object always comes after the full phrasal verb.</p>
       <div class="examples-grid">
-        <div class="example-item"><em>He didn't use to eat vegetables, but now he loves them.</em></div>
-        <div class="example-item"><em>Did you use to walk to school?</em></div>
-        <div class="example-item"><em>We didn't use to have a car.</em></div>
+        <div class="example-item"><em>You can <strong>rely on</strong> Ruby to give a good talk.</em> ✓</div>
+        <div class="example-item"><em>You can rely Ruby on to give a good talk.</em> ✗</div>
+        <div class="example-item"><em>I <strong>ran into</strong> Alice outside class.</em> ✓</div>
+        <div class="example-item"><em>I ran Alice into outside class.</em> ✗</div>
+      </div>
+      <div class="formula-box">
+        <strong>Non-separable examples:</strong> rely on, run into, look after, come up with, get on with, deal with
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Three-Part Phrasal Verbs</h2>
+      <p>Phrasal verbs with a particle <em>plus</em> a preposition (e.g. <em>come up with</em>, <em>get on with</em>) are <strong>always non-separable</strong>. The object always follows the full verb phrase.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>She <strong>came up with</strong> a great idea.</em> ✓</div>
+        <div class="example-item"><em>She came up a great idea with.</em> ✗</div>
       </div>
       <div class="note-box">
-        <strong>⚠ Common mistakes:</strong><br>
-        ✗ <em>I use to play football.</em> → ✓ <em>I used to play football.</em> (positive needs -d)<br>
-        ✗ <em>I didn't used to like it.</em> → ✓ <em>I didn't use to like it.</em> (no -d after didn't)<br><br>
-        <strong>💡 Remember:</strong> <em>Used to</em> only exists in the past. There is no present form. For present habits, use the present simple or <em>usually</em>.
+        <strong>⚠ Key rules to remember:</strong><br>
+        ✓ Separable: noun can go before or after the particle → <em>turn off the light / turn the light off</em><br>
+        ✓ Separable: pronoun <strong>must</strong> go between verb and particle → <em>turn it off</em> (never <em>turn off it</em>)<br>
+        ✓ Non-separable: object always follows the full phrasal verb → <em>rely on her</em> (never <em>rely her on</em>)<br>
+        ✓ Three-part phrasal verbs: always non-separable → <em>come up with an idea</em>
       </div>
     </div>
   </div>
-  <div id="ut-activities" class="tab-content">
+  <div id="pv-activities" class="tab-content">
     <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'ut-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'ut-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'ut-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'ut-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'ut-act5')">5. Open Questions</button>
+      <button class="act-btn active" onclick="switchActivity(this,'pv-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'pv-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'pv-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'pv-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'pv-act5')">5. Open Questions</button>
     </div>
-    <div id="ut-act1" class="activity-section active">
+    <div id="pv-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
-      <div class="activity-desc">Click a sentence beginning on the left, then click its matching ending on the right.</div>
-      <div class="score-badge">Matched: <span id="ut-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="ut-left"></div><div class="match-col" id="ut-right"></div></div>
+      <div class="activity-desc">Match each sentence on the left with the correct explanation on the right.</div>
+      <div class="score-badge">Matched: <span id="pv-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="pv-left"></div><div class="match-col" id="pv-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-    <div id="ut-act2" class="activity-section">
+    <div id="pv-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence using the correct form of <em>used to</em> or <em>didn't use to</em> with the verb in brackets.</div>
-      <div id="ut-fill-exercises"></div>
-      <div><button class="check-btn" onclick="checkFill('ut-fill-exercises','ut-fill-feedback',FILL)">Check Answers</button>
-      <button class="reset-btn" onclick="buildFillHTML('ut-fill-exercises',FILL);document.getElementById('ut-fill-feedback').classList.remove('show')">↺ Reset</button></div>
-      <div id="ut-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence correctly. Use the phrasal verb in brackets in the right position.</div>
+      <div id="pv-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('pv-fill-exercises','pv-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('pv-fill-exercises',FILL);document.getElementById('pv-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="pv-fill-feedback" class="feedback"></div>
     </div>
-    <div id="ut-act3" class="activity-section">
+    <div id="pv-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
-      <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
-      <div id="ut-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('ut-mistake-exercises','ut-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('ut-mistake-exercises',MISTAKE);document.getElementById('ut-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="ut-mistake-feedback" class="feedback"></div>
+      <div class="activity-desc">Each sentence has one mistake with a phrasal verb. Select the part that contains it.</div>
+      <div id="pv-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('pv-mistake-exercises','pv-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('pv-mistake-exercises',MISTAKE);document.getElementById('pv-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="pv-mistake-feedback" class="feedback"></div>
     </div>
-    <div id="ut-act4" class="activity-section">
+    <div id="pv-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="ut-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('ut-order-exercises','ut-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('ut-order-exercises',ORDER);document.getElementById('ut-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="ut-order-feedback" class="feedback"></div>
+      <div id="pv-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('pv-order-exercises','pv-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('pv-order-exercises',ORDER);document.getElementById('pv-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="pv-order-feedback" class="feedback"></div>
     </div>
-    <div id="ut-act5" class="activity-section">
+    <div id="pv-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own answers using <em>used to</em>. Then click "Show Model Answer" to compare.</div>
-      <div id="ut-open-exercises"></div>
+      <div class="activity-desc">Write your own sentences using separable and non-separable phrasal verbs. Then click "Show Model Answer" to compare.</div>
+      <div id="pv-open-exercises"></div>
     </div>
   </div>
 </div>
 <script>
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
 function toggleTheme(){
   const root=document.documentElement;
   const isLight=root.getAttribute('data-theme')==='light';
@@ -259,7 +300,7 @@ function buildFillHTML(cid,data){
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
     c.appendChild(d);
   });
 }
@@ -268,8 +309,9 @@ function checkFill(cid,fid,data){
   inputs.forEach(inp=>{
     const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
     const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;}
-    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');}
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
@@ -351,51 +393,76 @@ function toggleModel(btn){
 }
 
 
+
+
+
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`; 
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
 const MATCH = [
-  {left:"1. I used to live in Paris,", right:"a. but now I live in Madrid."},
-  {left:"2. She didn't use to like coffee,", right:"b. but now she drinks three cups a day."},
-  {left:"3. He used to drive to work,", right:"c. but now he cycles everywhere."},
-  {left:"4. They used to be close friends,", right:"d. but they don't talk anymore."},
-  {left:"5. We didn't use to have a TV,", right:"e. but now we watch it every evening."}
+  {left:"1. I looked up the word.", right:"a. Separable — noun between verb and particle is optional."},
+  {left:"2. I looked it up.", right:"b. Separable — pronoun must go between verb and particle."},
+  {left:"3. You can rely on her.", right:"c. Non-separable — object follows the full phrasal verb."},
+  {left:"4. I ran into Alice.", right:"d. Non-separable — you cannot put anything in the middle."},
+  {left:"5. She came up with a great idea.", right:"e. Three-part phrasal verb — always non-separable."}
 ];
 const FILL = [
-  {sentence:"I _____ (used to / live) in a small town, but now I live in a big city.", answer:"used to live"},
-  {sentence:"She _____ (didn't use to / like) spicy food as a child.", answer:"didn't use to like", alt:["did not use to like"]},
-  {sentence:"They _____ (used to / play) football every Sunday.", answer:"used to play"},
-  {sentence:"He _____ (didn't use to / have) a beard, but now he does.", answer:"didn't use to have", alt:["did not use to have"]},
-  {sentence:"We _____ (used to / walk) to school when we were young.", answer:"used to walk"}
+  {sentence:"I didn't know the word so I _____ (look up / it) in the dictionary.", answer:"looked it up", explanation:"Separable + pronoun: the pronoun 'it' must go between the verb and the particle."},
+  {sentence:"She was making _____ (the story / up) — none of it was true.", answer:"the story up", alt:["up the story"], explanation:"Separable + noun: the noun can go before or after the particle. Both positions are correct."},
+  {sentence:"You can always _____ (rely on / her) to give a good presentation.", answer:"rely on her", explanation:"Non-separable: the object always follows the full phrasal verb 'rely on'."},
+  {sentence:"He _____ (call back / me) as soon as he got the message.", answer:"called me back", explanation:"Separable + pronoun: 'me' must go between the verb and the particle."},
+  {sentence:"I _____ (run into / her) at the supermarket yesterday.", answer:"ran into her", explanation:"Non-separable: 'run into' cannot be separated — the object follows the full phrasal verb."}
 ];
 const MISTAKE = [
-  {sentence:"I use to play tennis every weekend.", options:["I use to play","tennis","every weekend."], correct:0, explanation:"In positive sentences, always use 'used to' (with -d): 'I used to play'"},
-  {sentence:"She didn't used to eat meat.", options:["She didn't used to eat","meat.",""], correct:0, explanation:"After 'didn't', there is no -d on 'use': 'She didn't use to eat meat'"},
-  {sentence:"They used to lived near the beach.", options:["They used to lived","near the beach.",""], correct:0, explanation:"After 'used to', use the base infinitive: 'They used to live'"},
-  {sentence:"He used to has long hair when he was a student.", options:["He used to has","long hair","when he was a student."], correct:0, explanation:"After 'used to', use the base form: 'He used to have long hair'"},
-  {sentence:"Did she used to work here?", options:["Did she used to work","here?",""], correct:0, explanation:"In questions with 'did', use 'use to' (no -d): 'Did she use to work here?'"}
+  {sentence:"I looked up it in the dictionary instead of guessing.", options:["I looked","up it","in the dictionary instead of guessing."], correct:1, explanation:"With a pronoun, it must go between verb and particle: 'I looked it up in the dictionary.'"},
+  {sentence:"She called back him as soon as she got the message.", options:["She called","back him","as soon as she got the message."], correct:1, explanation:"With a pronoun, it must go between verb and particle: 'She called him back as soon as she got the message.'"},
+  {sentence:"You can rely her on to give a great presentation.", options:["You can","rely her on","to give a great presentation."], correct:1, explanation:"'Rely on' is non-separable — the object always follows the full verb: 'You can rely on her to give a great presentation.'"},
+  {sentence:"Ran she into her old teacher outside the classroom.", options:["Ran she into","her old teacher","outside the classroom."], correct:0, explanation:"The subject must come before the verb: 'She ran into her old teacher outside the classroom.'"},
+  {sentence:"I turned off the lights and then I put on it.", options:["I turned off the lights","and then","I put on it."], correct:2, explanation:"With a pronoun, it must go between verb and particle: 'I put it on', not 'I put on it'."}
 ];
 const ORDER = [
-  {words:["used","I","to","school.","cycle","to"], answer:"I used to cycle to school."},
-  {words:["use","to","She","didn't","but","coffee,","now","she","does.","drink"], answer:"She didn't use to drink coffee, but now she does."},
-  {words:["you","Did","to","use","as","here","live","child?","a"], answer:"Did you use to live here as a child?"},
-  {words:["used","They","to","every","play","Sunday.","chess"], answer:"They used to play chess every Sunday."},
-  {words:["use","He","didn't","to","but","vegetables,","now","eat","loves","he","them."], answer:"He didn't use to eat vegetables, but now he loves them."}
+  {words:["looked","I","up","it","online."], answer:"I looked it up online."},
+  {words:["making","She","was","story","the","up."], answer:"She was making the story up."},
+  {words:["rely","You","on","can","him."], answer:"You can rely on him."},
+  {words:["called","He","back","me","later."], answer:"He called me back later."},
+  {words:["came","She","with","up","idea.","a","great"], answer:"She came up with a great idea."}
 ];
 const OPEN = [
-  {question:"What did you use to do at the weekend when you were a child?", model:"I used to go to the park with my friends every weekend. We used to ride our bikes and play games until it got dark."},
-  {question:"What food or drink didn't you use to like but you enjoy now?", model:"I didn't use to like olives, but now I love them. I also used to hate coffee, but now I drink it every morning."},
-  {question:"What did people use to do for entertainment before smartphones?", model:"People used to read more books and newspapers. They also used to meet friends in person rather than chatting online."},
-  {question:"What did you use to be afraid of when you were young?", model:"I used to be terrified of the dark. I used to sleep with a light on, but now it doesn't bother me at all."},
-  {question:"Think of your hometown or neighbourhood. What has changed? What did things use to be like?", model:"There used to be a small cinema in my town, but now it's a supermarket. People also used to know all their neighbours, but that doesn't happen much anymore."}
+  {question:"Write two sentences using a separable phrasal verb with a noun. Try both positions.", model:"I turned off the light before I left. / I turned the light off before I left. Both are correct."},
+  {question:"Write two sentences using a separable phrasal verb with a pronoun.", model:"She called him back immediately. I picked it up from the floor."},
+  {question:"Write two sentences using a non-separable phrasal verb.", model:"You can always rely on your best friends. I ran into my old teacher at the shops."},
+  {question:"Write a sentence using a three-part phrasal verb (come up with, get on with, deal with, look forward to).", model:"She came up with a brilliant solution. I really get on with my new colleagues."},
+  {question:"Write three sentences: one separable (noun), one separable (pronoun), and one non-separable.", model:"I wrote down her number. (separable, noun) / I wrote it down. (separable, pronoun) / He looked after his little sister all afternoon. (non-separable)"}
 ];
 function init(){
-  initMatch('ut', MATCH);
-  buildFillHTML('ut-fill-exercises', FILL);
-  document.getElementById('ut-fill-feedback').classList.remove('show');
-  buildMistakeHTML('ut-mistake-exercises', MISTAKE);
-  document.getElementById('ut-mistake-feedback').classList.remove('show');
-  buildOrderHTML('ut-order-exercises', ORDER);
-  document.getElementById('ut-order-feedback').classList.remove('show');
-  buildOpenHTML('ut-open-exercises', OPEN);
-  
+  initMatch('pv', MATCH);
+  buildFillHTML('pv-fill-exercises', FILL);
+  document.getElementById('pv-fill-feedback').classList.remove('show');
+  buildMistakeHTML('pv-mistake-exercises', MISTAKE);
+  document.getElementById('pv-mistake-feedback').classList.remove('show');
+  buildOrderHTML('pv-order-exercises', ORDER);
+  document.getElementById('pv-order-feedback').classList.remove('show');
+  buildOpenHTML('pv-open-exercises', OPEN);
 }
 window.addEventListener('DOMContentLoaded', init);
 </script>

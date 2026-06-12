@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Defining Relative Clauses – GrammarHub</title>
+<title>Simple Present: To Be – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
@@ -12,10 +12,10 @@
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
   nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
   :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
-  .nav-logo span{color:var(--accent2);}
   .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
   .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
   .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
   .topic-header{margin-bottom:3rem;}
   .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
@@ -32,11 +32,6 @@
   .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
   .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
   .formula-box strong{color:var(--accent);}
-  .pronoun-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.9rem;}
-  .pronoun-table th{text-align:left;color:var(--text-muted);font-weight:600;padding:8px 12px;border-bottom:1px solid var(--border);}
-  .pronoun-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
-  .pronoun-table tr:last-child td{border-bottom:none;}
-  .pronoun-table .pron{color:var(--accent);font-weight:700;}
   .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
   .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
   .example-item em{color:var(--accent2);font-style:italic;}
@@ -61,7 +56,7 @@
   .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
   .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
   .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
-  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:80px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:120px;outline:none;text-align:center;transition:border-color 0.2s;}
   .gap-input:focus{border-bottom-color:var(--accent2);}
   .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
   .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
@@ -100,140 +95,114 @@
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
-      <span class="cefr-badge">B1</span>
-      <div class="topic-label">Clauses &amp; Relative Pronouns</div>
+      <span class="cefr-badge">A1</span>
+      <div class="topic-label">Present Tenses</div>
     </div>
-    <h1>Defining Relative Clauses</h1>
+    <h1>Simple Present: To Be</h1>
   </div>
-
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'drc-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'drc-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'tb-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'tb-activities')">Activities</button>
   </div>
-
-  <!-- EXPLANATION TAB -->
-  <div id="drc-explanation" class="tab-content active">
+  <div id="tb-explanation" class="tab-content active">
 
     <div class="explanation-section">
-      <h2>What is a defining relative clause?</h2>
-      <p>A defining relative clause gives essential information about a noun. Without it, we don't know which person, place, thing, or time is being referred to. There are no commas around the clause.</p>
+      <h2>The Verb To Be in the Simple Present</h2>
+      <p>The verb <em>to be</em> has three forms in the present simple: <strong>am</strong>, <strong>is</strong>, and <strong>are</strong>. It is used to describe people, things, feelings, nationalities, jobs, and more.</p>
       <div class="formula-box">
-        <strong>noun + relative pronoun + rest of clause</strong><br>
-        <em>She's the teacher <strong>who helped me most.</strong></em><br>
-        <em>This is the city <strong>where I was born.</strong></em>
+        <strong>I</strong> → am &nbsp;|&nbsp; <strong>He / She / It</strong> → is &nbsp;|&nbsp; <strong>You / We / They</strong> → are
       </div>
     </div>
-
     <div class="explanation-section">
-      <h2>Which relative pronoun to use</h2>
-      <table class="pronoun-table">
-        <thead><tr><th>The noun refers to…</th><th>Use</th><th>Example</th></tr></thead>
-        <tbody>
-          <tr><td>a <strong>person</strong></td><td class="pron">who / that</td><td>The woman <strong>who</strong> called left a message.</td></tr>
-          <tr><td>a <strong>thing</strong> or <strong>object</strong></td><td class="pron">which / that</td><td>The phone <strong>which</strong> does everything is very expensive.</td></tr>
-          <tr><td>a <strong>place</strong></td><td class="pron">where</td><td>The café <strong>where</strong> we met is closed now.</td></tr>
-          <tr><td>a <strong>time</strong></td><td class="pron">when</td><td>There are times <strong>when</strong> I just want to switch off.</td></tr>
-        </tbody>
-      </table>
-      <div class="note-box" style="margin-top:1rem;">
-        <strong>💡 Remember:</strong> You can use <em>that</em> instead of <em>who</em> or <em>which</em> in defining relative clauses.<br>
-        ✓ <em>The inventors <strong>that</strong> are creating new things…</em> &nbsp;|&nbsp; ✓ <em>The device <strong>that</strong> does everything…</em>
-      </div>
-    </div>
-
-    <div class="explanation-section">
-      <h2>Who, which, where and when in sentences</h2>
+      <h2>Positive Sentences</h2>
       <div class="examples-grid">
-        <div class="example-item"><em>There are some inventors <strong>who</strong> are creating some pretty amusing things.</em> <span style="color:var(--text-muted);font-size:0.82rem">(person)</span></div>
-        <div class="example-item"><em>The invention <strong>that</strong> is the most worrying so far is the 3-D printer.</em> <span style="color:var(--text-muted);font-size:0.82rem">(thing)</span></div>
-        <div class="example-item"><em>I'm on a street <strong>where</strong> lots of young people hang out on Saturday evenings.</em> <span style="color:var(--text-muted);font-size:0.82rem">(place)</span></div>
-        <div class="example-item"><em>If there's a time <strong>when</strong> people can make most of their own products, it's now.</em> <span style="color:var(--text-muted);font-size:0.82rem">(time)</span></div>
+        <div class="example-item"><em>I <strong>am</strong> a student.</em></div>
+        <div class="example-item"><em>She <strong>is</strong> from Brazil.</em></div>
+        <div class="example-item"><em>They <strong>are</strong> very friendly.</em></div>
+        <div class="example-item"><em>It <strong>is</strong> cold today.</em></div>
+        <div class="example-item"><em>We <strong>are</strong> in the classroom.</em></div>
       </div>
     </div>
-
     <div class="explanation-section">
-      <h2>Common mistakes</h2>
-      <div class="note-box">
-        <strong>⚠ Watch out:</strong><br>
-        ✗ <em>She's the person <strong>which</strong> called.</em> → ✓ <em>She's the person <strong>who</strong> called.</em> (use who/that for people)<br>
-        ✗ <em>That's the place <strong>who</strong> I grew up.</em> → ✓ <em>That's the place <strong>where</strong> I grew up.</em><br>
-        ✗ <em>I remember the day <strong>which</strong> we met.</em> → ✓ <em>I remember the day <strong>when</strong> we met.</em><br>
-        ✗ <em>She's the woman <strong>who she</strong> helped me.</em> → ✓ <em>She's the woman <strong>who</strong> helped me.</em> (don't repeat the subject)
+      <h2>Negative Sentences</h2>
+      <p>Add <em>not</em> after the verb. Common contractions: <em>isn't</em>, <em>aren't</em>. Note: <em>am not</em> has no standard contraction.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>I <strong>am not</strong> tired.</em></div>
+        <div class="example-item"><em>He <strong>isn't</strong> (is not) a doctor.</em></div>
+        <div class="example-item"><em>We <strong>aren't</strong> (are not) late.</em></div>
       </div>
     </div>
-
-  </div><!-- /explanation -->
-
-  <!-- ACTIVITIES TAB -->
-  <div id="drc-activities" class="tab-content">
-    <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'drc-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'drc-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'drc-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'drc-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'drc-act5')">5. Open Questions</button>
+    <div class="explanation-section">
+      <h2>Questions</h2>
+      <p>Move the verb <em>to be</em> before the subject to form a question.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em><strong>Are</strong> you ready?</em></div>
+        <div class="example-item"><em><strong>Is</strong> she your teacher?</em></div>
+        <div class="example-item"><em><strong>Am</strong> I late?</em></div>
+        <div class="example-item"><em>Where <strong>are</strong> they from?</em></div>
+      </div>
+      <div class="note-box">
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>She is a doctor? (question without inversion)</em> → ✓ <em>Is she a doctor?</em><br>
+        ✗ <em>They is happy.</em> → ✓ <em>They are happy.</em><br>
+        ✗ <em>He are my friend.</em> → ✓ <em>He is my friend.</em>
+      </div>
     </div>
-
-    <!-- Act 1 — Match -->
-    <div id="drc-act1" class="activity-section active">
+  </div>
+  <div id="tb-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'tb-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'tb-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'tb-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'tb-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'tb-act5')">5. Open Questions</button>
+    </div>
+    <div id="tb-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
-      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
-      <div class="score-badge">Matched: <span id="drc-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="drc-left"></div><div class="match-col" id="drc-right"></div></div>
+      <div class="activity-desc">Click a sentence beginning on the left, then click its matching ending on the right.</div>
+      <div class="score-badge">Matched: <span id="tb-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="tb-left"></div><div class="match-col" id="tb-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-
-    <!-- Act 2 — Fill Gaps -->
-    <div id="drc-act2" class="activity-section">
+    <div id="tb-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence with the correct relative pronoun: <em>who, which, where,</em> or <em>when</em>.</div>
-      <div id="drc-fill-exercises"></div>
-      <div>
-        <button class="check-btn" onclick="checkFill('drc-fill-exercises','drc-fill-feedback',FILL)">Check Answers</button>
-        <button class="reset-btn" onclick="buildFillHTML('drc-fill-exercises',FILL);document.getElementById('drc-fill-feedback').classList.remove('show')">↺ Reset</button>
-      </div>
-      <div id="drc-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence with the correct form of the verb <em>to be</em> (am / is / are).</div>
+      <div id="tb-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('tb-fill-exercises','tb-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('tb-fill-exercises',FILL);document.getElementById('tb-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="tb-fill-feedback" class="feedback"></div>
     </div>
-
-    <!-- Act 3 — Find Mistake -->
-    <div id="drc-act3" class="activity-section">
+    <div id="tb-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
-      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
-      <div id="drc-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('drc-mistake-exercises','drc-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('drc-mistake-exercises',MISTAKE);document.getElementById('drc-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="drc-mistake-feedback" class="feedback"></div>
+      <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
+      <div id="tb-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('tb-mistake-exercises','tb-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('tb-mistake-exercises',MISTAKE);document.getElementById('tb-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="tb-mistake-feedback" class="feedback"></div>
     </div>
-
-    <!-- Act 4 — Word Order -->
-    <div id="drc-act4" class="activity-section">
+    <div id="tb-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="drc-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('drc-order-exercises','drc-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('drc-order-exercises',ORDER);document.getElementById('drc-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="drc-order-feedback" class="feedback"></div>
+      <div id="tb-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('tb-order-exercises','tb-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('tb-order-exercises',ORDER);document.getElementById('tb-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="tb-order-feedback" class="feedback"></div>
     </div>
-
-    <!-- Act 5 — Open Questions -->
-    <div id="drc-act5" class="activity-section">
+    <div id="tb-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own sentences using defining relative clauses. Then click "Show Model Answer" to compare.</div>
-      <div id="drc-open-exercises"></div>
+      <div class="activity-desc">Write your own answers using the verb <em>to be</em>. Then click "Show Model Answer" to compare.</div>
+      <div id="tb-open-exercises"></div>
     </div>
-
-  </div><!-- /activities -->
-</div><!-- /topic-page -->
-
+  </div>
+</div>
 <script>
-// ── THEME ──────────────────────────────────────────────────────────────
 function toggleTheme(){
   const root=document.documentElement;
   const isLight=root.getAttribute('data-theme')==='light';
@@ -252,7 +221,6 @@ function toggleTheme(){
   }
 })();
 
-// ── TAB / ACTIVITY SWITCHING ───────────────────────────────────────────
 function switchTab(btn,contentId){
   const p=btn.closest('.topic-page');
   p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -267,54 +235,6 @@ function switchActivity(btn,contentId){
   p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
   document.getElementById(contentId).classList.add('active');
 }
-
-// ── DATA ───────────────────────────────────────────────────────────────
-const MATCH = [
-  {left:"1. She's the teacher",                         right:"a. who inspired me to study science."},
-  {left:"2. This is the neighbourhood",                 right:"b. where I grew up as a child."},
-  {left:"3. I remember the day",                        right:"c. when I got my first smartphone."},
-  {left:"4. The 21st-century device",                   right:"d. which does everything is the phone."},
-  {left:"5. There are some inventors",                  right:"e. who are creating some pretty amusing things."}
-];
-
-const FILL = [
-  {sentence:"Give an example of a time _____ you bought something that you were disappointed with.", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a time."},
-  {sentence:"Name the main places _____ you shop, apart from online.", answer:"where", explanation:"We use 'where' to introduce a relative clause about a place."},
-  {sentence:"Think of a person _____ has been very important in the first decades of the 21st century.", answer:"who", alt:["that"], explanation:"We use 'who' (or 'that') to introduce a relative clause about a person."},
-  {sentence:"The invention _____ changed communication the most is the smartphone.", answer:"that", alt:["which"], explanation:"We use 'that' or 'which' to introduce a relative clause about a thing."},
-  {sentence:"Do you remember the moment _____ you first used the internet?", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a moment in time."}
-];
-
-const MISTAKE = [
-  // error pos 1
-  {sentence:"She's the scientist which discovered a new treatment for the disease.", options:["She's the scientist","which discovered","a new treatment for the disease."], correct:1, explanation:"Use 'who' or 'that' for people, not 'which'. Correct: 'She's the scientist who discovered…'"},
-  // error pos 2
-  {sentence:"That's the café where I used to meet my friends who she moved abroad.", options:["That's the café where I used to meet","my friends","who she moved abroad."], correct:2, explanation:"Don't repeat the subject after the relative pronoun. Correct: 'my friends who moved abroad.'"},
-  // error pos 0
-  {sentence:"Which I use most is the app that helps me learn languages.", options:["Which I use most","is the app","that helps me learn languages."], correct:0, explanation:"A relative clause cannot start a sentence on its own. Correct: 'The app which I use most is the one that helps me learn languages.'"},
-  // error pos 1
-  {sentence:"I remember the summer when I visited my cousin who it fixed my computer.", options:["I remember the summer when I visited","my cousin","who it fixed my computer."], correct:2, explanation:"Don't repeat the subject pronoun after 'who'. Correct: 'my cousin who fixed my computer.'"},
-  // error pos 2
-  {sentence:"The neighbourhood where I grew up is a place which has lots of energy.", options:["The neighbourhood where I grew up","is a place","who has lots of energy."], correct:2, explanation:"Use 'which' or 'that' for things/places — not 'who'. Correct: '…a place which has lots of energy.'"}
-];
-
-const ORDER = [
-  {words:["She's","the","teacher","who","helped","me","most."], answer:"She's the teacher who helped me most."},
-  {words:["Do","you","remember","the","day","when","we","met?"], answer:"Do you remember the day when we met?"},
-  {words:["That's","the","café","where","we","had","our","first","date."], answer:"That's the café where we had our first date."},
-  {words:["The","device","that","does","everything","is","the","phone."], answer:"The device that does everything is the phone."},
-  {words:["There","are","inventors","who","are","creating","amazing","things."], answer:"There are inventors who are creating amazing things."}
-];
-
-const OPEN = [
-  {question:"Write a sentence about a person who is important to you. Use <em>who</em>.", model:"She's the friend who always knows how to make me laugh."},
-  {question:"Write a sentence about a place that is special to you. Use <em>where</em>.", model:"My grandmother's house is the place where I feel most at home."},
-  {question:"Write a sentence about a time you remember well. Use <em>when</em>.", model:"I remember the day when I got my first mobile phone — I was so excited."},
-  {question:"Write a sentence about a piece of technology you use. Use <em>which</em> or <em>that</em>.", model:"The app that I use most is the one that helps me practise English every day."},
-  {question:"Write two sentences: one using <em>who</em> and one using <em>where</em>.", model:"The teacher who taught me primary school was incredibly kind. The park where I used to play is now a shopping centre."}
-];
-
-// ── MATCH ──────────────────────────────────────────────────────────────
 function initMatch(prefix,data){
   const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
   const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
@@ -348,14 +268,12 @@ function initMatch(prefix,data){
   }
   lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
 }
-
-// ── FILL ───────────────────────────────────────────────────────────────
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>`;
     c.appendChild(d);
   });
 }
@@ -364,16 +282,13 @@ function checkFill(cid,fid,data){
   inputs.forEach(inp=>{
     const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
     const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
-    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
-    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
-
-// ── MISTAKE ────────────────────────────────────────────────────────────
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -396,8 +311,6 @@ function checkMistake(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
 }
-
-// ── WORD ORDER ─────────────────────────────────────────────────────────
 const orderState={};
 function buildOrderHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
@@ -435,8 +348,6 @@ function checkOrder(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
-
-// ── OPEN ───────────────────────────────────────────────────────────────
 function buildOpenHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -453,16 +364,52 @@ function toggleModel(btn){
   btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
 }
 
-// ── INIT ───────────────────────────────────────────────────────────────
+
+const MATCH = [
+  {left:"1. I am really nervous because", right:"a. it is my first day at work."},
+  {left:"2. My parents are both doctors —", right:"b. they are very busy people."},
+  {left:"3. Look at that dog! It is", right:"c. the biggest one I have ever seen."},
+  {left:"4. You are late! The meeting", right:"d. is already in the second hour."},
+  {left:"5. We are not from here —", right:"e. we are actually from New Zealand."}
+];
+const FILL = [
+  {sentence:"My brother _____ a teacher at a primary school.", answer:"is"},
+  {sentence:"I _____ not very good at maths, but I love English.", answer:"am"},
+  {sentence:"The children _____ really excited about the school trip.", answer:"are"},
+  {sentence:"_____ you from Spain or Portugal?", answer:"Are"},
+  {sentence:"It _____ a beautiful day today — the sun is shining.", answer:"is"}
+];
+const MISTAKE = [
+  {sentence:"She are a very good student.", options:["She are","a very good","student."], correct:0, explanation:"'She' takes 'is', not 'are': 'She is a very good student.'"},
+  {sentence:"They is from Japan.", options:["They is","from Japan.",""], correct:0, explanation:"'They' takes 'are', not 'is': 'They are from Japan.'"},
+  {sentence:"I is happy today.", options:["I is","happy","today."], correct:0, explanation:"'I' takes 'am', not 'is': 'I am happy today.'"},
+  {sentence:"Is they your parents?", options:["Is they","your parents?",""], correct:0, explanation:"'They' takes 'are': 'Are they your parents?'"},
+  {sentence:"He not is tired.", options:["He not is","tired.",""], correct:0, explanation:"The negative puts 'not' after the verb: 'He is not tired.' or 'He isn't tired.'"}
+];
+const ORDER = [
+  {words:["is","My","from","mother","Argentina."], answer:"My mother is from Argentina."},
+  {words:["late.","not","We","are"], answer:"We are not late."},
+  {words:["your","Is","teacher?","she","English"], answer:"Is she your English teacher?"},
+  {words:["and","am","I","student","a","years","twenty","old."], answer:"I am a student and twenty years old."},
+  {words:["They","the","are","in","office.","not"], answer:"They are not in the office."}
+];
+const OPEN = [
+  {question:"Write three sentences about yourself using am, is, and are.", model:"I am 25 years old. My name is Maria. My friends are very supportive."},
+  {question:"Describe a person you know well. Use is and are.", model:"My brother is a doctor. He is tall and funny. His children are very young — they are three and five years old."},
+  {question:"Write two questions you could ask a new classmate using 'Are you...?' or 'Is your...?'", model:"Are you from this city? Is your family big?"},
+  {question:"Write a negative sentence about yourself and a negative sentence about someone you know.", model:"I am not good at cooking. My sister isn't very tall, but she is a fantastic athlete."},
+  {question:"Describe where you are right now and how you feel, using the verb to be.", model:"I am at home right now. It is a quiet afternoon. I am a bit tired but I am happy."}
+];
 function init(){
-  initMatch('drc', MATCH);
-  buildFillHTML('drc-fill-exercises', FILL);
-  document.getElementById('drc-fill-feedback').classList.remove('show');
-  buildMistakeHTML('drc-mistake-exercises', MISTAKE);
-  document.getElementById('drc-mistake-feedback').classList.remove('show');
-  buildOrderHTML('drc-order-exercises', ORDER);
-  document.getElementById('drc-order-feedback').classList.remove('show');
-  buildOpenHTML('drc-open-exercises', OPEN);
+  initMatch('tb', MATCH);
+  buildFillHTML('tb-fill-exercises', FILL);
+  document.getElementById('tb-fill-feedback').classList.remove('show');
+  buildMistakeHTML('tb-mistake-exercises', MISTAKE);
+  document.getElementById('tb-mistake-feedback').classList.remove('show');
+  buildOrderHTML('tb-order-exercises', ORDER);
+  document.getElementById('tb-order-feedback').classList.remove('show');
+  buildOpenHTML('tb-open-exercises', OPEN);
+  
 }
 window.addEventListener('DOMContentLoaded', init);
 </script>

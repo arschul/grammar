@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Future Possibility and Certainty – GrammarHub</title>
+<title>Defining Relative Clauses – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
-  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
@@ -33,6 +32,11 @@
   .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
   .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
   .formula-box strong{color:var(--accent);}
+  .pronoun-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.9rem;}
+  .pronoun-table th{text-align:left;color:var(--text-muted);font-weight:600;padding:8px 12px;border-bottom:1px solid var(--border);}
+  .pronoun-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
+  .pronoun-table tr:last-child td{border-bottom:none;}
+  .pronoun-table .pron{color:var(--accent);font-weight:700;}
   .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
   .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
   .example-item em{color:var(--accent2);font-style:italic;}
@@ -57,7 +61,7 @@
   .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
   .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
   .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
-  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:120px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:80px;outline:none;text-align:center;transition:border-color 0.2s;}
   .gap-input:focus{border-bottom-color:var(--accent2);}
   .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
   .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
@@ -96,109 +100,140 @@
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
       <span class="cefr-badge">B1</span>
-      <div class="topic-label">Modals &amp; Adverbs</div>
+      <div class="topic-label">Clauses &amp; Relative Pronouns</div>
     </div>
-    <h1>Future Possibility and Certainty</h1>
+    <h1>Defining Relative Clauses</h1>
   </div>
+
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'fpc-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'fpc-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'drc-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'drc-activities')">Activities</button>
   </div>
-  <div id="fpc-explanation" class="tab-content active">
+
+  <!-- EXPLANATION TAB -->
+  <div id="drc-explanation" class="tab-content active">
 
     <div class="explanation-section">
-      <h2>Expressing Possibility: may, might, could</h2>
-      <p>Use <em>may</em>, <em>might</em>, or <em>could</em> to say that something is <strong>possible</strong> in the future — you are not sure if it will happen. All three are followed by the base verb.</p>
-      <div class="examples-grid">
-        <div class="example-item"><em>I <strong>might</strong> still be at home with my parents next year.</em> (possible, not sure)</div>
-        <div class="example-item"><em>You <strong>could</strong> live with a friend.</em> (possible option)</div>
-        <div class="example-item"><em>You <strong>may</strong> find something cheap outside the city.</em> (possible)</div>
-        <div class="example-item"><em>She <strong>might not</strong> come to the party.</em> (possibly won't happen)</div>
+      <h2>What is a defining relative clause?</h2>
+      <p>A defining relative clause gives essential information about a noun. Without it, we don't know which person, place, thing, or time is being referred to. There are no commas around the clause.</p>
+      <div class="formula-box">
+        <strong>noun + relative pronoun + rest of clause</strong><br>
+        <em>She's the teacher <strong>who helped me most.</strong></em><br>
+        <em>This is the city <strong>where I was born.</strong></em>
       </div>
     </div>
+
     <div class="explanation-section">
-      <h2>Expressing Near Certainty: probably</h2>
-      <p>Use <em>probably</em> when you are <strong>almost sure</strong> something will or won't happen. Place <em>probably</em> after <em>will</em> in positive sentences, and before <em>won't</em> in negative sentences.</p>
-      <div class="examples-grid">
-        <div class="example-item"><em>I will <strong>probably</strong> get a new job next year.</em> (almost certain — positive)</div>
-        <div class="example-item"><em>I <strong>probably</strong> won't have enough money for that.</em> (almost certain — negative)</div>
-        <div class="example-item"><em>She will <strong>probably</strong> be late.</em></div>
+      <h2>Which relative pronoun to use</h2>
+      <table class="pronoun-table">
+        <thead><tr><th>The noun refers to…</th><th>Use</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>a <strong>person</strong></td><td class="pron">who / that</td><td>The woman <strong>who</strong> called left a message.</td></tr>
+          <tr><td>a <strong>thing</strong> or <strong>object</strong></td><td class="pron">which / that</td><td>The phone <strong>which</strong> does everything is very expensive.</td></tr>
+          <tr><td>a <strong>place</strong></td><td class="pron">where</td><td>The café <strong>where</strong> we met is closed now.</td></tr>
+          <tr><td>a <strong>time</strong></td><td class="pron">when</td><td>There are times <strong>when</strong> I just want to switch off.</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box" style="margin-top:1rem;">
+        <strong>💡 Remember:</strong> You can use <em>that</em> instead of <em>who</em> or <em>which</em> in defining relative clauses.<br>
+        ✓ <em>The inventors <strong>that</strong> are creating new things…</em> &nbsp;|&nbsp; ✓ <em>The device <strong>that</strong> does everything…</em>
       </div>
     </div>
+
     <div class="explanation-section">
-      <h2>Expressing Full Certainty: definitely</h2>
-      <p>Use <em>definitely</em> when you are <strong>completely sure</strong> something will happen. Place <em>definitely</em> after <em>will</em> in positive sentences, and before <em>won't</em> in negative sentences.</p>
+      <h2>Who, which, where and when in sentences</h2>
       <div class="examples-grid">
-        <div class="example-item"><em>I will <strong>definitely</strong> miss them!</em> (100% certain — positive)</div>
-        <div class="example-item"><em>He <strong>definitely</strong> won't forget your birthday.</em> (100% certain — negative)</div>
+        <div class="example-item"><em>There are some inventors <strong>who</strong> are creating some pretty amusing things.</em> <span style="color:var(--text-muted);font-size:0.82rem">(person)</span></div>
+        <div class="example-item"><em>The invention <strong>that</strong> is the most worrying so far is the 3-D printer.</em> <span style="color:var(--text-muted);font-size:0.82rem">(thing)</span></div>
+        <div class="example-item"><em>I'm on a street <strong>where</strong> lots of young people hang out on Saturday evenings.</em> <span style="color:var(--text-muted);font-size:0.82rem">(place)</span></div>
+        <div class="example-item"><em>If there's a time <strong>when</strong> people can make most of their own products, it's now.</em> <span style="color:var(--text-muted);font-size:0.82rem">(time)</span></div>
       </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Common mistakes</h2>
       <div class="note-box">
-        <strong>💡 Certainty scale:</strong><br>
-        <em>could / may / might</em> → possible (maybe 30–50%)<br>
-        <em>will probably</em> → almost certain (around 70–80%)<br>
-        <em>will definitely</em> → completely certain (100%)<br><br>
-        <strong>⚠ Common mistakes:</strong><br>
-        ✗ <em>She might to come tomorrow.</em> → ✓ <em>She might come tomorrow.</em> (no <em>to</em> after modals)<br>
-        ✗ <em>I definitely will go.</em> → ✓ <em>I will definitely go.</em> (<em>definitely</em> comes after <em>will</em>)<br>
-        ✗ <em>I probably won't to pass.</em> → ✓ <em>I probably won't pass.</em>
+        <strong>⚠ Watch out:</strong><br>
+        ✗ <em>She's the person <strong>which</strong> called.</em> → ✓ <em>She's the person <strong>who</strong> called.</em> (use who/that for people)<br>
+        ✗ <em>That's the place <strong>who</strong> I grew up.</em> → ✓ <em>That's the place <strong>where</strong> I grew up.</em><br>
+        ✗ <em>I remember the day <strong>which</strong> we met.</em> → ✓ <em>I remember the day <strong>when</strong> we met.</em><br>
+        ✗ <em>She's the woman <strong>who she</strong> helped me.</em> → ✓ <em>She's the woman <strong>who</strong> helped me.</em> (don't repeat the subject)
       </div>
     </div>
-  </div>
-  <div id="fpc-activities" class="tab-content">
+
+  </div><!-- /explanation -->
+
+  <!-- ACTIVITIES TAB -->
+  <div id="drc-activities" class="tab-content">
     <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'fpc-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'fpc-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'fpc-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'fpc-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'fpc-act5')">5. Open Questions</button>
+      <button class="act-btn active" onclick="switchActivity(this,'drc-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'drc-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'drc-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'drc-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'drc-act5')">5. Open Questions</button>
     </div>
-    <div id="fpc-act1" class="activity-section active">
+
+    <!-- Act 1 — Match -->
+    <div id="drc-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
       <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
-      <div class="score-badge">Matched: <span id="fpc-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="fpc-left"></div><div class="match-col" id="fpc-right"></div></div>
+      <div class="score-badge">Matched: <span id="drc-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="drc-left"></div><div class="match-col" id="drc-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-    <div id="fpc-act2" class="activity-section">
+
+    <!-- Act 2 — Fill Gaps -->
+    <div id="drc-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence with the correct word or phrase from this topic.</div>
-      <div id="fpc-fill-exercises"></div>
-      <div><button class="check-btn" onclick="checkFill('fpc-fill-exercises','fpc-fill-feedback',FILL)">Check Answers</button>
-      <button class="reset-btn" onclick="buildFillHTML('fpc-fill-exercises',FILL);document.getElementById('fpc-fill-feedback').classList.remove('show')">↺ Reset</button></div>
-      <div id="fpc-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence with the correct relative pronoun: <em>who, which, where,</em> or <em>when</em>.</div>
+      <div id="drc-fill-exercises"></div>
+      <div>
+        <button class="check-btn" onclick="checkFill('drc-fill-exercises','drc-fill-feedback',FILL)">Check Answers</button>
+        <button class="reset-btn" onclick="buildFillHTML('drc-fill-exercises',FILL);document.getElementById('drc-fill-feedback').classList.remove('show')">↺ Reset</button>
+      </div>
+      <div id="drc-fill-feedback" class="feedback"></div>
     </div>
-    <div id="fpc-act3" class="activity-section">
+
+    <!-- Act 3 — Find Mistake -->
+    <div id="drc-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
       <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
-      <div id="fpc-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('fpc-mistake-exercises','fpc-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('fpc-mistake-exercises',MISTAKE);document.getElementById('fpc-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="fpc-mistake-feedback" class="feedback"></div>
+      <div id="drc-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('drc-mistake-exercises','drc-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('drc-mistake-exercises',MISTAKE);document.getElementById('drc-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="drc-mistake-feedback" class="feedback"></div>
     </div>
-    <div id="fpc-act4" class="activity-section">
+
+    <!-- Act 4 — Word Order -->
+    <div id="drc-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="fpc-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('fpc-order-exercises','fpc-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('fpc-order-exercises',ORDER);document.getElementById('fpc-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="fpc-order-feedback" class="feedback"></div>
+      <div id="drc-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('drc-order-exercises','drc-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('drc-order-exercises',ORDER);document.getElementById('drc-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="drc-order-feedback" class="feedback"></div>
     </div>
-    <div id="fpc-act5" class="activity-section">
+
+    <!-- Act 5 — Open Questions -->
+    <div id="drc-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own sentences about the future using the expressions from this topic. Then click "Show Model Answer" to compare.</div>
-      <div id="fpc-open-exercises"></div>
+      <div class="activity-desc">Write your own sentences using defining relative clauses. Then click "Show Model Answer" to compare.</div>
+      <div id="drc-open-exercises"></div>
     </div>
-  </div>
-</div>
+
+  </div><!-- /activities -->
+</div><!-- /topic-page -->
+
 <script>
+// ── THEME ──────────────────────────────────────────────────────────────
 function toggleTheme(){
   const root=document.documentElement;
   const isLight=root.getAttribute('data-theme')==='light';
@@ -217,24 +252,7 @@ function toggleTheme(){
   }
 })();
 
-function toggleTheme(){
-  const root=document.documentElement;
-  const isLight=root.getAttribute('data-theme')==='light';
-  root.setAttribute('data-theme',isLight?'dark':'light');
-  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
-  localStorage.setItem('gh-theme',isLight?'dark':'light');
-}
-(function(){
-  const saved=localStorage.getItem('gh-theme');
-  if(saved==='light'){
-    document.documentElement.setAttribute('data-theme','light');
-    document.addEventListener('DOMContentLoaded',()=>{
-      const btn=document.getElementById('theme-btn');
-      if(btn)btn.textContent='☀️';
-    });
-  }
-})();
-
+// ── TAB / ACTIVITY SWITCHING ───────────────────────────────────────────
 function switchTab(btn,contentId){
   const p=btn.closest('.topic-page');
   p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -249,6 +267,54 @@ function switchActivity(btn,contentId){
   p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
   document.getElementById(contentId).classList.add('active');
 }
+
+// ── DATA ───────────────────────────────────────────────────────────────
+const MATCH = [
+  {left:"1. She's the teacher",                         right:"a. who inspired me to study science."},
+  {left:"2. This is the neighbourhood",                 right:"b. where I grew up as a child."},
+  {left:"3. I remember the day",                        right:"c. when I got my first smartphone."},
+  {left:"4. The 21st-century device",                   right:"d. which does everything is the phone."},
+  {left:"5. There are some inventors",                  right:"e. who are creating some pretty amusing things."}
+];
+
+const FILL = [
+  {sentence:"Give an example of a time _____ you bought something that you were disappointed with.", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a time."},
+  {sentence:"Name the main places _____ you shop, apart from online.", answer:"where", explanation:"We use 'where' to introduce a relative clause about a place."},
+  {sentence:"Think of a person _____ has been very important in the first decades of the 21st century.", answer:"who", alt:["that"], explanation:"We use 'who' (or 'that') to introduce a relative clause about a person."},
+  {sentence:"The invention _____ changed communication the most is the smartphone.", answer:"that", alt:["which"], explanation:"We use 'that' or 'which' to introduce a relative clause about a thing."},
+  {sentence:"Do you remember the moment _____ you first used the internet?", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a moment in time."}
+];
+
+const MISTAKE = [
+  // error pos 1
+  {sentence:"She's the scientist which discovered a new treatment for the disease.", options:["She's the scientist","which discovered","a new treatment for the disease."], correct:1, explanation:"Use 'who' or 'that' for people, not 'which'. Correct: 'She's the scientist who discovered…'"},
+  // error pos 2
+  {sentence:"That's the café where I used to meet my friends who she moved abroad.", options:["That's the café where I used to meet","my friends","who she moved abroad."], correct:2, explanation:"Don't repeat the subject after the relative pronoun. Correct: 'my friends who moved abroad.'"},
+  // error pos 0
+  {sentence:"Which I use most is the app that helps me learn languages.", options:["Which I use most","is the app","that helps me learn languages."], correct:0, explanation:"A relative clause cannot start a sentence on its own. Correct: 'The app which I use most is the one that helps me learn languages.'"},
+  // error pos 1
+  {sentence:"I remember the summer when I visited my cousin who it fixed my computer.", options:["I remember the summer when I visited","my cousin","who it fixed my computer."], correct:2, explanation:"Don't repeat the subject pronoun after 'who'. Correct: 'my cousin who fixed my computer.'"},
+  // error pos 2
+  {sentence:"The neighbourhood where I grew up is a place which has lots of energy.", options:["The neighbourhood where I grew up","is a place","who has lots of energy."], correct:2, explanation:"Use 'which' or 'that' for things/places — not 'who'. Correct: '…a place which has lots of energy.'"}
+];
+
+const ORDER = [
+  {words:["She's","the","teacher","who","helped","me","most."], answer:"She's the teacher who helped me most."},
+  {words:["Do","you","remember","the","day","when","we","met?"], answer:"Do you remember the day when we met?"},
+  {words:["That's","the","café","where","we","had","our","first","date."], answer:"That's the café where we had our first date."},
+  {words:["The","device","that","does","everything","is","the","phone."], answer:"The device that does everything is the phone."},
+  {words:["There","are","inventors","who","are","creating","amazing","things."], answer:"There are inventors who are creating amazing things."}
+];
+
+const OPEN = [
+  {question:"Write a sentence about a person who is important to you. Use <em>who</em>.", model:"She's the friend who always knows how to make me laugh."},
+  {question:"Write a sentence about a place that is special to you. Use <em>where</em>.", model:"My grandmother's house is the place where I feel most at home."},
+  {question:"Write a sentence about a time you remember well. Use <em>when</em>.", model:"I remember the day when I got my first mobile phone — I was so excited."},
+  {question:"Write a sentence about a piece of technology you use. Use <em>which</em> or <em>that</em>.", model:"The app that I use most is the one that helps me practise English every day."},
+  {question:"Write two sentences: one using <em>who</em> and one using <em>where</em>.", model:"The teacher who taught me primary school was incredibly kind. The park where I used to play is now a shopping centre."}
+];
+
+// ── MATCH ──────────────────────────────────────────────────────────────
 function initMatch(prefix,data){
   const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
   const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
@@ -282,12 +348,14 @@ function initMatch(prefix,data){
   }
   lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
 }
+
+// ── FILL ───────────────────────────────────────────────────────────────
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`;
     c.appendChild(d);
   });
 }
@@ -304,6 +372,8 @@ function checkFill(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
+
+// ── MISTAKE ────────────────────────────────────────────────────────────
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -326,6 +396,8 @@ function checkMistake(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
 }
+
+// ── WORD ORDER ─────────────────────────────────────────────────────────
 const orderState={};
 function buildOrderHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
@@ -363,6 +435,8 @@ function checkOrder(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
+
+// ── OPEN ───────────────────────────────────────────────────────────────
 function buildOpenHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -379,77 +453,16 @@ function toggleModel(btn){
   btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
 }
 
-
-
-
-
-function buildFillHTML(cid,data){
-  const c=document.getElementById(cid);c.innerHTML='';
-  data.forEach((item,i)=>{
-    const d=document.createElement('div');d.className='exercise';
-    const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`; 
-    c.appendChild(d);
-  });
-}
-function checkFill(cid,fid,data){
-  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
-  inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
-    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
-    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
-  });
-  const fb=document.getElementById(fid);fb.classList.add('show');
-  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
-}
-
-const MATCH = [
-  {left:"1. I might stay home tonight —", right:"a. I'm not sure yet."},
-  {left:"2. She will definitely get the job.", right:"b. She is completely certain about it."},
-  {left:"3. He probably won't come to the party", right:"c. because he is very busy this week."},
-  {left:"4. You could find a cheaper flat", right:"d. if you look outside the city centre."},
-  {left:"5. They will probably move abroad", right:"e. but they haven't decided for sure."}
-];
-const FILL = [
-  {sentence:"I'm not sure about my plans — I _____ go to the beach if the weather is good.", answer:"might", alt:["may","could"], explanation:"Use 'might', 'may' or 'could' for something possible but uncertain."},
-  {sentence:"She has studied really hard, so she will _____ pass the exam.", answer:"definitely", alt:["probably"], explanation:"Both 'definitely' and 'probably' work, since there's not enough context."},
-  {sentence:"I _____ won't have enough money to travel this summer.", answer:"probably", alt:["definitely"], explanation:"Both 'definitely' and 'probably' work, since there's not enough context."},
-  {sentence:"He _____ get a promotion soon — his boss really likes him.", answer:"will probably", alt:["probably will"], explanation:"Use 'will probably' for near certainty in a positive sentence."},
-  {sentence:"They _____ move to another city, but they haven't decided yet.", answer:"might", alt:["may","could"], explanation:"Use 'might', 'may' or 'could' when something is just a possibility."}
-];
-const MISTAKE = [
-  {sentence:"She might to call you later this evening.", options:["She might","to call you","later this evening."], correct:1, explanation:"No 'to' after modal verbs: 'She might call you later.'"},
-  {sentence:"I definitely will pass the exam — I studied all week.", options:["I definitely will pass","the exam","I studied all week."], correct:0, explanation:"'Definitely' comes after 'will': 'I will definitely pass the exam.'"},
-  {sentence:"He will probably not comes to the meeting tomorrow.", options:["He will probably","not comes","to the meeting tomorrow."], correct:1, explanation:"After 'will', use the base verb: 'He will probably not come' or 'He probably won't come.'"},
-  {sentence:"They could to find a cheaper place if they look online.", options:["They could","to find a cheaper place","if they look online."], correct:1, explanation:"No 'to' after modal verbs: 'They could find a cheaper place.'"},
-  {sentence:"He works very hard, so he will pass definitely.", options:["He works very hard,","so he will pass","definitely."], correct:2, explanation:"'Definitely' must come between 'will' and the verb: 'he will definitely pass.'"}
-];
-const ORDER = [
-  {words:["might","I","late.","be"], answer:"I might be late."},
-  {words:["will","She","pass.","definitely"], answer:"She will definitely pass."},
-  {words:["probably","He","come.","won't"], answer:"He probably won't come."},
-  {words:["could","You","job.","a","find","better"], answer:"You could find a better job."},
-  {words:["will","They","move","probably","year.","next"], answer:"They will probably move next year."}
-];
-const OPEN = [
-  {question:"Write two sentences about something you might do next weekend.", model:"I might go to the cinema with my friends. I could also stay home and watch TV if I'm tired."},
-  {question:"Write two sentences using 'will definitely' and 'will probably'.", model:"I will definitely call my mum this weekend. I will probably visit my grandparents too."},
-  {question:"Write two negative sentences using 'probably won't' and 'might not'.", model:"I probably won't go out on Friday — I have work early on Saturday. She might not come to the party if she's not feeling well."},
-  {question:"Think about your life in five years. Write three sentences using different expressions from this topic.", model:"I will definitely have finished my degree by then. I might be living in a different city. I probably won't have the same job I have now."},
-  {question:"Write one sentence for each level of certainty: possible, almost certain, and completely certain.", model:"I could get a promotion this year — my manager seems happy with my work. I will probably move to a bigger flat next year. I will definitely keep studying English."}
-];
+// ── INIT ───────────────────────────────────────────────────────────────
 function init(){
-  initMatch('fpc', MATCH);
-  buildFillHTML('fpc-fill-exercises', FILL);
-  document.getElementById('fpc-fill-feedback').classList.remove('show');
-  buildMistakeHTML('fpc-mistake-exercises', MISTAKE);
-  document.getElementById('fpc-mistake-feedback').classList.remove('show');
-  buildOrderHTML('fpc-order-exercises', ORDER);
-  document.getElementById('fpc-order-feedback').classList.remove('show');
-  buildOpenHTML('fpc-open-exercises', OPEN);
+  initMatch('drc', MATCH);
+  buildFillHTML('drc-fill-exercises', FILL);
+  document.getElementById('drc-fill-feedback').classList.remove('show');
+  buildMistakeHTML('drc-mistake-exercises', MISTAKE);
+  document.getElementById('drc-mistake-feedback').classList.remove('show');
+  buildOrderHTML('drc-order-exercises', ORDER);
+  document.getElementById('drc-order-feedback').classList.remove('show');
+  buildOpenHTML('drc-open-exercises', OPEN);
 }
 window.addEventListener('DOMContentLoaded', init);
 </script>

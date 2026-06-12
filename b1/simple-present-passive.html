@@ -3,16 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Past Perfect – GrammarHub</title>
+<title>Simple Present Passive – GrammarHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
   .nav-logo span{color:var(--accent2);}
-  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:100px;padding:0.3rem 0.9rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;transition:all 0.2s;}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
   .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
   .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
   .topic-header{margin-bottom:3rem;}
@@ -54,7 +57,7 @@
   .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
   .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
   .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
-  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:130px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:120px;outline:none;text-align:center;transition:border-color 0.2s;}
   .gap-input:focus{border-bottom-color:var(--accent2);}
   .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
   .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
@@ -88,165 +91,157 @@
   .score-badge span{color:var(--accent);font-weight:600;}
   .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
   .back-home:hover{color:var(--accent);}
-  /* timeline diagram */
-  .timeline-diagram{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.5rem 1.2rem;margin:1rem 0;}
-  .tl-line{position:relative;height:4px;background:var(--border);border-radius:2px;margin:2rem 0 1rem;}
-  .tl-line::after{content:'→';position:absolute;right:-1rem;top:-0.6rem;color:var(--text-muted);font-size:1rem;}
-  .tl-event{position:absolute;transform:translateX(-50%);text-align:center;}
-  .tl-dot{width:12px;height:12px;border-radius:50%;margin:0 auto -8px;position:relative;top:-4px;}
-  .tl-label{font-size:0.75rem;margin-top:0.6rem;line-height:1.4;max-width:100px;}
-  .tl-arrow-label{position:absolute;font-size:0.72rem;color:var(--accent);top:-1.6rem;white-space:nowrap;}
-  /* light mode */
-  body.light{--bg:#f7f5f0;--surface:#ffffff;--surface2:#edeae3;--accent:#b8960c;--accent2:#c9601a;--text:#1a1915;--text-muted:#6b6760;--border:#d8d4cc;}
-  body.light .gap-input{color:var(--text);}
-  body.light .open-answer-area{color:var(--text);}
   @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
-  <button class="theme-toggle" onclick="toggleTheme()">☀ Light</button>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
 <div class="topic-page">
-  <a class="back-home" href="index.html">← Back to home</a>
+  <a class="back-home" href="../index.html">← Back to home</a>
   <div class="topic-header">
     <div>
       <span class="cefr-badge">B1</span>
-      <div class="topic-label">Past Tenses</div>
+      <div class="topic-label">Passive Voice</div>
     </div>
-    <h1>Past Perfect</h1>
+    <h1>Simple Present Passive</h1>
   </div>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'pp-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'pp-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'spp-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'spp-activities')">Activities</button>
   </div>
-
-  <!-- EXPLANATION -->
-  <div id="pp-explanation" class="tab-content active">
+  <div id="spp-explanation" class="tab-content active">
 
     <div class="explanation-section">
-      <h2>What Is the Past Perfect?</h2>
-      <p>The past perfect describes an action that happened <strong>before</strong> another action or time in the past. It helps us show which of two past events came first.</p>
+      <h2>What is the Simple Present Passive?</h2>
+      <p>The passive voice shifts the focus from the person or thing doing the action (the agent) to the person or thing <strong>receiving</strong> the action. In the simple present passive, the auxiliary verb is <strong>be</strong> (not <em>have</em>), followed by the <strong>past participle</strong> of the main verb.</p>
       <div class="formula-box">
-        <strong>Subject + had + past participle</strong><br><br>
-        <em>She <strong>had already left</strong> when I arrived.</em><br>
-        <em>By the time the film started, we <strong>had found</strong> our seats.</em>
+        <strong>Positive:</strong> subject + am / is / are + past participle<br>
+        <strong>Negative:</strong> subject + am / is / are + not + past participle<br>
+        <strong>Question:</strong> Am / Is / Are + subject + past participle?
       </div>
     </div>
-
     <div class="explanation-section">
-      <h2>Past Perfect vs Simple Past</h2>
-      <p>When two things happened in the past, use the <strong>past perfect</strong> for the earlier event and the <strong>simple past</strong> for the later one.</p>
+      <h2>Active vs Passive</h2>
+      <p>In an active sentence, the subject does the action. In a passive sentence, the subject receives the action.</p>
       <div class="examples-grid">
-        <div class="example-item">
-          <em>When I arrived, she <strong>had already gone</strong> home.</em><br>
-          <span style="font-size:0.82rem;color:var(--text-muted);">→ She left first. Then I arrived.</span>
-        </div>
-        <div class="example-item">
-          <em>He <strong>had never seen</strong> snow before he moved to Canada.</em><br>
-          <span style="font-size:0.82rem;color:var(--text-muted);">→ He moved to Canada. Before that, no snow.</span>
-        </div>
-        <div class="example-item">
-          <em>They <strong>had finished</strong> dinner by the time the guests arrived.</em><br>
-          <span style="font-size:0.82rem;color:var(--text-muted);">→ Dinner was finished first. Guests arrived second.</span>
-        </div>
+        <div class="example-item"><strong>Active:</strong> <em>People speak English all over the world.</em></div>
+        <div class="example-item"><strong>Passive:</strong> <em>English <strong>is spoken</strong> all over the world.</em></div>
+        <div class="example-item"><strong>Active:</strong> <em>The company makes the product in Brazil.</em></div>
+        <div class="example-item"><strong>Passive:</strong> <em>The product <strong>is made</strong> in Brazil.</em></div>
+        <div class="example-item"><strong>Active:</strong> <em>They clean the office every day.</em></div>
+        <div class="example-item"><strong>Passive:</strong> <em>The office <strong>is cleaned</strong> every day.</em></div>
       </div>
     </div>
-
     <div class="explanation-section">
-      <h2>Positive, Negative and Question Forms</h2>
-      <div class="formula-box">
-        <strong>Positive:</strong> She <em>had finished</em> the report before lunch.<br>
-        <strong>Negative:</strong> He <em>hadn't met</em> her before the party.<br>
-        <strong>Question:</strong> <em>Had</em> you <em>visited</em> the city before?<br>
-        <strong>Short answer:</strong> Yes, I had. / No, I hadn't.
-      </div>
-    </div>
-
-    <div class="explanation-section">
-      <h2>Common Time Expressions</h2>
+      <h2>When to Use the Passive</h2>
+      <p>Use the present passive in three situations:</p>
       <div class="examples-grid">
-        <div class="example-item"><em><strong>By the time</strong> we got there, the show <strong>had already started</strong>.</em></div>
-        <div class="example-item"><em><strong>After</strong> she <strong>had read</strong> the instructions, she assembled the furniture.</em></div>
-        <div class="example-item"><em>I realised I <strong>had forgotten</strong> my keys.</em></div>
-        <div class="example-item"><em>He <strong>had never tried</strong> sushi <strong>before</strong> that evening.</em></div>
+        <div class="example-item"><strong>The receiver is more important than the agent:</strong><br><em>The letters <strong>are delivered</strong> every morning.</em> (We care about the letters, not who delivers them.)</div>
+        <div class="example-item"><strong>The agent is unknown:</strong><br><em>My bike <strong>is stolen</strong> regularly.</em> (We don't know who steals it.)</div>
+        <div class="example-item"><strong>The agent is obvious or unimportant:</strong><br><em>The rules <strong>are explained</strong> at the start of the game.</em> (It's obvious someone explains them.)</div>
+      </div>
+    </div>
+    <div class="explanation-section">
+      <h2>Adding the Agent with By</h2>
+      <p>If you want to mention who or what does the action, use <strong>by</strong> + agent at the end of the sentence.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>The building <strong>is cleaned</strong> <strong>by</strong> a professional team.</em></div>
+        <div class="example-item"><em>These cars <strong>are made</strong> <strong>by</strong> a factory in Japan.</em></div>
       </div>
       <div class="note-box">
         <strong>⚠ Common mistakes:</strong><br>
-        ✗ <em>When I arrived, she already left.</em> → ✓ <em>When I arrived, she <strong>had already left</strong>.</em><br>
-        ✗ <em>He had went to bed before midnight.</em> → ✓ <em>He <strong>had gone</strong> to bed before midnight.</em> (use past participle, not simple past)<br>
-        ✗ <em>By the time she called, I had fell asleep.</em> → ✓ <em>I <strong>had fallen</strong> asleep.</em>
+        ✗ <em>English is speak all over the world.</em> → ✓ <em>English <strong>is spoken</strong> all over the world.</em> (need past participle)<br>
+        ✗ <em>The product is maked in Brazil.</em> → ✓ <em>The product <strong>is made</strong> in Brazil.</em> (irregular past participle)<br>
+        ✗ <em>The letters are deliver every morning.</em> → ✓ <em>The letters <strong>are delivered</strong> every morning.</em>
       </div>
     </div>
   </div>
-
-  <!-- ACTIVITIES -->
-  <div id="pp-activities" class="tab-content">
+  <div id="spp-activities" class="tab-content">
     <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'pp-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act5')">5. Open Questions</button>
+      <button class="act-btn active" onclick="switchActivity(this,'spp-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'spp-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'spp-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'spp-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'spp-act5')">5. Open Questions</button>
     </div>
-
-    <div id="pp-act1" class="activity-section active">
+    <div id="spp-act1" class="activity-section active">
       <div class="activity-title">Match the Sentence Halves</div>
       <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
-      <div class="score-badge">Matched: <span id="pp-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="pp-left"></div><div class="match-col" id="pp-right"></div></div>
+      <div class="score-badge">Matched: <span id="spp-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="spp-left"></div><div class="match-col" id="spp-right"></div></div>
       <button class="reset-btn" onclick="init()">↺ Reset</button>
     </div>
-
-    <div id="pp-act2" class="activity-section">
+    <div id="spp-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence using the past perfect form of the verb in brackets.</div>
-      <div id="pp-fill-exercises"></div>
-      <div><button class="check-btn" onclick="checkFill('pp-fill-exercises','pp-fill-feedback',FILL)">Check Answers</button>
-      <button class="reset-btn" onclick="buildFillHTML('pp-fill-exercises',FILL);document.getElementById('pp-fill-feedback').classList.remove('show')">↺ Reset</button></div>
-      <div id="pp-fill-feedback" class="feedback"></div>
+      <div class="activity-desc">Complete each sentence using the correct simple present passive form of the verb in brackets.</div>
+      <div id="spp-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('spp-fill-exercises','spp-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('spp-fill-exercises',FILL);document.getElementById('spp-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="spp-fill-feedback" class="feedback"></div>
     </div>
-
-    <div id="pp-act3" class="activity-section">
+    <div id="spp-act3" class="activity-section">
       <div class="activity-title">Find the Mistake</div>
       <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
-      <div id="pp-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('pp-mistake-exercises','pp-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('pp-mistake-exercises',MISTAKE);document.getElementById('pp-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="pp-mistake-feedback" class="feedback"></div>
+      <div id="spp-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('spp-mistake-exercises','spp-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('spp-mistake-exercises',MISTAKE);document.getElementById('spp-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="spp-mistake-feedback" class="feedback"></div>
     </div>
-
-    <div id="pp-act4" class="activity-section">
+    <div id="spp-act4" class="activity-section">
       <div class="activity-title">Put the Words in Order</div>
       <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="pp-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('pp-order-exercises','pp-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('pp-order-exercises',ORDER);document.getElementById('pp-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="pp-order-feedback" class="feedback"></div>
+      <div id="spp-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('spp-order-exercises','spp-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('spp-order-exercises',ORDER);document.getElementById('spp-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="spp-order-feedback" class="feedback"></div>
     </div>
-
-    <div id="pp-act5" class="activity-section">
+    <div id="spp-act5" class="activity-section">
       <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own sentences using the past perfect. Then click "Show Model Answer" to compare.</div>
-      <div id="pp-open-exercises"></div>
+      <div class="activity-desc">Write your own sentences using the simple present passive. Then click "Show Model Answer" to compare.</div>
+      <div id="spp-open-exercises"></div>
     </div>
   </div>
 </div>
-
 <script>
-// ── Theme ──────────────────────────────────────────────────────────────
 function toggleTheme(){
-  const isLight=document.body.classList.toggle('light');
-  document.querySelector('.theme-toggle').textContent=isLight?'🌙 Dark':'☀ Light';
-  localStorage.setItem('gh-theme',isLight?'light':'dark');
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
 }
 (function(){
-  const t=localStorage.getItem('gh-theme');
-  if(t==='light'){document.body.classList.add('light');document.addEventListener('DOMContentLoaded',()=>{const b=document.querySelector('.theme-toggle');if(b)b.textContent='🌙 Dark';});}
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
 })();
 
-// ── Tab / Activity Switchers ───────────────────────────────────────────
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
 function switchTab(btn,contentId){
   const p=btn.closest('.topic-page');
   p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -261,13 +256,11 @@ function switchActivity(btn,contentId){
   p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
   document.getElementById(contentId).classList.add('active');
 }
-
-// ── Match ──────────────────────────────────────────────────────────────
 function initMatch(prefix,data){
   const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
   const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
-  loOld.parentNode.replaceChild(lc,loOld);roOld.parentNode.replaceChild(rc,roOld);
-  const scoreEl=document.getElementById(prefix+'-match-score');scoreEl.textContent='0';
+  loOld.parentNode.replaceChild(lc,loOld); roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score'); scoreEl.textContent='0';
   let sel=null,score=0;
   const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
   for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
@@ -296,8 +289,6 @@ function initMatch(prefix,data){
   }
   lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
 }
-
-// ── Fill ───────────────────────────────────────────────────────────────
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -320,8 +311,6 @@ function checkFill(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
-
-// ── Mistake ────────────────────────────────────────────────────────────
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -344,8 +333,6 @@ function checkMistake(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
 }
-
-// ── Word Order ─────────────────────────────────────────────────────────
 const orderState={};
 function buildOrderHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
@@ -383,8 +370,6 @@ function checkOrder(cid,fid,data){
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
   fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
-
-// ── Open ───────────────────────────────────────────────────────────────
 function buildOpenHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
@@ -401,91 +386,77 @@ function toggleModel(btn){
   btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
 }
 
-// ── DATA ───────────────────────────────────────────────────────────────
+
+
+
+
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`; 
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
 const MATCH = [
-  {left:"1. By the time we arrived at the cinema,",   right:"a. the film had already started."},
-  {left:"2. She was nervous because",                 right:"b. she had never spoken in public before."},
-  {left:"3. He couldn't pay for dinner because",      right:"c. he had left his wallet at home."},
-  {left:"4. I recognised her immediately because",    right:"d. I had seen her photo online."},
-  {left:"5. They had lived in Brazil for ten years",  right:"e. before they moved to Japan."}
+  {left:"1. English is spoken", right:"a. all over the world."},
+  {left:"2. The office is cleaned", right:"b. by a team every morning."},
+  {left:"3. These phones are made", right:"c. in factories in Asia."},
+  {left:"4. The rules are explained", right:"d. at the beginning of every class."},
+  {left:"5. Fresh bread is baked", right:"e. here every day."}
 ];
-
 const FILL = [
-  {sentence:"By the time the ambulance arrived, the doctors _____ (already / treat) the patient.", answer:"had already treated", explanation:"'had already treated' — past perfect for the earlier completed action."},
-  {sentence:"She felt sick because she _____ (eat) too much at the party.", answer:"had eaten", explanation:"'had eaten' — the eating happened before she felt sick."},
-  {sentence:"He _____ (never / try) sushi before he visited Japan.", answer:"had never tried", explanation:"'had never tried' — describes a state up to a past point in time."},
-  {sentence:"_____ you already finished the report before the meeting started?", answer:"Had", alt:["had"], explanation:"'Had you already finished?' — question form of the past perfect uses 'Had' at the start."},
-  {sentence:"They realised they _____ (take) the wrong train.", answer:"had taken", explanation:"'had taken' — the mistake was realised later; the action happened first."}
+  {sentence:"Spanish _____ (speak) by over 500 million people around the world.", answer:"is spoken", explanation:"Passive: is/are + past participle. 'Spanish' is singular → 'is spoken'."},
+  {sentence:"The packages _____ (deliver) every Tuesday and Thursday.", answer:"are delivered", explanation:"Passive: 'the packages' is plural → 'are delivered'."},
+  {sentence:"These products _____ (not sell) in supermarkets — you can only buy them online.", answer:"are not sold", alt:["aren't sold"], explanation:"Negative passive: is/are + not + past participle. 'These products' is plural → 'are not sold'."},
+  {sentence:"_____ these shoes made in Italy or somewhere else?", answer:"Are", explanation:"Question passive: Are/Is + subject + past participle? 'These shoes' is plural → 'Are'."},
+  {sentence:"The results _____ (announce) at the end of the ceremony every year.", answer:"are announced", explanation:"Passive: 'the results' is plural → 'are announced'."}
 ];
-
 const MISTAKE = [
-  {sentence:"When I arrived, she had already went home.",
-   options:["When I arrived,","she had already went","home."],
-   correct:1,
-   explanation:"Use the past participle: 'gone', not 'went'. → 'she had already gone home.'"},
-  {sentence:"By the time he called, I had fell asleep.",
-   options:["By the time he called,","I had fell","asleep."],
-   correct:1,
-   explanation:"The past participle of 'fall' is 'fallen': → 'I had fallen asleep.'"},
-  {sentence:"She hadn't never visited Paris before that trip.",
-   options:["She hadn't never","visited Paris","before that trip."],
-   correct:0,
-   explanation:"Double negative is incorrect. Use either 'hadn't visited' or 'had never visited'."},
-  {sentence:"After they had ate dinner, they watched a film.",
-   options:["After they had ate dinner,","they watched","a film."],
-   correct:0,
-   explanation:"The past participle of 'eat' is 'eaten': → 'After they had eaten dinner'."},
-  {sentence:"I didn't recognise him because he had cut his hair.",
-   options:["I didn't recognise him","because he had cut","his hair."],
-   correct:2,
-   explanation:"Actually this sentence is grammatically correct. Let me replace — see below."}
+  {sentence:"English is speak in many countries around the world.", options:["English is speak","in many countries","around the world."], correct:0, explanation:"Use the past participle, not the base form: 'English is spoken in many countries.'"},
+  {sentence:"The product is maked by hand in a small workshop.", options:["The product","is maked by hand","in a small workshop."], correct:1, explanation:"'Make' is irregular — the past participle is 'made': 'The product is made by hand.'"},
+  {sentence:"Fresh coffee are served here every morning before nine.", options:["Fresh coffee","are served here","every morning before nine."], correct:1, explanation:"'Fresh coffee' is uncountable/singular → use 'is': 'Fresh coffee is served here every morning.'"},
+  {sentence:"These cars is built in a factory by hundreds of workers.", options:["These cars","is built","in a factory by hundreds of workers."], correct:1, explanation:"'These cars' is plural → use 'are': 'These cars are built in a factory.'"},
+  {sentence:"The exam papers are collected by the teacher and then keeped in a safe place.", options:["The exam papers are collected","by the teacher","and then keeped in a safe place."], correct:2, explanation:"'Keep' is irregular — the past participle is 'kept': 'and then kept in a safe place.'"}
 ];
-
-MISTAKE[4] = {
-  sentence:"Had you ever seen that film before you watched it last night?",
-  options:["Had you ever seen","that film before","you watched it last night?"],
-  correct:2,
-  explanation:"'You watched it last night' contradicts 'before' — you can't use the past perfect for a film you're watching for the first time right now. The correct form is: 'before you watched it last night?' — wait, actually the sentence is correct. Replacing with a clear error below."
-};
-
-MISTAKE[4] = {
-  sentence:"He has already left when I called him.",
-  options:["He has already left","when I called","him."],
-  correct:0,
-  explanation:"When talking about a past action that happened before another past action, use the past perfect: → 'He had already left when I called him.'"
-};
-
 const ORDER = [
-  {words:["time","arrived,","the","By","we","had","show","the","started."], answer:"By the time we arrived, the show had started."},
-  {words:["Before","the","exam,","she","had","studied","for","three","hours."], answer:"Before the exam, she had studied for three hours."},
-  {words:["hadn't","He","before","met","her","the","party."], answer:"He hadn't met her before the party."},
-  {words:["the","they","eaten","Had","before","film?","already"], answer:"Had they already eaten before the film?"},
-  {words:["I","realised","I","had","left","my","phone","at","home."], answer:"I realised I had left my phone at home."}
+  {words:["spoken","English","here.","is"], answer:"English is spoken here."},
+  {words:["The","cleaned","office","every","is","day."], answer:"The office is cleaned every day."},
+  {words:["Are","sold","these","here?","products"], answer:"Are these products sold here?"},
+  {words:["sold","Tickets","at","are","not","the","door."], answer:"Tickets are not sold at the door."},
+  {words:["made","This","by","is","cheese","hand."], answer:"This cheese is made by hand."}
 ];
-
 const OPEN = [
-  {question:"Write two sentences about things you had done before you started secondary school. Use the past perfect.",
-   model:"I had already learned to read before I started school. I had never studied a foreign language before I was ten."},
-  {question:"Complete these sentences using the past perfect: 'When I arrived home, ...' and 'She was upset because ...'",
-   model:"When I arrived home, my family had already eaten dinner. She was upset because she had failed her driving test."},
-  {question:"Write two negative sentences using the past perfect to describe things someone had never experienced before a past moment.",
-   model:"He had never travelled abroad before he was twenty. They hadn't seen each other for years before that reunion."},
-  {question:"Write two questions using the past perfect.",
-   model:"Had you ever tried Japanese food before you visited Tokyo? Had she finished the project when the deadline arrived?"},
-  {question:"Think of an important moment in your life or in history. Write three sentences describing what had happened before that moment.",
-   model:"Before Brazil won the 2002 World Cup, the team had already won four previous tournaments. They had trained intensively for months. The coach had made several important changes to the squad."}
+  {question:"Write two passive sentences about things that happen in your school or workplace.", model:"English is taught by three different teachers. The classroom is cleaned every evening."},
+  {question:"Write two passive sentences about products, food or objects using 'is/are made'.", model:"This chocolate is made in Belgium. These cars are made in Germany."},
+  {question:"Write a passive sentence where the agent is unknown and one where the agent is mentioned with 'by'.", model:"My bag was stolen at the market. (unknown agent) This building is cleaned by a professional team every week. (agent mentioned)"},
+  {question:"Write two negative passive sentences.", model:"These products are not sold in local shops. Spanish is not spoken in this part of the country."},
+  {question:"Write two questions using the present passive.", model:"Is this product made locally? Are these clothes washed by hand?"}
 ];
-
-// ── Init ───────────────────────────────────────────────────────────────
 function init(){
-  initMatch('pp', MATCH);
-  buildFillHTML('pp-fill-exercises', FILL);
-  document.getElementById('pp-fill-feedback').classList.remove('show');
-  buildMistakeHTML('pp-mistake-exercises', MISTAKE);
-  document.getElementById('pp-mistake-feedback').classList.remove('show');
-  buildOrderHTML('pp-order-exercises', ORDER);
-  document.getElementById('pp-order-feedback').classList.remove('show');
-  buildOpenHTML('pp-open-exercises', OPEN);
+  initMatch('spp', MATCH);
+  buildFillHTML('spp-fill-exercises', FILL);
+  document.getElementById('spp-fill-feedback').classList.remove('show');
+  buildMistakeHTML('spp-mistake-exercises', MISTAKE);
+  document.getElementById('spp-mistake-feedback').classList.remove('show');
+  buildOrderHTML('spp-order-exercises', ORDER);
+  document.getElementById('spp-order-feedback').classList.remove('show');
+  buildOpenHTML('spp-open-exercises', OPEN);
 }
 window.addEventListener('DOMContentLoaded', init);
 </script>
