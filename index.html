@@ -125,11 +125,13 @@
     .topic-card{width:100%;max-width:340px;}
     .reader-feature-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .rfc-arrow { display: none; }
-  }
+  }  .main-hub-link{color:var(--text-muted);text-decoration:none;font-size:0.85rem;margin-right:1.2rem;transition:color 0.2s;}
+  .main-hub-link:hover{color:var(--accent);}
 </style>
 </head>
 <body>
 <nav>
+  <a class="main-hub-link" href="../">← Main Hub</a>
   <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
 </nav>
