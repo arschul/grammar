@@ -53,6 +53,7 @@
   .exercise{margin-bottom:1.5rem;}
   .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
   .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .hint-text{color:var(--text-muted);font-style:italic;font-size:0.85rem;margin:0 0.2rem;}
   .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
   .match-col{display:flex;flex-direction:column;gap:0.5rem;}
   .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
@@ -61,7 +62,7 @@
   .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
   .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
   .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
-  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:80px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:110px;outline:none;text-align:center;transition:border-color 0.2s;}
   .gap-input:focus{border-bottom-color:var(--accent2);}
   .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
   .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
@@ -190,7 +191,7 @@
     <!-- Act 2 — Fill Gaps -->
     <div id="pc-act2" class="activity-section">
       <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence with the correct word for the present continuous.</div>
+      <div class="activity-desc">Complete each sentence with the present continuous form of the verb in parentheses.</div>
       <div id="pc-fill-exercises"></div>
       <div>
         <button class="check-btn" onclick="checkFill('pc-fill-exercises','pc-fill-feedback',FILL)">Check Answers</button>
@@ -275,12 +276,13 @@ const MATCH = [
 ];
 
 const FILL = [
-  {sentence:"Shh! The baby _____ sleeping.", answer:"is", explanation:"The subject 'the baby' is singular, so we use 'is'."},
-  {sentence:"I can't talk now — I _____ cooking dinner.", answer:"am", explanation:"The subject 'I' always takes 'am' in the present continuous."},
-  {sentence:"Look at them! They _____ dancing at the party.", answer:"are", explanation:"The subject 'they' is plural, so we use 'are'."},
-  {sentence:"She is _____ a letter to her grandmother.", answer:"writing", explanation:"'Write' ends in a silent 'e' — drop the e and add -ing: writing."},
-  {sentence:"We are _____ for the bus at the station.", answer:"waiting", explanation:"'Wait' simply adds -ing: waiting."}
+  {sentence:"Shh! The baby _____ at the moment.", answer:"is sleeping", hint:"sleep", explanation:"Subject 'the baby' (it) → is + sleeping."},
+  {sentence:"I can't talk now — I _____ dinner.", answer:"am cooking", hint:"cook", explanation:"Subject 'I' → am + cooking."},
+  {sentence:"Look at them! They _____ at the party.", answer:"are dancing", hint:"dance", explanation:"Subject 'they' (plural) → are + dancing."},
+  {sentence:"She _____ a letter to her grandmother.", answer:"is writing", hint:"write", explanation:"'Write' drops the silent e before -ing. Subject 'she' → is + writing."},
+  {sentence:"We _____ for the bus at the station.", answer:"are waiting", hint:"wait", explanation:"Subject 'we' (plural) → are + waiting."}
 ];
+
 
 const MISTAKE = [
   // error pos 1
@@ -352,7 +354,8 @@ function buildFillHTML(cid,data){
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`;
+    const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`;
     c.appendChild(d);
   });
 }
