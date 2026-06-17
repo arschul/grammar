@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should Have / Shouldn't Have – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:150px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="../index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Modal Verbs</div>
+    </div>
+    <h1>Should Have / Shouldn't Have</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'soh-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'soh-activities')">Activities</button>
+  </div>
+
+  <!-- EXPLANATION -->
+  <div id="soh-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>What Is Should Have / Shouldn't Have?</h2>
+      <p>We use <em>should have</em> and <em>shouldn't have</em> + past participle to talk about the past. It's a way of criticising a decision or expressing regret about something that did or didn't happen.</p>
+      <div class="formula-box">
+        <strong>Subject + should(n't) + have + past participle</strong><br><br>
+        <em>You <strong>should have called</strong> me before you left.</em><br>
+        <em>She <strong>shouldn't have stayed</strong> up so late.</em>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Should Have (something didn't happen)</h2>
+      <p>Use <em>should have</em> + past participle to say that something was the right thing to do, but it didn't happen. We use it to point out a mistake or express regret.</p>
+      <div class="examples-grid">
+        <div class="example-item">
+          <em>I <strong>should have brought</strong> an umbrella.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ I didn't bring one, and it rained.</span>
+        </div>
+        <div class="example-item">
+          <em>We <strong>should have left</strong> earlier.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ We left late and missed the bus.</span>
+        </div>
+        <div class="example-item">
+          <em>He <strong>should have studied</strong> for the test.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ He didn't study, and he failed.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Shouldn't Have (something did happen)</h2>
+      <p>Use <em>shouldn't have</em> + past participle to say that something happened, but it was the wrong choice. The action did take place, and we're criticising it.</p>
+      <div class="examples-grid">
+        <div class="example-item">
+          <em>He <strong>shouldn't have shouted</strong> at his sister.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ He did shout — that was wrong.</span>
+        </div>
+        <div class="example-item">
+          <em>They <strong>shouldn't have spent</strong> all their money.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ They did spend it all.</span>
+        </div>
+        <div class="example-item">
+          <em>I <strong>shouldn't have eaten</strong> so much pizza.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ I did eat too much, and now I feel sick.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Positive, Negative and Question Forms</h2>
+      <div class="formula-box">
+        <strong>Positive:</strong> You <em>should have</em> told me sooner.<br>
+        <strong>Negative:</strong> You <em>shouldn't have</em> told him the secret.<br>
+        <strong>Question:</strong> <em>Should</em> you <em>have told</em> her the truth?<br>
+        <strong>Short answer:</strong> Yes, I should have. / No, I shouldn't have.
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Common Mistakes</h2>
+      <div class="note-box">
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>You should have study harder.</em> → ✓ <em>You should have <strong>studied</strong> harder.</em> (use the past participle, not the base form)<br>
+        ✗ <em>He should has left already.</em> → ✓ <em>He should <strong>have</strong> left already.</em> (always use 'have', never 'has' or 'had')<br>
+        ✗ <em>She shouldn't have went to the party.</em> → ✓ <em>She shouldn't have <strong>gone</strong> to the party.</em> (use the past participle, not the simple past)
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div id="soh-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'soh-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'soh-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'soh-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'soh-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'soh-act5')">5. Open Questions</button>
+    </div>
+
+    <div id="soh-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="soh-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="soh-left"></div><div class="match-col" id="soh-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+
+    <div id="soh-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each sentence using should have or shouldn't have and the verb in brackets.</div>
+      <div id="soh-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('soh-fill-exercises','soh-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('soh-fill-exercises',FILL);document.getElementById('soh-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="soh-fill-feedback" class="feedback"></div>
+    </div>
+
+    <div id="soh-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="soh-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('soh-mistake-exercises','soh-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('soh-mistake-exercises',MISTAKE);document.getElementById('soh-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="soh-mistake-feedback" class="feedback"></div>
+    </div>
+
+    <div id="soh-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="soh-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('soh-order-exercises','soh-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('soh-order-exercises',ORDER);document.getElementById('soh-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="soh-order-feedback" class="feedback"></div>
+    </div>
+
+    <div id="soh-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own sentences using should have or shouldn't have. Then click "Show Model Answer" to compare.</div>
+      <div id="soh-open-exercises"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Theme ──────────────────────────────────────────────────────────────
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+// ── Tab / Activity Switchers ───────────────────────────────────────────
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  const p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+
+// ── Match ──────────────────────────────────────────────────────────────
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld);roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score');scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+
+// ── Fill ───────────────────────────────────────────────────────────────
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
+// ── Mistake ────────────────────────────────────────────────────────────
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+
+// ── Word Order ─────────────────────────────────────────────────────────
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+
+// ── Open ───────────────────────────────────────────────────────────────
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+// ── DATA ───────────────────────────────────────────────────────────────
+const MATCH = [
+  {left:"1. He missed the bus because he",                right:"a. should have left the house earlier."},
+  {left:"2. She felt sick after the party because she",   right:"b. shouldn't have eaten so much chocolate."},
+  {left:"3. They got lost on the road because they",      right:"c. should have checked the map before driving."},
+  {left:"4. I couldn't call for help because I",          right:"d. shouldn't have left my phone at home."},
+  {left:"5. He failed the exam because he",                right:"e. should have studied harder the week before."}
+];
+
+const FILL = [
+  {sentence:"I _____ (study) harder for the exam — I only got 40%.", answer:"should have studied", explanation:"'should have studied' — criticising a past action that didn't happen."},
+  {sentence:"She _____ (not / drive) so fast — she got a speeding ticket.", answer:"shouldn't have driven", explanation:"'shouldn't have driven' — criticising something that did happen."},
+  {sentence:"We _____ (bring) an umbrella — it rained all afternoon.", answer:"should have brought", explanation:"'should have brought' — expresses regret about something that didn't happen."},
+  {sentence:"He _____ (not / spend) all his money on video games.", answer:"shouldn't have spent", explanation:"'shouldn't have spent' — criticises a past action that did happen."},
+  {sentence:"_____ you have called the doctor when you started feeling ill?", answer:"Should", alt:["should"], explanation:"'Should you have called...?' — the question form starts with 'Should'."}
+];
+
+const MISTAKE = [
+  {sentence:"You should have study harder before the test.",
+   options:["You","should have study","harder before the test."],
+   correct:1,
+   explanation:"After 'should have', use the past participle: 'studied', not 'study'. → 'You should have studied harder before the test.'"},
+  {sentence:"She should has called me before she left.",
+   options:["She should has","called me","before she left."],
+   correct:0,
+   explanation:"Always use 'have' after 'should' or 'shouldn't', never 'has' or 'had'. → 'She should have called me before she left.'"},
+  {sentence:"He felt sick because he shouldn't have ate so much candy.",
+   options:["He felt sick","because he shouldn't have","ate so much candy."],
+   correct:2,
+   explanation:"The past participle of 'eat' is 'eaten'. → 'because he shouldn't have eaten so much candy.'"},
+  {sentence:"They shouldn't have went to the party without an invitation.",
+   options:["They shouldn't have","went","to the party without an invitation."],
+   correct:1,
+   explanation:"The past participle of 'go' is 'gone'. → 'They shouldn't have gone to the party without an invitation.'"},
+  {sentence:"Should you told him the truth about the accident?",
+   options:["Should you told","him the truth","about the accident?"],
+   correct:0,
+   explanation:"The question form needs 'have' before the past participle. → 'Should you have told him the truth about the accident?'"}
+];
+
+const ORDER = [
+  {words:["You","should","have","called","me","earlier."], answer:"You should have called me earlier."},
+  {words:["She","shouldn't","have","spent","all","her","money."], answer:"She shouldn't have spent all her money."},
+  {words:["We","should","have","left","before","the","storm","started."], answer:"We should have left before the storm started."},
+  {words:["He","shouldn't","have","driven","so","fast","on","ice."], answer:"He shouldn't have driven so fast on ice."},
+  {words:["Should","you","have","told","her","the","truth?"], answer:"Should you have told her the truth?"}
+];
+
+const OPEN = [
+  {question:"Think of a mistake you made recently. Write one sentence with 'should have' about what you should have done differently.",
+   model:"I should have checked the weather forecast before going hiking without a jacket."},
+  {question:"Write one sentence with 'shouldn't have' about something you regret doing.",
+   model:"I shouldn't have stayed up so late before my exam — I felt exhausted the next day."},
+  {question:"Imagine a friend missed an important deadline. Write two sentences with 'should have' to say what they should have done.",
+   model:"You should have started the project earlier. You should have asked your teacher for help."},
+  {question:"Write a question using 'should have' to ask someone about a decision they made in the past.",
+   model:"Should you have told your boss about the mistake sooner?"},
+  {question:"Think about a famous historical event or a well-known story. Write two sentences using 'should have' or 'shouldn't have' to describe what could have gone differently.",
+   model:"The captain of the Titanic should have slowed the ship down in icy waters. The crew shouldn't have ignored the warnings about icebergs."}
+];
+
+// ── Init ───────────────────────────────────────────────────────────────
+function init(){
+  initMatch('soh', MATCH);
+  buildFillHTML('soh-fill-exercises', FILL);
+  document.getElementById('soh-fill-feedback').classList.remove('show');
+  buildMistakeHTML('soh-mistake-exercises', MISTAKE);
+  document.getElementById('soh-mistake-feedback').classList.remove('show');
+  buildOrderHTML('soh-order-exercises', ORDER);
+  document.getElementById('soh-order-feedback').classList.remove('show');
+  buildOpenHTML('soh-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
