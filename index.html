@@ -38,6 +38,14 @@
   .topic-card p{color:var(--text-muted);font-size:0.83rem;line-height:1.55;}
   .tc-arrow{margin-top:1.2rem;color:var(--accent);font-size:1.2rem;display:inline-block;transition:transform 0.2s;}
   .topic-card:hover .tc-arrow{transform:translateX(4px);}
+  .topic-card.multi{cursor:default;}
+  .topic-card.multi:hover{border-color:var(--border);transform:none;}
+  .topic-card.multi:hover::before{transform:scaleX(0);}
+  .tc-buttons{display:flex;gap:0.6rem;margin-top:1.2rem;flex-wrap:wrap;}
+  .tc-btn{display:inline-flex;align-items:center;font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--border);border-radius:100px;padding:0.35rem 0.85rem;transition:all 0.2s;}
+  .tc-btn:hover{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .tc-btn-alt{color:var(--accent2);}
+  .tc-btn-alt:hover{border-color:var(--accent2);background:rgba(240,151,90,0.08);}
 
   @media(max-width:600px){
     .topic-card{width:100%;max-width:340px;}
@@ -139,18 +147,15 @@
         <p>Real possibilities and their likely results.</p>
         <div class="tc-arrow">→</div>
       </a>
-      <a class="topic-card" href="b1/defining-relative-clauses_activities.html">
+      <div class="topic-card multi">
         <div class="cefr-badge">B1</div>
-        <h3>Defining Relative Clauses <span style="opacity:.6;font-weight:500;">— Activities</span></h3>
+        <h3>Defining Relative Clauses</h3>
         <p>Who, which, where and when — clauses that define exactly who or what we mean.</p>
-        <div class="tc-arrow">→</div>
-      </a>
-      <a class="topic-card" href="b1/defining-relative-clauses_slides.html">
-        <div class="cefr-badge">B1</div>
-        <h3>Defining Relative Clauses <span style="opacity:.6;font-weight:500;">— Slides</span></h3>
-        <p>Who, which, where and when — clauses that define exactly who or what we mean.</p>
-        <div class="tc-arrow">→</div>
-      </a>
+        <div class="tc-buttons">
+          <a class="tc-btn" href="b1/defining-relative-clauses_activities.html">Activities →</a>
+          <a class="tc-btn tc-btn-alt" href="b1/defining-relative-clauses_slides.html">Slides →</a>
+        </div>
+      </div>
       <a class="topic-card" href="b1/future-forms.html">
         <div class="cefr-badge">B1</div>
         <h3>Future Forms</h3>
