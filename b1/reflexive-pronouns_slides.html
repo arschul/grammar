@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflexive Pronouns – GrammarHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--cream-1:#fdf6ee;--cream-2:#fffaf4;--cream-3:#fff7ef;--text:#2c2017;--muted:#8c7c6e;--muted-2:#a8978a;--border:#f0e2d4;--accent:#e26d4f;--accent-text:#c9543a;--accent-bg:#fbe1d6;--gold:#eaa036;--gold-text:#b97d16;--gold-bg:#fbeccf;--dark:#2c2017;--dark-text:#fdf6ee;--correct:#1f7a4d;--row-alt:#fcefe2;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#161310;height:100%;overflow:hidden;}
+body{font-family:'Bricolage Grotesque',sans-serif;-webkit-font-smoothing:antialiased;}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+.canvas{position:relative;width:1920px;height:1080px;flex:none;box-shadow:0 30px 80px rgba(0,0,0,0.45);}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;box-sizing:border-box;color:var(--text);overflow:hidden;}
+.slide.active{display:flex;}
+.pad-lg{padding:96px 110px;}.pad-md{padding:84px 110px;}.pad-sm{padding:80px 110px;}
+.center-v{justify-content:center;}
+.bg-1{background:var(--cream-1);}.bg-2{background:var(--cream-2);}.bg-3{background:var(--cream-3);}
+.bg-dark{background:var(--dark);color:var(--dark-text);}.bg-accent{background:var(--accent);color:#fff;}
+.eyebrow{display:inline-flex;align-self:flex-start;font-weight:700;font-size:24px;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:999px;}
+.eyebrow.accent{background:var(--accent-bg);color:var(--accent-text);}
+.eyebrow.gold{background:var(--gold-bg);color:var(--gold-text);}
+.eyebrow.ondark{background:rgba(234,160,54,0.18);color:var(--gold);}
+.eyebrow.onaccent{background:rgba(255,255,255,0.18);color:#fff;}
+.row-flex{display:flex;align-items:center;gap:18px;}
+.hint{font-size:26px;color:var(--muted-2);font-weight:600;}
+h1.deck-title{font-size:118px;font-weight:800;line-height:0.98;letter-spacing:-0.03em;margin:30px 0 0;}
+h2.slide-title{font-size:78px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;margin:22px 0 0;}
+h2.slide-title.tall{margin:22px 0 30px;}
+h2.slide-title.compact{font-size:64px;margin:18px 0 28px;}
+h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em;margin:18px 0 0;}
+.lead{font-size:42px;line-height:1.35;color:#5b4d42;margin:28px 0 0;max-width:1500px;}
+.lead-italic{font-family:'Newsreader',serif;font-style:italic;font-size:42px;color:var(--muted);margin:32px 0 0;}
+.tagpill{font-weight:700;font-size:28px;padding:12px 28px;border-radius:999px;color:#fff;}
+.t-accent{background:var(--accent);}.t-gold{background:var(--gold);}
+.hl-accent{color:var(--accent-text);font-weight:600;font-style:normal;}
+.hl-gold{color:var(--gold-text);font-weight:600;font-style:normal;}
+/* pronoun table */
+.pronoun-table{display:flex;flex-direction:column;gap:10px;margin-top:24px;flex:1;justify-content:center;}
+.pronoun-row{display:grid;grid-template-columns:280px 1fr 1.4fr;gap:20px;align-items:center;padding:18px 32px;border-radius:14px;}
+.pronoun-row.alt{background:var(--row-alt);}
+.pronoun-row.plain{background:var(--cream-2);border:1px solid var(--border);}
+.pronoun-sub{font-size:30px;font-weight:600;}
+.pronoun-refl{font-size:34px;font-weight:800;color:var(--accent-text);}
+.pronoun-ex{font-family:'Newsreader',serif;font-size:30px;color:#5b4d42;}
+.eg-list{display:flex;flex-direction:column;gap:14px;margin-top:22px;flex:1;justify-content:center;}
+.eg-row{padding:20px 34px;border-radius:16px;font-family:'Newsreader',serif;font-size:36px;line-height:1.4;}
+.eg-row.alt{background:var(--row-alt);}
+.eg-row.plain{background:var(--cream-2);border:1px solid var(--border);}
+.mistake-grid-static{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+.mistake-static{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:28px 36px;display:flex;flex-direction:column;justify-content:center;font-family:'Newsreader',serif;}
+.mistake-static .wrong{font-size:30px;margin:0;color:var(--muted-2);text-decoration:line-through;}
+.mistake-static .right{font-size:32px;margin:12px 0 0;}
+.circle-deco{position:absolute;border-radius:50%;background:rgba(255,255,255,0.10);}
+.gap-list{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center;}
+.gap-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-family:'Newsreader',serif;font-size:36px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:18px;padding:22px 32px;}
+.gap-btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px;padding:5px 24px;border-radius:999px;border:2px dashed #e3b6a6;background:#fff;color:var(--accent-text);cursor:pointer;line-height:1.1;transition:all .15s ease;}
+.gap-btn.revealed{background:var(--accent);color:#fff;border-style:solid;border-color:var(--accent);}
+.mistake-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1;}
+.mistake-card{background:var(--cream-2);border:1px solid var(--border);border-radius:18px;padding:24px 32px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;font-family:'Newsreader',serif;}
+.mistake-card .wrong{font-size:30px;margin:0;color:#c4453a;}
+.mistake-card .answer{display:none;}
+.mistake-card.revealed .answer{display:block;}
+.mistake-card .answer .right{font-size:32px;margin:12px 0 0;color:var(--text);}
+.mistake-card .answer .note{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;margin:10px 0 0;color:var(--correct);font-weight:600;}
+.complete-list{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center;}
+.complete-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-family:'Newsreader',serif;font-size:36px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:18px;padding:22px 32px;cursor:pointer;}
+.complete-row .end{font-style:italic;color:#b9a899;border-bottom:3px dashed #e3b6a6;padding-bottom:2px;}
+.complete-row.revealed .end{font-style:normal;color:var(--accent-text);font-weight:600;border-bottom:none;}
+.prompt-list{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center;font-family:'Newsreader',serif;}
+.prompt-row{background:var(--cream-2);border:1px solid var(--border);border-radius:18px;padding:22px 30px;font-size:34px;}
+.recap-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.recap-card{background:rgba(253,246,238,0.06);border-radius:18px;padding:26px 32px;}
+.recap-card .k{font-size:24px;color:var(--gold);font-weight:700;}
+.recap-card .v{font-size:32px;font-weight:600;margin-top:6px;}
+.recap-foot{font-family:'Newsreader',serif;font-style:italic;font-size:34px;color:#c9bcae;margin:30px 0 0;}
+.hub-link{position:fixed;top:22px;left:28px;z-index:1002;color:rgba(253,246,238,0.55);font-size:13px;font-family:'Bricolage Grotesque',sans-serif;text-decoration:none;letter-spacing:.02em;transition:color .15s ease;}
+.hub-link:hover{color:#fdf6ee;}
+.navbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(20,16,12,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:9px 16px;color:#fdf6ee;font-size:14px;z-index:1002;box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.navbar button{background:transparent;border:none;color:#fdf6ee;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;display:flex;align-items:center;justify-content:center;border-radius:999px;transition:background .15s ease;}
+.navbar button:hover{background:rgba(255,255,255,0.12);}
+.navbar .arrow{width:34px;height:34px;padding:0;}.navbar .arrow svg{width:16px;height:16px;}
+.navbar .count{min-width:56px;text-align:center;font-weight:600;letter-spacing:.02em;}
+.navbar .divider{width:1px;height:20px;background:rgba(255,255,255,0.15);}
+.navbar .textbtn{font-size:13px;font-weight:600;padding:8px 14px;}
+.notesbar{position:fixed;top:0;left:0;right:0;background:#1b1410;color:#f0ddc9;font-size:15px;line-height:1.5;padding:12px 28px;transform:translateY(-100%);transition:transform .25s ease;z-index:1001;border-bottom:1px solid rgba(255,255,255,0.08);}
+.notesbar.show{transform:translateY(0);}
+.notesbar .label{color:var(--gold);font-weight:700;margin-right:10px;letter-spacing:.06em;text-transform:uppercase;font-size:11px;}
+</style>
+</head>
+<body>
+<a class="hub-link" href="../index.html">← Grammar Hub</a>
+<div class="notesbar" id="notesBar"><span class="label">Teacher cue</span><span id="notesText"></span></div>
+<div class="stage"><div class="canvas" id="canvas">
+
+<!-- 1 · TITLE -->
+<section class="slide active bg-2 pad-lg center-v" data-note="Reflexive pronouns: used when subject and object refer to the same person, OR to emphasise 'alone/without help'. Eight forms, each matching a subject pronoun.">
+  <div class="circle-deco" style="top:-160px;right:-160px;width:520px;height:520px;"></div>
+  <div class="circle-deco" style="bottom:-140px;left:-120px;width:360px;height:360px;background:var(--gold-bg);"></div>
+  <div style="position:relative;">
+    <div class="eyebrow accent">B1 · English Grammar</div>
+    <h1 class="deck-title">Reflexive<br>Pronouns</h1>
+    <p class="lead-italic">I cut <span class="hl-accent">myself</span>. She did it <span class="hl-gold">herself</span>.</p>
+    <div style="display:flex;gap:14px;margin-top:44px;flex-wrap:wrap;">
+      <span class="tagpill t-accent">myself / yourself</span>
+      <span class="tagpill t-gold">himself / herself</span>
+      <span class="tagpill t-accent">ourselves / themselves</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · THE EIGHT FORMS -->
+<section class="slide bg-1 pad-md" data-note="Eight forms — one per subject. Drill the table: cover the right column and ask students to produce the reflexive. Stress: hisself and theirself do NOT exist.">
+  <div class="eyebrow accent">The forms</div>
+  <h2 class="slide-title compact">One for each subject pronoun</h2>
+  <div class="pronoun-table">
+    <div class="pronoun-row alt"><div class="pronoun-sub">I</div><div class="pronoun-refl">myself</div><div class="pronoun-ex">I cut <strong>myself</strong> while cooking.</div></div>
+    <div class="pronoun-row plain"><div class="pronoun-sub">you (sing.)</div><div class="pronoun-refl">yourself</div><div class="pronoun-ex">Did you enjoy <strong>yourself</strong>?</div></div>
+    <div class="pronoun-row alt"><div class="pronoun-sub">he / she / it</div><div class="pronoun-refl">himself / herself / itself</div><div class="pronoun-ex">He made <strong>himself</strong> a sandwich.</div></div>
+    <div class="pronoun-row plain"><div class="pronoun-sub">we / you (pl.) / they</div><div class="pronoun-refl">ourselves / yourselves / themselves</div><div class="pronoun-ex">We enjoyed <strong>ourselves</strong>.</div></div>
+  </div>
+</section>
+
+<!-- 3 · USE 1: SUBJECT = OBJECT -->
+<section class="slide bg-2 pad-md" data-note="Use 1: the person doing the action and the person receiving it are the same. Ask: who did it? Same as who received it? → reflexive.">
+  <div class="eyebrow accent">Use 1 — same person</div>
+  <h2 class="slide-title tall">Subject and object refer to the same person</h2>
+  <div class="eg-list">
+    <div class="eg-row alt">I see <strong class="hl-accent">myself</strong> as a professional person.</div>
+    <div class="eg-row plain">She blamed <strong class="hl-accent">herself</strong> for the mistake.</div>
+    <div class="eg-row alt">He hurt <strong class="hl-accent">himself</strong> during training.</div>
+    <div class="eg-row plain">The door closed <strong class="hl-accent">itself</strong>.</div>
+  </div>
+</section>
+
+<!-- 4 · USE 2: EMPHASIS -->
+<section class="slide bg-1 pad-md" data-note="Use 2: emphasis = done alone, without help. The reflexive comes after the verb OR at the very end of the sentence. It's optional — remove it and the sentence still makes sense.">
+  <div class="eyebrow gold">Use 2 — emphasis</div>
+  <h2 class="slide-title tall">Alone, without help</h2>
+  <div class="eg-list">
+    <div class="eg-row alt">Did you build the fan club <strong class="hl-gold">yourself</strong>, or did you have help? <span style="color:var(--muted-2);font-size:26px;">(at the end)</span></div>
+    <div class="eg-row plain">She decorated the apartment <strong class="hl-gold">herself</strong>.</div>
+    <div class="eg-row alt">We cooked the entire meal <strong class="hl-gold">ourselves</strong>.</div>
+  </div>
+</section>
+
+<!-- 5 · COMMON MISTAKES -->
+<section class="slide bg-1 pad-md" data-note="Top errors: 'hisself' and 'theirself' don't exist, reflexive as subject is wrong, wrong pronoun for plural.">
+  <div class="eyebrow accent">⚠ Watch out</div>
+  <h2 class="slide-title compact">Common mistakes</h2>
+  <div class="mistake-grid-static">
+    <div class="mistake-static">
+      <p class="wrong">He hurt hisself.</p>
+      <p class="right">He hurt <strong class="hl-accent">himself</strong>.</p>
+    </div>
+    <div class="mistake-static">
+      <p class="wrong">They did it theirself.</p>
+      <p class="right">They did it <strong class="hl-gold">themselves</strong>.</p>
+    </div>
+    <div class="mistake-static">
+      <p class="wrong">Yourself should try harder.</p>
+      <p class="right"><strong class="hl-accent">You</strong> should try harder. <span style="font-size:22px;color:var(--muted-2);">(reflexive ≠ subject)</span></p>
+    </div>
+    <div class="mistake-static">
+      <p class="wrong">We enjoyed ourself.</p>
+      <p class="right">We enjoyed <strong class="hl-gold">ourselves</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · PRACTICE DIVIDER -->
+<section class="slide bg-accent pad-lg center-v" style="position:relative;" data-note="Practice. Remind: match the reflexive pronoun to the subject. Hisself and theirself don't exist.">
+  <div class="circle-deco" style="bottom:-160px;right:-120px;width:520px;height:520px;"></div>
+  <div class="eyebrow onaccent" style="font-size:30px;letter-spacing:.16em;background:none;padding:0;opacity:.85;">Now it's your turn</div>
+  <h2 class="giant">Let's<br>practice.</h2>
+  <p class="lead-italic" style="color:#fff;opacity:.92;">Say the answer out loud — then tap to check.</p>
+</section>
+
+<!-- 7 · PRACTICE 1 -->
+<section class="slide bg-1 pad-sm" data-note="Practice 1. Students choose the correct reflexive pronoun.">
+  <div class="row-flex">
+    <div class="eyebrow accent">Practice 1</div>
+    <span class="hint">tap the blank to reveal</span>
+  </div>
+  <h2 class="slide-title compact">Choose the reflexive pronoun</h2>
+  <div class="gap-list">
+    <div class="gap-row"><span>I cut</span><button class="gap-btn" data-answer="myself">?</button><span>while slicing the bread.</span></div>
+    <div class="gap-row"><span>She introduced</span><button class="gap-btn" data-answer="herself">?</button><span>to the new team.</span></div>
+    <div class="gap-row"><span>Did you enjoy</span><button class="gap-btn" data-answer="yourself">?</button><span>at the party?</span></div>
+    <div class="gap-row"><span>They built the house</span><button class="gap-btn" data-answer="themselves">?</button><span>over two years.</span></div>
+    <div class="gap-row"><span>We found</span><button class="gap-btn" data-answer="ourselves">?</button><span>completely lost in the city.</span></div>
+  </div>
+</section>
+
+<!-- 8 · PRACTICE 2 -->
+<section class="slide bg-1 pad-sm" data-note="Practice 2. Spot the error then tap to reveal.">
+  <div class="row-flex">
+    <div class="eyebrow accent">Practice 2</div>
+    <span class="hint">tap a card to fix it</span>
+  </div>
+  <h2 class="slide-title compact">Spot the mistake</h2>
+  <div class="mistake-grid">
+    <div class="mistake-card">
+      <p class="wrong">He hurt hisself during training.</p>
+      <div class="answer"><p class="right">He hurt himself during training.</p><p class="note">✓ "hisself" doesn't exist</p></div>
+    </div>
+    <div class="mistake-card">
+      <p class="wrong">They did all the work theirself.</p>
+      <div class="answer"><p class="right">They did all the work themselves.</p><p class="note">✓ plural → themselves</p></div>
+    </div>
+    <div class="mistake-card">
+      <p class="wrong">We enjoyed ourself at the party.</p>
+      <div class="answer"><p class="right">We enjoyed ourselves at the party.</p><p class="note">✓ we → ourselves</p></div>
+    </div>
+    <div class="mistake-card">
+      <p class="wrong">Herself told me the news.</p>
+      <div class="answer"><p class="right">She told me the news herself.</p><p class="note">✓ reflexive can't be the subject</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · PRACTICE 3 -->
+<section class="slide bg-1 pad-sm" data-note="Practice 3. Students complete using the correct reflexive pronoun.">
+  <div class="row-flex">
+    <div class="eyebrow accent">Practice 3</div>
+    <span class="hint">tap to reveal a model answer</span>
+  </div>
+  <h2 class="slide-title compact">Complete the sentence</h2>
+  <div class="complete-list">
+    <div class="complete-row"><span>She decorated the entire flat</span><span class="end" data-text="herself — it looks amazing."></span></div>
+    <div class="complete-row"><span>He made himself</span><span class="end" data-text="a coffee and sat down to work."></span></div>
+    <div class="complete-row"><span>We found ourselves</span><span class="end" data-text="completely lost in the city centre."></span></div>
+    <div class="complete-row"><span>Help yourselves to</span><span class="end" data-text="some food — there's plenty!"></span></div>
+  </div>
+</section>
+
+<!-- 10 · YOUR TURN -->
+<section class="slide bg-3 pad-lg" data-note="Production. Students use reflexive pronouns both for same-subject situations and for emphasis. Ask about things they've done alone.">
+  <div class="eyebrow gold">Speak &amp; write</div>
+  <h2 class="slide-title" style="font-size:72px;margin:22px 0 8px;">Your turn</h2>
+  <p class="lead" style="color:var(--muted);font-size:30px;margin:0 0 22px;">Use a <strong class="hl-accent">reflexive pronoun</strong> in each answer.</p>
+  <div class="prompt-list">
+    <div class="prompt-row">Have you ever hurt yourself doing something? What happened?</div>
+    <div class="prompt-row">Tell me something you taught yourself — a skill, a language…</div>
+    <div class="prompt-row">Did you enjoy yourself on your last holiday? Why/why not?</div>
+    <div class="prompt-row">Describe something you did entirely by yourself that you're proud of.</div>
+  </div>
+</section>
+
+<!-- 11 · RECAP -->
+<section class="slide bg-dark pad-lg center-v" data-note="Wrap up. Quick drill: give a subject, students call the correct reflexive. Stress: hisself/theirself don't exist, reflexive can't be the subject.">
+  <div class="eyebrow ondark">Recap</div>
+  <h2 style="font-size:78px;font-weight:800;line-height:1.0;letter-spacing:-0.02em;margin:22px 0 32px;">Remember this</h2>
+  <div class="recap-grid">
+    <div class="recap-card"><div class="k">Use 1</div><div class="v">subject = object (same person)</div></div>
+    <div class="recap-card"><div class="k">Use 2</div><div class="v">emphasis — alone, without help</div></div>
+    <div class="recap-card"><div class="k">he → himself</div><div class="v">not "hisself" ✗</div></div>
+    <div class="recap-card"><div class="k">they → themselves</div><div class="v">not "theirself" ✗</div></div>
+  </div>
+  <p class="recap-foot">Match the reflexive to the subject — every single time.</p>
+</section>
+
+<!-- 12 · PLACEHOLDER (12 needed) -->
+<section class="slide bg-1 pad-md center-v" data-note="Extra slide — use for additional drill or student presentation time.">
+  <div class="eyebrow gold">Bonus practice</div>
+  <h2 class="slide-title" style="margin:22px 0 40px;">Make your own sentences</h2>
+  <div style="display:flex;flex-direction:column;gap:22px;font-family:'Newsreader',serif;font-size:44px;">
+    <div style="background:var(--row-alt);border-radius:18px;padding:28px 40px;">Describe a time you hurt <span class="hl-accent">yourself</span>.</div>
+    <div style="background:var(--cream-2);border:1px solid var(--border);border-radius:18px;padding:28px 40px;">Name something you made <span class="hl-accent">yourself</span> from scratch.</div>
+    <div style="background:var(--row-alt);border-radius:18px;padding:28px 40px;">What did you teach <span class="hl-accent">yourself</span> without any help?</div>
+  </div>
+</section>
+
+</div></div>
+<div class="navbar" role="toolbar" aria-label="Deck controls">
+  <button class="arrow" id="prevBtn" aria-label="Previous slide" title="Previous (←)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg></button>
+  <span class="count"><span id="curNum">1</span>/<span id="totalNum">12</span></span>
+  <button class="arrow" id="nextBtn" aria-label="Next slide" title="Next (→)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></button>
+  <span class="divider"></span>
+  <button class="textbtn" id="resetBtn" title="Reset (R)">Reset</button>
+  <button class="textbtn" id="notesBtn" title="Toggle teacher cues (N)">Notes</button>
+</div>
+<script>
+(function(){
+  var DESIGN_W=1920,DESIGN_H=1080;var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total=slides.length,current=0;
+  var canvas=document.getElementById('canvas'),curNum=document.getElementById('curNum'),totalNum=document.getElementById('totalNum');
+  var notesBar=document.getElementById('notesBar'),notesText=document.getElementById('notesText');
+  totalNum.textContent=total;
+  function show(i){current=Math.max(0,Math.min(total-1,i));for(var j=0;j<slides.length;j++)slides[j].classList.toggle('active',j===current);curNum.textContent=current+1;notesText.textContent=slides[current].getAttribute('data-note')||'';}
+  function fit(){canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,window.innerHeight/DESIGN_H)+')';}
+  window.addEventListener('resize',fit);fit();show(0);
+  document.getElementById('prevBtn').addEventListener('click',function(){show(current-1);});
+  document.getElementById('nextBtn').addEventListener('click',function(){show(current+1);});
+  document.getElementById('resetBtn').addEventListener('click',function(){show(0);});
+  document.getElementById('notesBtn').addEventListener('click',function(){notesBar.classList.toggle('show');});
+  window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){show(current+1);e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(current-1);e.preventDefault();}else if(e.key==='r'||e.key==='R'){show(0);}else if(e.key==='n'||e.key==='N'){notesBar.classList.toggle('show');}});
+  var gapBtns=document.querySelectorAll('.gap-btn');
+  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent=r?ans:'?';});})(gapBtns[a]);}
+  var mCards=document.querySelectorAll('.mistake-card');
+  for(var b=0;b<mCards.length;b++)mCards[b].addEventListener('click',function(){this.classList.toggle('revealed');});
+  var dots='. . . . . . . . . .';
+  var cRows=document.querySelectorAll('.complete-row');
+  for(var c=0;c<cRows.length;c++){(function(row){var sp=row.querySelector('.end');var full=sp.getAttribute('data-text');sp.textContent=dots;row.addEventListener('click',function(){var r=row.classList.toggle('revealed');sp.textContent=r?full:dots;});})(cRows[c]);}
+})();
+</script>
+</body>
+</html>
