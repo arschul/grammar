@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indirect Questions – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .compare-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.9rem;}
+  .compare-table th{background:var(--surface2);color:var(--accent);font-weight:600;padding:0.6rem 1rem;text-align:left;border-bottom:1px solid var(--border);}
+  .compare-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-muted);line-height:1.6;vertical-align:top;}
+  .compare-table td em{color:var(--accent2);}
+  .compare-table tr:last-child td{border-bottom:none;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:140px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="../index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Questions &amp; Grammar</div>
+    </div>
+    <h1>Indirect Questions</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'iq-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'iq-activities')">Activities</button>
+  </div>
+
+  <!-- EXPLANATION -->
+  <div id="iq-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>What Are Indirect Questions?</h2>
+      <p>Indirect questions are polite or formal ways of asking something. Instead of asking directly, we embed the question inside an introductory phrase like <strong>Can you tell me…?</strong> or <strong>Do you know…?</strong></p>
+      <div class="formula-box">
+        <strong>Introductory phrase + question word / if / whether + subject + verb</strong><br><br>
+        <em>Where is the station?</em> → <em>Can you tell me <strong>where the station is</strong>?</em><br>
+        <em>How do you drink water?</em> → <em>Could you explain <strong>how you drink water</strong>?</em>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Word Order Change</h2>
+      <p>Direct questions invert the subject and auxiliary/verb. Indirect questions restore <strong>normal statement word order</strong>.</p>
+      <table class="compare-table">
+        <tr><th>Direct question</th><th>Indirect question</th></tr>
+        <tr><td><em>Where <strong>is</strong> the museum?</em></td><td><em>Do you know where the museum <strong>is</strong>?</em></td></tr>
+        <tr><td><em>What <strong>does</strong> she want?</em></td><td><em>Can you tell me what she <strong>wants</strong>?</em></td></tr>
+        <tr><td><em>When <strong>did</strong> he leave?</em></td><td><em>I'd like to know when he <strong>left</strong>.</em></td></tr>
+      </table>
+    </div>
+
+    <div class="explanation-section">
+      <h2>No Do / Did in Indirect Questions</h2>
+      <p>Simple present and simple past indirect questions <strong>drop the auxiliary do/does/did</strong>. The main verb changes to match the subject and tense.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>What <strong>do</strong> you study?</em> → <em>Can you tell me what you <strong>study</strong>?</em></div>
+        <div class="example-item"><em>Where <strong>did</strong> she go?</em> → <em>Do you know where she <strong>went</strong>?</em></div>
+        <div class="example-item"><em>What time <strong>does</strong> it open?</em> → <em>I'd like to know what time it <strong>opens</strong>.</em></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Yes/No Questions: If / Whether</h2>
+      <p>When the direct question has <strong>no question word</strong>, use <em>if</em> or <em>whether</em> in the indirect version.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>Will the US have space shuttles again?</em> → <em>Do you know <strong>if/whether</strong> the US will have space shuttles again?</em></div>
+        <div class="example-item"><em>Is she coming?</em> → <em>I wonder <strong>if/whether</strong> she is coming.</em></div>
+        <div class="example-item"><em>Did he pass the exam?</em> → <em>I'm not sure <strong>if/whether</strong> he passed the exam.</em></div>
+      </div>
+      <div class="note-box">
+        <strong>Common introductory phrases:</strong><br>
+        Can / Could you tell me…? &nbsp;·&nbsp; Do you know…? &nbsp;·&nbsp; Could you explain…?<br>
+        I'd like to know… &nbsp;·&nbsp; I wonder… &nbsp;·&nbsp; I'm not sure…<br><br>
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>Can you tell me where <strong>is</strong> the station?</em> → ✓ <em>where the station <strong>is</strong></em><br>
+        ✗ <em>Do you know what <strong>does</strong> she study?</em> → ✓ <em>what she <strong>studies</strong></em><br>
+        ✗ <em>I wonder if <strong>can</strong> he speak French.</em> → ✓ <em>if he <strong>can</strong> speak French</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div id="iq-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'iq-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'iq-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'iq-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'iq-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'iq-act5')">5. Open Questions</button>
+    </div>
+
+    <div id="iq-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="iq-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="iq-left"></div><div class="match-col" id="iq-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+
+    <div id="iq-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each indirect question using the correct form of the verb in brackets.</div>
+      <div id="iq-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('iq-fill-exercises','iq-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('iq-fill-exercises',FILL);document.getElementById('iq-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="iq-fill-feedback" class="feedback"></div>
+    </div>
+
+    <div id="iq-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="iq-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('iq-mistake-exercises','iq-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('iq-mistake-exercises',MISTAKE);document.getElementById('iq-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="iq-mistake-feedback" class="feedback"></div>
+    </div>
+
+    <div id="iq-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct indirect question. Click a placed word to remove it.</div>
+      <div id="iq-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('iq-order-exercises','iq-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('iq-order-exercises',ORDER);document.getElementById('iq-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="iq-order-feedback" class="feedback"></div>
+    </div>
+
+    <div id="iq-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own indirect questions using the prompts. Then click "Show Model Answer" to compare.</div>
+      <div id="iq-open-exercises"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Theme ──────────────────────────────────────────────────────────────
+function toggleTheme(){
+  var root=document.documentElement;
+  var isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  var saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',function(){
+      var btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+// ── Tab / Activity Switchers ───────────────────────────────────────────
+function switchTab(btn,contentId){
+  var p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active');});
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  var p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(contentId).classList.add('active');
+}
+
+// ── Match ──────────────────────────────────────────────────────────────
+function initMatch(prefix,data){
+  var loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  var lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld);roOld.parentNode.replaceChild(rc,roOld);
+  var scoreEl=document.getElementById(prefix+'-match-score');scoreEl.textContent='0';
+  var sel=null,score=0;
+  var ri=data.map(function(item,i){return{text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i};});
+  for(var i=ri.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=ri[i];ri[i]=ri[j];ri[j]=tmp;}
+  var letters=['A','B','C','D','E','F','G','H'];
+  data.forEach(function(item,i){
+    var el=document.createElement('div');el.className='match-item';
+    el.innerHTML='<span class="match-num">'+(i+1)+'.</span>'+item.left.replace(/^\d+\.\s*/,'');
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach(function(rItem,i){
+    var el=document.createElement('div');el.className='match-item';
+    el.innerHTML='<span class="match-letter">'+letters[i]+'.</span>'+rItem.text;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    var el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(function(x){x.classList.remove('selected');});
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      var li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{
+        sel.classList.add('matched-wrong');el.classList.add('matched-wrong');
+        var s=sel;setTimeout(function(){s&&s.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);
+      }
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+
+// ── Fill ───────────────────────────────────────────────────────────────
+function buildFillHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    var parts=item.sentence.split('_____');
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="exercise-q">'+parts[0]+'<input class="gap-input" data-idx="'+i+'" type="text" placeholder="...">'+(parts[1]||'')+'</div>'+(item.explanation?'<div class="model-answer" id="'+cid+'-fexp-'+i+'"><strong>Correct answer:</strong> '+item.explanation+'</div>':'');
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  var inputs=document.querySelectorAll('#'+cid+' .gap-input');var correct=0;
+  inputs.forEach(function(inp){
+    var idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    var ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(function(a){return a.toLowerCase();});
+    var expEl=document.getElementById(cid+'-fexp-'+idx);
+    if(uv===ans||alts.indexOf(uv)>-1){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  var fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All '+data.length+' correct!':'You got '+correct+' out of '+data.length+' correct. Check the highlighted answers.';
+}
+
+// ── Mistake ────────────────────────────────────────────────────────────
+function buildMistakeHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>'+item.sentence+'</em></div>'+'<div class="mistake-options">'+item.options.map(function(opt,j){return'<label class="mistake-option"><input type="radio" name="mistake-'+cid+'-'+i+'" value="'+j+'">'+opt+'</label>';}).join('')+'</div>'+'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  var correct=0;
+  data.forEach(function(item,i){
+    var s=document.querySelector('input[name="mistake-'+cid+'-'+i+'"]:checked');
+    var opts=document.querySelectorAll('.mistake-option:has(input[name="mistake-'+cid+'-'+i+'"])');
+    var expEl=document.getElementById(cid+'-mexp-'+i);
+    if(s){var v=parseInt(s.value);opts.forEach(function(o,j){if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  var fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Excellent! All '+data.length+' mistakes found correctly!':'You found '+correct+' out of '+data.length+' mistakes correctly.';
+}
+
+// ── Word Order ─────────────────────────────────────────────────────────
+var orderState={};
+function buildOrderHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(function(item){return{selected:[],words:[].concat(item.words).sort(function(){return Math.random()-0.5;})};});
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="word-bank" id="'+cid+'-bank-'+i+'"></div><div class="answer-slots" id="'+cid+'-slots-'+i+'"></div><div id="'+cid+'-hint-'+i+'" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>';
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  var st=orderState[cid][i];
+  var bk=document.getElementById(cid+'-bank-'+i),sl=document.getElementById(cid+'-slots-'+i),ht=document.getElementById(cid+'-hint-'+i);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach(function(word,wi){
+    var chip=document.createElement('div');chip.className='word-chip'+(st.selected.indexOf(wi)>-1?' used':'');chip.textContent=word;
+    chip.onclick=(function(wi2){return function(){if(st.selected.indexOf(wi2)>-1)return;st.selected.push(wi2);renderOrderExercise(cid,i);};})(wi);
+    bk.appendChild(chip);
+  });
+  st.selected.forEach(function(wi,pos){
+    var chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=(function(pos2){return function(){st.selected.splice(pos2,1);renderOrderExercise(cid,i);};})(pos);
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  var correct=0;
+  data.forEach(function(item,i){
+    var st=orderState[cid][i],built=st.selected.map(function(wi){return st.words[wi];}).join(' ');
+    var sl=document.getElementById(cid+'-slots-'+i),ht=document.getElementById(cid+'-hint-'+i);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  var fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':correct+' out of '+data.length+' correct. Check the highlighted sentences.';
+}
+
+// ── Open ───────────────────────────────────────────────────────────────
+function buildOpenHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="exercise-q">'+item.question+'</div>'+'<textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>'+'<div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>'+'<div class="model-answer"><strong>Model Answer:</strong> '+item.model+'</div>';
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  var ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+// ── DATA ───────────────────────────────────────────────────────────────
+var MATCH = [
+  {left:"1. Can you tell me",       right:"a. where the nearest bank is?"},
+  {left:"2. Do you know",           right:"b. if the train has already left?"},
+  {left:"3. I'd like to know",      right:"c. what time the film starts."},
+  {left:"4. Could you explain",     right:"d. how you managed to fix it?"},
+  {left:"5. I wonder",              right:"e. whether she is coming to the party."}
+];
+
+var FILL = [
+  {sentence:"Can you tell me where the post office _____ (be)?",            answer:"is",            explanation:"'is' — indirect questions use statement word order: no inversion, no auxiliary."},
+  {sentence:"Do you know what time the meeting _____ (start)?",             answer:"starts",        explanation:"'starts' — drop 'does' and use the normal present simple form."},
+  {sentence:"Could you explain how she _____ (solve) the problem?",         answer:"solved",        explanation:"'solved' — simple past, statement order. No 'did'."},
+  {sentence:"I'd like to know if they _____ (arrive) yet.",                 answer:"have arrived",  explanation:"'have arrived' — the present perfect is kept unchanged in indirect questions."},
+  {sentence:"Do you know whether the museum _____ (open) on Sundays?",      answer:"opens",         explanation:"'opens' — simple present, no 'does'. Statement word order after 'whether'."}
+];
+
+var MISTAKE = [
+  {
+    sentence:"Can you tell me where is the nearest bank?",
+    options:["Can you tell me","where is the nearest bank","?"],
+    correct:1,
+    explanation:"Indirect questions use statement word order: 'where the nearest bank is', not 'where is the nearest bank'."
+  },
+  {
+    sentence:"Do you know what does she study at university?",
+    options:["Do you know","what does she study","at university?"],
+    correct:1,
+    explanation:"Drop 'does' in indirect questions and use the normal verb form: 'what she studies'."
+  },
+  {
+    sentence:"Could you explain me how this machine works?",
+    options:["Could you explain me","how this machine","works?"],
+    correct:0,
+    explanation:"'Explain' doesn't take an indirect object directly. Say 'Could you explain how this machine works?' or 'explain to me how…'."
+  },
+  {
+    sentence:"I wonder if can he speak any foreign languages.",
+    options:["I wonder","if can he speak","any foreign languages."],
+    correct:1,
+    explanation:"After 'if/whether', use statement word order: 'if he can speak', not 'if can he speak'."
+  },
+  {
+    sentence:"I'm not sure when did the last bus leave.",
+    options:["I'm not sure","when did the last bus leave","."],
+    correct:1,
+    explanation:"Indirect questions don't use 'did'. Use the past simple in statement order: 'when the last bus left'."
+  }
+];
+
+var ORDER = [
+  {words:["Could","you","tell","me","where","the","station","is?"],          answer:"Could you tell me where the station is?"},
+  {words:["Do","you","know","what","she","wants","for","dinner?"],           answer:"Do you know what she wants for dinner?"},
+  {words:["I'd","like","to","know","if","they","have","arrived."],           answer:"I'd like to know if they have arrived."},
+  {words:["Could","you","explain","how","this","machine","works?"],          answer:"Could you explain how this machine works?"},
+  {words:["I","wonder","whether","he","is","coming","tonight."],             answer:"I wonder whether he is coming tonight."}
+];
+
+var OPEN = [
+  {
+    question:"Rewrite these as indirect questions using the phrases given: <em>'Where is the nearest pharmacy?'</em> (Can you tell me…) and <em>'What time does the bank close?'</em> (Do you know…)",
+    model:"Can you tell me where the nearest pharmacy is? / Do you know what time the bank closes?"
+  },
+  {
+    question:"Write two indirect questions you might ask a hotel receptionist.",
+    model:"Could you tell me what time breakfast is served? / Do you know if there is a gym in the hotel?"
+  },
+  {
+    question:"Write one indirect question using <em>I wonder</em> and one using <em>I'd like to know.</em>",
+    model:"I wonder whether she is coming to the meeting tomorrow. / I'd like to know when the results will be published."
+  },
+  {
+    question:"Rewrite as indirect questions: <em>'Does this bus go to the city centre?'</em> (I'm not sure…) and <em>'Will the concert be cancelled?'</em> (Do you know…)",
+    model:"I'm not sure if/whether this bus goes to the city centre. / Do you know if/whether the concert will be cancelled?"
+  },
+  {
+    question:"Write three indirect questions you might ask at a train station. Use three different introductory phrases.",
+    model:"Could you tell me when the next train to London leaves? / Do you know if I need to change trains? / I'd like to know whether there are any delays today."
+  }
+];
+
+// ── Init ───────────────────────────────────────────────────────────────
+function init(){
+  initMatch('iq', MATCH);
+  buildFillHTML('iq-fill-exercises', FILL);
+  document.getElementById('iq-fill-feedback').classList.remove('show');
+  buildMistakeHTML('iq-mistake-exercises', MISTAKE);
+  document.getElementById('iq-mistake-feedback').classList.remove('show');
+  buildOrderHTML('iq-order-exercises', ORDER);
+  document.getElementById('iq-order-feedback').classList.remove('show');
+  buildOpenHTML('iq-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
