@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present and Past Tenses: A Review – GrammarHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .tense-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.88rem;}
+  .tense-table th{background:var(--surface2);color:var(--accent);font-weight:600;padding:0.6rem 1rem;text-align:left;border-bottom:2px solid var(--border);}
+  .tense-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-muted);line-height:1.5;vertical-align:top;}
+  .tense-table tr:last-child td{border-bottom:none;}
+  .tense-table td:first-child{color:var(--accent2);font-weight:600;white-space:nowrap;}
+  .tense-table td:nth-child(2){font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--text);opacity:0.8;}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:160px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="../index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Tense Review</div>
+    </div>
+    <h1>Present and Past Tenses: A Review</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'pptr-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'pptr-activities')">Activities</button>
+  </div>
+
+  <!-- EXPLANATION -->
+  <div id="pptr-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>The Six Tenses at a Glance</h2>
+      <p>English uses several past and present tenses, each with a different focus. This page reviews the six most important ones at B1 level.</p>
+      <table class="tense-table">
+        <thead>
+          <tr><th>Tense</th><th>Form</th><th>Key idea</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Simple Past</td><td>verb + -ed / irregular</td><td>Completed action in the past, often with <em>yesterday, last week, ago</em></td></tr>
+          <tr><td>Past Progressive</td><td>was/were + -ing</td><td>Action in progress at a specific past moment</td></tr>
+          <tr><td>Past Perfect</td><td>had + past participle</td><td>The earlier of two past events</td></tr>
+          <tr><td>Past Perfect Progressive</td><td>had been + -ing</td><td>Action in progress before a past moment</td></tr>
+          <tr><td>Present Perfect</td><td>have/has + past participle</td><td>Past event connected to or relevant now</td></tr>
+          <tr><td>Present Perfect Progressive</td><td>have/has been + -ing</td><td>Action started in the past, still continuing now</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Simple Past &amp; Past Progressive</h2>
+      <p>Use the <strong>simple past</strong> for completed actions. Use the <strong>past progressive</strong> for an action that was in progress at a specific past moment — often interrupted by a simple past event.</p>
+      <div class="formula-box">
+        <strong>Simple past:</strong> She <em>visited</em> her grandmother last Sunday.<br>
+        <strong>Past progressive:</strong> What <em>was happening</em> inside their bodies when they <em>were migrating</em>?
+      </div>
+      <div class="examples-grid">
+        <div class="example-item"><em>They <strong>didn't finish</strong> the project on time.</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ completed event</span></div>
+        <div class="example-item"><em>He <strong>was reading</strong> when the phone rang.</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ in progress, then interrupted</span></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Present Perfect &amp; Present Perfect Progressive</h2>
+      <p>Use the <strong>present perfect</strong> for a past event that is relevant now or for experiences up to the present. Use the <strong>present perfect progressive</strong> for an action that started in the past and is still continuing.</p>
+      <div class="formula-box">
+        <strong>Present perfect:</strong> No single butterfly <em>has ever made</em> the whole trip.<br>
+        <strong>Present perfect progressive:</strong> The number of butterflies <em>has been falling</em> since the 1980s.
+      </div>
+      <div class="examples-grid">
+        <div class="example-item"><em>She <strong>has worked</strong> here for five years.</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ relevant to now</span></div>
+        <div class="example-item"><em>I <strong>have been studying</strong> English for three years.</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ still continuing</span></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Past Perfect &amp; Past Perfect Progressive</h2>
+      <p>Use the <strong>past perfect</strong> for the earlier of two past events. Use the <strong>past perfect progressive</strong> for an action that was in progress up to a past moment.</p>
+      <div class="formula-box">
+        <strong>Past perfect:</strong> Scientists <em>hadn't found</em> a logical explanation. (before they eventually did)<br>
+        <strong>Past perfect progressive:</strong> Scientists <em>had been asking</em> themselves questions for many years.
+      </div>
+      <div class="examples-grid">
+        <div class="example-item"><em>By the time we arrived, the show <strong>had already started</strong>.</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ earlier past event</span></div>
+        <div class="example-item"><em>She <strong>had been waiting</strong> for an hour when the bus finally came.</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ in progress before a past moment</span></div>
+      </div>
+      <div class="note-box">
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>I have seen him yesterday.</em> → ✓ <em>I <strong>saw</strong> him yesterday.</em> (finished time reference = simple past)<br>
+        ✗ <em>She had been working when I called.</em> → ✓ <em>She <strong>was working</strong> when I called.</em> (in progress at a past moment = past progressive)<br>
+        ✗ <em>They have been lived here for ten years.</em> → ✓ <em>They <strong>have been living</strong> here for ten years.</em> (need -ing after <em>have been</em>)<br>
+        ✗ <em>By the time I arrived, she already left.</em> → ✓ <em>she <strong>had already left</strong>.</em> (earlier past event = past perfect)
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div id="pptr-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'pptr-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'pptr-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'pptr-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'pptr-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'pptr-act5')">5. Open Questions</button>
+    </div>
+
+    <div id="pptr-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence on the left with the tense name that describes it on the right.</div>
+      <div class="score-badge">Matched: <span id="pptr-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="pptr-left"></div><div class="match-col" id="pptr-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+
+    <div id="pptr-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each sentence using the correct tense of the verb in brackets.</div>
+      <div id="pptr-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('pptr-fill-exercises','pptr-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('pptr-fill-exercises',FILL);document.getElementById('pptr-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="pptr-fill-feedback" class="feedback"></div>
+    </div>
+
+    <div id="pptr-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="pptr-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('pptr-mistake-exercises','pptr-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('pptr-mistake-exercises',MISTAKE);document.getElementById('pptr-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="pptr-mistake-feedback" class="feedback"></div>
+    </div>
+
+    <div id="pptr-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="pptr-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('pptr-order-exercises','pptr-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('pptr-order-exercises',ORDER);document.getElementById('pptr-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="pptr-order-feedback" class="feedback"></div>
+    </div>
+
+    <div id="pptr-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own answers using the target tenses. Then click "Show Model Answer" to compare.</div>
+      <div id="pptr-open-exercises"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Theme ──────────────────────────────────────────────────────────────
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+// ── Tab / Activity Switchers ───────────────────────────────────────────
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  const p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+
+// ── Match ──────────────────────────────────────────────────────────────
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld);roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score');scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+
+// ── Fill ───────────────────────────────────────────────────────────────
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    // Support multiple blanks (split on _____)
+    const parts=item.sentence.split('_____');
+    let qHtml=parts[0];
+    for(let g=1;g<parts.length;g++){
+      qHtml+=`<input class="gap-input" data-idx="${i}" data-gap="${g-1}" type="text" placeholder="...">`;
+      qHtml+=parts[g];
+    }
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${qHtml}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  let correct=0,total=0;
+  data.forEach((item,i)=>{
+    const inputs=document.querySelectorAll(`#${cid} .gap-input[data-idx="${i}"]`);
+    const answers=Array.isArray(item.answer)?item.answer:[item.answer];
+    const altsArr=item.alt||[];
+    const expEl=document.getElementById(`${cid}-fexp-${i}`);
+    let itemCorrect=true;
+    inputs.forEach((inp,g)=>{
+      total++;
+      const uv=inp.value.trim().toLowerCase();
+      const ans=(answers[g]||'').toLowerCase();
+      const alts=(altsArr[g]||[]).map?.(a=>a.toLowerCase())||[];
+      if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');}
+      else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');itemCorrect=false;}
+    });
+    if(itemCorrect){correct++;if(expEl)expEl.classList.remove('show');}
+    else{if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
+// ── Mistake ────────────────────────────────────────────────────────────
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+
+// ── Word Order ─────────────────────────────────────────────────────────
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+
+// ── Open ───────────────────────────────────────────────────────────────
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+// ── DATA ───────────────────────────────────────────────────────────────
+const MATCH = [
+  {left:"1. No single butterfly has ever made the whole trip.", right:"a. present perfect — past experience relevant to now"},
+  {left:"2. Scientists had been asking questions for years before they found the answer.", right:"b. past perfect progressive — action in progress before a past moment"},
+  {left:"3. Scientists hadn't found a logical explanation.", right:"c. past perfect — earlier of two past events"},
+  {left:"4. The number of butterflies has been falling since the 1980s.", right:"d. present perfect progressive — action started in past, still continuing"},
+  {left:"5. What was happening inside their bodies when they were migrating?", right:"e. past progressive — action in progress at a past moment"}
+];
+
+const FILL = [
+  {sentence:"Scientists _____ (ask) themselves questions for many years before they found the answer.", answer:["had been asking"], explanation:"'had been asking' — past perfect progressive for an action in progress up to a past moment."},
+  {sentence:"The number of Monarch butterflies _____ (fall) since the 1980s.", answer:["has been falling"], explanation:"'has been falling' — present perfect progressive for an action that started in the past and is still continuing."},
+  {sentence:"By the time the researchers arrived, the butterflies _____ (already / leave).", answer:["had already left"], explanation:"'had already left' — past perfect for the earlier of two past events."},
+  {sentence:"No single butterfly _____ (ever / make) the complete migration journey.", answer:["has ever made"], explanation:"'has ever made' — present perfect for experience up to the present moment."},
+  {sentence:"What _____ (happen) inside their bodies when they _____ (migrate)?", answer:["was happening","were migrating"], explanation:"'was happening' and 'were migrating' — both past progressive for actions in progress at the same past moment."}
+];
+
+const MISTAKE = [
+  {sentence:"Scientists have asked themselves this question for many years before they finally found the answer.",
+   options:["Scientists have asked themselves this question","for many years","before they finally found the answer."],
+   correct:0,
+   explanation:"'have asked' implies a connection to the present, but the action ended in the past (before they found the answer). Use past perfect progressive: 'had been asking'."},
+  {sentence:"The butterfly has made this journey last autumn.",
+   options:["The butterfly","has made","this journey last autumn."],
+   correct:1,
+   explanation:"'Last autumn' is a finished past time, so the simple past is needed: → 'made'. Present perfect cannot be used with a specific past time reference."},
+  {sentence:"She was already left when I arrived at the lab.",
+   options:["She was already left","when I arrived","at the lab."],
+   correct:0,
+   explanation:"'Was already left' is not correct. For the earlier of two past events, use past perfect: → 'She had already left'."},
+  {sentence:"The number of butterflies has been fall since the 1980s.",
+   options:["The number of butterflies","has been fall","since the 1980s."],
+   correct:1,
+   explanation:"After 'has been', you need the -ing form: → 'has been falling'."},
+  {sentence:"When I called her, she had worked in the garden.",
+   options:["When I called her,","she had worked","in the garden."],
+   correct:1,
+   explanation:"'Had worked' implies she finished before you called, but the sentence describes what she was doing at that moment. Use past progressive: → 'she was working'."}
+];
+
+const ORDER = [
+  {words:["been","Scientists","asking","had","questions","themselves","for","years."], answer:"Scientists had been asking themselves questions for years."},
+  {words:["falling","The","number","has","been","the","1980s.","since"], answer:"The number has been falling since the 1980s."},
+  {words:["already","By","the","time","arrived,","they","had","left.","they"], answer:"By the time they arrived, they had already left."},
+  {words:["ever","No","butterfly","single","has","the","made","whole","trip."], answer:"No single butterfly has ever made the whole trip."},
+  {words:["was","happening","What","inside","bodies?","their"], answer:"What was happening inside their bodies?"}
+];
+
+const OPEN = [
+  {question:"Write two sentences about something you have been doing since childhood. Use the present perfect progressive.",
+   model:"I have been playing football since I was six years old. I have been learning English for most of my life."},
+  {question:"Write a sentence about something that had already happened before an important moment in your life. Use the past perfect.",
+   model:"By the time I started university, I had already learned to speak English fluently. I had never lived alone before I moved to a new city."},
+  {question:"Write two sentences using the simple past and the past progressive to describe what was happening when something interrupted you.",
+   model:"I was studying when my phone rang. I answered it and completely forgot what I was reading."},
+  {question:"Think of a world problem that has been getting worse. Write two sentences using the present perfect and the present perfect progressive.",
+   model:"Global temperatures have risen significantly over the past century. Ice caps have been melting at an increasingly alarming rate."},
+  {question:"Write a short paragraph of three sentences about a scientist, explorer, or historical figure using at least three different tenses from this review.",
+   model:"Marie Curie had been researching radioactivity for years before she won her first Nobel Prize. She made discoveries that no scientist had ever made before. Her work has continued to shape science for over a century."}
+];
+
+// ── Init ───────────────────────────────────────────────────────────────
+function init(){
+  initMatch('pptr', MATCH);
+  buildFillHTML('pptr-fill-exercises', FILL);
+  document.getElementById('pptr-fill-feedback').classList.remove('show');
+  buildMistakeHTML('pptr-mistake-exercises', MISTAKE);
+  document.getElementById('pptr-mistake-feedback').classList.remove('show');
+  buildOrderHTML('pptr-order-exercises', ORDER);
+  document.getElementById('pptr-order-feedback').classList.remove('show');
+  buildOpenHTML('pptr-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
