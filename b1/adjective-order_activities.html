@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adjective Order – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .adj-chain{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1rem 0;}
+  .adj-cat{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.75rem;font-size:0.8rem;color:var(--text-muted);display:flex;flex-direction:column;align-items:center;gap:0.15rem;}
+  .adj-cat span{font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .adj-arrow{color:var(--border);font-size:1.2rem;align-self:center;margin-top:0.6rem;}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:160px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="../index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Adjectives &amp; Nouns</div>
+    </div>
+    <h1>Adjective Order</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'ao-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'ao-activities')">Activities</button>
+  </div>
+
+  <!-- EXPLANATION -->
+  <div id="ao-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>What Is Adjective Order?</h2>
+      <p>When you use more than one adjective before a noun, English follows a fixed sequence. The categories from first to last are:</p>
+      <div class="adj-chain">
+        <div class="adj-cat"><span>1</span>Quantity</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>2</span>Opinion</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>3</span>Size</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>4</span>Age</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>5</span>Shape</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>6</span>Colour</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>7</span>Origin</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>8</span>Material</div>
+        <div class="adj-arrow">→</div>
+        <div class="adj-cat"><span>★</span>Noun</div>
+      </div>
+      <div class="formula-box">
+        <strong>[Quantity] [Opinion] [Size] [Age] [Shape] [Colour] [Origin] [Material] + Noun</strong><br><br>
+        <em>four big old square wooden houses</em><br>
+        <em>a pretty little blue French electric car</em><br>
+        <em>a small, square white rock</em>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Opinion Always Comes First</h2>
+      <p><strong>Opinion adjectives</strong> (beautiful, horrible, amazing, lovely) always come before <strong>fact adjectives</strong> (size, colour, origin, material). This is the most important rule to remember.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>a <strong>beautiful old</strong> painting</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ opinion, then age</span></div>
+        <div class="example-item"><em>a <strong>long thin silver</strong> necklace</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ size, then shape, then colour</span></div>
+        <div class="example-item"><em>a <strong>big red Italian</strong> sports car</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ size, then colour, then origin</span></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Size → Shape → Colour → Origin → Material</h2>
+      <p>For fact adjectives, follow the sequence strictly. You won't always use all categories — two or three adjectives is the most common in natural speech.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>a <strong>small square wooden</strong> box</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ size → shape → material</span></div>
+        <div class="example-item"><em>a <strong>huge old brick</strong> building</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ size → age → material</span></div>
+        <div class="example-item"><em>a <strong>long dark wooden</strong> corridor</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ size → colour → material</span></div>
+        <div class="example-item"><em>a <strong>stunning old French</strong> painting</em> <span style="font-size:0.82rem;color:var(--text-muted);">→ opinion → age → origin</span></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Commas: When to Use Them</h2>
+      <p>Use a comma between two adjectives of the <strong>same general group</strong> (e.g. two opinion adjectives). Do <strong>not</strong> use a comma between adjectives from different categories.</p>
+      <div class="examples-grid">
+        <div class="example-item"><em>a <strong>friendly, helpful</strong> teacher</em> ✓ <span style="font-size:0.82rem;color:var(--text-muted);">→ two opinions: use a comma</span></div>
+        <div class="example-item"><em>a <strong>small red</strong> bag</em> ✓ <span style="font-size:0.82rem;color:var(--text-muted);">→ size and colour: no comma</span></div>
+        <div class="example-item"><em>an <strong>amazing, big</strong> pink salt lake</em> ✓ <span style="font-size:0.82rem;color:var(--text-muted);">→ opinion before size/colour: comma after opinion only</span></div>
+      </div>
+      <div class="note-box">
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>a red big car</em> → ✓ <em>a <strong>big red</strong> car</em> (size before colour)<br>
+        ✗ <em>a wooden old French table</em> → ✓ <em>an <strong>old French wooden</strong> table</em> (age → origin → material)<br>
+        ✗ <em>a pretty, Italian, small vase</em> → ✓ <em>a <strong>pretty small Italian</strong> vase</em> (opinion → size → origin, no comma between different categories)
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div id="ao-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'ao-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'ao-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'ao-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'ao-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'ao-act5')">5. Open Questions</button>
+    </div>
+
+    <div id="ao-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="ao-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="ao-left"></div><div class="match-col" id="ao-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+
+    <div id="ao-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Put the adjectives in brackets into the correct order and type them in the gap.</div>
+      <div id="ao-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('ao-fill-exercises','ao-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('ao-fill-exercises',FILL);document.getElementById('ao-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="ao-fill-feedback" class="feedback"></div>
+    </div>
+
+    <div id="ao-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="ao-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('ao-mistake-exercises','ao-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('ao-mistake-exercises',MISTAKE);document.getElementById('ao-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ao-mistake-feedback" class="feedback"></div>
+    </div>
+
+    <div id="ao-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="ao-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('ao-order-exercises','ao-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('ao-order-exercises',ORDER);document.getElementById('ao-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ao-order-feedback" class="feedback"></div>
+    </div>
+
+    <div id="ao-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own sentences using adjectives in the correct order. Then click "Show Model Answer" to compare.</div>
+      <div id="ao-open-exercises"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleTheme(){
+  var root=document.documentElement;
+  var isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  var saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',function(){
+      var btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+function switchTab(btn,contentId){
+  var p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active');});
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  var p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(contentId).classList.add('active');
+}
+
+function initMatch(prefix,data){
+  var loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  var lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld);roOld.parentNode.replaceChild(rc,roOld);
+  var scoreEl=document.getElementById(prefix+'-match-score');scoreEl.textContent='0';
+  var sel=null,score=0;
+  var ri=data.map(function(item,i){return {text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i};});
+  for(var i=ri.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=ri[i];ri[i]=ri[j];ri[j]=tmp;}
+  var letters=['A','B','C','D','E','F','G','H'];
+  data.forEach(function(item,i){
+    var el=document.createElement('div');el.className='match-item';
+    el.innerHTML='<span class="match-num">'+(i+1)+'.</span>'+item.left.replace(/^\d+\.\s*/,'');
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach(function(rItem,i){
+    var el=document.createElement('div');el.className='match-item';
+    el.innerHTML='<span class="match-letter">'+letters[i]+'.</span>'+rItem.text;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    var el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(function(x){x.classList.remove('selected');});
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      var li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(function(){if(sel)sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+
+function buildFillHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    var parts=item.sentence.split('_____');
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="exercise-q">'+parts[0]+'<input class="gap-input" data-idx="'+i+'" type="text" placeholder="...">'+(parts[1]||'')+'</div>'+(item.explanation?'<div class="model-answer" id="'+cid+'-fexp-'+i+'"><strong>Correct answer:</strong> '+item.explanation+'</div>':'');
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  var inputs=document.querySelectorAll('#'+cid+' .gap-input');var correct=0;
+  inputs.forEach(function(inp){
+    var idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    var ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(function(a){return a.toLowerCase();});
+    var expEl=document.getElementById(cid+'-fexp-'+idx);
+    if(uv===ans||alts.indexOf(uv)>-1){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  var fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All '+data.length+' correct!':'You got '+correct+' out of '+data.length+' correct. Check the highlighted answers.';
+}
+
+function buildMistakeHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>'+item.sentence+'</em></div><div class="mistake-options">'+item.options.map(function(opt,j){return '<label class="mistake-option"><input type="radio" name="mistake-'+cid+'-'+i+'" value="'+j+'">'+opt+'</label>';}).join('')+'</div><div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  var correct=0;
+  data.forEach(function(item,i){
+    var s=document.querySelector('input[name="mistake-'+cid+'-'+i+'"]:checked');
+    var opts=document.querySelectorAll('.mistake-option:has(input[name="mistake-'+cid+'-'+i+'"])');
+    var expEl=document.getElementById(cid+'-mexp-'+i);
+    if(s){var v=parseInt(s.value);opts.forEach(function(o,j){if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  var fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Excellent! All '+data.length+' mistakes found correctly!':'You found '+correct+' out of '+data.length+' mistakes correctly.';
+}
+
+var orderState={};
+function buildOrderHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(function(item){return {selected:[],words:item.words.slice().sort(function(){return Math.random()-0.5;})};});
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="word-bank" id="'+cid+'-bank-'+i+'"></div><div class="answer-slots" id="'+cid+'-slots-'+i+'"></div><div id="'+cid+'-hint-'+i+'" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>';
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  var st=orderState[cid][i];
+  var bk=document.getElementById(cid+'-bank-'+i),sl=document.getElementById(cid+'-slots-'+i),ht=document.getElementById(cid+'-hint-'+i);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach(function(word,wi){
+    var chip=document.createElement('div');chip.className='word-chip'+(st.selected.indexOf(wi)>-1?' used':'');chip.textContent=word;
+    chip.onclick=function(){if(st.selected.indexOf(wi)>-1)return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach(function(wi,pos){
+    var chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=function(){st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  var correct=0;
+  data.forEach(function(item,i){
+    var st=orderState[cid][i],built=st.selected.map(function(wi){return st.words[wi];}).join(' ');
+    var sl=document.getElementById(cid+'-slots-'+i),ht=document.getElementById(cid+'-hint-'+i);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  var fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':correct+' out of '+data.length+' correct. Check the highlighted sentences.';
+}
+
+function buildOpenHTML(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(item,i){
+    var d=document.createElement('div');d.className='exercise';
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div><div class="exercise-q">'+item.question+'</div><textarea class="open-answer-area" placeholder="Write your answer here..."></textarea><div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div><div class="model-answer"><strong>Model Answer:</strong> '+item.model+'</div>';
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  var ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+// ── DATA ──────────────────────────────────────────────────────────────
+var MATCH = [
+  {left:"1. She was wearing",                       right:"a. a beautiful long silk dress."},
+  {left:"2. They live in",                          right:"b. a small modern Japanese apartment."},
+  {left:"3. He bought her",                         right:"c. an old wooden kitchen table."},
+  {left:"4. I found on the beach",                  right:"d. a tiny round silver coin."},
+  {left:"5. The garden was full of",                right:"e. some amazing big purple flowers."}
+];
+
+var FILL = [
+  {sentence:"She drives a _____ car. (old, red, little)", answer:"little old red", explanation:"little old red — size → age → colour."},
+  {sentence:"He wore a _____ coat. (grey, long, elegant)", answer:"elegant long grey", explanation:"elegant long grey — opinion → size → colour."},
+  {sentence:"They found a _____ box. (wooden, square, small)", answer:"small square wooden", explanation:"small square wooden — size → shape → material."},
+  {sentence:"It was a _____ building. (brick, old, huge)", answer:"huge old brick", explanation:"huge old brick — size → age → material."},
+  {sentence:"We bought a _____ vase. (Chinese, beautiful, blue)", answer:"beautiful blue Chinese", explanation:"beautiful blue Chinese — opinion → colour → origin."}
+];
+
+var MISTAKE = [
+  {sentence:"She was wearing a red long Italian dress.",
+   options:["She was wearing","a red long","Italian dress."],
+   correct:1,
+   explanation:"Size comes before colour: → 'a long red Italian dress.'"},
+  {sentence:"He bought a wooden old French clock.",
+   options:["He bought","a wooden old","French clock."],
+   correct:1,
+   explanation:"Age comes before origin, and origin comes before material: → 'an old French wooden clock.'"},
+  {sentence:"They live in a modern, small, Japanese house.",
+   options:["They live in","a modern, small,","Japanese house."],
+   correct:1,
+   explanation:"Size (small) comes before age/opinion (modern), and commas are not used between different adjective categories: → 'a small modern Japanese house.'"},
+  {sentence:"I found a round big silver coin.",
+   options:["I found","a round big","silver coin."],
+   correct:1,
+   explanation:"Size comes before shape: → 'a big round silver coin.'"},
+  {sentence:"It was a blue, beautiful Italian sports car.",
+   options:["It was","a blue, beautiful","Italian sports car."],
+   correct:1,
+   explanation:"Opinion always comes before colour: → 'a beautiful blue Italian sports car.'"}
+];
+
+var ORDER = [
+  {words:["wore","He","a","long","black","leather","jacket."], answer:"He wore a long black leather jacket."},
+  {words:["a","is","This","Japanese","beautiful","old","vase."], answer:"This is a beautiful old Japanese vase."},
+  {words:["She","tiny","bought","silver","a","round","ring."], answer:"She bought a tiny round silver ring."},
+  {words:["a","in","They","modern","small","live","apartment."], answer:"They live in a small modern apartment."},
+  {words:["painting","stunning","old","an","It's","French."], answer:"It's a stunning old French painting."}
+];
+
+var OPEN = [
+  {question:"Describe someone you know well. Use at least two adjectives in the correct order (e.g. size, age, colour).",
+   model:"She has beautiful long dark hair and usually wears elegant simple clothes."},
+  {question:"Describe a place you love. Use two or three adjectives in the correct order.",
+   model:"It's a small old stone church surrounded by big ancient oak trees."},
+  {question:"Describe three objects in your room or bag. Use two adjectives each.",
+   model:"a thin silver laptop / a small blue pen / a round black water bottle"},
+  {question:"Think of something you'd love to buy. Describe it using three adjectives in the right order.",
+   model:"I'd love a beautiful little Italian coffee machine."},
+  {question:"Write two sentences describing a place or object using at least one adjective from four different categories (e.g. size, colour, origin, material).",
+   model:"The museum had a huge old French marble fountain in the entrance hall. My grandmother gave me a pretty little silver Chinese jewellery box."}
+];
+
+function init(){
+  initMatch('ao', MATCH);
+  buildFillHTML('ao-fill-exercises', FILL);
+  document.getElementById('ao-fill-feedback').classList.remove('show');
+  buildMistakeHTML('ao-mistake-exercises', MISTAKE);
+  document.getElementById('ao-mistake-feedback').classList.remove('show');
+  buildOrderHTML('ao-order-exercises', ORDER);
+  document.getElementById('ao-order-feedback').classList.remove('show');
+  buildOpenHTML('ao-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
