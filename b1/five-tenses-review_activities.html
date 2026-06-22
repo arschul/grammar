@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review of Tenses – GrammarHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
+  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
+  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
+  .nav-logo span{color:var(--accent2);}
+  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
+  .topic-header{margin-bottom:3rem;}
+  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
+  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
+  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
+  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .explanation-section{margin-bottom:2.5rem;}
+  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
+  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
+  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
+  .formula-box strong{color:var(--accent);}
+  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
+  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
+  .example-item em{color:var(--accent2);font-style:italic;}
+  .tense-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.88rem;}
+  .tense-table th{background:var(--surface2);color:var(--accent);font-weight:600;text-align:left;padding:0.6rem 1rem;border:1px solid var(--border);}
+  .tense-table td{padding:0.6rem 1rem;border:1px solid var(--border);line-height:1.6;color:var(--text-muted);}
+  .tense-table td em{color:var(--accent2);font-style:italic;}
+  .tense-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+  :root[data-theme="light"] .tense-table tr:nth-child(even) td{background:rgba(0,0,0,0.02);}
+  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
+  .note-box strong{color:var(--accent);}
+  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
+  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
+  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
+  .activity-section{display:none;}
+  .activity-section.active{display:block;}
+  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
+  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
+  .exercise{margin-bottom:1.5rem;}
+  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
+  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
+  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
+  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
+  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
+  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
+  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
+  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:130px;outline:none;text-align:center;transition:border-color 0.2s;}
+  .gap-input:focus{border-bottom-color:var(--accent2);}
+  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
+  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
+  .word-chip:hover{border-color:var(--accent);}
+  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
+  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
+  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
+  .slot-chip:hover{background:rgba(232,197,71,0.25);}
+  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
+  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
+  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
+  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
+  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
+  .feedback.show{display:block;}
+  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
+  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
+  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+  .mistake-option:hover{border-color:var(--accent);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
+  .mistake-option input[type=radio]{accent-color:var(--accent);}
+  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
+  .open-answer-area:focus{border-color:var(--accent);}
+  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
+  .model-answer strong{color:var(--correct);}
+  .model-answer.show{display:block;}
+  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
+  .score-badge span{color:var(--accent);font-weight:600;}
+  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
+  .back-home:hover{color:var(--accent);}
+  @media(max-width:600px){.match-container{grid-template-columns:1fr;}.tense-table{font-size:0.8rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+</nav>
+<div class="topic-page">
+  <a class="back-home" href="../index.html">← Back to home</a>
+  <div class="topic-header">
+    <div>
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Tenses Review</div>
+    </div>
+    <h1>Review of Tenses</h1>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'ftr-explanation')">Explanation</button>
+    <button class="tab-btn" onclick="switchTab(this,'ftr-activities')">Activities</button>
+  </div>
+
+  <!-- EXPLANATION -->
+  <div id="ftr-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>Five Tenses at a Glance</h2>
+      <p>These five tenses each have a distinct use. The key is choosing the right one for the time frame and the nature of the action.</p>
+      <table class="tense-table">
+        <thead>
+          <tr><th>Tense</th><th>Form</th><th>Key use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Simple present</strong></td><td>work / works</td><td>habits, facts, routines</td></tr>
+          <tr><td><strong>Present progressive</strong></td><td>am/is/are + -ing</td><td>actions in progress now or around now</td></tr>
+          <tr><td><strong>Simple past</strong></td><td>worked / went</td><td>completed actions at a specific past time</td></tr>
+          <tr><td><strong>Past progressive</strong></td><td>was/were + -ing</td><td>action in progress at a past moment; interrupted action</td></tr>
+          <tr><td><strong>Present perfect</strong></td><td>have/has + past participle</td><td>past experience with present relevance; recent events</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Simple Present vs Present Progressive</h2>
+      <p>The <strong>simple present</strong> describes what is generally true or regularly happens. The <strong>present progressive</strong> describes what is happening at this moment or temporarily.</p>
+      <div class="formula-box">
+        <strong>Simple present:</strong> She <em>works</em> at a hospital. (her job — always true)<br>
+        <strong>Present progressive:</strong> She <em>is working</em> late tonight. (just this evening)
+      </div>
+      <div class="examples-grid">
+        <div class="example-item"><em>I <strong>drink</strong> coffee every morning.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ habit</span></div>
+        <div class="example-item"><em>I <strong>am drinking</strong> coffee right now.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ happening now</span></div>
+        <div class="example-item"><em>They <strong>live</strong> in Madrid.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ permanent fact</span></div>
+        <div class="example-item"><em>They <strong>are living</strong> in Madrid for the summer.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ temporary</span></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Simple Past vs Past Progressive</h2>
+      <p>The <strong>simple past</strong> describes a completed past action. The <strong>past progressive</strong> describes an action that was in progress at a past moment — often interrupted by a simple past action.</p>
+      <div class="formula-box">
+        <strong>Simple past:</strong> She <em>called</em> at 8pm.<br>
+        <strong>Past progressive:</strong> I <em>was cooking</em> when she <em>called</em>.
+      </div>
+      <div class="examples-grid">
+        <div class="example-item"><em>He <strong>left</strong> the office at six.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ completed action</span></div>
+        <div class="example-item"><em>It <strong>was raining</strong> when we <strong>arrived</strong>.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ background + event</span></div>
+        <div class="example-item"><em>She <strong>was reading</strong> all evening.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ extended past action</span></div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Present Perfect vs Simple Past</h2>
+      <p>Use the <strong>present perfect</strong> when the exact time is unknown or irrelevant, or when the result matters now. Use the <strong>simple past</strong> when you give a specific time.</p>
+      <div class="formula-box">
+        <strong>Present perfect:</strong> I <em>have seen</em> that film. (experience; when = not important)<br>
+        <strong>Simple past:</strong> I <em>saw</em> that film last Friday. (specific time given)
+      </div>
+      <div class="examples-grid">
+        <div class="example-item"><em>She <strong>has broken</strong> her leg.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ result affects now</span></div>
+        <div class="example-item"><em>She <strong>broke</strong> her leg two weeks ago.</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ specific past time</span></div>
+        <div class="example-item"><em>Have you ever <strong>tried</strong> sushi?</em> <span style="font-size:0.82rem;color:var(--text-muted)">→ life experience</span></div>
+      </div>
+      <div class="note-box">
+        <strong>⚠ Common mistakes:</strong><br>
+        ✗ <em>I am working here since 2019.</em> → ✓ <em>I <strong>have been working</strong> here since 2019.</em><br>
+        ✗ <em>While I cooked, the phone rang.</em> → ✓ <em>While I <strong>was cooking</strong>, the phone rang.</em> (ongoing action = progressive)<br>
+        ✗ <em>Did you ever visit Rome?</em> → ✓ <em><strong>Have</strong> you ever visited Rome?</em> (life experience = present perfect)
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div id="ftr-activities" class="tab-content">
+    <div class="activity-selector">
+      <button class="act-btn active" onclick="switchActivity(this,'ftr-act1')">1. Match</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftr-act2')">2. Fill Gaps</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftr-act3')">3. Find Mistake</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftr-act4')">4. Word Order</button>
+      <button class="act-btn" onclick="switchActivity(this,'ftr-act5')">5. Open Questions</button>
+    </div>
+
+    <div id="ftr-act1" class="activity-section active">
+      <div class="activity-title">Match the Sentence Halves</div>
+      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+      <div class="score-badge">Matched: <span id="ftr-match-score">0</span> / 5</div>
+      <div class="match-container"><div class="match-col" id="ftr-left"></div><div class="match-col" id="ftr-right"></div></div>
+      <button class="reset-btn" onclick="init()">↺ Reset</button>
+    </div>
+
+    <div id="ftr-act2" class="activity-section">
+      <div class="activity-title">Fill in the Gaps</div>
+      <div class="activity-desc">Complete each sentence using the correct tense of the verb in brackets.</div>
+      <div id="ftr-fill-exercises"></div>
+      <div><button class="check-btn" onclick="checkFill('ftr-fill-exercises','ftr-fill-feedback',FILL)">Check Answers</button>
+      <button class="reset-btn" onclick="buildFillHTML('ftr-fill-exercises',FILL);document.getElementById('ftr-fill-feedback').classList.remove('show')">↺ Reset</button></div>
+      <div id="ftr-fill-feedback" class="feedback"></div>
+    </div>
+
+    <div id="ftr-act3" class="activity-section">
+      <div class="activity-title">Find the Mistake</div>
+      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+      <div id="ftr-mistake-exercises"></div>
+      <button class="check-btn" onclick="checkMistake('ftr-mistake-exercises','ftr-mistake-feedback',MISTAKE)">Check Answers</button>
+      <button class="reset-btn" onclick="buildMistakeHTML('ftr-mistake-exercises',MISTAKE);document.getElementById('ftr-mistake-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ftr-mistake-feedback" class="feedback"></div>
+    </div>
+
+    <div id="ftr-act4" class="activity-section">
+      <div class="activity-title">Put the Words in Order</div>
+      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+      <div id="ftr-order-exercises"></div>
+      <button class="check-btn" onclick="checkOrder('ftr-order-exercises','ftr-order-feedback',ORDER)">Check Answers</button>
+      <button class="reset-btn" onclick="buildOrderHTML('ftr-order-exercises',ORDER);document.getElementById('ftr-order-feedback').classList.remove('show')">↺ Reset</button>
+      <div id="ftr-order-feedback" class="feedback"></div>
+    </div>
+
+    <div id="ftr-act5" class="activity-section">
+      <div class="activity-title">Answer the Questions</div>
+      <div class="activity-desc">Write your own sentences using the target tenses. Then click "Show Model Answer" to compare.</div>
+      <div id="ftr-open-exercises"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleTheme(){
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  root.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('gh-theme',isLight?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');
+      if(btn)btn.textContent='☀️';
+    });
+  }
+})();
+
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function switchActivity(btn,contentId){
+  const p=btn.closest('.tab-content');
+  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld); roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score'); scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+}
+
+// ── DATA ──────────────────────────────────────────────────────────────
+
+const MATCH = [
+  {left:"1. I study English every day,",             right:"a. but right now I'm watching a film."},
+  {left:"2. She was making dinner",                  right:"b. when the lights suddenly went out."},
+  {left:"3. We moved here in 2018,",                 right:"c. so I know the rules quite well."},
+  {left:"4. Have you eaten yet?",                    right:"d. Yes, I had lunch about an hour ago."},
+  {left:"5. He isn't answering his phone —",         right:"e. maybe he's sleeping."}
+];
+
+const FILL = [
+  {sentence:"My sister _____ (study) for her exam right now, so please don't disturb her.", answer:"is studying", explanation:"'is studying' — present progressive for an action happening at this moment."},
+  {sentence:"I _____ (live) in this city all my life. I was born here.", answer:"have lived", alt:["have always lived"], explanation:"'have lived' — present perfect for a state that began in the past and continues now."},
+  {sentence:"While they _____ (walk) home, it started to snow.", answer:"were walking", explanation:"'were walking' — past progressive for the ongoing background action interrupted by a simple past event."},
+  {sentence:"She _____ (not / call) me back yet. I hope everything is okay.", answer:"hasn't called", alt:["has not called"], explanation:"'hasn't called' — present perfect negative for a past action that has not happened up to now."},
+  {sentence:"Every morning he _____ (get up) at six, makes coffee, and reads the news.", answer:"gets up", explanation:"'gets up' — simple present for a regular daily routine."}
+];
+
+const MISTAKE = [
+  {
+    sentence:"I was knowing the answer, but I didn't say anything.",
+    options:["I was knowing the answer,","but I didn't say","anything."],
+    correct:0,
+    explanation:"'Know' is a stative verb and doesn't use the progressive. → 'I knew the answer, but I didn't say anything.'"
+  },
+  {
+    sentence:"Did you ever try Thai food? It's delicious.",
+    options:["Did you ever try","Thai food?","It's delicious."],
+    correct:0,
+    explanation:"Questions about life experience use the present perfect: → 'Have you ever tried Thai food?'"
+  },
+  {
+    sentence:"She has called me last night and we talked for an hour.",
+    options:["She has called me","last night","and we talked for an hour."],
+    correct:0,
+    explanation:"A specific past time ('last night') requires the simple past: → 'She called me last night.'"
+  },
+  {
+    sentence:"When I arrived, they still waited for the bus.",
+    options:["When I arrived,","they still waited","for the bus."],
+    correct:1,
+    explanation:"An ongoing action at a past moment uses the past progressive: → 'they were still waiting for the bus.'"
+  },
+  {
+    sentence:"He works at the café at the moment while he looks for a better job.",
+    options:["He works at the café","at the moment","while he looks for a better job."],
+    correct:0,
+    explanation:"'At the moment' signals a temporary situation: → 'He is working at the café at the moment.'"
+  }
+];
+
+const ORDER = [
+  {words:["has","She","never","flown","before."], answer:"She has never flown before."},
+  {words:["were","What","you","doing","yesterday","at","noon?"], answer:"What were you doing yesterday at noon?"},
+  {words:["usually","takes","He","the","bus","work.","to"], answer:"He usually takes the bus to work."},
+  {words:["have","They","just","the","announced","results."], answer:"They have just announced the results."},
+  {words:["started","It","raining","was","when","the","we","match.","left"], answer:"It was raining when we left the match."}
+];
+
+const OPEN = [
+  {question:"Write two sentences about your daily routine using the simple present, then two sentences about what you are doing differently this week using the present progressive.",
+   model:"I usually wake up at seven and walk to school. I never skip breakfast. This week I am studying extra because I have exams. I am also going to bed earlier than usual."},
+  {question:"Write three sentences about a memory from your past. Use the simple past for what happened and the past progressive for what was happening around that time.",
+   model:"I broke my arm when I was eight. I was playing football with my friends in the park. It was a sunny afternoon and everyone was having fun."},
+  {question:"Use the present perfect to write two sentences about things you have done in your life and two things you have never done.",
+   model:"I have visited three different countries. I have tried many kinds of food. I have never ridden a horse. I have never been to Asia."},
+  {question:"Write a short paragraph (3–4 sentences) describing a moment when something interrupted what you were doing. Use the past progressive and simple past.",
+   model:"I was having a shower when the fire alarm went off. I ran outside in a towel while everyone was gathering in the street. Luckily, it was just a false alarm."},
+  {question:"Compare these two situations in two sentences each: (a) something you do regularly and (b) something you are only doing right now or this period.",
+   model:"I normally cycle to work every day. But this week I am taking the train because my bike needs a repair."}
+];
+
+// ── INIT ──────────────────────────────────────────────────────────────
+function init(){
+  initMatch('ftr', MATCH);
+  buildFillHTML('ftr-fill-exercises', FILL);
+  document.getElementById('ftr-fill-feedback').classList.remove('show');
+  buildMistakeHTML('ftr-mistake-exercises', MISTAKE);
+  document.getElementById('ftr-mistake-feedback').classList.remove('show');
+  buildOrderHTML('ftr-order-exercises', ORDER);
+  document.getElementById('ftr-order-feedback').classList.remove('show');
+  buildOpenHTML('ftr-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
