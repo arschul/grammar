@@ -1,113 +1,373 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Past Progressive – GrammarHub</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0f0e0c;--surface:#1a1915;--surface2:#242320;--accent:#e8c547;--accent2:#f0975a;--text:#f0ede6;--text-muted:#8a8680;--correct:#5dbf7a;--wrong:#e05c5c;--border:#2e2c28;--radius:12px; }
-  :root[data-theme="light"] { --bg:#f5f3ee;--surface:#ffffff;--surface2:#edeae3;--accent:#b8860b;--accent2:#c85a1a;--text:#1a1815;--text-muted:#6b6660;--correct:#2d8a4e;--wrong:#c0392b;--border:#d4cfc6; }
+
+  /* ============ TOKENS ============ */
+  :root{
+    --paper:#f3efe7; --card:#fbf9f4; --raise:#ffffff;
+    --ink:#22302a; --ink-soft:#5d6b63; --ink-faint:#8a958d;
+    --line:#e5ddd0; --line-soft:#eee7db;
+    --brand:#1f6f5c; --brand-soft:#e4efe9; --brand-deep:#144a3d;
+    --coral:#e2664a; --coral-soft:#fbe4dc;
+    --gold:#cf9526; --gold-soft:#f6ecd4;
+    --correct:#1f7a55; --correct-soft:#e2efe6;
+    --wrong:#cf4a37; --wrong-soft:#f8e2dd;
+    --r:16px; --r-sm:10px; --r-xs:7px;
+    --shadow:0 1px 2px rgba(34,48,42,.04),0 8px 24px -12px rgba(34,48,42,.18);
+    --shadow-sm:0 1px 2px rgba(34,48,42,.05);
+    --serif:'Newsreader',Georgia,serif;
+    --display:'Bricolage Grotesque',system-ui,sans-serif;
+    --body:'DM Sans',system-ui,sans-serif;
+  }
+  :root[data-theme="dark"]{
+    --paper:#121815; --card:#1a221e; --raise:#212b26;
+    --ink:#eef2ec; --ink-soft:#a7b3ac; --ink-faint:#788079;
+    --line:#2a352f; --line-soft:#232d28;
+    --brand:#4bb795; --brand-soft:#1a2a24; --brand-deep:#78d3b6;
+    --coral:#f0805f; --coral-soft:#2c211d;
+    --gold:#e0b24d; --gold-soft:#2a2417;
+    --correct:#4bb488; --correct-soft:#18271f;
+    --wrong:#e46a54; --wrong-soft:#2c1d19;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  }
+
+  :root{--bg:var(--paper);--surface:var(--card);--surface2:var(--raise);--accent:var(--brand);--accent2:var(--coral);--text:var(--ink);--text-muted:var(--ink-soft);--border:var(--line);--radius:var(--r-sm);}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s;}
-  nav{position:sticky;top:0;z-index:100;background:rgba(15,14,12,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1rem;height:60px;transition:background 0.3s,border-color 0.3s;}
-  :root[data-theme="light"] nav{background:rgba(245,243,238,0.92);}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:-0.5px;text-decoration:none;}
-  .nav-logo span{color:var(--accent2);}
-  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:100px;width:36px;height:36px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text-muted);}
-  .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
-  .topic-page{max-width:900px;margin:0 auto;padding:3rem 2rem 5rem;}
-  .topic-header{margin-bottom:3rem;}
-  .topic-label{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;}
-  .cefr-badge{display:inline-block;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);color:var(--accent);border-radius:100px;padding:0.2rem 0.8rem;font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:0.8rem;margin-right:0.5rem;}
-  .topic-header h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-1px;line-height:1.1;}
-  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;}
-  .tab-btn{background:none;border:none;color:var(--text-muted);padding:0.9rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.95rem;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;}
-  .tab-btn:hover{color:var(--text);}
-  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
-  .tab-content{display:none;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);background:var(--paper);color:var(--ink);
+    min-height:100vh;overflow-x:hidden;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    transition:background .35s ease,color .35s ease;
+  }
+
+  /* ============ NAV ============ */
+  nav{
+    position:sticky;top:0;z-index:100;height:62px;padding:0 clamp(1rem,4vw,2.4rem);
+    display:flex;align-items:center;gap:1rem;
+    background:color-mix(in srgb,var(--paper) 86%,transparent);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  }
+  .nav-logo{
+    font-family:var(--display);font-weight:700;font-size:1.28rem;letter-spacing:-.02em;
+    color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.15rem;
+  }
+  .nav-logo span{color:var(--coral);}
+  .theme-toggle{
+    margin-left:auto;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;width:40px;height:40px;cursor:pointer;font-size:1.05rem;
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+    transition:border-color .2s,transform .15s,background .2s;box-shadow:var(--shadow-sm);
+  }
+  .theme-toggle:hover{border-color:var(--brand);color:var(--brand);}
+  .theme-toggle:active{transform:scale(.94);}
+
+  /* ============ PAGE SHELL ============ */
+  .topic-page{max-width:860px;margin:0 auto;padding:clamp(1.6rem,4vw,3rem) clamp(1rem,4vw,2rem) 5rem;}
+  .back-home{
+    display:inline-flex;align-items:center;gap:.4rem;color:var(--ink-faint);
+    font-size:.85rem;font-weight:500;text-decoration:none;margin-bottom:1.8rem;
+    transition:color .2s,gap .2s;
+  }
+  .back-home:hover{color:var(--coral);gap:.6rem;}
+
+  /* ============ HEADER ============ */
+  .topic-header{margin-bottom:2.2rem;}
+  .header-meta{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;}
+  .cefr-badge{
+    display:inline-flex;align-items:center;background:var(--brand);color:#fff;
+    border-radius:7px;padding:.24rem .6rem;font-size:.72rem;font-weight:700;
+    letter-spacing:.06em;font-family:var(--display);
+  }
+  .topic-label{
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600;
+  }
+  .topic-header h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(2.1rem,6vw,3.4rem);letter-spacing:-.03em;line-height:1.02;color:var(--ink);
+  }
+
+  /* ============ SEGMENTED TABS ============ */
+  .tabs{
+    display:inline-flex;gap:.25rem;padding:.28rem;margin-bottom:2.4rem;
+    background:var(--card);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow-sm);
+  }
+  .tab-btn{
+    background:none;border:none;color:var(--ink-soft);cursor:pointer;
+    font-family:var(--body);font-size:.9rem;font-weight:600;
+    padding:.5rem 1.3rem;border-radius:999px;transition:all .22s;
+  }
+  .tab-btn:hover{color:var(--ink);}
+  .tab-btn.active{background:var(--ink);color:var(--paper);}
+  .tab-content{display:none;animation:fade .4s ease;}
   .tab-content.active{display:block;}
-  .explanation-section{margin-bottom:2.5rem;}
-  .explanation-section h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:1rem;color:var(--accent2);}
-  .explanation-section p{color:var(--text-muted);line-height:1.8;font-size:0.95rem;margin-bottom:0.8rem;}
-  .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:1rem 0;font-size:0.95rem;}
-  .formula-box strong{color:var(--accent);}
-  .pronoun-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.9rem;}
-  .pronoun-table th{text-align:left;color:var(--text-muted);font-weight:600;padding:8px 12px;border-bottom:1px solid var(--border);}
-  .pronoun-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* ============ EXPLANATION ============ */
+  .explanation-section{margin-bottom:2.4rem;}
+  .explanation-section h2{
+    font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:.85rem;display:flex;align-items:center;gap:.6rem;
+  }
+  .explanation-section h2::before{
+    content:"";width:9px;height:9px;border-radius:2px;background:var(--coral);flex:none;
+  }
+  .explanation-section p{color:var(--ink-soft);line-height:1.75;font-size:.98rem;margin-bottom:.7rem;}
+  .explanation-section p strong,.explanation-section p em strong{color:var(--ink);font-weight:600;}
+
+  .formula-box{
+    background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);
+    border-radius:var(--r-sm);padding:1.15rem 1.4rem;margin:1rem 0;font-size:1rem;line-height:1.9;
+  }
+  .formula-box>strong:first-child{
+    display:inline-block;font-family:var(--display);color:var(--brand);
+    font-size:1.02rem;letter-spacing:-.01em;margin-bottom:.3rem;
+  }
+  .formula-box strong{color:var(--brand);}
+  .formula-box em{font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.05rem;}
+  .formula-box em strong{color:var(--coral);font-weight:600;}
+
+  .pronoun-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.95rem;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;}
+  .pronoun-table th{
+    text-align:left;color:var(--ink-faint);font-weight:600;font-size:.74rem;
+    letter-spacing:.08em;text-transform:uppercase;padding:.7rem 1rem;
+    border-bottom:1px solid var(--line);background:var(--line-soft);
+  }
+  .pronoun-table td{padding:.75rem 1rem;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);}
   .pronoun-table tr:last-child td{border-bottom:none;}
-  .pronoun-table .pron{color:var(--accent);font-weight:700;}
-  .examples-grid{display:flex;flex-direction:column;gap:0.7rem;margin-top:1rem;}
-  .example-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.2rem;font-size:0.9rem;line-height:1.6;}
-  .example-item em{color:var(--accent2);font-style:italic;}
-  .note-box{background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);border-radius:var(--radius);padding:1rem 1.5rem;margin-top:1rem;font-size:0.88rem;color:#d4c98a;line-height:1.7;}
-  .note-box strong{color:var(--accent);}
-  .activity-selector{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
-  .act-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:0.5rem 1.1rem;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;transition:all 0.2s;}
-  .act-btn:hover{border-color:var(--accent2);color:var(--text);}
-  .act-btn.active{background:var(--accent2);border-color:var(--accent2);color:#000;}
-  .activity-section{display:none;}
+  .pronoun-table .pron{color:var(--brand);font-weight:700;font-family:var(--display);}
+
+  .examples-grid{display:flex;flex-direction:column;gap:.55rem;margin-top:1rem;}
+  .example-item{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);
+    padding:.85rem 1.1rem .85rem 2.4rem;font-size:.98rem;line-height:1.65;color:var(--ink-soft);
+    position:relative;
+  }
+  .example-item::before{
+    content:"";position:absolute;left:1.1rem;top:1.15rem;width:7px;height:7px;
+    border-radius:50%;background:var(--gold);
+  }
+  .example-item em{font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.04rem;}
+  .example-item em strong,.example-item strong{color:var(--coral);font-weight:600;}
+
+  .note-box{
+    background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 34%,transparent);
+    border-radius:var(--r-sm);padding:1.05rem 1.35rem;margin-top:1rem;font-size:.94rem;
+    color:var(--ink);line-height:1.95;
+  }
+  .note-box strong{color:var(--gold);font-weight:700;}
+  .note-box em{font-family:var(--serif);font-style:italic;}
+  .note-box em strong{color:var(--coral);}
+  :root[data-theme="dark"] .note-box{color:var(--ink-soft);}
+
+  /* ============ PROGRESS RAIL (signature) ============ */
+  .rail{
+    display:flex;gap:0;margin-bottom:2.2rem;padding-bottom:.4rem;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .rail::-webkit-scrollbar{display:none;}
+  .rail-node{
+    flex:1 1 0;min-width:88px;position:relative;background:none;border:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.2rem .2rem 0;
+    font-family:var(--body);
+  }
+  .rail-node::before{ /* connector to previous node */
+    content:"";position:absolute;top:16px;right:50%;width:100%;height:3px;
+    background:var(--line);z-index:0;transition:background .3s;
+  }
+  .rail-node:first-child::before{display:none;}
+  .rail-node.reached::before{background:var(--brand);}
+  .rail-idx{
+    position:relative;z-index:1;width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--card);border:2px solid var(--line);
+    font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--ink-faint);
+    transition:all .25s;
+  }
+  .rail-label{
+    font-size:.74rem;font-weight:600;color:var(--ink-faint);letter-spacing:.01em;
+    transition:color .25s;white-space:nowrap;
+  }
+  .rail-node:hover .rail-idx{border-color:var(--brand);color:var(--brand);}
+  .rail-node.current .rail-idx{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:scale(1.08);}
+  .rail-node.current .rail-label{color:var(--ink);}
+  .rail-node.done .rail-idx{background:var(--brand);border-color:var(--brand);color:#fff;}
+  .rail-node.done .rail-label{color:var(--brand);}
+  .rail-node.done .rail-idx::after{content:"✓";font-size:.95rem;}
+  .rail-node.done .rail-idx span{display:none;}
+
+  /* ============ ACTIVITY CARD ============ */
+  .activity-section{display:none;animation:fade .35s ease;}
   .activity-section.active{display:block;}
-  .activity-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.4rem;}
-  .activity-desc{color:var(--text-muted);font-size:0.88rem;margin-bottom:2rem;}
-  .exercise{margin-bottom:1.5rem;}
-  .exercise-num{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:600;}
-  .exercise-q{font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem;color:var(--text);}
-  .hint-text{color:var(--text);font-style:normal;font-size:0.95rem;margin:0 0.2rem;}
-  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-  .match-col{display:flex;flex-direction:column;gap:0.5rem;}
-  .match-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;font-size:0.88rem;line-height:1.5;user-select:none;}
-  .match-item.selected{border-color:var(--accent);background:rgba(232,197,71,0.08);}
-  .match-item.matched-correct{border-color:var(--correct);background:rgba(93,191,122,0.1);color:var(--correct);}
-  .match-item.matched-wrong{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
-  .match-num{color:var(--accent);font-weight:600;margin-right:0.4rem;}
-  .match-letter{color:var(--accent2);font-weight:600;margin-right:0.4rem;}
-  .gap-input{background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0 0.3rem;min-width:110px;outline:none;text-align:center;transition:border-color 0.2s;}
-  .gap-input:focus{border-bottom-color:var(--accent2);}
-  .gap-input.correct-answer{border-bottom-color:var(--correct);color:var(--correct);}
-  .gap-input.wrong-answer{border-bottom-color:var(--wrong);color:var(--wrong);}
-  .word-bank{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
-  .word-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;user-select:none;}
-  .word-chip:hover{border-color:var(--accent);}
-  .word-chip.used{opacity:0.3;cursor:default;pointer-events:none;}
-  .answer-slots{background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:0.8rem;min-height:48px;display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;}
-  .slot-chip{background:rgba(232,197,71,0.15);border:1px solid var(--accent);border-radius:6px;padding:0.35rem 0.7rem;font-size:0.88rem;cursor:pointer;transition:background 0.2s;}
-  .slot-chip:hover{background:rgba(232,197,71,0.25);}
-  .check-btn{margin-top:1.5rem;background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.75rem 2rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;transition:all 0.2s;}
-  .check-btn:hover{background:#f5d45e;transform:translateY(-1px);}
-  .reset-btn{margin-top:1rem;margin-left:0.8rem;background:none;border:1px solid var(--border);color:var(--text-muted);border-radius:8px;padding:0.75rem 1.5rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;}
-  .reset-btn:hover{border-color:var(--text-muted);color:var(--text);}
-  .feedback{margin-top:1.5rem;padding:1rem 1.5rem;border-radius:8px;font-size:0.9rem;display:none;}
-  .feedback.show{display:block;}
-  .feedback.correct{background:rgba(93,191,122,0.12);border:1px solid rgba(93,191,122,0.3);color:var(--correct);}
-  .feedback.partial{background:rgba(232,197,71,0.1);border:1px solid rgba(232,197,71,0.3);color:var(--accent);}
-  .mistake-options{display:flex;flex-direction:column;gap:0.5rem;}
-  .mistake-option{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;cursor:pointer;font-size:0.88rem;transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
-  .mistake-option:hover{border-color:var(--accent);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:rgba(93,191,122,0.1);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:rgba(224,92,92,0.1);}
-  .mistake-option input[type=radio]{accent-color:var(--accent);}
-  .open-answer-area{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:70px;outline:none;transition:border-color 0.2s;line-height:1.6;}
-  .open-answer-area:focus{border-color:var(--accent);}
-  .model-answer{margin-top:0.8rem;padding:0.8rem 1rem;background:rgba(93,191,122,0.08);border:1px solid rgba(93,191,122,0.25);border-radius:8px;font-size:0.85rem;color:#8fdaaa;display:none;line-height:1.6;}
-  .model-answer strong{color:var(--correct);}
-  .model-answer.show{display:block;}
-  .score-badge{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem;}
-  .score-badge span{color:var(--accent);font-weight:600;}
-  .back-home{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text-muted);font-size:0.85rem;text-decoration:none;margin-bottom:2rem;transition:color 0.2s;}
-  .back-home:hover{color:var(--accent);}
-  @media(max-width:600px){.match-container{grid-template-columns:1fr;}}
+  .activity-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:clamp(1.3rem,4vw,2rem);box-shadow:var(--shadow);
+  }
+  .activity-title{
+    font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:.35rem;
+  }
+  .activity-desc{color:var(--ink-soft);font-size:.92rem;margin-bottom:1.6rem;line-height:1.6;}
+
+  .exercise{
+    margin-bottom:1.1rem;padding:1rem 1.1rem;background:var(--raise);
+    border:1px solid var(--line-soft);border-radius:var(--r-sm);
+  }
+  .exercise:last-of-type{margin-bottom:0;}
+  .exercise-num{
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+    margin-bottom:.5rem;font-weight:700;
+  }
+  .exercise-q{font-size:1.02rem;line-height:1.85;color:var(--ink);}
+  .hint-text{color:var(--ink-faint);font-style:normal;font-size:.9rem;margin:0 .15rem;}
+
+  /* Match */
+  .score-badge{
+    display:inline-flex;align-items:center;gap:.4rem;background:var(--brand-soft);
+    border:1px solid color-mix(in srgb,var(--brand) 28%,transparent);border-radius:999px;
+    padding:.4rem 1rem;font-size:.82rem;font-weight:600;color:var(--brand-deep);margin-bottom:1.4rem;
+  }
+  :root[data-theme="dark"] .score-badge{color:var(--brand-deep);}
+  .score-badge span{color:var(--brand);font-weight:800;font-family:var(--display);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .match-col{display:flex;flex-direction:column;gap:.55rem;}
+  .match-item{
+    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
+    padding:.85rem 1rem;cursor:pointer;transition:all .18s;font-size:.92rem;line-height:1.5;
+    user-select:none;color:var(--ink);
+  }
+  .match-item:hover{border-color:var(--brand);transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+  .match-item.selected{border-color:var(--coral);background:var(--coral-soft);}
+  .match-item.matched-correct{
+    border-color:var(--correct);background:var(--correct-soft);color:var(--correct);cursor:default;
+  }
+  .match-item.matched-correct:hover{transform:none;box-shadow:none;}
+  .match-item.matched-wrong{border-color:var(--wrong);background:var(--wrong-soft);animation:shake .35s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  .match-num{color:var(--coral);font-weight:700;margin-right:.35rem;font-family:var(--display);}
+  .match-letter{color:var(--brand);font-weight:700;margin-right:.35rem;font-family:var(--display);}
+
+  /* Fill */
+  .gap-input{
+    background:var(--brand-soft);border:none;border-bottom:2px solid var(--brand);
+    color:var(--ink);font-family:var(--body);font-weight:600;font-size:1rem;
+    padding:.15rem .5rem;min-width:120px;outline:none;text-align:center;
+    border-radius:6px 6px 0 0;transition:all .2s;
+  }
+  .gap-input::placeholder{color:var(--ink-faint);font-weight:400;}
+  .gap-input:focus{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .gap-input.correct-answer{background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);}
+
+  /* Word order */
+  .word-bank{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem;}
+  .word-chip{
+    background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-xs);
+    padding:.45rem .8rem;cursor:pointer;font-size:.92rem;font-weight:500;
+    transition:all .16s;user-select:none;color:var(--ink);
+  }
+  .word-chip:hover{border-color:var(--brand);background:var(--brand-soft);transform:translateY(-1px);}
+  .word-chip.used{opacity:.28;cursor:default;pointer-events:none;}
+  .answer-slots{
+    background:var(--paper);border:1.5px dashed var(--line);border-radius:var(--r-sm);
+    padding:.8rem;min-height:54px;display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+    transition:border-color .25s;
+  }
+  .answer-slots:empty::before{content:"Tap words to build your sentence…";color:var(--ink-faint);font-size:.88rem;}
+  .slot-chip{
+    background:var(--coral-soft);border:1.5px solid var(--coral);border-radius:var(--r-xs);
+    padding:.45rem .8rem;font-size:.92rem;font-weight:500;cursor:pointer;color:var(--ink);
+    transition:all .16s;
+  }
+  .slot-chip:hover{background:var(--coral);color:#fff;}
+
+  /* Mistake */
+  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
+  .mistake-option{
+    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
+    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
+    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  }
+  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
+  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
+
+  /* Open */
+  .open-answer-area{
+    width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
+    padding:.85rem 1rem;color:var(--ink);font-family:var(--body);font-size:.95rem;
+    resize:vertical;min-height:76px;outline:none;transition:border-color .2s;line-height:1.6;
+  }
+  .open-answer-area::placeholder{color:var(--ink-faint);}
+  .open-answer-area:focus{border-color:var(--brand);}
+
+  .model-answer{
+    margin-top:.75rem;padding:.85rem 1.1rem;background:var(--correct-soft);
+    border:1px solid color-mix(in srgb,var(--correct) 30%,transparent);border-radius:var(--r-sm);
+    font-size:.92rem;color:var(--ink);display:none;line-height:1.7;
+  }
+  .model-answer strong{color:var(--correct);font-weight:700;}
+  .model-answer.show{display:block;animation:fade .3s ease;}
+
+  /* Buttons */
+  .btn-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:1.5rem;}
+  .check-btn{
+    background:var(--coral);color:#fff;border:none;border-radius:var(--r-sm);
+    padding:.72rem 1.7rem;cursor:pointer;font-family:var(--body);font-size:.92rem;font-weight:700;
+    transition:all .18s;box-shadow:var(--shadow-sm);
+  }
+  .check-btn:hover{background:#d4573b;transform:translateY(-2px);box-shadow:var(--shadow);}
+  .check-btn:active{transform:translateY(0);}
+  .reset-btn{
+    background:none;border:1.5px solid var(--line);color:var(--ink-soft);border-radius:var(--r-sm);
+    padding:.72rem 1.4rem;cursor:pointer;font-family:var(--body);font-size:.9rem;font-weight:500;
+    transition:all .18s;
+  }
+  .reset-btn:hover{border-color:var(--ink-soft);color:var(--ink);}
+  .match-reset{margin-top:1.4rem;}
+
+  .feedback{
+    margin-top:1.4rem;padding:.95rem 1.3rem;border-radius:var(--r-sm);font-size:.94rem;
+    font-weight:500;display:none;
+  }
+  .feedback.show{display:block;animation:fade .3s ease;}
+  .feedback.correct{background:var(--correct-soft);border:1px solid color-mix(in srgb,var(--correct) 34%,transparent);color:var(--correct);}
+  .feedback.partial{background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:var(--gold);}
+
+  /* Accessibility */
+  :focus-visible{outline:2.5px solid var(--coral);outline-offset:2px;border-radius:4px;}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+  @media(max-width:600px){
+    .match-container{grid-template-columns:1fr;}
+    .rail-label{font-size:.68rem;}
+    .rail-node{min-width:74px;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">🌙</button>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
+
 <div class="topic-page">
   <a class="back-home" href="index.html">← Back to home</a>
+
   <div class="topic-header">
-    <div>
+    <div class="header-meta">
       <span class="cefr-badge">A2</span>
       <div class="topic-label">Tenses</div>
     </div>
@@ -115,11 +375,10 @@
   </div>
 
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab(this,'pp-explanation')">Explanation</button>
-    <button class="tab-btn" onclick="switchTab(this,'pp-activities')">Activities</button>
+    <button class="tab-btn active" onclick="switchTab(this,'pp-explanation')">Learn</button>
+    <button class="tab-btn" onclick="switchTab(this,'pp-activities')">Practice</button>
   </div>
 
-  <!-- EXPLANATION TAB -->
   <div id="pp-explanation" class="tab-content active">
 
     <div class="explanation-section">
@@ -173,92 +432,94 @@
         ✗ <em>She was writeing a letter.</em> → ✓ <em>She was <strong>writing</strong> a letter.</em> (drop the silent e)<br>
         ✗ <em>He was runing across the street.</em> → ✓ <em>He was <strong>running</strong> across the street.</em> (double the consonant)
       </div>
-    </div>
+    </div></div>
 
-  </div><!-- /explanation -->
-
-  <!-- ACTIVITIES TAB -->
   <div id="pp-activities" class="tab-content">
-    <div class="activity-selector">
-      <button class="act-btn active" onclick="switchActivity(this,'pp-act1')">1. Match</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act2')">2. Fill Gaps</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act3')">3. Find Mistake</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act4')">4. Word Order</button>
-      <button class="act-btn" onclick="switchActivity(this,'pp-act5')">5. Open Questions</button>
-    </div>
+    <nav class="rail" id="pp-rail" aria-label="Activity progress">
+      <button class="rail-node current" data-step="1" onclick="goStep(1)"><span class="rail-idx"><span>1</span></span><span class="rail-label">Match</span></button>
+      <button class="rail-node" data-step="2" onclick="goStep(2)"><span class="rail-idx"><span>2</span></span><span class="rail-label">Fill Gaps</span></button>
+      <button class="rail-node" data-step="3" onclick="goStep(3)"><span class="rail-idx"><span>3</span></span><span class="rail-label">Find Mistake</span></button>
+      <button class="rail-node" data-step="4" onclick="goStep(4)"><span class="rail-idx"><span>4</span></span><span class="rail-label">Word Order</span></button>
+      <button class="rail-node" data-step="5" onclick="goStep(5)"><span class="rail-idx"><span>5</span></span><span class="rail-label">Open</span></button>
+    </nav>
 
-    <!-- Act 1 — Match -->
     <div id="pp-act1" class="activity-section active">
-      <div class="activity-title">Match the Sentence Halves</div>
-      <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
-      <div class="score-badge">Matched: <span id="pp-match-score">0</span> / 5</div>
-      <div class="match-container"><div class="match-col" id="pp-left"></div><div class="match-col" id="pp-right"></div></div>
-      <button class="reset-btn" onclick="init()">↺ Reset</button>
-    </div>
-
-    <!-- Act 2 — Fill Gaps -->
-    <div id="pp-act2" class="activity-section">
-      <div class="activity-title">Fill in the Gaps</div>
-      <div class="activity-desc">Complete each sentence with the past progressive form of the verb in parentheses.</div>
-      <div id="pp-fill-exercises"></div>
-      <div>
-        <button class="check-btn" onclick="checkFill('pp-fill-exercises','pp-fill-feedback',FILL)">Check Answers</button>
-        <button class="reset-btn" onclick="buildFillHTML('pp-fill-exercises',FILL);document.getElementById('pp-fill-feedback').classList.remove('show')">↺ Reset</button>
+      <div class="activity-card">
+        <div class="activity-title">Match the Sentence Halves</div>
+        <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+        <div class="score-badge">Matched <span id="pp-match-score">0</span> / 5</div>
+        <div class="match-container"><div class="match-col" id="pp-left"></div><div class="match-col" id="pp-right"></div></div>
+        <div class="btn-row match-reset"><button class="reset-btn" onclick="init()">↺ Reset</button></div>
       </div>
-      <div id="pp-fill-feedback" class="feedback"></div>
     </div>
 
-    <!-- Act 3 — Find Mistake -->
+    <div id="pp-act2" class="activity-section">
+      <div class="activity-card">
+        <div class="activity-title">Fill in the Gaps</div>
+        <div class="activity-desc">Complete each sentence with the past progressive form of the verb in parentheses.</div>
+        <div id="pp-fill-exercises"></div>
+        <div class="btn-row">
+          <button class="check-btn" onclick="checkStep(2,'pp-fill-exercises','pp-fill-feedback',FILL,checkFill)">Check Answers</button>
+          <button class="reset-btn" onclick="buildFillHTML('pp-fill-exercises',FILL);document.getElementById('pp-fill-feedback').classList.remove('show')">↺ Reset</button>
+        </div>
+        <div id="pp-fill-feedback" class="feedback"></div>
+      </div>
+    </div>
+
     <div id="pp-act3" class="activity-section">
-      <div class="activity-title">Find the Mistake</div>
-      <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
-      <div id="pp-mistake-exercises"></div>
-      <button class="check-btn" onclick="checkMistake('pp-mistake-exercises','pp-mistake-feedback',MISTAKE)">Check Answers</button>
-      <button class="reset-btn" onclick="buildMistakeHTML('pp-mistake-exercises',MISTAKE);document.getElementById('pp-mistake-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="pp-mistake-feedback" class="feedback"></div>
+      <div class="activity-card">
+        <div class="activity-title">Find the Mistake</div>
+        <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+        <div id="pp-mistake-exercises"></div>
+        <div class="btn-row">
+          <button class="check-btn" onclick="checkStep(3,'pp-mistake-exercises','pp-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
+          <button class="reset-btn" onclick="buildMistakeHTML('pp-mistake-exercises',MISTAKE);document.getElementById('pp-mistake-feedback').classList.remove('show')">↺ Reset</button>
+        </div>
+        <div id="pp-mistake-feedback" class="feedback"></div>
+      </div>
     </div>
 
-    <!-- Act 4 — Word Order -->
     <div id="pp-act4" class="activity-section">
-      <div class="activity-title">Put the Words in Order</div>
-      <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
-      <div id="pp-order-exercises"></div>
-      <button class="check-btn" onclick="checkOrder('pp-order-exercises','pp-order-feedback',ORDER)">Check Answers</button>
-      <button class="reset-btn" onclick="buildOrderHTML('pp-order-exercises',ORDER);document.getElementById('pp-order-feedback').classList.remove('show')">↺ Reset</button>
-      <div id="pp-order-feedback" class="feedback"></div>
+      <div class="activity-card">
+        <div class="activity-title">Put the Words in Order</div>
+        <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+        <div id="pp-order-exercises"></div>
+        <div class="btn-row">
+          <button class="check-btn" onclick="checkStep(4,'pp-order-exercises','pp-order-feedback',ORDER,checkOrder)">Check Answers</button>
+          <button class="reset-btn" onclick="buildOrderHTML('pp-order-exercises',ORDER);document.getElementById('pp-order-feedback').classList.remove('show')">↺ Reset</button>
+        </div>
+        <div id="pp-order-feedback" class="feedback"></div>
+      </div>
     </div>
 
-    <!-- Act 5 — Open Questions -->
     <div id="pp-act5" class="activity-section">
-      <div class="activity-title">Answer the Questions</div>
-      <div class="activity-desc">Write your own sentences using the past progressive. Then click "Show Model Answer" to compare.</div>
-      <div id="pp-open-exercises"></div>
+      <div class="activity-card">
+        <div class="activity-title">Answer the Questions</div>
+        <div class="activity-desc">Write your own sentences using the past progressive. Then click "Show Model Answer" to compare.</div>
+        <div id="pp-open-exercises"></div>
+      </div>
     </div>
-
-  </div><!-- /activities -->
-</div><!-- /topic-page -->
+  </div>
+</div>
 
 <script>
-// ── THEME ──────────────────────────────────────────────────────────────
+// -- THEME (light default; honour saved pref) --
 function toggleTheme(){
   const root=document.documentElement;
-  const isLight=root.getAttribute('data-theme')==='light';
-  root.setAttribute('data-theme',isLight?'dark':'light');
-  document.getElementById('theme-btn').textContent=isLight?'🌙':'☀️';
-  localStorage.setItem('gh-theme',isLight?'dark':'light');
+  const isDark=root.getAttribute('data-theme')==='dark';
+  root.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('theme-btn').textContent=isDark?'\u{1F319}':'\u2600\uFE0F';
+  localStorage.setItem('gh-theme',isDark?'light':'dark');
 }
 (function(){
   const saved=localStorage.getItem('gh-theme');
-  if(saved==='light'){
-    document.documentElement.setAttribute('data-theme','light');
+  if(saved==='dark'){
+    document.documentElement.setAttribute('data-theme','dark');
     document.addEventListener('DOMContentLoaded',()=>{
-      const btn=document.getElementById('theme-btn');
-      if(btn)btn.textContent='☀️';
+      const btn=document.getElementById('theme-btn');if(btn)btn.textContent='\u2600\uFE0F';
     });
   }
 })();
-
-// ── TAB / ACTIVITY SWITCHING ───────────────────────────────────────────
 function switchTab(btn,contentId){
   const p=btn.closest('.topic-page');
   p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -266,15 +527,26 @@ function switchTab(btn,contentId){
   p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   document.getElementById(contentId).classList.add('active');
 }
-function switchActivity(btn,contentId){
-  const p=btn.closest('.tab-content');
-  p.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  p.querySelectorAll('.activity-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(contentId).classList.add('active');
+const PREFIX='pp';
+function goStep(n){
+  for(let i=1;i<=5;i++){document.getElementById(PREFIX+'-act'+i).classList.toggle('active',i===n);}
+  document.querySelectorAll('#'+PREFIX+'-rail .rail-node').forEach(node=>{
+    const s=parseInt(node.dataset.step);
+    node.classList.toggle('current',s===n);
+    node.classList.toggle('reached',s<=n);
+  });
+}
+function markStep(n){
+  const node=document.querySelector('#'+PREFIX+'-rail .rail-node[data-step="'+n+'"]');
+  if(node)node.classList.add('done','reached');
+}
+function checkStep(step,cid,fid,data,fn){
+  fn(cid,fid,data);
+  const fb=document.getElementById(fid);
+  if(fb&&fb.classList.contains('correct'))markStep(step);
 }
 
-// ── DATA ───────────────────────────────────────────────────────────────
+// -- DATA --
 const MATCH = [
   {left:"1. While I was cooking dinner,",                    right:"a. the phone rang suddenly."},
   {left:"2. At eight o'clock last night,",                   right:"b. we were watching a movie."},
@@ -282,7 +554,6 @@ const MATCH = [
   {left:"4. The children were playing outside",              right:"d. while their parents were cleaning the house."},
   {left:"5. I was reading a book",                           right:"e. when my friend called me."}
 ];
-
 const FILL = [
   {sentence:"At 6pm yesterday, my mother _____ dinner in the kitchen — I could smell it from upstairs.", answer:"was cooking", alt:["was making"], hint:"cook", explanation:"Subject 'my mother' (she) → was + cooking."},
   {sentence:"While we _____ a movie last night, the power suddenly went out.", answer:"were watching", hint:"watch", explanation:"Subject 'we' → were + watching."},
@@ -290,7 +561,6 @@ const FILL = [
   {sentence:"The children _____ in the garden when it started to rain.", answer:"were playing", hint:"play", explanation:"Subject 'the children' (plural) → were + playing."},
   {sentence:"He _____ a letter when his computer crashed.", answer:"was writing", hint:"write", explanation:"'Write' drops the silent e before -ing. Subject 'he' → was + writing."}
 ];
-
 const MISTAKE = [
   // error pos 1
   {sentence:"The children was playing in the park when it started to rain.", options:["The children","was playing","in the park when it started to rain."], correct:1, explanation:"'The children' is plural, so it should be 'were playing', not 'was playing'."},
@@ -303,7 +573,6 @@ const MISTAKE = [
   // error pos 0
   {sentence:"He runing across the street when the car stopped suddenly.", options:["He runing","across the street","when the car stopped suddenly."], correct:0, explanation:"The past progressive needs was/were + verb-ing, and 'run' doubles the consonant. It should be 'He was running'."}
 ];
-
 const ORDER = [
   {words:["She","was","reading","a","book","when","I","arrived."], answer:"She was reading a book when I arrived."},
   {words:["They","were","playing","football","at","five","o'clock."], answer:"They were playing football at five o'clock."},
@@ -311,7 +580,6 @@ const ORDER = [
   {words:["What","were","you","doing","last","night?"], answer:"What were you doing last night?"},
   {words:["While","he","was","cooking,","the","phone","rang."], answer:"While he was cooking, the phone rang."}
 ];
-
 const OPEN = [
   {question:"What were you doing at 8pm yesterday?", model:"I was watching TV with my family at 8pm yesterday."},
   {question:"Describe what was happening in your classroom when you arrived this morning.", model:"When I arrived, my classmates were talking and the teacher was writing on the board."},
@@ -320,7 +588,7 @@ const OPEN = [
   {question:"Think of a time something unexpected happened while you were doing something else. Describe it.", model:"I was walking to school when I suddenly remembered I had forgotten my homework."}
 ];
 
-// ── MATCH ──────────────────────────────────────────────────────────────
+// -- MATCH --
 function initMatch(prefix,data){
   const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
   const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
@@ -348,21 +616,21 @@ function initMatch(prefix,data){
       el.classList.add('selected');sel=el;
     } else if(sel){
       const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
-      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;sel=null;}
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;if(score===data.length)markStep(1);sel=null;}
       else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
     }
   }
   lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
 }
 
-// ── FILL ───────────────────────────────────────────────────────────────
+// -- FILL --
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
     c.appendChild(d);
   });
 }
@@ -377,15 +645,15 @@ function checkFill(cid,fid,data){
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
-// ── MISTAKE ────────────────────────────────────────────────────────────
+// -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em>${item.sentence}</em></div>
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
       <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
       <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
     c.appendChild(d);
@@ -401,17 +669,17 @@ function checkMistake(cid,fid,data){
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`✓ Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
 }
 
-// ── WORD ORDER ─────────────────────────────────────────────────────────
+// -- WORD ORDER --
 const orderState={};
 function buildOrderHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.8rem;color:var(--correct);margin-top:0.4rem;"></div>`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.82rem;color:var(--correct);margin-top:0.5rem;font-weight:600;"></div>`;
     c.appendChild(d);renderOrderExercise(cid,i);
   });
 }
@@ -436,21 +704,21 @@ function checkOrder(cid,fid,data){
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
     if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
-// ── OPEN ───────────────────────────────────────────────────────────────
+// -- OPEN --
 function buildOpenHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
       <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
-      <div><button class="check-btn" style="margin-top:0.8rem;font-size:0.8rem;padding:0.5rem 1.2rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="btn-row"><button class="check-btn" style="font-size:0.82rem;padding:0.55rem 1.3rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
       <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
     c.appendChild(d);
   });
@@ -458,10 +726,13 @@ function buildOpenHTML(cid,data){
 function toggleModel(btn){
   const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
   btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+  markStep(5);
 }
 
-// ── INIT ───────────────────────────────────────────────────────────────
+// -- INIT --
 function init(){
+  goStep(1);
+  document.querySelectorAll('#'+PREFIX+'-rail .rail-node').forEach(n=>n.classList.remove('done'));
   initMatch('pp', MATCH);
   buildFillHTML('pp-fill-exercises', FILL);
   document.getElementById('pp-fill-feedback').classList.remove('show');
