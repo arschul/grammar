@@ -355,11 +355,50 @@
     .rail-label{font-size:.68rem;}
     .rail-node{min-width:74px;}
   }
+
+/* ── Print worksheet ── */
+#gh-print-sheet{display:none;}
+@media print{
+  body.gh-printing nav,
+  body.gh-printing .topic-page{display:none!important;}
+  body.gh-printing #gh-print-sheet{display:block!important;}
+  #gh-print-sheet{font-family:'DM Sans',Arial,sans-serif;color:#000;background:#fff;}
+  #gh-print-sheet *{color:#000!important;background:none!important;box-shadow:none!important;text-shadow:none!important;}
+  #gh-print-sheet h1{font-family:'Bricolage Grotesque','DM Sans',sans-serif;font-size:20pt;margin:0 0 4pt;line-height:1.1;}
+  #gh-print-sheet .pw-badge{display:inline-block;border:1pt solid #000!important;border-radius:3pt;padding:1pt 6pt;font-size:9pt;font-weight:700;margin-bottom:4pt;}
+  #gh-print-sheet .pw-nameline{font-size:10pt;margin:10pt 0 12pt;}
+  #gh-print-sheet .pw-expl{font-size:10pt;line-height:1.45;border-bottom:1pt solid #000;padding-bottom:10pt;margin-bottom:6pt;}
+  #gh-print-sheet .pw-expl h2{font-size:12pt;margin:10pt 0 4pt;}
+  #gh-print-sheet .pw-expl p{margin:0 0 5pt;}
+  #gh-print-sheet .pw-expl .formula-box,
+  #gh-print-sheet .pw-expl .note-box,
+  #gh-print-sheet .pw-expl .example-item,
+  #gh-print-sheet .pw-expl table,
+  #gh-print-sheet .pw-expl th,
+  #gh-print-sheet .pw-expl td{border:.5pt solid #888!important;}
+  #gh-print-sheet .pw-expl .formula-box,
+  #gh-print-sheet .pw-expl .note-box{padding:5pt 8pt;margin:5pt 0;border-radius:3pt;}
+  #gh-print-sheet .pw-expl .example-item{padding:3pt 8pt;margin:3pt 0;border-radius:3pt;}
+  #gh-print-sheet .pw-sec{margin-top:12pt;}
+  #gh-print-sheet .pw-sec h2{font-family:'Bricolage Grotesque','DM Sans',sans-serif;font-size:13pt;margin:0 0 2pt;}
+  #gh-print-sheet .pw-inst{font-size:9pt;font-style:italic;margin:0 0 7pt;}
+  #gh-print-sheet .pw-item{font-size:11pt;line-height:1.5;margin:0 0 9pt;break-inside:avoid;}
+  #gh-print-sheet .pw-match{width:100%;border-collapse:collapse;}
+  #gh-print-sheet .pw-mcol{width:50%;vertical-align:top;padding-right:12pt;}
+  #gh-print-sheet .pw-mrow{font-size:11pt;line-height:1.45;margin:0 0 7pt;}
+  #gh-print-sheet .pw-seg{margin-right:10pt;white-space:nowrap;}
+  #gh-print-sheet .pw-hint{font-style:italic;}
+  #gh-print-sheet .pw-line{border-bottom:.75pt solid #000;height:17pt;}
+  #gh-print-sheet .pw-key{page-break-before:always;border-top:.5pt solid #000;padding-top:8pt;}
+  #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
+  #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
+}
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
 
@@ -731,6 +770,76 @@ function init(){
   buildOpenHTML('ger-open-exercises', OPEN);
 }
 window.addEventListener('DOMContentLoaded', init);
+
+/* ── Print worksheet ── */
+function printWorksheet(){
+  var old=document.getElementById('gh-print-sheet');
+  if(old) old.parentNode.removeChild(old);
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var titleEl=document.querySelector('.topic-header h1');
+  var title=titleEl?titleEl.textContent:document.title;
+  var badgeEl=document.querySelector('.cefr-badge');
+  var badge=badgeEl?badgeEl.textContent:'';
+  var h='';
+  h+='<div class="pw-head"><div class="pw-badge">'+esc(badge)+'</div><h1>'+esc(title)+'</h1><div class="pw-nameline">Name: ______________________________ &nbsp;&nbsp;&nbsp; Date: ________________</div></div>';
+  var expl=document.querySelector('.tab-content');
+  if(expl){h+='<div class="pw-expl">'+expl.innerHTML+'</div>';}
+  var idx=MATCH.map(function(_,i){return i;});
+  for(var i=idx.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idx[i];idx[i]=idx[j];idx[j]=t;}
+  var letters=['a','b','c','d','e','f','g','h'];
+  var keyMatch=[];
+  h+='<div class="pw-sec"><h2>1 · Match the sentence halves</h2><p class="pw-inst">Write the letter of the correct ending next to each number.</p><table class="pw-match"><tr><td class="pw-mcol">';
+  MATCH.forEach(function(m,i){
+    var left=String(m.left).replace(/^\s*\d+[\.\)]\s*/,'');
+    h+='<div class="pw-mrow">'+(i+1)+'. '+esc(left)+' &nbsp;______</div>';
+  });
+  h+='</td><td class="pw-mcol">';
+  idx.forEach(function(orig,pos){
+    var right=String(MATCH[orig].right).replace(/^\s*[a-z][\.\)]\s*/i,'');
+    h+='<div class="pw-mrow">'+letters[pos]+'. '+esc(right)+'</div>';
+    keyMatch[orig]=letters[pos];
+  });
+  h+='</td></tr></table></div>';
+  h+='<div class="pw-sec"><h2>2 · Fill in the gaps</h2><p class="pw-inst">Complete each sentence with the correct form of the word in parentheses.</p>';
+  FILL.forEach(function(f,i){
+    var hint=f.hint?' <span class="pw-hint">('+esc(f.hint)+')</span>':'';
+    var s=esc(f.sentence).replace(/_+/,'______________________'+hint);
+    h+='<div class="pw-item">'+(i+1)+'. '+s+'</div>';
+  });
+  h+='</div>';
+  h+='<div class="pw-sec"><h2>3 · Find the mistake</h2><p class="pw-inst">Each sentence has one mistake. Circle the letter of the part that contains it.</p>';
+  MISTAKE.forEach(function(m,i){
+    h+='<div class="pw-item">'+(i+1)+'. ';
+    m.options.forEach(function(o,k){h+='<span class="pw-seg">'+String.fromCharCode(65+k)+') '+esc(o)+'</span> ';});
+    h+='</div>';
+  });
+  h+='</div>';
+  h+='<div class="pw-sec"><h2>4 · Put the words in order</h2><p class="pw-inst">Write the words in the correct order to make a complete sentence.</p>';
+  ORDER.forEach(function(o,i){
+    h+='<div class="pw-item">'+(i+1)+'. '+esc(o.words.join(' / '))+'<div class="pw-line"></div></div>';
+  });
+  h+='</div>';
+  h+='<div class="pw-sec"><h2>5 · Answer the questions</h2><p class="pw-inst">Write your own answers using the target grammar.</p>';
+  OPEN.forEach(function(q,i){
+    h+='<div class="pw-item">'+(i+1)+'. '+esc(q.question)+'<div class="pw-line"></div><div class="pw-line"></div></div>';
+  });
+  h+='</div>';
+  h+='<div class="pw-key"><h2>Answer key</h2>';
+  h+='<p><strong>1 · Match:</strong> '+MATCH.map(function(_,i){return (i+1)+'-'+keyMatch[i];}).join(', ')+'</p>';
+  h+='<p><strong>2 · Fill in the gaps:</strong> '+FILL.map(function(f,i){return (i+1)+'. '+esc(f.answer);}).join(' &nbsp; ')+'</p>';
+  h+='<p><strong>3 · Find the mistake:</strong> '+MISTAKE.map(function(m,i){return (i+1)+'. '+String.fromCharCode(65+m.correct)+' — '+esc(m.explanation);}).join('<br>')+'</p>';
+  h+='<p><strong>4 · Word order:</strong> '+ORDER.map(function(o,i){return (i+1)+'. '+esc(o.answer);}).join(' &nbsp; ')+'</p>';
+  h+='<p><strong>5 · Model answers:</strong> '+OPEN.map(function(q,i){return (i+1)+'. '+esc(q.model);}).join('<br>')+'</p>';
+  h+='</div>';
+  var sheet=document.createElement('div');
+  sheet.id='gh-print-sheet';
+  sheet.innerHTML=h;
+  document.body.appendChild(sheet);
+  document.body.classList.add('gh-printing');
+  window.print();
+}
+window.addEventListener('afterprint',function(){document.body.classList.remove('gh-printing');});
+
 </script>
 </body>
 </html>
