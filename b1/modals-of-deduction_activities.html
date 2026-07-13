@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modals of Deduction – GrammarHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ TOKENS ============ */
+  :root{
+    --paper:#f3efe7; --card:#fbf9f4; --raise:#ffffff;
+    --ink:#22302a; --ink-soft:#5d6b63; --ink-faint:#8a958d;
+    --line:#e5ddd0; --line-soft:#eee7db;
+    --brand:#1f6f5c; --brand-soft:#e4efe9; --brand-deep:#144a3d;
+    --coral:#e2664a; --coral-soft:#fbe4dc;
+    --gold:#cf9526; --gold-soft:#f6ecd4;
+    --correct:#1f7a55; --correct-soft:#e2efe6;
+    --wrong:#cf4a37; --wrong-soft:#f8e2dd;
+    --r:16px; --r-sm:10px; --r-xs:7px;
+    --shadow:0 1px 2px rgba(34,48,42,.04),0 8px 24px -12px rgba(34,48,42,.18);
+    --shadow-sm:0 1px 2px rgba(34,48,42,.05);
+    --serif:'Newsreader',Georgia,serif;
+    --display:'Bricolage Grotesque',system-ui,sans-serif;
+    --body:'DM Sans',system-ui,sans-serif;
+  }
+  :root[data-theme="dark"]{
+    --paper:#121815; --card:#1a221e; --raise:#212b26;
+    --ink:#eef2ec; --ink-soft:#a7b3ac; --ink-faint:#788079;
+    --line:#2a352f; --line-soft:#232d28;
+    --brand:#4bb795; --brand-soft:#1a2a24; --brand-deep:#78d3b6;
+    --coral:#f0805f; --coral-soft:#2c211d;
+    --gold:#e0b24d; --gold-soft:#2a2417;
+    --correct:#4bb488; --correct-soft:#18271f;
+    --wrong:#e46a54; --wrong-soft:#2c1d19;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  }
+
+  :root{--bg:var(--paper);--surface:var(--card);--surface2:var(--raise);--accent:var(--brand);--accent2:var(--coral);--text:var(--ink);--text-muted:var(--ink-soft);--border:var(--line);--radius:var(--r-sm);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);background:var(--paper);color:var(--ink);
+    min-height:100vh;overflow-x:hidden;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    transition:background .35s ease,color .35s ease;
+  }
+
+  /* ============ NAV ============ */
+  nav{
+    position:sticky;top:0;z-index:100;height:62px;padding:0 clamp(1rem,4vw,2.4rem);
+    display:flex;align-items:center;gap:1rem;
+    background:color-mix(in srgb,var(--paper) 86%,transparent);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  }
+  .nav-logo{
+    font-family:var(--display);font-weight:700;font-size:1.28rem;letter-spacing:-.02em;
+    color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.15rem;
+  }
+  .nav-logo span{color:var(--coral);}
+  .theme-toggle{
+    margin-left:auto;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;width:40px;height:40px;cursor:pointer;font-size:1.05rem;
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+    transition:border-color .2s,transform .15s,background .2s;box-shadow:var(--shadow-sm);
+  }
+  .theme-toggle:hover{border-color:var(--brand);color:var(--brand);}
+  .theme-toggle:active{transform:scale(.94);}
+
+  /* ============ PAGE SHELL ============ */
+  .topic-page{max-width:860px;margin:0 auto;padding:clamp(1.6rem,4vw,3rem) clamp(1rem,4vw,2rem) 5rem;}
+  .back-home{
+    display:inline-flex;align-items:center;gap:.4rem;color:var(--ink-faint);
+    font-size:.85rem;font-weight:500;text-decoration:none;margin-bottom:1.8rem;
+    transition:color .2s,gap .2s;
+  }
+  .back-home:hover{color:var(--coral);gap:.6rem;}
+
+  /* ============ HEADER ============ */
+  .topic-header{margin-bottom:2.2rem;}
+  .header-meta{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;}
+  .cefr-badge{
+    display:inline-flex;align-items:center;background:var(--brand);color:#fff;
+    border-radius:7px;padding:.24rem .6rem;font-size:.72rem;font-weight:700;
+    letter-spacing:.06em;font-family:var(--display);
+  }
+  .topic-label{
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600;
+  }
+  .topic-header h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(2.1rem,6vw,3.4rem);letter-spacing:-.03em;line-height:1.02;color:var(--ink);
+  }
+
+  /* ============ SEGMENTED TABS ============ */
+  .tabs{
+    display:inline-flex;gap:.25rem;padding:.28rem;margin-bottom:2.4rem;
+    background:var(--card);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow-sm);
+  }
+  .tab-btn{
+    background:none;border:none;color:var(--ink-soft);cursor:pointer;
+    font-family:var(--body);font-size:.9rem;font-weight:600;
+    padding:.5rem 1.3rem;border-radius:999px;transition:all .22s;
+  }
+  .tab-btn:hover{color:var(--ink);}
+  .tab-btn.active{background:var(--ink);color:var(--paper);}
+  .tab-content{display:none;animation:fade .4s ease;}
+  .tab-content.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* ============ EXPLANATION ============ */
+  .explanation-section{margin-bottom:2.4rem;}
+  .explanation-section h2{
+    font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:.85rem;display:flex;align-items:center;gap:.6rem;
+  }
+  .explanation-section h2::before{
+    content:"";width:9px;height:9px;border-radius:2px;background:var(--coral);flex:none;
+  }
+  .explanation-section p{color:var(--ink-soft);line-height:1.75;font-size:.98rem;margin-bottom:.7rem;}
+  .explanation-section p strong,.explanation-section p em strong{color:var(--ink);font-weight:600;}
+
+  .formula-box{
+    background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);
+    border-radius:var(--r-sm);padding:1.15rem 1.4rem;margin:1rem 0;font-size:1rem;line-height:1.9;
+  }
+  .formula-box>strong:first-child{
+    display:inline-block;font-family:var(--display);color:var(--brand);
+    font-size:1.02rem;letter-spacing:-.01em;margin-bottom:.3rem;
+  }
+  .formula-box strong{color:var(--brand);}
+  .formula-box em{font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.05rem;}
+  .formula-box em strong{color:var(--coral);font-weight:600;}
+
+  .pronoun-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.95rem;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;}
+  .pronoun-table th{
+    text-align:left;color:var(--ink-faint);font-weight:600;font-size:.74rem;
+    letter-spacing:.08em;text-transform:uppercase;padding:.7rem 1rem;
+    border-bottom:1px solid var(--line);background:var(--line-soft);
+  }
+  .pronoun-table td{padding:.75rem 1rem;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);}
+  .pronoun-table tr:last-child td{border-bottom:none;}
+  .pronoun-table .pron{color:var(--brand);font-weight:700;font-family:var(--display);}
+
+  .examples-grid{display:flex;flex-direction:column;gap:.55rem;margin-top:1rem;}
+  .example-item{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);
+    padding:.85rem 1.1rem .85rem 2.4rem;font-size:.98rem;line-height:1.65;color:var(--ink-soft);
+    position:relative;
+  }
+  .example-item::before{
+    content:"";position:absolute;left:1.1rem;top:1.15rem;width:7px;height:7px;
+    border-radius:50%;background:var(--gold);
+  }
+  .example-item em{font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.04rem;}
+  .example-item em strong,.example-item strong{color:var(--coral);font-weight:600;}
+
+  .note-box{
+    background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 34%,transparent);
+    border-radius:var(--r-sm);padding:1.05rem 1.35rem;margin-top:1rem;font-size:.94rem;
+    color:var(--ink);line-height:1.95;
+  }
+  .note-box strong{color:var(--gold);font-weight:700;}
+  .note-box em{font-family:var(--serif);font-style:italic;}
+  .note-box em strong{color:var(--coral);}
+  :root[data-theme="dark"] .note-box{color:var(--ink-soft);}
+
+  /* ============ PROGRESS RAIL (signature) ============ */
+  .rail{
+    display:flex;gap:0;margin-bottom:2.2rem;padding-bottom:.4rem;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .rail::-webkit-scrollbar{display:none;}
+  .rail-node{
+    flex:1 1 0;min-width:88px;position:relative;background:none;border:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.2rem .2rem 0;
+    font-family:var(--body);
+  }
+  .rail-node::before{ /* connector to previous node */
+    content:"";position:absolute;top:16px;right:50%;width:100%;height:3px;
+    background:var(--line);z-index:0;transition:background .3s;
+  }
+  .rail-node:first-child::before{display:none;}
+  .rail-node.reached::before{background:var(--brand);}
+  .rail-idx{
+    position:relative;z-index:1;width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--card);border:2px solid var(--line);
+    font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--ink-faint);
+    transition:all .25s;
+  }
+  .rail-label{
+    font-size:.74rem;font-weight:600;color:var(--ink-faint);letter-spacing:.01em;
+    transition:color .25s;white-space:nowrap;
+  }
+  .rail-node:hover .rail-idx{border-color:var(--brand);color:var(--brand);}
+  .rail-node.current .rail-idx{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:scale(1.08);}
+  .rail-node.current .rail-label{color:var(--ink);}
+  .rail-node.done .rail-idx{background:var(--brand);border-color:var(--brand);color:#fff;}
+  .rail-node.done .rail-label{color:var(--brand);}
+  .rail-node.done .rail-idx::after{content:"✓";font-size:.95rem;}
+  .rail-node.done .rail-idx span{display:none;}
+
+  /* ============ ACTIVITY CARD ============ */
+  .activity-section{display:none;animation:fade .35s ease;}
+  .activity-section.active{display:block;}
+  .activity-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:clamp(1.3rem,4vw,2rem);box-shadow:var(--shadow);
+  }
+  .activity-title{
+    font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:.35rem;
+  }
+  .activity-desc{color:var(--ink-soft);font-size:.92rem;margin-bottom:1.6rem;line-height:1.6;}
+
+  .exercise{
+    margin-bottom:1.1rem;padding:1rem 1.1rem;background:var(--raise);
+    border:1px solid var(--line-soft);border-radius:var(--r-sm);
+  }
+  .exercise:last-of-type{margin-bottom:0;}
+  .exercise-num{
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+    margin-bottom:.5rem;font-weight:700;
+  }
+  .exercise-q{font-size:1.02rem;line-height:1.85;color:var(--ink);}
+  .hint-text{color:var(--ink-faint);font-style:normal;font-size:.9rem;margin:0 .15rem;}
+
+  /* Match */
+  .score-badge{
+    display:inline-flex;align-items:center;gap:.4rem;background:var(--brand-soft);
+    border:1px solid color-mix(in srgb,var(--brand) 28%,transparent);border-radius:999px;
+    padding:.4rem 1rem;font-size:.82rem;font-weight:600;color:var(--brand-deep);margin-bottom:1.4rem;
+  }
+  :root[data-theme="dark"] .score-badge{color:var(--brand-deep);}
+  .score-badge span{color:var(--brand);font-weight:800;font-family:var(--display);}
+  .match-container{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .match-col{display:flex;flex-direction:column;gap:.55rem;}
+  .match-item{
+    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
+    padding:.85rem 1rem;cursor:pointer;transition:all .18s;font-size:.92rem;line-height:1.5;
+    user-select:none;color:var(--ink);
+  }
+  .match-item:hover{border-color:var(--brand);transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+  .match-item.selected{border-color:var(--coral);background:var(--coral-soft);}
+  .match-item.matched-correct{
+    border-color:var(--correct);background:var(--correct-soft);color:var(--correct);cursor:default;
+  }
+  .match-item.matched-correct:hover{transform:none;box-shadow:none;}
+  .match-item.matched-wrong{border-color:var(--wrong);background:var(--wrong-soft);animation:shake .35s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  .match-num{color:var(--coral);font-weight:700;margin-right:.35rem;font-family:var(--display);}
+  .match-letter{color:var(--brand);font-weight:700;margin-right:.35rem;font-family:var(--display);}
+
+  /* Fill */
+  .gap-input{
+    background:var(--brand-soft);border:none;border-bottom:2px solid var(--brand);
+    color:var(--ink);font-family:var(--body);font-weight:600;font-size:1rem;
+    padding:.15rem .5rem;min-width:120px;outline:none;text-align:center;
+    border-radius:6px 6px 0 0;transition:all .2s;
+  }
+  .gap-input::placeholder{color:var(--ink-faint);font-weight:400;}
+  .gap-input:focus{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .gap-input.correct-answer{background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);}
+  .gap-input.wrong-answer{background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);}
+
+  /* Word order */
+  .word-bank{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem;}
+  .word-chip{
+    background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-xs);
+    padding:.45rem .8rem;cursor:pointer;font-size:.92rem;font-weight:500;
+    transition:all .16s;user-select:none;color:var(--ink);
+  }
+  .word-chip:hover{border-color:var(--brand);background:var(--brand-soft);transform:translateY(-1px);}
+  .word-chip.used{opacity:.28;cursor:default;pointer-events:none;}
+  .answer-slots{
+    background:var(--paper);border:1.5px dashed var(--line);border-radius:var(--r-sm);
+    padding:.8rem;min-height:54px;display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;
+    transition:border-color .25s;
+  }
+  .answer-slots:empty::before{content:"Tap words to build your sentence…";color:var(--ink-faint);font-size:.88rem;}
+  .slot-chip{
+    background:var(--coral-soft);border:1.5px solid var(--coral);border-radius:var(--r-xs);
+    padding:.45rem .8rem;font-size:.92rem;font-weight:500;cursor:pointer;color:var(--ink);
+    transition:all .16s;
+  }
+  .slot-chip:hover{background:var(--coral);color:#fff;}
+
+  /* Mistake */
+  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
+  .mistake-option{
+    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
+    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
+    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  }
+  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
+  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
+  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
+  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
+
+  /* Open */
+  .open-answer-area{
+    width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
+    padding:.85rem 1rem;color:var(--ink);font-family:var(--body);font-size:.95rem;
+    resize:vertical;min-height:76px;outline:none;transition:border-color .2s;line-height:1.6;
+  }
+  .open-answer-area::placeholder{color:var(--ink-faint);}
+  .open-answer-area:focus{border-color:var(--brand);}
+
+  .model-answer{
+    margin-top:.75rem;padding:.85rem 1.1rem;background:var(--correct-soft);
+    border:1px solid color-mix(in srgb,var(--correct) 30%,transparent);border-radius:var(--r-sm);
+    font-size:.92rem;color:var(--ink);display:none;line-height:1.7;
+  }
+  .model-answer strong{color:var(--correct);font-weight:700;}
+  .model-answer.show{display:block;animation:fade .3s ease;}
+
+  /* Buttons */
+  .btn-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:1.5rem;}
+  .check-btn{
+    background:var(--coral);color:#fff;border:none;border-radius:var(--r-sm);
+    padding:.72rem 1.7rem;cursor:pointer;font-family:var(--body);font-size:.92rem;font-weight:700;
+    transition:all .18s;box-shadow:var(--shadow-sm);
+  }
+  .check-btn:hover{background:#d4573b;transform:translateY(-2px);box-shadow:var(--shadow);}
+  .check-btn:active{transform:translateY(0);}
+  .reset-btn{
+    background:none;border:1.5px solid var(--line);color:var(--ink-soft);border-radius:var(--r-sm);
+    padding:.72rem 1.4rem;cursor:pointer;font-family:var(--body);font-size:.9rem;font-weight:500;
+    transition:all .18s;
+  }
+  .reset-btn:hover{border-color:var(--ink-soft);color:var(--ink);}
+  .match-reset{margin-top:1.4rem;}
+
+  .feedback{
+    margin-top:1.4rem;padding:.95rem 1.3rem;border-radius:var(--r-sm);font-size:.94rem;
+    font-weight:500;display:none;
+  }
+  .feedback.show{display:block;animation:fade .3s ease;}
+  .feedback.correct{background:var(--correct-soft);border:1px solid color-mix(in srgb,var(--correct) 34%,transparent);color:var(--correct);}
+  .feedback.partial{background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);color:var(--gold);}
+
+  /* Accessibility */
+  :focus-visible{outline:2.5px solid var(--coral);outline-offset:2px;border-radius:4px;}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+  @media(max-width:600px){
+    .match-container{grid-template-columns:1fr;}
+    .rail-label{font-size:.68rem;}
+    .rail-node{min-width:74px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
+</nav>
+
+<div class="topic-page">
+  <a class="back-home" href="../index.html">← Back to home</a>
+
+  <div class="topic-header">
+    <div class="header-meta">
+      <span class="cefr-badge">B1</span>
+      <div class="topic-label">Modals &amp; Expressions</div>
+    </div>
+    <h1>Modals of Deduction</h1>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'mdo-explanation')">Learn</button>
+    <button class="tab-btn" onclick="switchTab(this,'mdo-activities')">Practice</button>
+  </div>
+
+  <div id="mdo-explanation" class="tab-content active">
+
+    <div class="explanation-section">
+      <h2>What Are Modals of Deduction?</h2>
+      <p>We use modals of deduction to say how sure we are that something is true right now, based on evidence. You aren't stating a fact — you're making a logical guess: <em>"The lights are off, so they <strong>must</strong> be asleep."</em></p>
+      <div class="formula-box">
+        <strong>Subject + modal (+ not) + base infinitive</strong><br><br>
+        <em>The news <strong>must be</strong> fake.</em> — you're 99% sure it's true<br>
+        <em>That story <strong>might / may / could be</strong> fake.</em> — you aren't sure<br>
+        <em>This story <strong>can't be</strong> true.</em> — you're 99% sure it's NOT true
+      </div>
+      <p>The verb after the modal is always the <strong>base infinitive</strong> — never <em>to be</em>, never <em>is</em>, never <em>-ing</em>.</p>
+    </div>
+
+    <div class="explanation-section">
+      <h2>The Certainty Scale</h2>
+      <p>Choose the modal according to how confident you are.</p>
+      <table class="pronoun-table">
+        <tr><th>Modal</th><th>Certainty</th><th>Example</th></tr>
+        <tr><td class="pron">must</td><td>~99% sure it's true</td><td><em>You've worked all day — you <strong>must</strong> be exhausted.</em></td></tr>
+        <tr><td class="pron">might / may / could</td><td>not sure — it's possible</td><td><em>Do you think that story <strong>might</strong> be fake?</em></td></tr>
+        <tr><td class="pron">can't</td><td>~99% sure it's NOT true</td><td><em>He <strong>can't</strong> be at home — his car isn't there.</em></td></tr>
+      </table>
+      <div class="examples-grid">
+        <div class="example-item">
+          <em>She isn't answering her phone. She <strong>must be</strong> in a meeting.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ Strong evidence, so you're almost certain.</span>
+        </div>
+        <div class="example-item">
+          <em>This article has no named sources. It <strong>could be</strong> fake news.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ It's possible, but you can't be sure.</span>
+        </div>
+        <div class="example-item">
+          <em>That <strong>can't be</strong> Tom's car — he doesn't drive.</em><br>
+          <span style="font-size:0.82rem;color:var(--text-muted);">→ The evidence makes it impossible.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Negatives: can't vs might not</h2>
+      <p>Be careful — the opposite of <em>must</em> (for deduction) is <strong>can't</strong>, not <em>mustn't</em>.</p>
+      <div class="formula-box">
+        <strong>Impossible:</strong> can't + base infinitive<br>
+        <em>This story <strong>can't be</strong> true — certain details don't seem right.</em><br><br>
+        <strong>Possibly not:</strong> might not / may not + base infinitive<br>
+        <em>This story might be true, but it <strong>may not be</strong> 100% accurate.</em>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>Common Mistakes</h2>
+      <div class="note-box">
+        <strong>⚠ Watch out:</strong><br>
+        ✗ <em>The news must to be fake.</em> → ✓ <em>The news <strong>must be</strong> fake.</em> (base infinitive, never <em>to</em>)<br>
+        ✗ <em>He mustn't be at home — the lights are off.</em> → ✓ <em>He <strong>can't be</strong> at home.</em> (use <em>can't</em> for impossible deductions)<br>
+        ✗ <em>She must is very tired.</em> → ✓ <em>She <strong>must be</strong> very tired.</em> (never conjugate the verb after a modal)
+      </div>
+    </div></div>
+
+  <div id="mdo-activities" class="tab-content">
+    <nav class="rail" id="mdo-rail" aria-label="Activity progress">
+      <button class="rail-node current" data-step="1" onclick="goStep(1)"><span class="rail-idx"><span>1</span></span><span class="rail-label">Match</span></button>
+      <button class="rail-node" data-step="2" onclick="goStep(2)"><span class="rail-idx"><span>2</span></span><span class="rail-label">Fill Gaps</span></button>
+      <button class="rail-node" data-step="3" onclick="goStep(3)"><span class="rail-idx"><span>3</span></span><span class="rail-label">Find Mistake</span></button>
+      <button class="rail-node" data-step="4" onclick="goStep(4)"><span class="rail-idx"><span>4</span></span><span class="rail-label">Word Order</span></button>
+      <button class="rail-node" data-step="5" onclick="goStep(5)"><span class="rail-idx"><span>5</span></span><span class="rail-label">Open</span></button>
+    </nav>
+
+    <div id="mdo-act1" class="activity-section active">
+      <div class="activity-card">
+        <div class="activity-title">Match the Sentence Halves</div>
+        <div class="activity-desc">Match each sentence beginning on the left with its correct ending on the right.</div>
+        <div class="score-badge">Matched <span id="mdo-match-score">0</span> / 5</div>
+        <div class="match-container"><div class="match-col" id="mdo-left"></div><div class="match-col" id="mdo-right"></div></div>
+        <div class="btn-row match-reset"><button class="reset-btn" onclick="init()">↺ Reset</button></div>
+      </div>
+    </div>
+
+    <div id="mdo-act2" class="activity-section">
+      <div class="activity-card">
+        <div class="activity-title">Fill in the Gaps</div>
+        <div class="activity-desc">Complete each sentence with the correct modal of deduction. Use the certainty hint in parentheses.</div>
+        <div id="mdo-fill-exercises"></div>
+        <div class="btn-row">
+          <button class="check-btn" onclick="checkStep(2,'mdo-fill-exercises','mdo-fill-feedback',FILL,checkFill)">Check Answers</button>
+          <button class="reset-btn" onclick="buildFillHTML('mdo-fill-exercises',FILL);document.getElementById('mdo-fill-feedback').classList.remove('show')">↺ Reset</button>
+        </div>
+        <div id="mdo-fill-feedback" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="mdo-act3" class="activity-section">
+      <div class="activity-card">
+        <div class="activity-title">Find the Mistake</div>
+        <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+        <div id="mdo-mistake-exercises"></div>
+        <div class="btn-row">
+          <button class="check-btn" onclick="checkStep(3,'mdo-mistake-exercises','mdo-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
+          <button class="reset-btn" onclick="buildMistakeHTML('mdo-mistake-exercises',MISTAKE);document.getElementById('mdo-mistake-feedback').classList.remove('show')">↺ Reset</button>
+        </div>
+        <div id="mdo-mistake-feedback" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="mdo-act4" class="activity-section">
+      <div class="activity-card">
+        <div class="activity-title">Put the Words in Order</div>
+        <div class="activity-desc">Click the words to build the correct sentence. Click a placed word to remove it.</div>
+        <div id="mdo-order-exercises"></div>
+        <div class="btn-row">
+          <button class="check-btn" onclick="checkStep(4,'mdo-order-exercises','mdo-order-feedback',ORDER,checkOrder)">Check Answers</button>
+          <button class="reset-btn" onclick="buildOrderHTML('mdo-order-exercises',ORDER);document.getElementById('mdo-order-feedback').classList.remove('show')">↺ Reset</button>
+        </div>
+        <div id="mdo-order-feedback" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="mdo-act5" class="activity-section">
+      <div class="activity-card">
+        <div class="activity-title">Answer the Questions</div>
+        <div class="activity-desc">Write your own deductions using must, might, may, could and can’t. Then click "Show Model Answer" to compare.</div>
+        <div id="mdo-open-exercises"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// -- THEME (light default; honour saved pref) --
+function toggleTheme(){
+  const root=document.documentElement;
+  const isDark=root.getAttribute('data-theme')==='dark';
+  root.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('theme-btn').textContent=isDark?'\u{1F319}':'\u2600\uFE0F';
+  localStorage.setItem('gh-theme',isDark?'light':'dark');
+}
+(function(){
+  const saved=localStorage.getItem('gh-theme');
+  if(saved==='dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('theme-btn');if(btn)btn.textContent='\u2600\uFE0F';
+    });
+  }
+})();
+function switchTab(btn,contentId){
+  const p=btn.closest('.topic-page');
+  p.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  p.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+const PREFIX='mdo';
+function goStep(n){
+  for(let i=1;i<=5;i++){document.getElementById(PREFIX+'-act'+i).classList.toggle('active',i===n);}
+  document.querySelectorAll('#'+PREFIX+'-rail .rail-node').forEach(node=>{
+    const s=parseInt(node.dataset.step);
+    node.classList.toggle('current',s===n);
+    node.classList.toggle('reached',s<=n);
+  });
+}
+function markStep(n){
+  const node=document.querySelector('#'+PREFIX+'-rail .rail-node[data-step="'+n+'"]');
+  if(node)node.classList.add('done','reached');
+}
+function checkStep(step,cid,fid,data,fn){
+  fn(cid,fid,data);
+  const fb=document.getElementById(fid);
+  if(fb&&fb.classList.contains('correct'))markStep(step);
+}
+
+// -- DATA --
+const MATCH = [
+  {left:"1. She isn't answering her phone,",              right:"a. she must be in a meeting right now."},
+  {left:"2. He can't be hungry,",                          right:"b. he ate a huge lunch an hour ago."},
+  {left:"3. This article has no named sources,",           right:"c. so it could be spreading fake news."},
+  {left:"4. Do you think the photo might be edited?",      right:"d. The shadows don't look natural at all."},
+  {left:"5. The lights are on in their apartment,",        right:"e. so they must be back from their trip."}
+];
+const FILL = [
+  {sentence:"You've been studying all day. You _____ be exhausted.", answer:"must", hint:"99% sure it's true", explanation:"'must' — strong evidence makes you almost certain it's true."},
+  {sentence:"I'm not sure where Ana is. She _____ be at the gym.", answer:"might", alt:["may","could"], hint:"maybe", explanation:"'might' (or 'may' / 'could') — you aren't sure; it's just possible."},
+  {sentence:"That _____ be Tom's car — he doesn't even have a driving licence.", answer:"can't", alt:["cannot"], hint:"99% sure it's NOT true", explanation:"'can't' — the evidence makes it impossible. Not 'mustn't'."},
+  {sentence:"This website has no sources at all. The story _____ be fake news.", answer:"could", alt:["might","may"], hint:"maybe", explanation:"'could' (or 'might' / 'may') — it's possible, but you can't be certain."},
+  {sentence:"They wrote the textbook themselves, so they _____ know the answer.", answer:"must", hint:"99% sure it's true", explanation:"'must' — logically, the authors are almost certain to know it."}
+];
+const MISTAKE = [
+  {sentence:"The news must to be fake — nobody else is reporting it.",
+   options:["The news","must to be fake","— nobody else is reporting it."],
+   correct:1,
+   explanation:"After a modal, use the base infinitive without 'to': 'The news must be fake.'"},
+  {sentence:"He mustn't be at home, because all the lights are off.",
+   options:["He mustn't be at home,","because all","the lights are off."],
+   correct:0,
+   explanation:"For an impossible deduction, use 'can't', not 'mustn't': 'He can't be at home.'"},
+  {sentence:"She looks really happy today, so she must is in a good mood.",
+   options:["She looks really happy today,","so she","must is in a good mood."],
+   correct:2,
+   explanation:"Never conjugate the verb after a modal: 'she must be in a good mood.'"},
+  {sentence:"That story can be true — the details are clearly impossible.",
+   options:["That story can be true","— the details","are clearly impossible."],
+   correct:0,
+   explanation:"For deductions about impossibility, use 'can't be', not 'can be': 'That story can't be true.'"},
+  {sentence:"I don't know who's calling. It might being my sister.",
+   options:["I don't know","who's calling.","It might being my sister."],
+   correct:2,
+   explanation:"Use the base infinitive after the modal, not '-ing': 'It might be my sister.'"}
+];
+const ORDER = [
+  {words:["The","news","must","be","completely","fake."], answer:"The news must be completely fake."},
+  {words:["That","story","can't","be","true."], answer:"That story can't be true."},
+  {words:["She","might","not","know","the","whole","truth."], answer:"She might not know the whole truth."},
+  {words:["Do","you","think","it","could","be","a","scam?"], answer:"Do you think it could be a scam?"},
+  {words:["He","must","be","very","proud","of","his","daughter."], answer:"He must be very proud of his daughter."}
+];
+const OPEN = [
+  {question:"Your friend hasn't replied to your messages all day. Make two deductions — one with 'must' and one with 'might'.",
+   model:"She must be really busy at work today. Or she might be at the cinema with her phone switched off."},
+  {question:"You see a news headline that sounds unbelievable. Write two deductions about it using 'can't' and 'could'.",
+   model:"This headline can't be completely true — no other site is reporting it. The photo could be edited, too."},
+  {question:"Your neighbour's lights have been off for a week. Write two deductions about where they are.",
+   model:"They must be away on holiday. They might be visiting their family in another city."},
+  {question:"A classmate got the highest score on a very difficult exam. Write two deductions using 'must'.",
+   model:"He must study for hours every day. He must be really good at managing his time."},
+  {question:"You hear a strange noise in your house at night. Write three deductions using different modals.",
+   model:"It might be the wind. It could be the cat playing downstairs. It can't be a burglar — the alarm is on."}
+];
+
+// -- MATCH --
+function initMatch(prefix,data){
+  const loOld=document.getElementById(prefix+'-left'),roOld=document.getElementById(prefix+'-right');
+  const lc=loOld.cloneNode(false),rc=roOld.cloneNode(false);
+  loOld.parentNode.replaceChild(lc,loOld); roOld.parentNode.replaceChild(rc,roOld);
+  const scoreEl=document.getElementById(prefix+'-match-score'); scoreEl.textContent='0';
+  let sel=null,score=0;
+  const ri=data.map((item,i)=>({text:item.right.replace(/^[a-z]\.\s*/i,''),originalIdx:i}));
+  for(let i=ri.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ri[i],ri[j]]=[ri[j],ri[i]];}
+  const letters=['A','B','C','D','E','F','G','H'];
+  data.forEach((item,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-num">${i+1}.</span>${item.left.replace(/^\d+\.\s*/,'')}`;
+    el.dataset.idx=i;el.dataset.side='left';lc.appendChild(el);
+  });
+  ri.forEach((rItem,i)=>{
+    const el=document.createElement('div');el.className='match-item';
+    el.innerHTML=`<span class="match-letter">${letters[i]}.</span>${rItem.text}`;
+    el.dataset.origIdx=rItem.originalIdx;el.dataset.side='right';rc.appendChild(el);
+  });
+  function handleClick(e){
+    const el=e.target.closest('.match-item');
+    if(!el||el.classList.contains('matched-correct'))return;
+    if(el.dataset.side==='left'){
+      lc.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');sel=el;
+    } else if(sel){
+      const li=parseInt(sel.dataset.idx),ri2=parseInt(el.dataset.origIdx);
+      if(li===ri2){sel.classList.remove('selected');sel.classList.add('matched-correct');el.classList.add('matched-correct');score++;scoreEl.textContent=score;if(score===data.length)markStep(1);sel=null;}
+      else{sel.classList.add('matched-wrong');el.classList.add('matched-wrong');setTimeout(()=>{sel&&sel.classList.remove('matched-wrong','selected');el.classList.remove('matched-wrong');sel=null;},600);}
+    }
+  }
+  lc.addEventListener('click',handleClick);rc.addEventListener('click',handleClick);
+}
+
+// -- FILL --
+function buildFillHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    const parts=item.sentence.split('_____');
+    const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    c.appendChild(d);
+  });
+}
+function checkFill(cid,fid,data){
+  const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  inputs.forEach(inp=>{
+    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
+    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const expEl=document.getElementById(`${cid}-fexp-${idx}`);
+    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+}
+
+// -- MISTAKE --
+function buildMistakeHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
+      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
+      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    c.appendChild(d);
+  });
+}
+function checkMistake(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
+    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
+    const expEl=document.getElementById(`${cid}-mexp-${i}`);
+    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+}
+
+// -- WORD ORDER --
+const orderState={};
+function buildOrderHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  orderState[cid]=data.map(item=>({selected:[],words:[...item.words].sort(()=>Math.random()-0.5)}));
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="word-bank" id="${cid}-bank-${i}"></div><div class="answer-slots" id="${cid}-slots-${i}"></div><div id="${cid}-hint-${i}" style="display:none;font-size:0.82rem;color:var(--correct);margin-top:0.5rem;font-weight:600;"></div>`;
+    c.appendChild(d);renderOrderExercise(cid,i);
+  });
+}
+function renderOrderExercise(cid,i){
+  const st=orderState[cid][i];
+  const bk=document.getElementById(`${cid}-bank-${i}`),sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+  bk.innerHTML='';sl.innerHTML='';sl.style.borderColor='';if(ht)ht.style.display='none';
+  st.words.forEach((word,wi)=>{
+    const chip=document.createElement('div');chip.className='word-chip'+(st.selected.includes(wi)?' used':'');chip.textContent=word;
+    chip.onclick=()=>{if(st.selected.includes(wi))return;st.selected.push(wi);renderOrderExercise(cid,i);};
+    bk.appendChild(chip);
+  });
+  st.selected.forEach((wi,pos)=>{
+    const chip=document.createElement('div');chip.className='slot-chip';chip.textContent=st.words[wi];
+    chip.onclick=()=>{st.selected.splice(pos,1);renderOrderExercise(cid,i);};
+    sl.appendChild(chip);
+  });
+}
+function checkOrder(cid,fid,data){
+  let correct=0;
+  data.forEach((item,i)=>{
+    const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
+    const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
+    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+  });
+  const fb=document.getElementById(fid);fb.classList.add('show');
+  fb.className=correct===data.length?'feedback show correct':'feedback show partial';
+  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+}
+
+// -- OPEN --
+function buildOpenHTML(cid,data){
+  const c=document.getElementById(cid);c.innerHTML='';
+  data.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='exercise';
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${item.question}</div>
+      <textarea class="open-answer-area" placeholder="Write your answer here..."></textarea>
+      <div class="btn-row"><button class="check-btn" style="font-size:0.82rem;padding:0.55rem 1.3rem;" onclick="toggleModel(this)">Show Model Answer</button></div>
+      <div class="model-answer"><strong>Model Answer:</strong> ${item.model}</div>`;
+    c.appendChild(d);
+  });
+}
+function toggleModel(btn){
+  const ma=btn.parentElement.nextElementSibling;ma.classList.toggle('show');
+  btn.textContent=ma.classList.contains('show')?'Hide Model Answer':'Show Model Answer';
+  markStep(5);
+}
+
+// -- INIT --
+function init(){
+  goStep(1);
+  document.querySelectorAll('#'+PREFIX+'-rail .rail-node').forEach(n=>n.classList.remove('done'));
+  initMatch('mdo', MATCH);
+  buildFillHTML('mdo-fill-exercises', FILL);
+  document.getElementById('mdo-fill-feedback').classList.remove('show');
+  buildMistakeHTML('mdo-mistake-exercises', MISTAKE);
+  document.getElementById('mdo-mistake-feedback').classList.remove('show');
+  buildOrderHTML('mdo-order-exercises', ORDER);
+  document.getElementById('mdo-order-feedback').classList.remove('show');
+  buildOpenHTML('mdo-open-exercises', OPEN);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
