@@ -51,6 +51,20 @@
     .topic-card{width:100%;max-width:340px;}
   }  .main-hub-link{color:var(--text-muted);text-decoration:none;font-size:0.85rem;margin-right:1.2rem;transition:color 0.2s;}
   .main-hub-link:hover{color:var(--accent);}
+
+  /* ── SEARCH ── */
+  .search-wrap{position:relative;width:100%;max-width:480px;margin:0.6rem auto 2.2rem;display:flex;align-items:center;}
+  .search-icon{position:absolute;left:1rem;font-size:0.95rem;opacity:0.55;pointer-events:none;}
+  .search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:0.75rem 2.6rem;font-family:'DM Sans',sans-serif;font-size:0.92rem;color:var(--text);transition:border-color 0.2s,box-shadow 0.2s;}
+  .search-input::placeholder{color:var(--text-muted);}
+  .search-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,197,71,0.15);}
+  .search-clear{position:absolute;right:0.6rem;background:none;border:none;color:var(--text-muted);font-size:1.3rem;line-height:1;cursor:pointer;padding:0.3rem 0.5rem;display:none;transition:color 0.2s;}
+  .search-clear:hover{color:var(--accent2);}
+  .search-clear.show{display:block;}
+  .search-empty{display:none;color:var(--text-muted);font-size:0.95rem;margin:0 auto 2rem;text-align:center;}
+  .search-empty.show{display:block;}
+  .level-section.hidden{display:none;}
+  .topic-card.hidden{display:none;}
 </style>
 </head>
 <body>
@@ -63,11 +77,18 @@
   <h1>Master<br><span>English</span><br>Grammar.</h1>
   <p>Choose a topic below and work through explanations, examples, and five interactive activity types.</p>
 
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="topic-search" class="search-input" placeholder="Search topics — e.g. &quot;perfect&quot;, &quot;conditional&quot;, B1…" aria-label="Search grammar topics" autocomplete="off">
+    <button type="button" class="search-clear" id="search-clear" title="Clear search" aria-label="Clear search">×</button>
+  </div>
+  <p class="search-empty" id="search-empty">No topics match your search.</p>
+
   <!-- A1 -->
   <div class="level-section">
     <div class="level-heading"><span class="level-label">A1 — Beginner</span><div class="level-line"></div></div>
     <div class="topic-cards">
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a1 present continuous am, is, are + -ing — talking about what's happening right now.">
         <div class="cefr-badge">A1</div>
         <h3>Present Continuous</h3>
         <p>Am, is, are + -ing — talking about what's happening right now.</p>
@@ -76,7 +97,7 @@
           <a class="tc-btn tc-btn-alt" href="a1/present-continuous_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a1 simple past: to be describing past situations and states with was and were.">
         <div class="cefr-badge">A1</div>
         <h3>Simple Past: To Be</h3>
         <p>Describing past situations and states with was and were.</p>
@@ -85,7 +106,7 @@
           <a class="tc-btn tc-btn-alt" href="a1/simple-past-to-be_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a1 simple present: to be describing people, places and things with am, is and are.">
         <div class="cefr-badge">A1</div>
         <h3>Simple Present: To Be</h3>
         <p>Describing people, places and things with am, is and are.</p>
@@ -94,7 +115,7 @@
           <a class="tc-btn tc-btn-alt" href="a1/simple-present-to-be_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a1 simple present: do / does habits, routines and facts with all verbs except to be.">
         <div class="cefr-badge">A1</div>
         <h3>Simple Present: Do / Does</h3>
         <p>Habits, routines and facts with all verbs except to be.</p>
@@ -110,7 +131,7 @@
   <div class="level-section">
     <div class="level-heading"><span class="level-label">A2 — Elementary</span><div class="level-line"></div></div>
     <div class="topic-cards">
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a2 past progressive was/were + -ing — actions in progress in the past, often interrupted.">
         <div class="cefr-badge">A2</div>
         <h3>Past Progressive</h3>
         <p>Was/were + -ing — actions in progress in the past, often interrupted.</p>
@@ -119,7 +140,7 @@
           <a class="tc-btn tc-btn-alt" href="a2/past-progressive_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a2 simple past: did talking about completed past actions with regular and irregular verbs.">
         <div class="cefr-badge">A2</div>
         <h3>Simple Past: Did</h3>
         <p>Talking about completed past actions with regular and irregular verbs.</p>
@@ -128,7 +149,7 @@
           <a class="tc-btn tc-btn-alt" href="a2/simple-past-did_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a2 used to past habits and states that no longer exist.">
         <div class="cefr-badge">A2</div>
         <h3>Used To</h3>
         <p>Past habits and states that no longer exist.</p>
@@ -137,7 +158,7 @@
           <a class="tc-btn tc-btn-alt" href="a2/used-to_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="a2 zero conditional general truths, facts and things that always happen.">
         <div class="cefr-badge">A2</div>
         <h3>Zero Conditional</h3>
         <p>General truths, facts and things that always happen.</p>
@@ -153,7 +174,7 @@
   <div class="level-section">
     <div class="level-heading"><span class="level-label">B1 — Intermediate</span><div class="level-line"></div></div>
     <div class="topic-cards">
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 adjective order learn the fixed sequence english uses when two or more adjectives come before a noun.">
         <div class="cefr-badge">B1</div>
         <h3>Adjective Order</h3>
         <p>Learn the fixed sequence English uses when two or more adjectives come before a noun.</p>
@@ -162,7 +183,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/adjective-order_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 articles: a/an, the &amp; no article when to use a/an, the, or no article with countable and uncountable nouns.">
         <div class="cefr-badge">B1</div>
         <h3>Articles: A/An, The &amp; No Article</h3>
         <p>When to use a/an, the, or no article with countable and uncountable nouns.</p>
@@ -171,7 +192,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/articles_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 expressing abilities using can, could, be able to, manage to and succeed in.">
         <div class="cefr-badge">B1</div>
         <h3>Expressing Abilities</h3>
         <p>Using can, could, be able to, manage to and succeed in.</p>
@@ -180,7 +201,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/expressing-abilities_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 first conditional real possibilities and their likely results.">
         <div class="cefr-badge">B1</div>
         <h3>First Conditional</h3>
         <p>Real possibilities and their likely results.</p>
@@ -189,7 +210,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/first-conditional_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 defining relative clauses who, which, where and when — clauses that define exactly who or what we mean.">
         <div class="cefr-badge">B1</div>
         <h3>Defining Relative Clauses</h3>
         <p>Who, which, where and when — clauses that define exactly who or what we mean.</p>
@@ -198,7 +219,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/defining-relative-clauses_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 review of tenses a focused review of five core tenses: simple present, present progressive, simple past, past progressive, and present perfect.">
         <div class="cefr-badge">B1</div>
         <h3>Review of Tenses</h3>
         <p>A focused review of five core tenses: simple present, present progressive, simple past, past progressive, and present perfect.</p>
@@ -207,7 +228,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/five-tenses-review_slides.html">Slides →</a>
         </div>
       </div>
-            <div class="topic-card multi">
+            <div class="topic-card multi" data-search="b1 future forms will, going to, present progressive and simple present for the future.">
         <div class="cefr-badge">B1</div>
         <h3>Future Forms</h3>
         <p>Will, going to, present progressive and simple present for the future.</p>
@@ -216,7 +237,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/future-forms_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 future possibility and certainty using might, may, could, probably and definitely to express how sure you are.">
         <div class="cefr-badge">B1</div>
         <h3>Future Possibility and Certainty</h3>
         <p>Using might, may, could, probably and definitely to express how sure you are.</p>
@@ -225,7 +246,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/future-possibility-certainty_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 future time clauses using after, as soon as, before, until and when with the present simple for future events.">
         <div class="cefr-badge">B1</div>
         <h3>Future Time Clauses</h3>
         <p>Using after, as soon as, before, until and when with the present simple for future events.</p>
@@ -234,7 +255,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/future-time-clauses_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 gerund phrases using verb+ing forms as the subject and object of a sentence.">
         <div class="cefr-badge">B1</div>
         <h3>Gerund Phrases</h3>
         <p>Using verb+ing forms as the subject and object of a sentence.</p>
@@ -243,7 +264,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/gerund-phrases_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 indirect questions polite embedded questions using statement word order and introductory phrases.">
         <div class="cefr-badge">B1</div>
         <h3>Indirect Questions</h3>
         <p>Polite embedded questions using statement word order and introductory phrases.</p>
@@ -252,7 +273,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/indirect-questions_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 infinitives with to purpose, verb + object, verb + infinitive and adjective + infinitive.">
         <div class="cefr-badge">B1</div>
         <h3>Infinitives with To</h3>
         <p>Purpose, verb + object, verb + infinitive and adjective + infinitive.</p>
@@ -261,7 +282,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/infinitives-with-to_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 modals of deduction use must, might, may, could and can't to say how certain you are about the present.">
         <div class="cefr-badge">B1</div>
         <h3>Modals of Deduction</h3>
         <p>Use must, might, may, could and can't to say how certain you are about the present.</p>
@@ -270,7 +291,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/modals-of-deduction_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 past perfect using had + past participle to show which of two past events happened first.">
         <div class="cefr-badge">B1</div>
         <h3>Past Perfect</h3>
         <p>Using <em>had + past participle</em> to show which of two past events happened first.</p>
@@ -279,7 +300,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/past-perfect_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 participial adjectives the difference between -ed and -ing adjectives — bored vs boring, excited vs exciting.">
         <div class="cefr-badge">B1</div>
         <h3>Participial Adjectives</h3>
         <p>The difference between -ed and -ing adjectives — bored vs boring, excited vs exciting.</p>
@@ -288,7 +309,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/participial-adjectives_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 phrasal verbs: separable and non-separable when you can split a phrasal verb — and when you can't.">
         <div class="cefr-badge">B1</div>
         <h3>Phrasal Verbs: Separable and Non-Separable</h3>
         <p>When you can split a phrasal verb — and when you can't.</p>
@@ -297,7 +318,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/phrasal-verbs-separable_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 present perfect talking about experiences and events connected to the present.">
         <div class="cefr-badge">B1</div>
         <h3>Present Perfect</h3>
         <p>Talking about experiences and events connected to the present.</p>
@@ -306,7 +327,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/present-perfect_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 present perfect progressive actions that started in the past and are still in progress, with for and since.">
         <div class="cefr-badge">B1</div>
         <h3>Present Perfect Progressive</h3>
         <p>Actions that started in the past and are still in progress, with for and since.</p>
@@ -315,7 +336,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/present-perfect-progressive_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 present perfect vs simple past choosing the right tense — when time matters and when it doesn't.">
         <div class="cefr-badge">B1</div>
         <h3>Present Perfect vs Simple Past</h3>
         <p>Choosing the right tense — when time matters and when it doesn't.</p>
@@ -325,7 +346,7 @@
         </div>
       </div>
 
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 present and past tenses: a review a side-by-side review of six tenses: simple past, past progressive, past perfect, past perfect progressive, present perfect, and present perfect progressive.">
         <div class="cefr-badge">B1</div>
         <h3>Present and Past Tenses: A Review</h3>
         <p>A side-by-side review of six tenses: simple past, past progressive, past perfect, past perfect progressive, present perfect, and present perfect progressive.</p>
@@ -334,7 +355,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/present-past-tenses-review_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 reflexive pronouns myself, yourself, himself, herself — when to use reflexive pronouns.">
         <div class="cefr-badge">B1</div>
         <h3>Reflexive Pronouns</h3>
         <p>Myself, yourself, himself, herself — when to use reflexive pronouns.</p>
@@ -343,7 +364,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/reflexive-pronouns_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 reported speech reporting what others said, with tense and pronoun changes.">
         <div class="cefr-badge">B1</div>
         <h3>Reported Speech</h3>
         <p>Reporting what others said, with tense and pronoun changes.</p>
@@ -352,7 +373,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/reported-speech_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 simple past passive using was / were + past participle to focus on actions rather than who did them.">
         <div class="cefr-badge">B1</div>
         <h3>Simple Past Passive</h3>
         <p>Using <em>was / were + past participle</em> to focus on actions rather than who did them.</p>
@@ -361,7 +382,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/simple-past-passive_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 simple present passive focusing on what receives the action using is/are + past participle.">
         <div class="cefr-badge">B1</div>
         <h3>Simple Present Passive</h3>
         <p>Focusing on what receives the action using is/are + past participle.</p>
@@ -370,7 +391,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/simple-present-passive_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 second conditional imaginary or unlikely present and future situations.">
         <div class="cefr-badge">B1</div>
         <h3>Second Conditional</h3>
         <p>Imaginary or unlikely present and future situations.</p>
@@ -379,7 +400,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/second-conditional_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 so / such expressing degree and intensifying descriptions.">
         <div class="cefr-badge">B1</div>
         <h3>So / Such</h3>
         <p>Expressing degree and intensifying descriptions.</p>
@@ -388,7 +409,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/so-such_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 so, such, too, enough use so, such, too and enough to express degree, intensity and sufficiency.">
         <div class="cefr-badge">B1</div>
         <h3>So, Such, Too, Enough</h3>
         <p>Use <em>so</em>, <em>such</em>, <em>too</em> and <em>enough</em> to express degree, intensity and sufficiency.</p>
@@ -397,7 +418,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/so-such-too-enough_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 tag questions - present adding short question tags with be, do and modal verbs.">
         <div class="cefr-badge">B1</div>
         <h3>Tag Questions - Present</h3>
         <p>Adding short question tags with be, do and modal verbs.</p>
@@ -406,7 +427,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/tag-questions_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 verb + gerund or infinitive love, like, hate, prefer, would like, would prefer and would rather.">
         <div class="cefr-badge">B1</div>
         <h3>Verb + Gerund or Infinitive</h3>
         <p>Love, like, hate, prefer, would like, would prefer and would rather.</p>
@@ -415,7 +436,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/verb-gerund-infinitive_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 should have / shouldn't have criticising past mistakes and expressing regret with should(n't) have + past participle.">
         <div class="cefr-badge">B1</div>
         <h3>Should Have / Shouldn't Have</h3>
         <p>Criticising past mistakes and expressing regret with should(n't) have + past participle.</p>
@@ -424,7 +445,7 @@
           <a class="tc-btn tc-btn-alt" href="b1/should-have_slides.html">Slides →</a>
         </div>
       </div>
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b1 wishes about the past expressing regret with wish + had / hadn't + past participle.">
         <div class="cefr-badge">B1</div>
         <h3>Wishes About the Past</h3>
         <p>Expressing regret with wish + had / hadn't + past participle.</p>
@@ -440,7 +461,7 @@
   <div class="level-section">
     <div class="level-heading"><span class="level-label">B2 — Upper Intermediate</span><div class="level-line"></div></div>
     <div class="topic-cards">
-      <div class="topic-card multi">
+      <div class="topic-card multi" data-search="b2 third conditional hypothetical past situations and their imagined results.">
         <div class="cefr-badge">B2</div>
         <h3>Third Conditional</h3>
         <p>Hypothetical past situations and their imagined results.</p>
@@ -472,6 +493,45 @@ function toggleTheme(){
       if(btn)btn.textContent='☀️';
     });
   }
+})();
+
+/* ── SEARCH ── */
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    const input=document.getElementById('topic-search');
+    const clearBtn=document.getElementById('search-clear');
+    const emptyMsg=document.getElementById('search-empty');
+    if(!input) return;
+    const sections=Array.from(document.querySelectorAll('.level-section'));
+    const cardsBySection=sections.map(sec=>({
+      section:sec,
+      cards:Array.from(sec.querySelectorAll('.topic-card[data-search]'))
+    }));
+
+    function filter(){
+      const q=input.value.trim().toLowerCase();
+      clearBtn.classList.toggle('show', q.length>0);
+      let anyVisible=false;
+      cardsBySection.forEach(({section,cards})=>{
+        let sectionHasMatch=false;
+        cards.forEach(card=>{
+          const match = q==='' || card.getAttribute('data-search').includes(q);
+          card.classList.toggle('hidden', !match);
+          if(match) sectionHasMatch=true;
+        });
+        section.classList.toggle('hidden', !sectionHasMatch);
+        if(sectionHasMatch) anyVisible=true;
+      });
+      emptyMsg.classList.toggle('show', !anyVisible);
+    }
+
+    input.addEventListener('input', filter);
+    clearBtn.addEventListener('click', function(){
+      input.value='';
+      filter();
+      input.focus();
+    });
+  });
 })();
 </script>
 </body>
