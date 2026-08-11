@@ -12,7 +12,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{background:#161310;height:100%;overflow:hidden;}
 body{font-family:'Bricolage Grotesque',sans-serif;-webkit-font-smoothing:antialiased;}
-.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;padding-bottom:96px;}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
 .canvas{position:relative;width:1920px;height:1080px;flex:none;box-shadow:0 30px 80px rgba(0,0,0,0.45);}
 .slide{position:absolute;inset:0;display:none;flex-direction:column;box-sizing:border-box;color:var(--text);overflow:hidden;}
 .slide.active{display:flex;}
@@ -351,7 +351,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   var notesBar=document.getElementById('notesBar'),notesText=document.getElementById('notesText');
   totalNum.textContent=total;
   function show(i){current=Math.max(0,Math.min(total-1,i));for(var j=0;j<slides.length;j++)slides[j].classList.toggle('active',j===current);curNum.textContent=current+1;notesText.textContent=slides[current].getAttribute('data-note')||'';}
-  function fit(){var avail=window.innerHeight-96;canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,avail/DESIGN_H)+')';}
+  function fit(){canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,window.innerHeight/DESIGN_H)+')';}
   window.addEventListener('resize',fit);fit();show(0);
   document.getElementById('prevBtn').addEventListener('click',function(){show(current-1);});
   document.getElementById('nextBtn').addEventListener('click',function(){show(current+1);});
@@ -367,5 +367,118 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   for(var c=0;c<cRows.length;c++){(function(row){var sp=row.querySelector('.end');var full=sp.getAttribute('data-text');sp.textContent=dots;row.addEventListener('click',function(){var r=row.classList.toggle('revealed');sp.textContent=r?full:dots;});})(cRows[c]);}
 })();
 </script>
+
+<!-- ── edge controls: full-bleed slides, controls appear only near the edges ── -->
+<style>
+/* The old centre-bottom bar sat on top of the slide. These zones live in the
+   margins instead, stay invisible until the pointer approaches, and never
+   intercept clicks except on a button that is actually showing. */
+.navbar{display:none !important;}
+.edge{position:fixed;z-index:1003;display:flex;align-items:center;justify-content:center;
+      opacity:0;transition:opacity .18s ease;pointer-events:none;}
+.edge.show{opacity:1;}
+.edge-l{left:0;top:0;bottom:0;width:120px;justify-content:flex-start;padding-left:18px;
+        background:linear-gradient(90deg,rgba(20,16,12,.20),transparent);}
+.edge-r{right:0;top:0;bottom:0;width:120px;justify-content:flex-end;padding-right:18px;
+        background:linear-gradient(270deg,rgba(20,16,12,.20),transparent);}
+.edge-t{top:0;left:0;right:0;height:96px;align-items:flex-start;padding-top:16px;gap:10px;
+        background:linear-gradient(180deg,rgba(20,16,12,.20),transparent);}
+.edge-b{bottom:0;left:0;right:0;height:96px;align-items:flex-end;padding-bottom:16px;gap:10px;
+        background:linear-gradient(0deg,rgba(20,16,12,.20),transparent);}
+.edge button{pointer-events:auto;cursor:pointer;border:1px solid rgba(255,255,255,.10);
+      background:rgba(20,16,12,.86);color:#fdf6ee;border-radius:999px;
+      font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:600;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 26px rgba(0,0,0,.38);transition:background .15s ease,transform .15s ease;}
+.edge button:hover{background:rgba(20,16,12,.98);transform:scale(1.06);}
+.edge .nav-arrow{width:62px;height:62px;font-size:26px;line-height:1;padding-bottom:3px;}
+.edge .nav-text{padding:9px 18px;}
+.edge .nav-count{pointer-events:none;color:#fdf6ee;background:rgba(20,16,12,.86);
+      border-radius:999px;padding:8px 16px;font-family:'Bricolage Grotesque',sans-serif;
+      font-size:14px;font-weight:600;letter-spacing:.02em;box-shadow:0 8px 26px rgba(0,0,0,.38);}
+@media (max-width:900px){ .edge{opacity:1;} .edge .nav-arrow{width:48px;height:48px;font-size:22px;} }
+</style>
+<div class="edge edge-l" data-edge="l"><button class="nav-arrow" id="edgePrev" aria-label="Previous slide" title="Previous (\u2190)">\u2039</button></div>
+<div class="edge edge-r" data-edge="r"><button class="nav-arrow" id="edgeNext" aria-label="Next slide" title="Next (\u2192)">\u203a</button></div>
+<div class="edge edge-t" data-edge="t">
+  <button class="nav-text" id="edgeHome" title="First slide (Home)">\u2302 Home</button>
+  <span class="nav-count" id="edgeCount">1/1</span>
+</div>
+<div class="edge edge-b" data-edge="b">
+  <button class="nav-text" id="edgeReset" title="Clear revealed answers on this slide (R)">\u21ba Reset slide</button>
+  <button class="nav-text" id="edgeNotes" title="Teacher cues (N)">Notes</button>
+</div>
+<script>
+(function(){
+  var HOT = 130;                    // how close to an edge the pointer must come
+  var zones = {}, all = [];
+  ['l','r','t','b'].forEach(function(k){
+    var el = document.querySelector('.edge-'+k);
+    if(el){ zones[k] = el; all.push(el); }
+  });
+  function setShown(k, on){ if(zones[k]) zones[k].classList.toggle('show', on); }
+  function showAll(on){ all.forEach(function(e){ e.classList.toggle('show', on); }); }
+
+  window.addEventListener('mousemove', function(e){
+    setShown('l', e.clientX <= HOT);
+    setShown('r', e.clientX >= window.innerWidth - HOT);
+    setShown('t', e.clientY <= HOT);
+    setShown('b', e.clientY >= window.innerHeight - HOT);
+  });
+  window.addEventListener('mouseleave', function(){ showAll(false); });
+  // A brief hello on load so the controls are discoverable at all.
+  showAll(true); setTimeout(function(){ showAll(false); }, 2200);
+  // Touch: no hover, so a tap anywhere surfaces them for a few seconds.
+  window.addEventListener('touchstart', function(){
+    showAll(true); clearTimeout(window.__edgeT);
+    window.__edgeT = setTimeout(function(){ showAll(false); }, 3000);
+  }, {passive:true});
+
+  // Mirror the deck's own counter into the top zone. Updated directly on every
+  // control press as well as by observer, since observers fire asynchronously.
+  var cur = document.getElementById('curNum'), tot = document.getElementById('totalNum'),
+      out = document.getElementById('edgeCount');
+  function sync(){ if(cur && tot && out) out.textContent = cur.textContent + '/' + tot.textContent; }
+  if(window.MutationObserver && cur){
+    new MutationObserver(sync).observe(cur, {childList:true, characterData:true, subtree:true});
+  }
+  sync();
+
+  function click(id){ var b = document.getElementById(id); if(b) b.click(); sync(); }
+  document.getElementById('edgePrev').addEventListener('click', function(){ click('prevBtn'); });
+  document.getElementById('edgeNext').addEventListener('click', function(){ click('nextBtn'); });
+  document.getElementById('edgeHome').addEventListener('click', function(){ click('resetBtn'); });
+  document.getElementById('edgeNotes').addEventListener('click', function(){ click('notesBtn'); });
+
+  /* "Reset slide" clears what has been revealed on the slide you are on, so a
+     class can be re-run without jumping back to the start. Snapshot is taken
+     after the deck's own setup has run, so it captures the intended opening
+     state (dotted endings, "?" gaps) rather than the raw markup. */
+  var canvas = document.getElementById('canvas');
+  var snap = [];
+  if(canvas){
+    Array.prototype.forEach.call(canvas.querySelectorAll('*'), function(el){
+      var rec = { el:el, cls:el.className };
+      if(el.hasAttribute('data-answer') || el.hasAttribute('data-text')) rec.txt = el.textContent;
+      snap.push(rec);
+    });
+  }
+  document.getElementById('edgeReset').addEventListener('click', function(){
+    var active = document.querySelector('.slide.active');
+    if(!active) return;
+    snap.forEach(function(r){
+      if(!active.contains(r.el)) return;
+      if(typeof r.cls === 'string') r.el.className = r.cls;
+      if(r.txt !== undefined) r.el.textContent = r.txt;
+    });
+  });
+
+  window.addEventListener('keydown', function(e){
+    if(e.key === 'Home'){ click('resetBtn'); e.preventDefault(); }
+    setTimeout(sync, 0);
+  });
+})();
+</script>
+
 </body>
 </html>
