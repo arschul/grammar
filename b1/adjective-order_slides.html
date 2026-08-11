@@ -24,7 +24,7 @@ body{background:#161310;font-family:'Bricolage Grotesque',sans-serif;overflow:hi
 .notesbar{position:fixed;top:0;left:0;right:0;z-index:300;background:#2c2017;color:#fdf6ee;font-size:14px;padding:10px 24px;display:none;gap:14px;align-items:center;}
 .notesbar.show{display:flex;}
 .notesbar .label{background:#e26d4f;color:#fff;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
-.stage{display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;}
+.stage{display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;box-sizing:border-box;padding-bottom:96px;}
 .canvas{width:1920px;height:1080px;transform-origin:center center;position:relative;}
 .slide{position:absolute;inset:0;display:none;overflow:hidden;}
 .slide.active{display:flex;flex-direction:column;}
@@ -548,7 +548,8 @@ h2.giant{font-size:180px;font-weight:800;line-height:.9;letter-spacing:-.04em;co
     notesText.textContent=slides[current].getAttribute('data-note')||'';
   }
   function fit(){
-    canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,window.innerHeight/DESIGN_H)+')';
+    var avail = window.innerHeight - 96;   // leave the navbar its own space
+    canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,avail/DESIGN_H)+')';
   }
   window.addEventListener('resize',fit);
   fit();
