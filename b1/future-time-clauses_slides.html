@@ -16,31 +16,31 @@ body{font-family:'Bricolage Grotesque',sans-serif;-webkit-font-smoothing:antiali
 .canvas{position:relative;width:1920px;height:1080px;flex:none;box-shadow:0 30px 80px rgba(0,0,0,0.45);}
 .slide{position:absolute;inset:0;display:none;flex-direction:column;box-sizing:border-box;color:var(--text);overflow:hidden;}
 .slide.active{display:flex;}
-.pad-lg{padding:96px 110px;}.pad-md{padding:84px 110px;}.pad-sm{padding:80px 110px;}
+.pad-lg{padding:62px 80px;}.pad-md{padding:54px 80px;}.pad-sm{padding:50px 80px;}
 .center-v{justify-content:center;}
 .bg-1{background:var(--cream-1);}.bg-2{background:var(--cream-2);}.bg-3{background:var(--cream-3);}
 .bg-dark{background:var(--dark);color:var(--dark-text);}.bg-accent{background:var(--accent);color:#fff;}
-.eyebrow{display:inline-flex;align-self:flex-start;font-weight:700;font-size:24px;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:999px;}
+.eyebrow{display:inline-flex;align-self:flex-start;font-weight:700;font-size:24px;letter-spacing:.1em;text-transform:uppercase;padding:12px 17px;border-radius:999px;}
 .eyebrow.accent{background:var(--accent-bg);color:var(--accent-text);}
 .eyebrow.gold{background:var(--gold-bg);color:var(--gold-text);}
 .eyebrow.ondark{background:rgba(234,160,54,0.18);color:var(--gold);}
 .eyebrow.onaccent{background:rgba(255,255,255,0.18);color:#fff;}
-.row-flex{display:flex;align-items:center;gap:18px;}
+.row-flex{display:flex;align-items:center;gap:14px;}
 .hint{font-size:26px;color:var(--muted-2);font-weight:600;}
 h1.deck-title{font-size:104px;font-weight:800;line-height:0.98;letter-spacing:-0.03em;margin:30px 0 0;}
-h2.slide-title{font-size:78px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;margin:22px 0 0;}
+h2.slide-title{font-size:78px;font-weight:700;line-height:1.0;letter-spacing:-0.02em;margin:14px 0 0;}
 h2.slide-title.tall{margin:22px 0 30px;}
-h2.slide-title.compact{font-size:64px;margin:18px 0 28px;}
+h2.slide-title.compact{font-size:64px;margin:12px 0 16px;}
 h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em;margin:18px 0 0;}
-.lead{font-size:42px;line-height:1.35;color:#5b4d42;margin:30px 0 0;max-width:1500px;}
+.lead{font-size:42px;line-height:1.35;color:#5b4d42;margin:18px 0 0;max-width:1500px;}
 .lead-italic{font-family:'Newsreader',serif;font-style:italic;font-size:42px;color:var(--muted);margin:34px 0 0;}
 .tagpill{font-weight:700;font-size:28px;padding:12px 28px;border-radius:999px;color:#fff;}
 .t-accent{background:var(--accent);}.t-gold{background:var(--gold);}
 .hl-accent{color:var(--accent-text);font-weight:600;font-style:normal;}
 .hl-gold{color:var(--gold-text);font-weight:600;font-style:normal;}
-.card{background:var(--cream-2);border:1px solid var(--border);border-radius:24px;padding:44px 48px;}
+.card{background:var(--cream-2);border:1px solid var(--border);border-radius:24px;padding:31px 37px;}
 .card.dark{background:var(--dark);color:var(--dark-text);border:none;}
-.card-row{display:flex;gap:34px;margin-top:auto;align-items:stretch;}
+.card-row{display:flex;gap:27px;margin-top:auto;align-items:stretch;}
 .card-row>.card{flex:1;}.card-row>.card.wide{flex:1.4;}
 .card-label{font-size:24px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2);}
 .card-label.ondark{color:var(--gold);}
@@ -48,45 +48,45 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .structure-line{font-size:32px;line-height:1.55;font-weight:600;margin:14px 0 0;}
 .structure-sub{font-size:26px;color:#c9bcae;margin:18px 0 0;}
 /* five conjunctions table */
-.conj-table{display:flex;flex-direction:column;gap:12px;margin-top:24px;flex:1;justify-content:center;}
-.conj-row{display:grid;grid-template-columns:240px 220px 1fr;gap:20px;align-items:center;padding:20px 32px;border-radius:16px;}
+.conj-table{display:flex;flex-direction:column;gap:10px;margin-top:24px;flex:1;justify-content:center;}
+.conj-row{display:grid;grid-template-columns:240px 220px 1fr;gap:16px;align-items:center;padding:14px 25px;border-radius:16px;}
 .conj-row.alt{background:var(--row-alt);}
 .conj-row.plain{background:var(--cream-2);border:1px solid var(--border);}
 .conj-word{font-size:32px;font-weight:800;color:var(--accent-text);}
 .conj-meaning{font-size:22px;color:var(--muted-2);font-style:italic;}
 .conj-ex{font-family:'Newsreader',serif;font-size:30px;line-height:1.4;}
-.eg-list{display:flex;flex-direction:column;gap:14px;margin-top:24px;flex:1;justify-content:center;}
-.eg-row{padding:22px 38px;border-radius:18px;font-family:'Newsreader',serif;font-size:36px;line-height:1.4;}
+.eg-list{display:flex;flex-direction:column;gap:11px;margin-top:24px;flex:1;justify-content:center;}
+.eg-row{padding:15px 30px;border-radius:18px;font-family:'Newsreader',serif;font-size:36px;line-height:1.28;}
 .eg-row.alt{background:var(--row-alt);}
 .eg-row.plain{background:var(--cream-2);border:1px solid var(--border);}
-.mistake-grid-static{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;}
-.mistake-static{background:var(--cream-2);border:1px solid var(--border);border-radius:22px;padding:34px 40px;display:flex;flex-direction:column;justify-content:center;font-family:'Newsreader',serif;}
+.mistake-grid-static{display:grid;grid-template-columns:1fr 1fr;gap:19px;flex:1;}
+.mistake-static{background:var(--cream-2);border:1px solid var(--border);border-radius:22px;padding:24px 31px;display:flex;flex-direction:column;justify-content:center;font-family:'Newsreader',serif;}
 .mistake-static .wrong{font-size:32px;margin:0;color:var(--muted-2);text-decoration:line-through;}
 .mistake-static .right{font-size:34px;margin:14px 0 0;}
 .circle-deco{position:absolute;border-radius:50%;background:rgba(255,255,255,0.10);}
-.gap-list{display:flex;flex-direction:column;gap:18px;flex:1;justify-content:center;}
-.gap-row{display:flex;align-items:center;flex-wrap:wrap;gap:14px;font-family:'Newsreader',serif;font-size:38px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:24px 36px;}
+.gap-list{display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;}
+.gap-row{display:flex;align-items:center;flex-wrap:wrap;gap:11px;font-family:'Newsreader',serif;font-size:38px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:17px 28px;}
 .gap-btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:32px;padding:6px 28px;border-radius:999px;border:2px dashed #e3b6a6;background:#fff;color:var(--accent-text);cursor:pointer;line-height:1.1;transition:all .15s ease;}
 .gap-btn.revealed{background:var(--accent);color:#fff;border-style:solid;border-color:var(--accent);}
 .verb-hint{font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:600;font-size:24px;color:var(--muted-2);}
-.mistake-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;flex:1;}
-.mistake-card{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:28px 36px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;font-family:'Newsreader',serif;}
+.mistake-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;flex:1;}
+.mistake-card{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:20px 28px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;font-family:'Newsreader',serif;}
 .mistake-card .wrong{font-size:32px;margin:0;color:#c4453a;}
 .mistake-card .answer{display:none;}
 .mistake-card.revealed .answer{display:block;}
 .mistake-card .answer .right{font-size:34px;margin:16px 0 0;color:var(--text);}
 .mistake-card .answer .note{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;margin:12px 0 0;color:var(--correct);font-weight:600;}
-.complete-list{display:flex;flex-direction:column;gap:18px;flex:1;justify-content:center;}
-.complete-row{display:flex;align-items:center;flex-wrap:wrap;gap:14px;font-family:'Newsreader',serif;font-size:38px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:24px 36px;cursor:pointer;}
+.complete-list{display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;}
+.complete-row{display:flex;align-items:center;flex-wrap:wrap;gap:11px;font-family:'Newsreader',serif;font-size:38px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:17px 28px;cursor:pointer;}
 .complete-row .end{font-style:italic;color:#b9a899;border-bottom:3px dashed #e3b6a6;padding-bottom:2px;}
 .complete-row.revealed .end{font-style:normal;color:var(--accent-text);font-weight:600;border-bottom:none;}
-.prompt-list{display:flex;flex-direction:column;gap:18px;flex:1;justify-content:center;font-family:'Newsreader',serif;}
-.prompt-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:26px 36px;font-size:36px;}
-.recap-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-.recap-card{background:rgba(253,246,238,0.06);border-radius:20px;padding:28px 34px;}
+.prompt-list{display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;font-family:'Newsreader',serif;}
+.prompt-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:18px 28px;font-size:36px;}
+.recap-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;}
+.recap-card{background:rgba(253,246,238,0.06);border-radius:20px;padding:20px 27px;}
 .recap-card .k{font-size:26px;color:var(--gold);font-weight:700;}
 .recap-card .v{font-size:34px;font-weight:600;margin-top:6px;}
-.recap-foot{font-family:'Newsreader',serif;font-style:italic;font-size:36px;color:#c9bcae;margin:34px 0 0;}
+.recap-foot{font-family:'Newsreader',serif;font-style:italic;font-size:36px;color:#c9bcae;margin:16px 0 0;}
 .hub-link{position:fixed;top:22px;left:28px;z-index:1002;color:rgba(253,246,238,0.55);font-size:13px;font-family:'Bricolage Grotesque',sans-serif;text-decoration:none;letter-spacing:.02em;transition:color .15s ease;}
 .hub-link:hover{color:#fdf6ee;}
 .navbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(20,16,12,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:9px 16px;color:#fdf6ee;font-size:14px;z-index:1002;box-shadow:0 10px 30px rgba(0,0,0,0.4);}
@@ -99,6 +99,32 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .notesbar{position:fixed;top:0;left:0;right:0;background:#1b1410;color:#f0ddc9;font-size:15px;line-height:1.5;padding:12px 28px;transform:translateY(-100%);transition:transform .25s ease;z-index:1001;border-bottom:1px solid rgba(255,255,255,0.08);}
 .notesbar.show{transform:translateY(0);}
 .notesbar .label{color:var(--gold);font-weight:700;margin-right:10px;letter-spacing:.06em;text-transform:uppercase;font-size:11px;}
+
+/* ── projector pass: fill the board ── */
+.sfit{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
+.slide.center-v>.sfit{justify-content:center;}
+.sfit>.card-row{flex:1 1 auto;align-items:stretch;}
+.sfit>.card-row>*{display:flex;flex-direction:column;justify-content:center;}
+.sfit>.complete-list{justify-content:space-between;}
+.sfit>.eg-list{justify-content:space-between;}
+.sfit>.gap-list{justify-content:space-between;}
+.sfit>.mistake-grid{align-content:stretch;}
+.sfit>.mistake-grid>*{display:flex;flex-direction:column;justify-content:center;}
+.sfit>.mistake-grid-static{align-content:stretch;}
+.sfit>.mistake-grid-static>*{display:flex;flex-direction:column;justify-content:center;}
+.sfit>.prompt-list{justify-content:space-between;}
+.sfit>.recap-grid{flex:1 1 auto;align-content:stretch;}
+.sfit>.recap-grid>*{display:flex;flex-direction:column;justify-content:center;}
+
+/* ── grid slides: sentence-first type scale ── */
+.mistake-card .wrong{font-size:50px;line-height:1.22;transition:font-size .15s ease,opacity .15s ease;}
+.mistake-card.revealed .wrong{font-size:30px;opacity:.55;text-decoration:line-through;}
+.mistake-card .answer .right{font-size:44px;line-height:1.22;margin:10px 0 0;}
+.mistake-card .answer .note{font-size:24px;margin:6px 0 0;}
+.mistake-static .wrong{font-size:35px;}
+.mistake-static .right{font-size:37px;margin:8px 0 0;}
+.recap-card .k{font-size:25px;}
+.recap-card .v{font-size:39px;margin-top:4px;}
 </style>
 </head>
 <body>
@@ -123,6 +149,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- 2 · THE GOLDEN RULE -->
 <section class="slide bg-1 pad-md" data-note="The single most important rule of this topic: no 'will' in the time clause, even though we're talking about the future. The time conjunction connects two halves; the time-clause half uses present simple.">
+<div class="sfit" style="zoom:1.244">
   <div class="eyebrow accent">The golden rule</div>
   <h2 class="slide-title">No "will" in the time clause</h2>
   <p class="lead">A time conjunction (after, before, when…) connects two parts of a future sentence. The <strong class="hl-gold">time clause</strong> always uses <strong class="hl-gold">present simple</strong> — never will.</p>
@@ -138,10 +165,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       <p class="structure-sub">Or: conjunction + present simple + , + main clause</p>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 3 · FIVE CONJUNCTIONS -->
 <section class="slide bg-2 pad-md" data-note="Five key time conjunctions, each with a slightly different meaning. Drill each one with its meaning: when = at the moment that, as soon as = immediately when, until = up to the point that.">
+<div class="sfit" style="zoom:1.289">
   <div class="eyebrow accent">The conjunctions</div>
   <h2 class="slide-title compact">Five time conjunctions</h2>
   <div class="conj-table">
@@ -151,10 +180,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="conj-row plain"><div class="conj-word">as soon as</div><div class="conj-meaning">immediately when</div><div class="conj-ex">I'll text you <strong>as soon as</strong> I get the results.</div></div>
     <div class="conj-row alt"><div class="conj-word">until</div><div class="conj-meaning">up to the point that</div><div class="conj-ex">He won't stop <strong>until</strong> he gets it right.</div></div>
   </div>
+</div>
 </section>
 
 <!-- 4 · ORDER -->
 <section class="slide bg-3 pad-lg center-v" data-note="Same flexibility as first conditional: either clause can come first. Comma needed only when the time clause comes first.">
+<div class="sfit" style="zoom:1.42">
   <div class="eyebrow gold">💡 Word order</div>
   <h2 class="slide-title" style="font-size:74px;line-height:1.05;margin:24px 0 0;max-width:1500px;">Either clause can come first.</h2>
   <div class="card-row" style="margin-top:48px;">
@@ -165,10 +196,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       <p class="serif-lg" style="margin:0;font-size:38px;"><span class="hl-gold">As soon as I get the results,</span> I'<span class="hl-accent">ll text you.</span> <span style="color:var(--muted-2);">(comma needed)</span></p>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 5 · IN REAL SENTENCES -->
 <section class="slide bg-1 pad-md" data-note="More real examples — ask students to identify the time conjunction and confirm the time clause uses present simple, not will.">
+<div class="sfit" style="zoom:1.42">
   <div class="eyebrow accent">In real sentences</div>
   <h2 class="slide-title tall">See it in action</h2>
   <div class="eg-list">
@@ -176,10 +209,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="eg-row plain">Before he <span class="hl-gold">starts</span> the job, he will need to sign a contract.</div>
     <div class="eg-row alt">She is going to rest <span class="hl-accent">until</span> she <span class="hl-gold">feels</span> better.</div>
   </div>
+</div>
 </section>
 
 <!-- 6 · COMMON MISTAKES -->
 <section class="slide bg-1 pad-md" data-note="The single most repeated error: adding 'will' in the time clause. Three examples, all the same mistake in different conjunctions. Drill the correction every time.">
+<div class="sfit" style="zoom:1.208">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
   <div class="mistake-grid-static">
@@ -200,6 +235,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       <p class="right">Until she <strong class="hl-accent">arrives</strong>, we'll wait here.</p>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 7 · PRACTICE DIVIDER -->
@@ -212,6 +248,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- 8 · PRACTICE 1 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 1. Students produce the correct present simple form for the time clause. Verb hint in parentheses.">
+<div class="sfit" style="zoom:1.42">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 1</div>
     <span class="hint">tap the blank to reveal</span>
@@ -224,10 +261,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="gap-row"><span>Before you</span><button class="gap-btn" data-answer="leave">?</button><span class="verb-hint">(leave)</span><span>please lock the door.</span></div>
     <div class="gap-row"><span>After she</span><button class="gap-btn" data-answer="graduates">?</button><span class="verb-hint">(graduate)</span><span>she's going to travel.</span></div>
   </div>
+</div>
 </section>
 
 <!-- 9 · PRACTICE 2 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 2. Spot the error then tap to reveal.">
+<div class="sfit" style="zoom:1.09">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
     <span class="hint">tap a card to fix it</span>
@@ -251,10 +290,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       <div class="answer"><p class="right">After he finishes, we'll celebrate.</p><p class="note">✓ present simple after "after"</p></div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- 10 · PRACTICE 3 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 3. Students complete with a logical continuation using the right structure.">
+<div class="sfit" style="zoom:1.42">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 3</div>
     <span class="hint">tap to reveal a model answer</span>
@@ -266,10 +307,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="complete-row"><span>We won't start the meeting until</span><span class="end" data-text="everyone arrives."></span></div>
     <div class="complete-row"><span>After I finish this course,</span><span class="end" data-text="I'm going to look for a new job."></span></div>
   </div>
+</div>
 </section>
 
 <!-- 11 · YOUR TURN -->
 <section class="slide bg-3 pad-lg" data-note="Production. Students make plans using future time clauses. Listen carefully for present simple in the time clause — this is the slip-up point.">
+<div class="sfit" style="zoom:1.42">
   <div class="eyebrow gold">Speak &amp; write</div>
   <h2 class="slide-title" style="font-size:74px;margin:22px 0 8px;">Your turn</h2>
   <p class="lead" style="color:var(--muted);font-size:30px;margin:0 0 24px;">Use <strong class="hl-accent">when / before / after / as soon as / until</strong> + present simple.</p>
@@ -279,10 +322,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="prompt-row">What will you do when you finish your studies?</div>
     <div class="prompt-row">What won't you do until you've saved enough money?</div>
   </div>
+</div>
 </section>
 
 <!-- 12 · RECAP -->
 <section class="slide bg-dark pad-lg center-v" data-note="Wrap up. Quick drill: give a main clause, students add a time conjunction + present simple. Stress one final time: never 'will' in the time clause.">
+<div class="sfit" style="zoom:1.12">
   <div class="eyebrow ondark">Recap</div>
   <h2 style="font-size:80px;font-weight:800;line-height:1.0;letter-spacing:-0.02em;margin:22px 0 32px;">Remember this</h2>
   <div class="recap-grid">
@@ -292,6 +337,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="recap-card"><div class="k">Order</div><div class="v">comma only if time clause is first</div></div>
   </div>
   <p class="recap-foot">Never "will" in the time clause — even though it's about the future.</p>
+</div>
 </section>
 
 </div></div>
