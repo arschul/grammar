@@ -12,7 +12,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{background:#161310;height:100%;overflow:hidden;}
 body{font-family:'Bricolage Grotesque',sans-serif;-webkit-font-smoothing:antialiased;}
-.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;padding-bottom:96px;}
 .canvas{position:relative;width:1920px;height:1080px;flex:none;box-shadow:0 30px 80px rgba(0,0,0,0.45);}
 .slide{position:absolute;inset:0;display:none;flex-direction:column;box-sizing:border-box;color:var(--text);overflow:hidden;}
 .slide.active{display:flex;}
@@ -384,7 +384,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   var notesBar=document.getElementById('notesBar'),notesText=document.getElementById('notesText');
   totalNum.textContent=total;
   function show(i){current=Math.max(0,Math.min(total-1,i));for(var j=0;j<slides.length;j++)slides[j].classList.toggle('active',j===current);curNum.textContent=current+1;notesText.textContent=slides[current].getAttribute('data-note')||'';}
-  function fit(){canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,window.innerHeight/DESIGN_H)+')';}
+  function fit(){var avail=window.innerHeight-96;canvas.style.transform='scale('+Math.min(window.innerWidth/DESIGN_W,avail/DESIGN_H)+')';}
   window.addEventListener('resize',fit);fit();show(0);
   document.getElementById('prevBtn').addEventListener('click',function(){show(current-1);});
   document.getElementById('nextBtn').addEventListener('click',function(){show(current+1);});
