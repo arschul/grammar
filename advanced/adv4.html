@@ -1750,6 +1750,133 @@ DATA.push(
  ]}
 
 );
+/* ===== MODEL-ANSWER OVERLAY =====
+   Fills model answers for open-ended exercises that shipped without them.
+   Genuinely personal tasks (Set 21 C1 lecture notes, Set 22 A1/A2, Set 25)
+   are intentionally left without a model — the button hides itself there. */
+(function(){
+var M={
+
+"6.C2":[
+ "I enjoy walking through the market on Saturday mornings.",
+ "I want to finish my dissertation before December.",
+ "I avoid checking email after nine at night.",
+ "We decided to postpone the trip until the rain stopped.",
+ "Would you mind holding the door for a second?",
+ "I promise to reply before the end of the day.",
+ "She stopped buying bottled water last year.",
+ "He stopped to answer a call halfway through his run.",
+ "I remember signing the contract, but I can't find it anywhere.",
+ "Remember to bring your ID to the exam."],
+
+"15.C2":[
+ "That so many students abandon their studies in the first year is alarming.",
+ "That technology outpaces regulation seems inevitable.",
+ "That the policy will be renewed remains unclear.",
+ "That vaccines prevent disease has been proven beyond reasonable doubt.",
+ "That access to clean water is a right is a principle few would dispute.",
+ "That the report was buried suggests the findings were inconvenient."],
+
+"16.C1":[
+ "Learning a second language brings advantages that go far beyond travel. First, it opens career doors: employers increasingly value staff who can negotiate in more than one language. Furthermore, bilingual speakers show measurable cognitive benefits, including stronger working memory and, in later life, slower cognitive decline. In addition, learning another language teaches you a great deal about your own, because you begin to notice grammar you had always used unconsciously. Not only does it widen the range of people you can talk to, but it also widens the range of ideas you can reach, since much of what is written is never translated. Moreover, the discipline of daily study builds patience that transfers to everything else."],
+
+"16.C2":[
+ "A number of cities have proved that heavy traffic is a policy choice rather than a fact of life. For instance, Amsterdam rebuilt its road network around cyclists after a decade of protest in the 1970s. To illustrate, more than a third of the city's daily journeys are now made by bicycle. Other cities have gone further and restricted cars outright. For example, Pontevedra in Spain pedestrianised its centre and has since recorded no traffic deaths at all. The measures that made the difference, namely dedicated infrastructure, lower speed limits and reliable public transport, were unglamorous but decisive."],
+
+"18.B1":[
+ "The impact of social media on mental health.",
+ "That + clause (15) · not only… but also with inversion (16) · whereas (9) · notwithstanding (9) · to illustrate (16) · nonrestrictive which clause (8) · preposition + relative pronoun (13) · passive voice (4) · noncount noun — evidence (12) · mixed conditional (2)."],
+
+"18.B2":[
+ "That social media has reshaped adolescent life is beyond dispute. Not only does it structure how young people meet, but it also structures how they compare themselves with one another. Whereas earlier generations left school comparisons at the school gate, today's teenagers carry them home in their pockets. The evidence, which continues to accumulate, points to a modest but consistent association between heavy use and reported anxiety. To illustrate, several longitudinal studies have found that adolescents in the highest usage quartile report lower life satisfaction. The mechanism about which researchers still disagree is causation: if the relationship had been established clearly, policy would already have changed. Notwithstanding this uncertainty, schools have been urged to act. Some argue that phones should be banned outright, albeit at the cost of teaching self-regulation. That a balance must be found is widely accepted; what that balance looks like remains contested."],
+
+"19.A2":[
+ "Social media does more harm than good.",
+ "AGAINST — I will argue that the harms are real but outweighed by the benefits."],
+
+"19.B1":[
+ "I argue that social media does more good than harm for young people.",
+ "First, it gives isolated young people access to communities they cannot find where they live.",
+ "A 2023 survey found that a majority of LGBTQ+ teenagers said online spaces were where they first felt accepted.",
+ "Second, it has become a genuine route into paid work.",
+ "Research on freelancers in the creative industries shows that most find the majority of their clients through social platforms.",
+ "Therefore, the sensible response is better regulation and digital literacy, not condemnation."],
+
+"19.B2":[
+ "I argue that social media does more good than harm for young people. First, it gives isolated young people access to communities they cannot find where they live. A 2023 survey found that a majority of LGBTQ+ teenagers said online spaces were where they first felt accepted, and that sense of belonging is protective rather than damaging. Second, social media has become a genuine route into paid work. Research on freelancers in the creative industries shows that most find the majority of their clients through social platforms, which particularly benefits people who have no professional network to inherit. I do not deny the risks: comparison and harassment are real. However, those risks arise from design choices that can be regulated, whereas the benefits are structural. For these reasons, the answer is better regulation and digital literacy, not condemnation."],
+
+"19.C1":[
+ "AGAINST",
+ "Heavy use is linked to rising rates of anxiety and sleep problems among adolescents.",
+ "Algorithmic feeds are engineered to be addictive, so talking about free 'choice' is misleading.",
+ "I will rebut the first argument — the claimed link between use and anxiety."],
+
+"19.C2":[
+ "My opponent makes a fair point about rising adolescent anxiety. However, the evidence is correlational, and correlation does not establish causation: anxious teenagers may simply spend more time online rather than becoming anxious because of it. In fact, the largest recent meta-analysis found effect sizes so small that they were comparable to trivial lifestyle variables. The argument therefore identifies a real worry but attributes it to the wrong cause. Therefore, my position remains stronger."],
+
+"19.D1":[
+ "Your evidence was specific and you named the source, which made the second reason much harder to dismiss.",
+ "You ran about fifteen seconds over time. Cutting the second example would leave room for a stronger closing line."],
+
+"20.B1":[
+ "Prompt 1.",
+ "The Admissions Office / Admissions Committee, Greenfield University.",
+ "To request clarification of two application requirements for the Master's in Environmental Science.",
+ "Word count and prompts for the statement of purpose; the number of recommendation letters and how they are submitted; dates of information sessions.",
+ "Formal."],
+
+"20.B2":[
+ "Subject: Inquiry Regarding Master's in Environmental Science – Application Requirements",
+ "Dear Admissions Committee,",
+ "I am writing to inquire about the application requirements for the Master's in Environmental Science programme, to which I intend to apply for the Fall intake.",
+ "Could you please clarify whether the statement of purpose has a required word count or set prompts that applicants must address?",
+ "I would be grateful if you could confirm how many letters of recommendation are required, and whether referees should submit them directly.",
+ "Thank you very much for your time and assistance; I look forward to your response.",
+ "Yours sincerely, [full name] · [email address]"],
+
+"20.C1":[
+ "Subject: Request for Scholarship Application Form and Required Documents\n\nDear Scholarship Committee,\n\nI am writing to request an application form for the International Students Scholarship and to ask for clarification regarding the supporting documents.\n\nI have recently been accepted to the MSc in Public Health at Northfield University, beginning in September. While I am delighted to have been offered a place, the tuition fees are beyond what my family is able to fund, and your scholarship would make it possible for me to take up the offer.\n\nFirst, could you please indicate how the application form should be obtained, and whether it must be submitted electronically or by post? Second, I would be grateful if you could specify which documents are accepted as evidence of financial need, and whether translated documents require official certification.\n\nI would also appreciate confirmation of the closing date for this year's round.\n\nThank you very much for your time and consideration. I look forward to your reply.\n\nYours sincerely,\n[Name] · [email] · [telephone]"],
+
+"21.D1":[
+ "The reading argues that remote work has become a permanent feature of the labour market, and it identifies three benefits. It eliminates commuting, saving the average employee almost an hour a day; it allows employers to recruit regardless of location, widening both diversity and the pool of specialist skills; and it is associated with higher productivity, which the article attributes to fewer interruptions and greater autonomy.\n\nThe lecture does not dispute these findings, but it draws attention to costs the article treats only in passing. The speaker highlights isolation and the loss of informal contact, the difficulty of collaborating on complex or creative work when colleagues never share a room, and the collapse of the boundary between working hours and private life. For each, the lecturer proposes practical mitigation rather than a return to the office: structured check-ins, periodic in-person sessions for collaborative tasks, and explicit norms about availability.\n\nThe lecture therefore complements rather than contradicts the reading. Whereas the article measures what remote work saves, the lecture asks what it quietly costs, and it suggests that hybrid arrangements capture most of the benefits while limiting the damage."],
+
+"22.B1":[
+ "The global issue that troubles me most is food waste. Roughly a third of all the food produced for human consumption is never eaten, and if that waste were a country, its emissions would rank third in the world. What makes it painful is that the waste sits alongside hunger: we are not short of food, we are short of systems that move it to the right place in time. This issue is personal because I grew up in a household where nothing was thrown away — leftovers became the next day's lunch, and stale bread became something else entirely. When I moved out, I was shocked at how easily a bag of vegetables could rot at the back of my own fridge. I have started planning meals before I shop, freezing anything I will not use in time, and taking the surplus from family gatherings to a neighbour rather than the bin. None of this solves the problem. My role is not to be the person who wastes nothing, but the person who notices — and if enough of us notice, the demand for better systems follows."],
+
+"23.A2":[
+ "does not belong",
+ "247",
+ "68% … hated … it violates the sacred balance of savoury and sweet",
+ "a delicious choice that society is not yet ready to admit it enjoys",
+ "whether a hot dog is a sandwich"],
+
+"23.C1":[
+ "Students frequently claim that they study better with background music, yet nobody appears to define \"better\". This study examined whether listening to heavy metal while revising vocabulary improves recall. Fifteen volunteers memorised twenty new words, half in silence and half accompanied by a playlist chosen by the researcher's flatmate. Recall was 22% lower in the metal condition, although participants rated the experience as significantly more enjoyable and three requested the playlist afterwards. Heavy metal may therefore be an excellent motivational tool and a poor study aid — a distinction future researchers are encouraged to respect."],
+
+"24.C1":[
+ "Should schools start later in the morning?",
+ "FOR — I will argue that secondary schools should begin no earlier than nine o'clock."],
+
+"24.C2":[
+ "We would not ask an adult to sit an examination at four in the morning.",
+ "Secondary schools should start no earlier than nine o'clock.",
+ "Adolescent biology, not laziness, makes early starts harmful.",
+ "During puberty the body clock shifts by roughly two hours, so a teenager who cannot sleep before midnight is not being difficult.",
+ "Later starts produce measurable improvements.",
+ "When Seattle schools moved the bell from 7:50 to 8:45, students gained an average of 34 minutes of sleep a night and grades rose.",
+ "Critics reply that later starts inconvenience working parents and squeeze after-school activities.",
+ "That is a scheduling problem, and scheduling problems have solutions; chronic sleep deprivation during brain development does not.",
+ "If we are serious about attainment, we could begin by letting students sleep."],
+
+"24.C3":[
+ "We would not ask an adult to sit an examination at four in the morning. Yet by requiring teenagers to be alert at half past eight, that is broadly what we do. Secondary schools should start no earlier than nine o'clock.\n\nThe reason is biology rather than indulgence. During adolescence the circadian rhythm shifts by around two hours, which means that a teenager who cannot fall asleep before midnight is not being difficult; they are being fifteen. Waking them at half past six removes sleep that cannot be recovered at the weekend.\n\nThe effects of correcting this are measurable. When schools in Seattle moved their start time from 7:50 to 8:45, students gained an average of thirty-four minutes of sleep a night, attendance improved, and grades rose.\n\nCritics reply that later starts inconvenience working parents and squeeze after-school activities. The objection is fair, but it describes a scheduling problem, and scheduling problems have solutions. Chronic sleep deprivation during the years in which the brain is still developing does not.\n\nIf we are serious about attainment, we could begin by letting students sleep."]
+
+};
+DATA.forEach(function(s){s.sec.forEach(function(sec){sec.ex.forEach(function(e){
+  var m=M[s.n+'.'+e.n]; if(!m) return;
+  e.q.forEach(function(q,i){ if(m[i]&&!q[1]) q[1]=m[i]; });
+});});});
+})();
 
 
 /* ══════════ STORAGE ══════════ */
@@ -1863,14 +1990,14 @@ function exHTML(set,e){
     h+='</tr></thead><tbody>';
     e.r.forEach(function(r){h+='<tr>';r.forEach(function(c){h+='<td>'+esc(c)+'</td>';});h+='</tr>';});
     h+='</tbody></table></div>';
-    h+='<div class="row"><button class="btn ghost" data-act="tick">Mark as read</button></div></section>';
+    h+='<div class="row"><button class="btn ghost" data-act="tick">'+(done?'Done ✓':'Mark as read')+'</button></div></section>';
     return h;
   }
   if(e.k==='project'){
     var k=itKey(set,e.n,0);
     h+='<div class="project">'+esc(e.i)+(e.x?'<div class="extra">'+esc(e.x)+'</div>':'')+'</div>'+
        '<textarea class="txt" rows="5" data-k="'+k+'" placeholder="Draft it here — your text is saved on this device.">'+esc(aget(k))+'</textarea><div class="saved"></div>'+
-       '<div class="row"><button class="btn ghost" data-act="tick">Mark as done</button></div></section>';
+       '<div class="row"><button class="btn ghost" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button></div></section>';
     return h;
   }
 
@@ -1912,7 +2039,11 @@ function exHTML(set,e){
   h=h.replace('<div class="items">', e.q.length<2?'<div class="items one">':'<div class="items">');
   if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button><button class="btn ghost" data-act="show">Show answers</button>';
   else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button><button class="btn ghost" data-act="show">Show model answers</button>';
-  else h+='<button class="btn primary" data-act="tick">Mark as done</button><button class="btn ghost" data-act="show">Show model answers</button>';
+  else {
+    h+='<button class="btn primary" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button>';
+    if(e.q.some(function(q){return q[1]&&String(q[1]).trim();}))
+      h+='<button class="btn ghost" data-act="show">Show model answers</button>';
+  }
   h+='<button class="btn ghost" data-act="clear">Clear</button><span class="score"></span></div></section>';
   return h;
 }
