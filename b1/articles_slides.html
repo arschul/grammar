@@ -73,6 +73,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .gap-row{display:flex;align-items:center;flex-wrap:wrap;gap:11px;font-family:'Newsreader',serif;font-size:44px;line-height:1.3;background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:18px 31px;}
 .gap-btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:38px;padding:6px 30px;border-radius:999px;border:2px dashed #e3b6a6;background:#fff;color:var(--accent-text);cursor:pointer;line-height:1.1;transition:all .15s ease;}
 .gap-btn.revealed{background:var(--accent);color:#fff;border-style:solid;border-color:var(--accent);}
+.verb-hint{font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:600;font-size:28px;color:var(--muted-2);}
 .mistake-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;flex:1;}
 .mistake-card{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:21px 30px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;font-family:'Newsreader',serif;}
 .mistake-card .wrong{font-size:36px;margin:0;color:#c4453a;}
@@ -248,7 +249,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </section>
 
 <!-- 8 · PRACTICE 1 -->
-<section class="slide bg-1 pad-sm" data-note="Practice 1. Students choose a/an/the/no article. Click to reveal — Ø shown for no article.">
+<section class="slide bg-1 pad-sm" data-note="Practice 1. Students choose a/an/the/no article — the bracketed cue tells them the context, they choose the form. Tap to reveal; Ø means no article.">
 <div class="sfit" style="zoom:1.42">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 1</div>
@@ -256,11 +257,11 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   </div>
   <h2 class="slide-title compact">A, an, the, or Ø?</h2>
   <div class="gap-list">
-    <div class="gap-row"><span>I saw</span><button class="gap-btn" data-answer="a">?</button><span>cat in the garden this morning.</span></div>
-    <div class="gap-row"><span>Can you close</span><button class="gap-btn" data-answer="the">?</button><span>door, please? It's cold.</span></div>
-    <div class="gap-row"><span>Ø</span><button class="gap-btn" data-answer="Ø">?</button><span>Honesty is the best policy.</span></div>
-    <div class="gap-row"><span>She wants to become</span><button class="gap-btn" data-answer="an">?</button><span>architect.</span></div>
-    <div class="gap-row"><span>Ø</span><button class="gap-btn" data-answer="Ø">?</button><span>Cats are independent animals.</span></div>
+    <div class="gap-row"><span>I saw</span><button class="gap-btn" data-answer="a">?</button><span>cat in the garden this morning.</span><span class="verb-hint">(I haven't mentioned it before)</span></div>
+    <div class="gap-row"><span>Can you close</span><button class="gap-btn" data-answer="the">?</button><span>door, please? It's cold.</span><span class="verb-hint">(we both know which one)</span></div>
+    <div class="gap-row"><button class="gap-btn" data-answer="Ø">?</button><span>Honesty is the best policy.</span><span class="verb-hint">(an idea in general)</span></div>
+    <div class="gap-row"><span>She wants to become</span><button class="gap-btn" data-answer="an">?</button><span>architect.</span><span class="verb-hint">(one of many — listen to the sound)</span></div>
+    <div class="gap-row"><button class="gap-btn" data-answer="Ø">?</button><span>Cats are independent animals.</span><span class="verb-hint">(plural, in general)</span></div>
   </div>
 </div>
 </section>
@@ -295,7 +296,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </section>
 
 <!-- 10 · PRACTICE 3 -->
-<section class="slide bg-1 pad-sm" data-note="Practice 3. Students complete with the right article and continuation.">
+<section class="slide bg-1 pad-sm" data-note="Practice 3. Each stem stops right before the article — students must supply a/an, the, or nothing. Row 2 is the first-mention → second-mention switch; row 4 is general uncountable/plural.">
 <div class="sfit" style="zoom:1.42">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 3</div>
@@ -303,10 +304,10 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   </div>
   <h2 class="slide-title compact">Complete the sentence</h2>
   <div class="complete-list">
-    <div class="complete-row"><span>I saw a dog in the park.</span><span class="end" data-text="The dog was very friendly."></span></div>
-    <div class="complete-row"><span>Ø Music makes people happy,</span><span class="end" data-text="especially when they're feeling sad."></span></div>
-    <div class="complete-row"><span>She is an excellent</span><span class="end" data-text="architect, very creative and detail-oriented."></span></div>
-    <div class="complete-row"><span>Ø Dogs are loyal,</span><span class="end" data-text="but the dog next door barks all night!"></span></div>
+    <div class="complete-row"><span>For breakfast I usually have</span><span class="end" data-text="a bowl of cereal and an orange."></span></div>
+    <div class="complete-row"><span>Last week I bought a jacket, but</span><span class="end" data-text="the jacket was too small, so I took it back."></span></div>
+    <div class="complete-row"><span>The best place in my town is</span><span class="end" data-text="the old library next to the market."></span></div>
+    <div class="complete-row"><span>I never eat</span><span class="end" data-text="Ø meat, but I love Ø fish and Ø vegetables."></span></div>
   </div>
 </div>
 </section>
