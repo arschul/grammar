@@ -132,6 +132,22 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .mistake-static .right{font-size:35px;margin:8px 0 0;}
 .recap-card .k{font-size:21px;}
 .recap-card .v{font-size:35px;margin-top:4px;}
+
+/* ── TOEFL error identification (practice) ── */
+.toefl-list{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start;}
+.toefl-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:16px 30px 22px;cursor:pointer;}
+.toefl-row .tsent{font-family:'Newsreader',serif;font-size:36px;line-height:1.95;margin:0;color:var(--text);}
+.toefl-row .tp{position:relative;display:inline-block;line-height:1.25;vertical-align:baseline;border-bottom:3px solid var(--muted-2);padding:0 3px 2px;}
+.toefl-row .tp i{position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:700;font-size:21px;letter-spacing:.08em;color:var(--muted-2);line-height:1;}
+.toefl-row.revealed .tp.bad{border-bottom-color:var(--accent);color:var(--accent-text);background:var(--accent-bg);border-radius:6px 6px 0 0;}
+.toefl-row.revealed .tp.bad i{color:var(--accent-text);}
+.toefl-row .tanswer{display:none;}
+.toefl-row.revealed .tanswer{display:block;}
+.toefl-row .tanswer .tfix{font-family:'Newsreader',serif;font-size:30px;line-height:1.3;margin:12px 0 0;color:var(--text);}
+.toefl-row .tanswer .tfix b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);margin-right:6px;}
+.toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
+.toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
+.sfit>.toefl-list{justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -281,28 +297,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- 9 · PRACTICE 2 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 2. Ask them to name the error type before tapping: wrong participle, wrong main clause, missing infinitive, wrong tense.">
-<div class="sfit" style="zoom:1.183">
+<div class="sfit" style="zoom:1.0">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
-    <span class="hint">tap a card to fix it</span>
+    <span class="hint">tap a sentence to reveal the error</span>
   </div>
   <h2 class="slide-title compact">Spot the mistake</h2>
-  <div class="mistake-grid">
-    <div class="mistake-card">
-      <p class="wrong">Had I knew about the strike, I would have taken the train.</p>
-      <div class="answer"><p class="right">Had I known about the strike, I would have taken the train.</p><p class="note">✓ <em>had</em> is followed by the past participle</p></div>
+  <div class="toefl-list">
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp bad">Had I have known<i>A</i></span> about the delay, I <span class="tp">would have<i>B</i></span> taken <span class="tp">an<i>C</i></span> earlier flight <span class="tp">to<i>D</i></span> Rome.</p>
+      <div class="tanswer"><p class="tfix"><b>A</b>Had I have known &rarr; <span class="tok">Had I known</span></p><p class="tnote">&#10003; Had + subject + past participle</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">Were I you, I will speak to the manager directly.</p>
-      <div class="answer"><p class="right">Were I you, I would speak to the manager directly.</p><p class="note">✓ <em>were</em> signals an unreal situation → <em>would</em>, not <em>will</em></p></div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp">Were<i>A</i></span> I <span class="tp">to move<i>B</i></span> abroad, <span class="tp bad">I would miss my familys support<i>C</i></span> <span class="tp">more<i>D</i></span> than anything else.</p>
+      <div class="tanswer"><p class="tfix"><b>C</b>I would miss my familys support &rarr; <span class="tok">I would miss my family&#x27;s support</span></p><p class="tnote">&#10003; a possessive noun needs an apostrophe</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">Were the company to expanding into Asia, profits would rise.</p>
-      <div class="answer"><p class="right">Were the company to expand into Asia, profits would rise.</p><p class="note">✓ <em>to</em> + infinitive, never <em>-ing</em></p></div>
-    </div>
-    <div class="mistake-card">
-      <p class="wrong">Had the government acted sooner, the crisis would be avoided.</p>
-      <div class="answer"><p class="right">Had the government acted sooner, the crisis would have been avoided.</p><p class="note">✓ unreal past → <em>would have</em> + past participle</p></div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp">Had<i>A</i></span> she <span class="tp">asked<i>B</i></span> me, I <span class="tp">would have helped<i>C</i></span> her, <span class="tp bad">but she would have not asked<i>D</i></span> anyone.</p>
+      <div class="tanswer"><p class="tfix"><b>D</b>but she would have not asked &rarr; <span class="tok">but she would not have asked</span></p><p class="tnote">&#10003; not goes between would and have</p></div>
     </div>
   </div>
 </div>
@@ -501,5 +513,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 })();
 </script>
 
+<script>
+(function(){
+  var rows=document.querySelectorAll('.toefl-row');
+  for(var i=0;i<rows.length;i++)
+    rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
 </body>
 </html>

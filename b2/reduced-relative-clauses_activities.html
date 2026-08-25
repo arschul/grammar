@@ -292,17 +292,38 @@
   .slot-chip:hover{background:var(--coral);color:#fff;}
 
   /* Mistake */
-  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
-  .mistake-option{
-    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
-    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
-    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  .toefl-sentence{
+    font-family:var(--serif);font-size:1.12rem;line-height:2.7;color:var(--ink);
+    margin:.2rem 0 .45rem;
   }
-  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
-  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
-
+  .toefl-sentence .tpart{
+    position:relative;display:inline-block;font:inherit;color:inherit;
+    line-height:1.3;vertical-align:baseline;
+    background:none;border:none;border-bottom:2px solid var(--ink-faint);
+    padding:0 .12em 2px;margin:0;cursor:pointer;border-radius:3px 3px 0 0;
+    transition:background .16s,border-color .16s,color .16s;
+  }
+  .toefl-sentence .tlabel{
+    position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;
+    font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1;pointer-events:none;transition:color .16s;
+  }
+  .toefl-sentence .tpart:hover{background:var(--brand-soft);border-bottom-color:var(--brand);}
+  .toefl-sentence .tpart:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  .toefl-sentence .tpart.picked{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .toefl-sentence .tpart.picked .tlabel{color:var(--coral);}
+  .toefl-sentence.locked .tpart{cursor:default;}
+  .toefl-sentence.locked .tpart:hover{background:none;border-bottom-color:var(--ink-faint);}
+  .toefl-sentence .tpart.correct-pick,
+  .toefl-sentence.locked .tpart.correct-pick:hover{
+    background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);
+  }
+  .toefl-sentence .tpart.correct-pick .tlabel{color:var(--correct);}
+  .toefl-sentence .tpart.wrong-pick,
+  .toefl-sentence.locked .tpart.wrong-pick:hover{
+    background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);
+  }
+  .toefl-sentence .tpart.wrong-pick .tlabel{color:var(--wrong);}
   /* Open */
   .open-answer-area{
     width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
@@ -527,7 +548,7 @@
     <div id="rrc-act3" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Find the Mistake</div>
-        <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
+        <div class="activity-desc">One sentence, four underlined parts. Click the lettered part that contains the error — it is not always in the grammar of this lesson, so read the whole sentence.</div>
         <div id="rrc-mistake-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(3,'rrc-mistake-exercises','rrc-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
@@ -623,34 +644,29 @@ const FILL = [
 
 const MISTAKE = [
   {
-    sentence:"The man lives next door is a pilot for a Brazilian airline.",
-    options:["The man lives next door","is a pilot","for a Brazilian airline."],
-    correct:0,
-    explanation:"Here the pronoun is the subject and there is no 'be', so it must stay: \u2713 The man who lives next door."
-  },
-  {
-    sentence:"This morning I finally received all the letters sending last week.",
-    options:["This morning","I finally received","all the letters sending last week."],
+    sentence:"The parcel [delivered] this morning [contained] [the documents requesting by the lawyer], [which] were urgent.",
     correct:2,
-    explanation:"The clause is passive, so it leaves a past participle: \u2713 the letters sent last week."
+    explanation:"(C) A passive reduced relative uses the past participle: <em>the documents requested by the lawyer</em>. <em>Delivered this morning</em> is correct."
   },
   {
-    sentence:"People are interested in storm chasing can stream this interview.",
-    options:["People are interested","in storm chasing","can stream this interview."],
+    sentence:"[The list of people attending the ceremony were] [published] yesterday, [and] the hall [is] already full.",
     correct:0,
-    explanation:"Drop the pronoun and 'be' together: \u2713 People interested in storm chasing can stream it."
+    explanation:"(A) The subject is <em>the list</em>, not <em>people</em>: <em>The list ... was published yesterday</em>. The reduced relative <em>attending the ceremony</em> is correct."
   },
   {
-    sentence:"My brother, I saw yesterday, has just moved to Lisbon.",
-    options:["My brother,","I saw yesterday,","has just moved to Lisbon."],
-    correct:1,
-    explanation:"Non-defining clauses always keep the pronoun: \u2713 My brother, who I saw yesterday, has moved."
+    sentence:"The train [leaving] from platform four [is] the express, [and] [the one stopped at every station] leaves later.",
+    correct:3,
+    explanation:"(D) An active reduced relative uses the <em>-ing</em> form: <em>the one stopping at every station</em>. <em>The train leaving from platform four</em> is correct."
   },
   {
-    sentence:"The police interviewed the woman car was stolen on Friday night.",
-    options:["The police interviewed","the woman car was stolen","on Friday night."],
+    sentence:"The report [written] [from] the committee [was] rejected, [although] it took months to prepare.",
     correct:1,
-    explanation:"'Whose' can never be dropped: \u2713 the woman whose car was stolen."
+    explanation:"(B) The agent takes <em>by</em>: <em>The report written by the committee</em>. The reduced relative itself is correct."
+  },
+  {
+    sentence:"[The students who they failed the exam] [may] resit it [in] September, [according to] the new rules.",
+    correct:0,
+    explanation:"(A) <em>Who</em> is already the subject, so <em>they</em> is unnecessary: <em>The students who failed the exam</em> — or, reduced, <em>The students failing the exam</em>."
   }
 ];
 
@@ -733,25 +749,48 @@ function checkFill(cid,fid,data){
 // -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
+  const L=['A','B','C','D'];
   data.forEach((item,i)=>{
+    let k=-1;
+    const body=item.sentence.replace(/\[([^\]]+)\]/g,(m,t)=>{
+      k++;
+      return '<button type="button" class="tpart" data-i="'+k+'" onclick="pickPart(this)">'+t+'<span class="tlabel">'+(L[k]||'?')+'</span></button>';
+    });
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
-      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
-      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div>'
+      +'<div class="toefl-sentence" id="'+cid+'-ts-'+i+'">'+body+'</div>'
+      +'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
     c.appendChild(d);
   });
+}
+function pickPart(btn){
+  const w=btn.parentNode;
+  if(w.classList.contains('locked'))return;
+  w.querySelectorAll('.tpart').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
 }
 function checkMistake(cid,fid,data){
   let correct=0;
   data.forEach((item,i)=>{
-    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
-    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
-    const expEl=document.getElementById(`${cid}-mexp-${i}`);
-    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+    const w=document.getElementById(cid+'-ts-'+i);
+    const sel=w.querySelector('.tpart.picked');
+    const expEl=document.getElementById(cid+'-mexp-'+i);
+    if(sel){
+      w.classList.add('locked');
+      const v=parseInt(sel.getAttribute('data-i'),10);
+      w.querySelectorAll('.tpart').forEach((b,j)=>{
+        if(j===item.correct)b.classList.add('correct-pick');
+        else if(j===v)b.classList.add('wrong-pick');
+      });
+      if(v===item.correct)correct++;
+      expEl.classList.add('show');
+    }
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length
+    ?'✓ Excellent! You identified all '+data.length+' errors correctly.'
+    :'You identified '+correct+' out of '+data.length+' errors correctly.';
 }
 
 // -- WORD ORDER --

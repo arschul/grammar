@@ -292,17 +292,38 @@
   .slot-chip:hover{background:var(--coral);color:#fff;}
 
   /* Mistake */
-  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
-  .mistake-option{
-    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
-    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
-    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  .toefl-sentence{
+    font-family:var(--serif);font-size:1.12rem;line-height:2.7;color:var(--ink);
+    margin:.2rem 0 .45rem;
   }
-  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
-  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
-
+  .toefl-sentence .tpart{
+    position:relative;display:inline-block;font:inherit;color:inherit;
+    line-height:1.3;vertical-align:baseline;
+    background:none;border:none;border-bottom:2px solid var(--ink-faint);
+    padding:0 .12em 2px;margin:0;cursor:pointer;border-radius:3px 3px 0 0;
+    transition:background .16s,border-color .16s,color .16s;
+  }
+  .toefl-sentence .tlabel{
+    position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;
+    font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1;pointer-events:none;transition:color .16s;
+  }
+  .toefl-sentence .tpart:hover{background:var(--brand-soft);border-bottom-color:var(--brand);}
+  .toefl-sentence .tpart:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  .toefl-sentence .tpart.picked{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .toefl-sentence .tpart.picked .tlabel{color:var(--coral);}
+  .toefl-sentence.locked .tpart{cursor:default;}
+  .toefl-sentence.locked .tpart:hover{background:none;border-bottom-color:var(--ink-faint);}
+  .toefl-sentence .tpart.correct-pick,
+  .toefl-sentence.locked .tpart.correct-pick:hover{
+    background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);
+  }
+  .toefl-sentence .tpart.correct-pick .tlabel{color:var(--correct);}
+  .toefl-sentence .tpart.wrong-pick,
+  .toefl-sentence.locked .tpart.wrong-pick:hover{
+    background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);
+  }
+  .toefl-sentence .tpart.wrong-pick .tlabel{color:var(--wrong);}
   /* Open */
   .open-answer-area{
     width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
@@ -550,7 +571,7 @@
     <div id="cft-act3" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Find the Mistake</div>
-        <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
+        <div class="activity-desc">One sentence, four underlined parts. Click the lettered part that contains the error — it is not always in the grammar of this lesson, so read the whole sentence.</div>
         <div id="cft-mistake-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(3,'cft-mistake-exercises','cft-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
@@ -646,34 +667,29 @@ const FILL = [
 
 const MISTAKE = [
   {
-    sentence:"What they want to stay safe, and that is why they plan every route.",
-    options:["What they want to stay safe,","and that is why","they plan every route."],
-    correct:0,
-    explanation:"The cleft is missing its verb: \u2713 What they want is to stay safe."
-  },
-  {
-    sentence:"Everyone assumed it was Bruno, but it was my sister which paid for the trip.",
-    options:["Everyone assumed it was Bruno,","but it was my sister","which paid for the trip."],
+    sentence:"[What] surprised the committee [most] [were the tone of the letter], [not] its content.",
     correct:2,
-    explanation:"The focus is a person, so the pronoun is 'who' or 'that': \u2713 it was my sister who paid."
+    explanation:"(C) A <em>what</em>-cleft takes a singular verb: <em>What surprised the committee most was the tone of the letter</em>."
   },
   {
-    sentence:"What keeps them safe are careful planning and attention to detail.",
-    options:["What keeps them safe","are careful planning","and attention to detail."],
-    correct:1,
-    explanation:"A what-clause is singular, whatever follows: \u2713 What keeps them safe is careful planning\u2026"
-  },
-  {
-    sentence:"After a day like that, all what I want is ten minutes of silence.",
-    options:["After a day like that,","all what I want","is ten minutes of silence."],
-    correct:1,
-    explanation:"'All' already does the work of 'what': \u2713 all I want is ten minutes of silence."
-  },
-  {
-    sentence:"Is a love of life that motivates them, not a fear of dying.",
-    options:["Is a love of life","that motivates them,","not a fear of dying."],
+    sentence:"[It was my colleagues advice] [that] persuaded me [to] apply, [and] I have never regretted it.",
     correct:0,
-    explanation:"An it-cleft cannot drop its subject: \u2713 It's a love of life that motivates them."
+    explanation:"(A) A possessive noun needs <em>'s</em>: <em>It was my colleague's advice that persuaded me</em>. The cleft structure is correct."
+  },
+  {
+    sentence:"[What] the committee wanted [was] a clear timetable, [but] [what they got it was] a vague promise.",
+    correct:3,
+    explanation:"(D) A <em>what</em>-cleft needs no extra pronoun: <em>what they got was a vague promise</em>. The first cleft is correct."
+  },
+  {
+    sentence:"It was the architect [who] [insisted in] the glass roof, [although] the client [preferred] stone.",
+    correct:1,
+    explanation:"(B) <em>Insist</em> takes <em>on</em>: <em>who insisted on the glass roof</em>. The cleft structure is correct."
+  },
+  {
+    sentence:"It was [only] [in 2019 when] the museum [reopened], [after] a decade of restoration.",
+    correct:1,
+    explanation:"(B) A cleft uses <em>that</em>, even with a time expression: <em>It was only in 2019 that the museum reopened</em>."
   }
 ];
 
@@ -756,25 +772,48 @@ function checkFill(cid,fid,data){
 // -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
+  const L=['A','B','C','D'];
   data.forEach((item,i)=>{
+    let k=-1;
+    const body=item.sentence.replace(/\[([^\]]+)\]/g,(m,t)=>{
+      k++;
+      return '<button type="button" class="tpart" data-i="'+k+'" onclick="pickPart(this)">'+t+'<span class="tlabel">'+(L[k]||'?')+'</span></button>';
+    });
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
-      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
-      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div>'
+      +'<div class="toefl-sentence" id="'+cid+'-ts-'+i+'">'+body+'</div>'
+      +'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
     c.appendChild(d);
   });
+}
+function pickPart(btn){
+  const w=btn.parentNode;
+  if(w.classList.contains('locked'))return;
+  w.querySelectorAll('.tpart').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
 }
 function checkMistake(cid,fid,data){
   let correct=0;
   data.forEach((item,i)=>{
-    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
-    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
-    const expEl=document.getElementById(`${cid}-mexp-${i}`);
-    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+    const w=document.getElementById(cid+'-ts-'+i);
+    const sel=w.querySelector('.tpart.picked');
+    const expEl=document.getElementById(cid+'-mexp-'+i);
+    if(sel){
+      w.classList.add('locked');
+      const v=parseInt(sel.getAttribute('data-i'),10);
+      w.querySelectorAll('.tpart').forEach((b,j)=>{
+        if(j===item.correct)b.classList.add('correct-pick');
+        else if(j===v)b.classList.add('wrong-pick');
+      });
+      if(v===item.correct)correct++;
+      expEl.classList.add('show');
+    }
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length
+    ?'✓ Excellent! You identified all '+data.length+' errors correctly.'
+    :'You identified '+correct+' out of '+data.length+' errors correctly.';
 }
 
 // -- WORD ORDER --
