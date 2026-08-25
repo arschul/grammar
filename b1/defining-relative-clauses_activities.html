@@ -292,17 +292,38 @@
   .slot-chip:hover{background:var(--coral);color:#fff;}
 
   /* Mistake */
-  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
-  .mistake-option{
-    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
-    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
-    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  .toefl-sentence{
+    font-family:var(--serif);font-size:1.12rem;line-height:2.7;color:var(--ink);
+    margin:.2rem 0 .45rem;
   }
-  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
-  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
-
+  .toefl-sentence .tpart{
+    position:relative;display:inline-block;font:inherit;color:inherit;
+    line-height:1.3;vertical-align:baseline;
+    background:none;border:none;border-bottom:2px solid var(--ink-faint);
+    padding:0 .12em 2px;margin:0;cursor:pointer;border-radius:3px 3px 0 0;
+    transition:background .16s,border-color .16s,color .16s;
+  }
+  .toefl-sentence .tlabel{
+    position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;
+    font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1;pointer-events:none;transition:color .16s;
+  }
+  .toefl-sentence .tpart:hover{background:var(--brand-soft);border-bottom-color:var(--brand);}
+  .toefl-sentence .tpart:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  .toefl-sentence .tpart.picked{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .toefl-sentence .tpart.picked .tlabel{color:var(--coral);}
+  .toefl-sentence.locked .tpart{cursor:default;}
+  .toefl-sentence.locked .tpart:hover{background:none;border-bottom-color:var(--ink-faint);}
+  .toefl-sentence .tpart.correct-pick,
+  .toefl-sentence.locked .tpart.correct-pick:hover{
+    background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);
+  }
+  .toefl-sentence .tpart.correct-pick .tlabel{color:var(--correct);}
+  .toefl-sentence .tpart.wrong-pick,
+  .toefl-sentence.locked .tpart.wrong-pick:hover{
+    background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);
+  }
+  .toefl-sentence .tpart.wrong-pick .tlabel{color:var(--wrong);}
   /* Open */
   .open-answer-area{
     width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
@@ -503,7 +524,7 @@
     <div id="drc-act3" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Find the Mistake</div>
-        <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+        <div class="activity-desc">One sentence, four underlined parts. Click the lettered part that contains the error — it is not always in the grammar of this lesson, so read the whole sentence.</div>
         <div id="drc-mistake-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(3,'drc-mistake-exercises','drc-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
@@ -596,16 +617,31 @@ const FILL = [
   {sentence:"Do you remember the moment _____ you first used the internet?", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a moment in time."}
 ];
 const MISTAKE = [
-  // error pos 1
-  {sentence:"She's the scientist which discovered a new treatment for the disease.", options:["She's the scientist","which discovered","a new treatment for the disease."], correct:1, explanation:"Use 'who' or 'that' for people, not 'which'. Correct: 'She's the scientist who discovered…'"},
-  // error pos 2
-  {sentence:"That's the café where I used to meet my friends who she moved abroad.", options:["That's the café where I used to meet","my friends","who she moved abroad."], correct:2, explanation:"Don't repeat the subject after the relative pronoun. Correct: 'my friends who moved abroad.'"},
-  // error pos 0
-  {sentence:"Which I use most is the app that helps me learn languages.", options:["Which I use most","is the app","that helps me learn languages."], correct:0, explanation:"A relative clause cannot start a sentence on its own. Correct: 'The app which I use most is the one that helps me learn languages.'"},
-  // error pos 1
-  {sentence:"I remember the summer when I visited my cousin who it fixed my computer.", options:["I remember the summer when I visited","my cousin","who it fixed my computer."], correct:2, explanation:"Don't repeat the subject pronoun after 'who'. Correct: 'my cousin who fixed my computer.'"},
-  // error pos 2
-  {sentence:"The neighbourhood where I grew up is a place which has lots of energy.", options:["The neighbourhood where I grew up","is a place","who has lots of energy."], correct:2, explanation:"Use 'which' or 'that' for things/places — not 'who'. Correct: '…a place which has lots of energy.'"}
+  {
+    sentence:"I met a woman [at the conference] [which] speaks five languages [and] works [as] a translator.",
+    correct:1,
+    explanation:"(B) Use <em>who</em> (or <em>that</em>) for people: <em>a woman who speaks five languages</em>."
+  },
+  {
+    sentence:"The book [that] I borrowed [from] the library [was] fascinating, but the pages [is] falling out.",
+    correct:3,
+    explanation:"(D) <em>The pages</em> is plural, so it takes <em>are falling out</em>. The relative clause <em>that I borrowed</em> is correct."
+  },
+  {
+    sentence:"[The film that we watched it] last night [was] much longer [than] I [expected].",
+    correct:0,
+    explanation:"(A) <em>That</em> is already the object of <em>watched</em>, so <em>it</em> must be deleted: <em>The film that we watched last night</em>."
+  },
+  {
+    sentence:"The hotel [that] we booked online [was] [more cheaper] than the one [near] the station.",
+    correct:2,
+    explanation:"(C) Do not combine <em>more</em> with an <em>-er</em> ending: <em>cheaper than</em>. The defining relative clause is correct."
+  },
+  {
+    sentence:"The students [who] arrived late [missed] the lecture, [and] the professor [who he] wrote the book was annoyed.",
+    correct:3,
+    explanation:"(D) <em>Who</em> is already the subject of its clause, so <em>he</em> is unnecessary: <em>the professor who wrote the book</em>. The first relative clause is correct."
+  }
 ];
 const ORDER = [
   {words:["She's","the","teacher","who","helped","me","most."], answer:"She's the teacher who helped me most."},
@@ -685,25 +721,48 @@ function checkFill(cid,fid,data){
 // -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
+  const L=['A','B','C','D'];
   data.forEach((item,i)=>{
+    let k=-1;
+    const body=item.sentence.replace(/\[([^\]]+)\]/g,(m,t)=>{
+      k++;
+      return '<button type="button" class="tpart" data-i="'+k+'" onclick="pickPart(this)">'+t+'<span class="tlabel">'+(L[k]||'?')+'</span></button>';
+    });
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
-      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
-      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div>'
+      +'<div class="toefl-sentence" id="'+cid+'-ts-'+i+'">'+body+'</div>'
+      +'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
     c.appendChild(d);
   });
+}
+function pickPart(btn){
+  const w=btn.parentNode;
+  if(w.classList.contains('locked'))return;
+  w.querySelectorAll('.tpart').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
 }
 function checkMistake(cid,fid,data){
   let correct=0;
   data.forEach((item,i)=>{
-    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
-    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
-    const expEl=document.getElementById(`${cid}-mexp-${i}`);
-    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+    const w=document.getElementById(cid+'-ts-'+i);
+    const sel=w.querySelector('.tpart.picked');
+    const expEl=document.getElementById(cid+'-mexp-'+i);
+    if(sel){
+      w.classList.add('locked');
+      const v=parseInt(sel.getAttribute('data-i'),10);
+      w.querySelectorAll('.tpart').forEach((b,j)=>{
+        if(j===item.correct)b.classList.add('correct-pick');
+        else if(j===v)b.classList.add('wrong-pick');
+      });
+      if(v===item.correct)correct++;
+      expEl.classList.add('show');
+    }
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length
+    ?'✓ Excellent! You identified all '+data.length+' errors correctly.'
+    :'You identified '+correct+' out of '+data.length+' errors correctly.';
 }
 
 // -- WORD ORDER --

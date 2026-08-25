@@ -134,6 +134,22 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .mistake-static .right{font-size:35px;margin:8px 0 0;}
 .recap-card .k{font-size:21px;}
 .recap-card .v{font-size:35px;margin-top:4px;}
+
+/* ── TOEFL error identification (practice) ── */
+.toefl-list{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start;}
+.toefl-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:16px 30px 22px;cursor:pointer;}
+.toefl-row .tsent{font-family:'Newsreader',serif;font-size:36px;line-height:1.95;margin:0;color:var(--text);}
+.toefl-row .tp{position:relative;display:inline-block;line-height:1.25;vertical-align:baseline;border-bottom:3px solid var(--muted-2);padding:0 3px 2px;}
+.toefl-row .tp i{position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:700;font-size:21px;letter-spacing:.08em;color:var(--muted-2);line-height:1;}
+.toefl-row.revealed .tp.bad{border-bottom-color:var(--accent);color:var(--accent-text);background:var(--accent-bg);border-radius:6px 6px 0 0;}
+.toefl-row.revealed .tp.bad i{color:var(--accent-text);}
+.toefl-row .tanswer{display:none;}
+.toefl-row.revealed .tanswer{display:block;}
+.toefl-row .tanswer .tfix{font-family:'Newsreader',serif;font-size:30px;line-height:1.3;margin:12px 0 0;color:var(--text);}
+.toefl-row .tanswer .tfix b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);margin-right:6px;}
+.toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
+.toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
+.sfit>.toefl-list{justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -317,40 +333,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- SLIDE 9 · PRACTICE 2 · SPOT THE MISTAKE -->
 <section class="slide bg-1 pad-sm" data-note="Ask which of the three parts is missing or wrong before tapping. Card 4 needs the passive, not just a fix.">
-<div class="sfit" style="zoom:1.183">
+<div class="sfit" style="zoom:1.0">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
-    <span class="hint">tap a card to fix it</span>
+    <span class="hint">tap a sentence to reveal the error</span>
   </div>
   <h2 class="slide-title compact">Spot the mistake</h2>
-  <div class="mistake-grid">
-    <div class="mistake-card">
-      <p class="wrong">From June, all the tickets will sold online.</p>
-      <div class="answer">
-        <p class="right">From June, all the tickets will be sold online.</p>
-        <p class="note">&#10003; The passive always needs <em>be</em>.</p>
-      </div>
+  <div class="toefl-list">
+    <div class="toefl-row">
+      <p class="tsent">The new bridge <span class="tp">will be opened<i>A</i></span> next spring <span class="tp">and<i>B</i></span> <span class="tp bad">the old one will be demolish<i>C</i></span> <span class="tp">soon<i>D</i></span> after.</p>
+      <div class="tanswer"><p class="tfix"><b>C</b>the old one will be demolish &rarr; <span class="tok">the old one will be demolished</span></p><p class="tnote">&#10003; will be + past participle</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">The new stadium will be build next year.</p>
-      <div class="answer">
-        <p class="right">The new stadium will be built next year.</p>
-        <p class="note">&#10003; After <em>be</em>, use the past participle.</p>
-      </div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp bad">The list of candidates were<i>A</i></span> published yesterday, <span class="tp">and<i>B</i></span> the interviews <span class="tp">will be held<i>C</i></span> <span class="tp">in<i>D</i></span> June.</p>
+      <div class="tanswer"><p class="tfix"><b>A</b>The list of candidates were &rarr; <span class="tok">The list of candidates was</span></p><p class="tnote">&#10003; the head noun is list → was</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">The winners will be chose next week.</p>
-      <div class="answer">
-        <p class="right">The winners will be chosen next week.</p>
-        <p class="note">&#10003; <em>Choose</em> is irregular: chose, chosen.</p>
-      </div>
-    </div>
-    <div class="mistake-card">
-      <p class="wrong">In the future, sneakers won't make of leather.</p>
-      <div class="answer">
-        <p class="right">In the future, sneakers won't be made of leather.</p>
-        <p class="note">&#10003; The sneakers don't make anything — the verb must be passive.</p>
-      </div>
+    <div class="toefl-row">
+      <p class="tsent">Your order <span class="tp">will be delivered<i>A</i></span> <span class="tp">on<i>B</i></span> Friday <span class="tp">and<i>C</i></span> <span class="tp bad">the invoice will sent<i>D</i></span> by email.</p>
+      <div class="tanswer"><p class="tfix"><b>D</b>the invoice will sent &rarr; <span class="tok">the invoice will be sent</span></p><p class="tnote">&#10003; the passive always needs be</p></div>
     </div>
   </div>
 </div>
@@ -564,5 +564,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 })();
 </script>
 
+<script>
+(function(){
+  var rows=document.querySelectorAll('.toefl-row');
+  for(var i=0;i<rows.length;i++)
+    rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
 </body>
 </html>

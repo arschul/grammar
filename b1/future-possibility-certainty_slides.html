@@ -127,6 +127,22 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .mistake-static .right{font-size:40px;margin:8px 0 0;}
 .recap-card .k{font-size:25px;}
 .recap-card .v{font-size:39px;margin-top:4px;}
+
+/* ── TOEFL error identification (practice) ── */
+.toefl-list{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start;}
+.toefl-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:16px 30px 22px;cursor:pointer;}
+.toefl-row .tsent{font-family:'Newsreader',serif;font-size:36px;line-height:1.95;margin:0;color:var(--text);}
+.toefl-row .tp{position:relative;display:inline-block;line-height:1.25;vertical-align:baseline;border-bottom:3px solid var(--muted-2);padding:0 3px 2px;}
+.toefl-row .tp i{position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:700;font-size:21px;letter-spacing:.08em;color:var(--muted-2);line-height:1;}
+.toefl-row.revealed .tp.bad{border-bottom-color:var(--accent);color:var(--accent-text);background:var(--accent-bg);border-radius:6px 6px 0 0;}
+.toefl-row.revealed .tp.bad i{color:var(--accent-text);}
+.toefl-row .tanswer{display:none;}
+.toefl-row.revealed .tanswer{display:block;}
+.toefl-row .tanswer .tfix{font-family:'Newsreader',serif;font-size:30px;line-height:1.3;margin:12px 0 0;color:var(--text);}
+.toefl-row .tanswer .tfix b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);margin-right:6px;}
+.toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
+.toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
+.sfit>.toefl-list{justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -266,28 +282,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- 9 · PRACTICE 2 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 2. Spot the error then tap to reveal.">
-<div class="sfit" style="zoom:1.061">
+<div class="sfit" style="zoom:1.0">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
-    <span class="hint">tap a card to fix it</span>
+    <span class="hint">tap a sentence to reveal the error</span>
   </div>
   <h2 class="slide-title compact">Spot the mistake</h2>
-  <div class="mistake-grid">
-    <div class="mistake-card">
-      <p class="wrong">She might to be at home tonight.</p>
-      <div class="answer"><p class="right">She might be at home tonight.</p><p class="note">✓ no "to" after modals</p></div>
+  <div class="toefl-list">
+    <div class="toefl-row">
+      <p class="tsent">The sky is grey, <span class="tp">so<i>A</i></span> it <span class="tp bad">might rains<i>B</i></span> later, <span class="tp">but<i>C</i></span> the forecast <span class="tp">says<i>D</i></span> it will be dry.</p>
+      <div class="tanswer"><p class="tfix"><b>B</b>might rains &rarr; <span class="tok">might rain</span></p><p class="tnote">&#10003; modals take the bare infinitive</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">I definitely will call you tomorrow.</p>
-      <div class="answer"><p class="right">I will definitely call you tomorrow.</p><p class="note">✓ definitely goes after will</p></div>
+    <div class="toefl-row">
+      <p class="tsent">The results <span class="tp">may<i>A</i></span> arrive tomorrow, <span class="tp">but<i>B</i></span> the committee <span class="tp">hasn&#x27;t<i>C</i></span> finished <span class="tp bad">to discuss<i>D</i></span> the proposals.</p>
+      <div class="tanswer"><p class="tfix"><b>D</b>to discuss &rarr; <span class="tok">discussing</span></p><p class="tnote">&#10003; finish + -ing</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">We probably won't to finish in time.</p>
-      <div class="answer"><p class="right">We probably won't finish in time.</p><p class="note">✓ no "to" after won't</p></div>
-    </div>
-    <div class="mistake-card">
-      <p class="wrong">He could to help you tomorrow.</p>
-      <div class="answer"><p class="right">He could help you tomorrow.</p><p class="note">✓ no "to" after could</p></div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp bad">It will be definitely<i>A</i></span> cold tonight, <span class="tp">so<i>B</i></span> take a coat <span class="tp">and<i>C</i></span> <span class="tp">maybe<i>D</i></span> a scarf.</p>
+      <div class="tanswer"><p class="tfix"><b>A</b>It will be definitely &rarr; <span class="tok">It will definitely be</span></p><p class="tnote">&#10003; the adverb goes between will and the verb</p></div>
     </div>
   </div>
 </div>
@@ -487,5 +499,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 })();
 </script>
 
+<script>
+(function(){
+  var rows=document.querySelectorAll('.toefl-row');
+  for(var i=0;i<rows.length;i++)
+    rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
 </body>
 </html>

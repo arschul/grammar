@@ -131,6 +131,22 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .mistake-static .right{font-size:44px;margin:8px 0 0;}
 .recap-card .k{font-size:28px;}
 .recap-card .v{font-size:51px;margin-top:4px;}
+
+/* ── TOEFL error identification (practice) ── */
+.toefl-list{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start;}
+.toefl-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:16px 30px 22px;cursor:pointer;}
+.toefl-row .tsent{font-family:'Newsreader',serif;font-size:36px;line-height:1.95;margin:0;color:var(--text);}
+.toefl-row .tp{position:relative;display:inline-block;line-height:1.25;vertical-align:baseline;border-bottom:3px solid var(--muted-2);padding:0 3px 2px;}
+.toefl-row .tp i{position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:700;font-size:21px;letter-spacing:.08em;color:var(--muted-2);line-height:1;}
+.toefl-row.revealed .tp.bad{border-bottom-color:var(--accent);color:var(--accent-text);background:var(--accent-bg);border-radius:6px 6px 0 0;}
+.toefl-row.revealed .tp.bad i{color:var(--accent-text);}
+.toefl-row .tanswer{display:none;}
+.toefl-row.revealed .tanswer{display:block;}
+.toefl-row .tanswer .tfix{font-family:'Newsreader',serif;font-size:30px;line-height:1.3;margin:12px 0 0;color:var(--text);}
+.toefl-row .tanswer .tfix b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);margin-right:6px;}
+.toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
+.toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
+.sfit>.toefl-list{justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -296,25 +312,21 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 <div class="sfit" style="zoom:1.0">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
-    <span class="hint">tap a card to fix it</span>
+    <span class="hint">tap a sentence to reveal the error</span>
   </div>
   <h2 class="slide-title compact">Spot the mistake</h2>
-  <div class="mistake-grid">
-    <div class="mistake-card">
-      <p class="wrong">The children was playing in the garden.</p>
-      <div class="answer"><p class="right">The children were playing in the garden.</p><p class="note">✓ plural → were</p></div>
+  <div class="toefl-list">
+    <div class="toefl-row">
+      <p class="tsent">While I <span class="tp">was cooking<i>A</i></span> dinner last night, my children <span class="tp bad">were play<i>B</i></span> <span class="tp">in<i>C</i></span> the garden <span class="tp">with<i>D</i></span> their new football.</p>
+      <div class="tanswer"><p class="tfix"><b>B</b>were play &rarr; <span class="tok">were playing</span></p><p class="tnote">&#10003; was / were + verb-ing</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">I were walking home when I saw her.</p>
-      <div class="answer"><p class="right">I was walking home when I saw her.</p><p class="note">✓ I → was</p></div>
+    <div class="toefl-row">
+      <p class="tsent">It <span class="tp">was raining<i>A</i></span> heavily <span class="tp">when<i>B</i></span> we left the cinema, <span class="tp">so<i>C</i></span> we <span class="tp bad">runned<i>D</i></span> to the bus stop.</p>
+      <div class="tanswer"><p class="tfix"><b>D</b>runned &rarr; <span class="tok">ran</span></p><p class="tnote">&#10003; run is irregular: run → ran</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">He was sitting and writeing a letter.</p>
-      <div class="answer"><p class="right">He was sitting and writing a letter.</p><p class="note">✓ write → drop e → writing</p></div>
-    </div>
-    <div class="mistake-card">
-      <p class="wrong">She was runing when she fell.</p>
-      <div class="answer"><p class="right">She was running when she fell.</p><p class="note">✓ run → double n → running</p></div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp bad">My parents was watching<i>A</i></span> television <span class="tp">when<i>B</i></span> the lights <span class="tp">suddenly<i>C</i></span> <span class="tp">went<i>D</i></span> out.</p>
+      <div class="tanswer"><p class="tfix"><b>A</b>My parents was watching &rarr; <span class="tok">My parents were watching</span></p><p class="tnote">&#10003; plural subject → were</p></div>
     </div>
   </div>
 </div>
@@ -514,5 +526,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 })();
 </script>
 
+<script>
+(function(){
+  var rows=document.querySelectorAll('.toefl-row');
+  for(var i=0;i<rows.length;i++)
+    rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
 </body>
 </html>

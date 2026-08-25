@@ -292,17 +292,38 @@
   .slot-chip:hover{background:var(--coral);color:#fff;}
 
   /* Mistake */
-  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
-  .mistake-option{
-    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
-    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
-    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  .toefl-sentence{
+    font-family:var(--serif);font-size:1.12rem;line-height:2.7;color:var(--ink);
+    margin:.2rem 0 .45rem;
   }
-  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
-  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
-
+  .toefl-sentence .tpart{
+    position:relative;display:inline-block;font:inherit;color:inherit;
+    line-height:1.3;vertical-align:baseline;
+    background:none;border:none;border-bottom:2px solid var(--ink-faint);
+    padding:0 .12em 2px;margin:0;cursor:pointer;border-radius:3px 3px 0 0;
+    transition:background .16s,border-color .16s,color .16s;
+  }
+  .toefl-sentence .tlabel{
+    position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;
+    font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1;pointer-events:none;transition:color .16s;
+  }
+  .toefl-sentence .tpart:hover{background:var(--brand-soft);border-bottom-color:var(--brand);}
+  .toefl-sentence .tpart:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  .toefl-sentence .tpart.picked{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .toefl-sentence .tpart.picked .tlabel{color:var(--coral);}
+  .toefl-sentence.locked .tpart{cursor:default;}
+  .toefl-sentence.locked .tpart:hover{background:none;border-bottom-color:var(--ink-faint);}
+  .toefl-sentence .tpart.correct-pick,
+  .toefl-sentence.locked .tpart.correct-pick:hover{
+    background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);
+  }
+  .toefl-sentence .tpart.correct-pick .tlabel{color:var(--correct);}
+  .toefl-sentence .tpart.wrong-pick,
+  .toefl-sentence.locked .tpart.wrong-pick:hover{
+    background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);
+  }
+  .toefl-sentence .tpart.wrong-pick .tlabel{color:var(--wrong);}
   /* Open */
   .open-answer-area{
     width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
@@ -509,7 +530,7 @@
     <div id="ff-act3" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Find the Mistake</div>
-        <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+        <div class="activity-desc">One sentence, four underlined parts. Click the lettered part that contains the error — it is not always in the grammar of this lesson, so read the whole sentence.</div>
         <div id="ff-mistake-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(3,'ff-mistake-exercises','ff-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
@@ -602,11 +623,31 @@ const FILL = [
   {sentence:"_____ they meeting tomorrow? Is it confirmed? (arrangement)", answer:"Are", explanation:"Use the present progressive for fixed arrangements: 'Are they meeting tomorrow?'"}
 ];
 const MISTAKE = [
-  {sentence:"I going to see the doctor tomorrow morning.", options:["I going to see","the doctor","tomorrow morning."], correct:0, explanation:"'Going to' needs the verb 'to be': 'I'm going to see the doctor tomorrow morning.'"},
-  {sentence:"The train wills leave at half past seven.", options:["The train wills leave","at half past seven","and it won't wait."], correct:0, explanation:"'Will' never takes -s: 'The train will leave at half past seven.'"},
-  {sentence:"She isn't going to comes to the party tonight.", options:["She isn't going to","comes to the party","tonight."], correct:1, explanation:"After 'going to', use the base verb: 'She isn't going to come to the party.'"},
-  {sentence:"I will to call you when I arrive at the station.", options:["I","will to call you","when I arrive at the station."], correct:1, explanation:"After 'will', use the base verb with no 'to': 'I will call you.'"},
-  {sentence:"We're meeting for lunch on Saturday — are you come?", options:["We're meeting for lunch","on Saturday","— are you come?"], correct:2, explanation:"For arrangements using the present progressive, use the -ing form: 'are you coming?'"}
+  {
+    sentence:"Look at those clouds — it [is going to] rain, [so] take an umbrella [before] you [will leave].",
+    correct:3,
+    explanation:"(D) Time clauses use the present simple for future meaning: <em>before you leave</em>. <em>Is going to rain</em> is a correct prediction from evidence."
+  },
+  {
+    sentence:"[My flight leave] at seven tomorrow morning, [so] I [am taking] a taxi [at] five.",
+    correct:0,
+    explanation:"(A) <em>My flight</em> is singular, so the present simple takes <em>-s</em>: <em>My flight leaves at seven</em>. Using the present simple for a timetable is otherwise correct."
+  },
+  {
+    sentence:"That's the doorbell — [don't] get up, I [am going to] answer [it] [myself].",
+    correct:1,
+    explanation:"(B) A decision made at the moment of speaking takes <em>will</em>: <em>I'll answer it myself</em>. <em>Going to</em> is for plans decided earlier."
+  },
+  {
+    sentence:"She [is flying] to Tokyo next Tuesday [and] will arrive [to] Narita airport [at] dawn.",
+    correct:2,
+    explanation:"(C) <em>Arrive</em> takes <em>at</em> or <em>in</em>, never <em>to</em>: <em>will arrive at Narita airport</em>. The future forms are correct."
+  },
+  {
+    sentence:"Careful — you [are going] [to dropping] those plates [if] you [carry] them all at once.",
+    correct:1,
+    explanation:"(B) <em>Going to</em> is followed by the base form: <em>you are going to drop those plates</em>."
+  }
 ];
 const ORDER = [
   {words:["going","She's","to","medicine.","study"], answer:"She's going to study medicine."},
@@ -686,25 +727,48 @@ function checkFill(cid,fid,data){
 // -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
+  const L=['A','B','C','D'];
   data.forEach((item,i)=>{
+    let k=-1;
+    const body=item.sentence.replace(/\[([^\]]+)\]/g,(m,t)=>{
+      k++;
+      return '<button type="button" class="tpart" data-i="'+k+'" onclick="pickPart(this)">'+t+'<span class="tlabel">'+(L[k]||'?')+'</span></button>';
+    });
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
-      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
-      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div>'
+      +'<div class="toefl-sentence" id="'+cid+'-ts-'+i+'">'+body+'</div>'
+      +'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
     c.appendChild(d);
   });
+}
+function pickPart(btn){
+  const w=btn.parentNode;
+  if(w.classList.contains('locked'))return;
+  w.querySelectorAll('.tpart').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
 }
 function checkMistake(cid,fid,data){
   let correct=0;
   data.forEach((item,i)=>{
-    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
-    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
-    const expEl=document.getElementById(`${cid}-mexp-${i}`);
-    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+    const w=document.getElementById(cid+'-ts-'+i);
+    const sel=w.querySelector('.tpart.picked');
+    const expEl=document.getElementById(cid+'-mexp-'+i);
+    if(sel){
+      w.classList.add('locked');
+      const v=parseInt(sel.getAttribute('data-i'),10);
+      w.querySelectorAll('.tpart').forEach((b,j)=>{
+        if(j===item.correct)b.classList.add('correct-pick');
+        else if(j===v)b.classList.add('wrong-pick');
+      });
+      if(v===item.correct)correct++;
+      expEl.classList.add('show');
+    }
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length
+    ?'✓ Excellent! You identified all '+data.length+' errors correctly.'
+    :'You identified '+correct+' out of '+data.length+' errors correctly.';
 }
 
 // -- WORD ORDER --

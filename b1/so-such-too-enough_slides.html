@@ -132,6 +132,22 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .mistake-static .right{font-size:37px;margin:8px 0 0;}
 .recap-card .k{font-size:23px;}
 .recap-card .v{font-size:37px;margin-top:4px;}
+
+/* ── TOEFL error identification (practice) ── */
+.toefl-list{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start;}
+.toefl-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:16px 30px 22px;cursor:pointer;}
+.toefl-row .tsent{font-family:'Newsreader',serif;font-size:36px;line-height:1.95;margin:0;color:var(--text);}
+.toefl-row .tp{position:relative;display:inline-block;line-height:1.25;vertical-align:baseline;border-bottom:3px solid var(--muted-2);padding:0 3px 2px;}
+.toefl-row .tp i{position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:700;font-size:21px;letter-spacing:.08em;color:var(--muted-2);line-height:1;}
+.toefl-row.revealed .tp.bad{border-bottom-color:var(--accent);color:var(--accent-text);background:var(--accent-bg);border-radius:6px 6px 0 0;}
+.toefl-row.revealed .tp.bad i{color:var(--accent-text);}
+.toefl-row .tanswer{display:none;}
+.toefl-row.revealed .tanswer{display:block;}
+.toefl-row .tanswer .tfix{font-family:'Newsreader',serif;font-size:30px;line-height:1.3;margin:12px 0 0;color:var(--text);}
+.toefl-row .tanswer .tfix b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);margin-right:6px;}
+.toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
+.toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
+.sfit>.toefl-list{justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -338,40 +354,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 <!-- SLIDE 9 · PRACTICE 2 — SPOT THE MISTAKE -->
 <section class="slide bg-1 pad-sm"
          data-note="Tap each card to reveal the correction. Ask students to explain why the original is wrong before tapping.">
-<div class="sfit" style="zoom:1.142">
+<div class="sfit" style="zoom:1.0">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
-    <span class="hint">tap a card to fix it</span>
+    <span class="hint">tap a sentence to reveal the error</span>
   </div>
   <h2 class="slide-title compact">Spot the mistake</h2>
-  <div class="mistake-grid">
-    <div class="mistake-card">
-      <p class="wrong">It was so a long film that we left early.</p>
-      <div class="answer">
-        <p class="right">It was <em>such a</em> long film that we left early.</p>
-        <p class="note">✓ adjective + noun → use <em>such</em></p>
-      </div>
+  <div class="toefl-list">
+    <div class="toefl-row">
+      <p class="tsent">We went home early <span class="tp">because<i>A</i></span> <span class="tp bad">it was so a cold evening<i>B</i></span> <span class="tp">that<i>C</i></span> nobody wanted to <span class="tp">stay<i>D</i></span> outside.</p>
+      <div class="tanswer"><p class="tfix"><b>B</b>it was so a cold evening &rarr; <span class="tok">it was such a cold evening</span></p><p class="tnote">&#10003; such + a + adjective + noun</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">She is enough confident to speak in public.</p>
-      <div class="answer">
-        <p class="right">She is <em>confident enough</em> to speak in public.</p>
-        <p class="note">✓ <em>enough</em> comes after the adjective</p>
-      </div>
+    <div class="toefl-row">
+      <p class="tsent">The exam was <span class="tp">so<i>A</i></span> difficult <span class="tp">that<i>B</i></span> half the class <span class="tp">failed<i>C</i></span>, <span class="tp bad">although the teacher say<i>D</i></span> it was fair.</p>
+      <div class="tanswer"><p class="tfix"><b>D</b>although the teacher say &rarr; <span class="tok">although the teacher says</span></p><p class="tnote">&#10003; the teacher → says</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">The coffee is too much hot to drink.</p>
-      <div class="answer">
-        <p class="right">The coffee is <em>too hot</em> to drink.</p>
-        <p class="note">✓ too + adjective — no "much"</p>
-      </div>
-    </div>
-    <div class="mistake-card">
-      <p class="wrong">They were so kind people that everyone liked them.</p>
-      <div class="answer">
-        <p class="right">They were <em>such kind</em> people that everyone liked them.</p>
-        <p class="note">✓ adjective + noun → use <em>such</em></p>
-      </div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp bad">The soup was too much salty<i>A</i></span> <span class="tp">for<i>B</i></span> me <span class="tp">to<i>C</i></span> finish, <span class="tp">so<i>D</i></span> I ordered a salad instead.</p>
+      <div class="tanswer"><p class="tfix"><b>A</b>The soup was too much salty &rarr; <span class="tok">The soup was too salty</span></p><p class="tnote">&#10003; too + adjective, with no much</p></div>
     </div>
   </div>
 </div>
@@ -640,5 +640,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 })();
 </script>
 
+<script>
+(function(){
+  var rows=document.querySelectorAll('.toefl-row');
+  for(var i=0;i<rows.length;i++)
+    rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
 </body>
 </html>

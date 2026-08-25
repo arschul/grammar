@@ -159,6 +159,22 @@ h2.giant{font-size:180px;font-weight:800;line-height:.9;letter-spacing:-.04em;co
 .mistake-static .right{font-size:35px;margin:8px 0 0;}
 .recap-card .k{font-size:17px;}
 .recap-card .v{font-size:35px;margin-top:4px;}
+
+/* ── TOEFL error identification (practice) ── */
+.toefl-list{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start;}
+.toefl-row{background:var(--cream-2);border:1px solid var(--border);border-radius:20px;padding:16px 30px 22px;cursor:pointer;}
+.toefl-row .tsent{font-family:'Newsreader',serif;font-size:36px;line-height:1.95;margin:0;color:var(--text);}
+.toefl-row .tp{position:relative;display:inline-block;line-height:1.25;vertical-align:baseline;border-bottom:3px solid var(--muted-2);padding:0 3px 2px;}
+.toefl-row .tp i{position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:700;font-size:21px;letter-spacing:.08em;color:var(--muted-2);line-height:1;}
+.toefl-row.revealed .tp.bad{border-bottom-color:var(--accent);color:var(--accent-text);background:var(--accent-bg);border-radius:6px 6px 0 0;}
+.toefl-row.revealed .tp.bad i{color:var(--accent-text);}
+.toefl-row .tanswer{display:none;}
+.toefl-row.revealed .tanswer{display:block;}
+.toefl-row .tanswer .tfix{font-family:'Newsreader',serif;font-size:30px;line-height:1.3;margin:12px 0 0;color:var(--text);}
+.toefl-row .tanswer .tfix b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);margin-right:6px;}
+.toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
+.toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
+.sfit>.toefl-list{justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -400,40 +416,24 @@ h2.giant{font-size:180px;font-weight:800;line-height:.9;letter-spacing:-.04em;co
 <!-- SLIDE 9 · PRACTICE 2 — SPOT THE MISTAKE -->
 <section class="slide bg-2 pad-sm"
          data-note="Students identify and correct the error. Ask them to name the rule that was broken before tapping.">
-<div class="sfit" style="zoom:1.42">
+<div class="sfit" style="zoom:1.0">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
     <span class="hint">tap a card to see the correction</span>
   </div>
   <h2 class="slide-title compact">Spot the mistake</h2>
-  <div class="mistake-grid">
-    <div class="mistake-card">
-      <p class="wrong">a red long Italian dress</p>
-      <div class="answer">
-        <p class="right">a long red Italian dress</p>
-        <p class="note">✓ Size (long) comes before colour (red).</p>
-      </div>
+  <div class="toefl-list">
+    <div class="toefl-row">
+      <p class="tsent">She bought <span class="tp">a<i>A</i></span> <span class="tp bad">red beautiful<i>B</i></span> silk scarf <span class="tp">at<i>C</i></span> the market <span class="tp">in<i>D</i></span> Marrakesh.</p>
+      <div class="tanswer"><p class="tfix"><b>B</b>red beautiful &rarr; <span class="tok">beautiful red</span></p><p class="tnote">&#10003; opinion comes before colour</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">a wooden old French clock</p>
-      <div class="answer">
-        <p class="right">an old French wooden clock</p>
-        <p class="note">✓ Age → origin → material.</p>
-      </div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp">Those<i>A</i></span> enormous old wooden doors <span class="tp">were<i>B</i></span> painted green, <span class="tp">but<i>C</i></span> the metal gate <span class="tp bad">have<i>D</i></span> not been touched.</p>
+      <div class="tanswer"><p class="tfix"><b>D</b>have &rarr; <span class="tok">has</span></p><p class="tnote">&#10003; the gate is singular → has</p></div>
     </div>
-    <div class="mistake-card">
-      <p class="wrong">a modern, small, Japanese house</p>
-      <div class="answer">
-        <p class="right">a small modern Japanese house</p>
-        <p class="note">✓ Size first; no commas between different categories.</p>
-      </div>
-    </div>
-    <div class="mistake-card">
-      <p class="wrong">a blue, beautiful Italian car</p>
-      <div class="answer">
-        <p class="right">a beautiful blue Italian car</p>
-        <p class="note">✓ Opinion (beautiful) always comes before colour (blue).</p>
-      </div>
+    <div class="toefl-row">
+      <p class="tsent"><span class="tp bad">A leather old brown<i>A</i></span> jacket <span class="tp">was<i>B</i></span> hanging <span class="tp">on<i>C</i></span> the back of the <span class="tp">chair<i>D</i></span>.</p>
+      <div class="tanswer"><p class="tfix"><b>A</b>A leather old brown &rarr; <span class="tok">An old brown leather jacket</span></p><p class="tnote">&#10003; age → colour → material</p></div>
     </div>
   </div>
 </div>
@@ -708,5 +708,12 @@ h2.giant{font-size:180px;font-weight:800;line-height:.9;letter-spacing:-.04em;co
 })();
 </script>
 
+<script>
+(function(){
+  var rows=document.querySelectorAll('.toefl-row');
+  for(var i=0;i<rows.length;i++)
+    rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
 </body>
 </html>

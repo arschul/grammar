@@ -292,17 +292,38 @@
   .slot-chip:hover{background:var(--coral);color:#fff;}
 
   /* Mistake */
-  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
-  .mistake-option{
-    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
-    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
-    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  .toefl-sentence{
+    font-family:var(--serif);font-size:1.12rem;line-height:2.7;color:var(--ink);
+    margin:.2rem 0 .45rem;
   }
-  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
-  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
-
+  .toefl-sentence .tpart{
+    position:relative;display:inline-block;font:inherit;color:inherit;
+    line-height:1.3;vertical-align:baseline;
+    background:none;border:none;border-bottom:2px solid var(--ink-faint);
+    padding:0 .12em 2px;margin:0;cursor:pointer;border-radius:3px 3px 0 0;
+    transition:background .16s,border-color .16s,color .16s;
+  }
+  .toefl-sentence .tlabel{
+    position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;
+    font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1;pointer-events:none;transition:color .16s;
+  }
+  .toefl-sentence .tpart:hover{background:var(--brand-soft);border-bottom-color:var(--brand);}
+  .toefl-sentence .tpart:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  .toefl-sentence .tpart.picked{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .toefl-sentence .tpart.picked .tlabel{color:var(--coral);}
+  .toefl-sentence.locked .tpart{cursor:default;}
+  .toefl-sentence.locked .tpart:hover{background:none;border-bottom-color:var(--ink-faint);}
+  .toefl-sentence .tpart.correct-pick,
+  .toefl-sentence.locked .tpart.correct-pick:hover{
+    background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);
+  }
+  .toefl-sentence .tpart.correct-pick .tlabel{color:var(--correct);}
+  .toefl-sentence .tpart.wrong-pick,
+  .toefl-sentence.locked .tpart.wrong-pick:hover{
+    background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);
+  }
+  .toefl-sentence .tpart.wrong-pick .tlabel{color:var(--wrong);}
   /* Open */
   .open-answer-area{
     width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
@@ -506,7 +527,7 @@
     <div id="pp-act3" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Find the Mistake</div>
-        <div class="activity-desc">Each sentence has exactly one error. Select the part that contains the mistake.</div>
+        <div class="activity-desc">One sentence, four underlined parts. Click the lettered part that contains the error — it is not always in the grammar of this lesson, so read the whole sentence.</div>
         <div id="pp-mistake-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(3,'pp-mistake-exercises','pp-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
@@ -599,11 +620,31 @@ const FILL = [
   {sentence:"We _____ (not see) that film. Can we watch it tonight?", answer:"haven't seen", alt:["have not seen"]}
 ];
 const MISTAKE = [
-  {sentence:"I have went to London twice and I loved it.", options:["I have went to London","twice","and I loved it."], correct:0, explanation:"'Go' is irregular. The past participle is 'gone': 'I have gone to London twice.'"},
-  {sentence:"She has visited Paris and she has saw the Eiffel Tower.", options:["She has visited Paris","and she has saw","the Eiffel Tower."], correct:1, explanation:"'See' is irregular. The past participle is 'seen': 'she has seen the Eiffel Tower.'"},
-  {sentence:"My parents have travalled to many places around the world.", options:["My parents have travalled","to many places","around the world."], correct:0, explanation:"The correct spelling is 'travelled': 'My parents have travelled to many places.'"},
-  {sentence:"We have watch that show three times and we still love it.", options:["We have watch","that show three times","and we still love it."], correct:0, explanation:"The past participle of 'watch' is 'watched': 'We have watched that show three times.'"},
-  {sentence:"Tom has read the book and he have done all the exercises too.", options:["Tom has read the book","and he have done","all the exercises too."], correct:1, explanation:"'He' takes 'has', not 'have': 'he has done all the exercises too.'"}
+  {
+    sentence:"[She has broke] her arm, [so] she [can't] play [in] Saturday's match.",
+    correct:0,
+    explanation:"(A) The past participle of <em>break</em> is <em>broken</em>: <em>She has broken her arm</em>."
+  },
+  {
+    sentence:"My parents [have] just [returned] from Italy, [and my father have brought] me a present [from] Rome.",
+    correct:2,
+    explanation:"(C) <em>My father</em> is singular, so it takes <em>has brought</em>. The first <em>have returned</em>, with <em>my parents</em>, is correct."
+  },
+  {
+    sentence:"We [have watched] that series three times [and] we [still] love it, [but she has never saw it].",
+    correct:3,
+    explanation:"(D) The past participle of <em>see</em> is <em>seen</em>: <em>she has never seen it</em>. <em>Have watched</em> is correct."
+  },
+  {
+    sentence:"She [has travelled] [in] more than thirty countries [and] [has written] a book about them.",
+    correct:1,
+    explanation:"(B) We <em>travel to</em> a country: <em>has travelled to more than thirty countries</em>. Both present perfect forms are correct."
+  },
+  {
+    sentence:"They [have been] in Berlin [since] Monday, [but they haven't visit] the museum [yet].",
+    correct:2,
+    explanation:"(C) The present perfect needs the past participle: <em>they haven't visited the museum yet</em>. <em>Have been ... since Monday</em> is correct."
+  }
 ];
 const ORDER = [
   {words:["never","I","have","ridden","horse.","a"], answer:"I have never ridden a horse."},
@@ -683,25 +724,48 @@ function checkFill(cid,fid,data){
 // -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
+  const L=['A','B','C','D'];
   data.forEach((item,i)=>{
+    let k=-1;
+    const body=item.sentence.replace(/\[([^\]]+)\]/g,(m,t)=>{
+      k++;
+      return '<button type="button" class="tpart" data-i="'+k+'" onclick="pickPart(this)">'+t+'<span class="tlabel">'+(L[k]||'?')+'</span></button>';
+    });
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
-      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
-      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div>'
+      +'<div class="toefl-sentence" id="'+cid+'-ts-'+i+'">'+body+'</div>'
+      +'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
     c.appendChild(d);
   });
+}
+function pickPart(btn){
+  const w=btn.parentNode;
+  if(w.classList.contains('locked'))return;
+  w.querySelectorAll('.tpart').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
 }
 function checkMistake(cid,fid,data){
   let correct=0;
   data.forEach((item,i)=>{
-    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
-    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
-    const expEl=document.getElementById(`${cid}-mexp-${i}`);
-    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+    const w=document.getElementById(cid+'-ts-'+i);
+    const sel=w.querySelector('.tpart.picked');
+    const expEl=document.getElementById(cid+'-mexp-'+i);
+    if(sel){
+      w.classList.add('locked');
+      const v=parseInt(sel.getAttribute('data-i'),10);
+      w.querySelectorAll('.tpart').forEach((b,j)=>{
+        if(j===item.correct)b.classList.add('correct-pick');
+        else if(j===v)b.classList.add('wrong-pick');
+      });
+      if(v===item.correct)correct++;
+      expEl.classList.add('show');
+    }
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length
+    ?'✓ Excellent! You identified all '+data.length+' errors correctly.'
+    :'You identified '+correct+' out of '+data.length+' errors correctly.';
 }
 
 // -- WORD ORDER --

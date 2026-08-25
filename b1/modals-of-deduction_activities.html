@@ -292,17 +292,38 @@
   .slot-chip:hover{background:var(--coral);color:#fff;}
 
   /* Mistake */
-  .mistake-options{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
-  .mistake-option{
-    background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
-    padding:.75rem 1rem;cursor:pointer;font-size:.94rem;transition:all .16s;
-    display:flex;align-items:center;gap:.65rem;color:var(--ink);
+  .toefl-sentence{
+    font-family:var(--serif);font-size:1.12rem;line-height:2.7;color:var(--ink);
+    margin:.2rem 0 .45rem;
   }
-  .mistake-option:hover{border-color:var(--brand);background:var(--brand-soft);}
-  .mistake-option.correct-pick{border-color:var(--correct);background:var(--correct-soft);}
-  .mistake-option.wrong-pick{border-color:var(--wrong);background:var(--wrong-soft);}
-  .mistake-option input[type=radio]{accent-color:var(--coral);width:16px;height:16px;flex:none;}
-
+  .toefl-sentence .tpart{
+    position:relative;display:inline-block;font:inherit;color:inherit;
+    line-height:1.3;vertical-align:baseline;
+    background:none;border:none;border-bottom:2px solid var(--ink-faint);
+    padding:0 .12em 2px;margin:0;cursor:pointer;border-radius:3px 3px 0 0;
+    transition:background .16s,border-color .16s,color .16s;
+  }
+  .toefl-sentence .tlabel{
+    position:absolute;left:0;right:0;top:100%;margin-top:3px;text-align:center;
+    font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1;pointer-events:none;transition:color .16s;
+  }
+  .toefl-sentence .tpart:hover{background:var(--brand-soft);border-bottom-color:var(--brand);}
+  .toefl-sentence .tpart:focus-visible{outline:2px solid var(--coral);outline-offset:3px;}
+  .toefl-sentence .tpart.picked{background:var(--coral-soft);border-bottom-color:var(--coral);}
+  .toefl-sentence .tpart.picked .tlabel{color:var(--coral);}
+  .toefl-sentence.locked .tpart{cursor:default;}
+  .toefl-sentence.locked .tpart:hover{background:none;border-bottom-color:var(--ink-faint);}
+  .toefl-sentence .tpart.correct-pick,
+  .toefl-sentence.locked .tpart.correct-pick:hover{
+    background:var(--correct-soft);border-bottom-color:var(--correct);color:var(--correct);
+  }
+  .toefl-sentence .tpart.correct-pick .tlabel{color:var(--correct);}
+  .toefl-sentence .tpart.wrong-pick,
+  .toefl-sentence.locked .tpart.wrong-pick:hover{
+    background:var(--wrong-soft);border-bottom-color:var(--wrong);color:var(--wrong);
+  }
+  .toefl-sentence .tpart.wrong-pick .tlabel{color:var(--wrong);}
   /* Open */
   .open-answer-area{
     width:100%;background:var(--raise);border:1.5px solid var(--line);border-radius:var(--r-sm);
@@ -513,7 +534,7 @@
     <div id="mdo-act3" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Find the Mistake</div>
-        <div class="activity-desc">Each sentence has one mistake. Select the part that contains it.</div>
+        <div class="activity-desc">One sentence, four underlined parts. Click the lettered part that contains the error — it is not always in the grammar of this lesson, so read the whole sentence.</div>
         <div id="mdo-mistake-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(3,'mdo-mistake-exercises','mdo-mistake-feedback',MISTAKE,checkMistake)">Check Answers</button>
@@ -606,26 +627,31 @@ const FILL = [
   {sentence:"They wrote the textbook themselves, so they _____ know the answer.", answer:"must", hint:"99% sure it's true", explanation:"'must' — logically, the authors are almost certain to know it."}
 ];
 const MISTAKE = [
-  {sentence:"The news must to be fake — nobody else is reporting it.",
-   options:["The news","must to be fake","— nobody else is reporting it."],
-   correct:1,
-   explanation:"After a modal, use the base infinitive without 'to': 'The news must be fake.'"},
-  {sentence:"He mustn't be at home, because all the lights are off.",
-   options:["He mustn't be at home,","because all","the lights are off."],
-   correct:0,
-   explanation:"For an impossible deduction, use 'can't', not 'mustn't': 'He can't be at home.'"},
-  {sentence:"She looks really happy today, so she must is in a good mood.",
-   options:["She looks really happy today,","so she","must is in a good mood."],
-   correct:2,
-   explanation:"Never conjugate the verb after a modal: 'she must be in a good mood.'"},
-  {sentence:"That story can be true — the details are clearly impossible.",
-   options:["That story can be true","— the details","are clearly impossible."],
-   correct:0,
-   explanation:"For deductions about impossibility, use 'can't be', not 'can be': 'That story can't be true.'"},
-  {sentence:"I don't know who's calling. It might being my sister.",
-   options:["I don't know","who's calling.","It might being my sister."],
-   correct:2,
-   explanation:"Use the base infinitive after the modal, not '-ing': 'It might be my sister.'"}
+  {
+    sentence:"Her coat [is still] on the hook, [so] [she can't to be] outside [in] this weather.",
+    correct:2,
+    explanation:"(C) Modals are followed by the bare infinitive: <em>she can't be outside</em>."
+  },
+  {
+    sentence:"[Everybody in the offices know] the code, [so] the thief [must] have [been] someone from outside.",
+    correct:0,
+    explanation:"(A) <em>Everybody</em> is singular and takes <em>knows</em>. The deduction <em>must have been</em> is correct."
+  },
+  {
+    sentence:"She [can't] be at work [because] her car [is] still here, [so she must to be] at home.",
+    correct:3,
+    explanation:"(D) <em>Must</em> takes the bare infinitive: <em>she must be at home</em>. <em>Can't be</em> is correct."
+  },
+  {
+    sentence:"That [must] be [the] Sara's brother — he looks [exactly] like her [in] the photograph.",
+    correct:1,
+    explanation:"(B) A possessive noun replaces the article: <em>that must be Sara's brother</em>. The deduction <em>must be</em> is correct."
+  },
+  {
+    sentence:"[He mustn't be] the manager — [he] looks [far] too young [for] the job.",
+    correct:0,
+    explanation:"(A) Negative deduction uses <em>can't</em>: <em>He can't be the manager</em>. <em>Mustn't</em> expresses prohibition, not deduction."
+  }
 ];
 const ORDER = [
   {words:["The","news","must","be","completely","fake."], answer:"The news must be completely fake."},
@@ -710,25 +736,48 @@ function checkFill(cid,fid,data){
 // -- MISTAKE --
 function buildMistakeHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
+  const L=['A','B','C','D'];
   data.forEach((item,i)=>{
+    let k=-1;
+    const body=item.sentence.replace(/\[([^\]]+)\]/g,(m,t)=>{
+      k++;
+      return '<button type="button" class="tpart" data-i="'+k+'" onclick="pickPart(this)">'+t+'<span class="tlabel">'+(L[k]||'?')+'</span></button>';
+    });
     const d=document.createElement('div');d.className='exercise';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q" style="margin-bottom:0.4rem"><em style="font-family:var(--serif);">${item.sentence}</em></div>
-      <div class="mistake-options">${item.options.map((opt,j)=>`<label class="mistake-option"><input type="radio" name="mistake-${cid}-${i}" value="${j}">${opt}</label>`).join('')}</div>
-      <div class="model-answer" id="${cid}-mexp-${i}"><strong>Explanation:</strong> ${item.explanation}</div>`;
+    d.innerHTML='<div class="exercise-num">Exercise '+(i+1)+'</div>'
+      +'<div class="toefl-sentence" id="'+cid+'-ts-'+i+'">'+body+'</div>'
+      +'<div class="model-answer" id="'+cid+'-mexp-'+i+'"><strong>Explanation:</strong> '+item.explanation+'</div>';
     c.appendChild(d);
   });
+}
+function pickPart(btn){
+  const w=btn.parentNode;
+  if(w.classList.contains('locked'))return;
+  w.querySelectorAll('.tpart').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');
 }
 function checkMistake(cid,fid,data){
   let correct=0;
   data.forEach((item,i)=>{
-    const s=document.querySelector(`input[name="mistake-${cid}-${i}"]:checked`);
-    const opts=document.querySelectorAll(`.mistake-option:has(input[name="mistake-${cid}-${i}"])`);
-    const expEl=document.getElementById(`${cid}-mexp-${i}`);
-    if(s){const v=parseInt(s.value);opts.forEach((o,j)=>{if(j===item.correct)o.classList.add('correct-pick');else if(j===v)o.classList.add('wrong-pick');});if(v===item.correct)correct++;expEl.classList.add('show');}
+    const w=document.getElementById(cid+'-ts-'+i);
+    const sel=w.querySelector('.tpart.picked');
+    const expEl=document.getElementById(cid+'-mexp-'+i);
+    if(sel){
+      w.classList.add('locked');
+      const v=parseInt(sel.getAttribute('data-i'),10);
+      w.querySelectorAll('.tpart').forEach((b,j)=>{
+        if(j===item.correct)b.classList.add('correct-pick');
+        else if(j===v)b.classList.add('wrong-pick');
+      });
+      if(v===item.correct)correct++;
+      expEl.classList.add('show');
+    }
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Excellent! All ${data.length} mistakes found correctly!`:`You found ${correct} out of ${data.length} mistakes correctly.`;
+  fb.textContent=correct===data.length
+    ?'✓ Excellent! You identified all '+data.length+' errors correctly.'
+    :'You identified '+correct+' out of '+data.length+' errors correctly.';
 }
 
 // -- WORD ORDER --
