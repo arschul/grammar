@@ -823,6 +823,7 @@ function printWorksheet(){
   var old=document.getElementById('gh-print-sheet');
   if(old) old.parentNode.removeChild(old);
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function plain(s){return String(s).replace(/<[^>]+>/g,'').replace(/^\s*\([A-E]\)\s*/,'');}
   var titleEl=document.querySelector('.topic-header h1');
   var title=titleEl?titleEl.textContent:document.title;
   var badgeEl=document.querySelector('.cefr-badge');
@@ -854,11 +855,11 @@ function printWorksheet(){
     h+='<div class="pw-item">'+(i+1)+'. '+s+'</div>';
   });
   h+='</div>';
-  h+='<div class="pw-sec"><h2>3 · Find the mistake</h2><p class="pw-inst">Each sentence has one mistake. Circle the letter of the part that contains it.</p>';
+  h+='<div class="pw-sec"><h2>3 · Find the mistake</h2><p class="pw-inst">Each sentence has one mistake. Circle the letter of the underlined part that contains it.</p>';
   MISTAKE.forEach(function(m,i){
-    h+='<div class="pw-item">'+(i+1)+'. ';
-    m.options.forEach(function(o,k){h+='<span class="pw-seg">'+String.fromCharCode(65+k)+') '+esc(o)+'</span> ';});
-    h+='</div>';
+    var L=['A','B','C','D','E'],k=-1;
+    var body=esc(m.sentence).replace(/\[([^\]]+)\]/g,function(_,t){k++;return '<u>'+t+'</u> <strong>('+(L[k]||'?')+')</strong>';});
+    h+='<div class="pw-item">'+(i+1)+'. '+body+'</div>';
   });
   h+='</div>';
   h+='<div class="pw-sec"><h2>4 · Put the words in order</h2><p class="pw-inst">Write the words in the correct order to make a complete sentence.</p>';
@@ -874,7 +875,7 @@ function printWorksheet(){
   h+='<div class="pw-key"><h2>Answer key</h2>';
   h+='<p><strong>1 · Match:</strong> '+MATCH.map(function(_,i){return (i+1)+'-'+keyMatch[i];}).join(', ')+'</p>';
   h+='<p><strong>2 · Fill in the gaps:</strong> '+FILL.map(function(f,i){return (i+1)+'. '+esc(f.answer);}).join(' &nbsp; ')+'</p>';
-  h+='<p><strong>3 · Find the mistake:</strong> '+MISTAKE.map(function(m,i){return (i+1)+'. '+String.fromCharCode(65+m.correct)+' — '+esc(m.explanation);}).join('<br>')+'</p>';
+  h+='<p><strong>3 · Find the mistake:</strong> '+MISTAKE.map(function(m,i){return (i+1)+'. '+String.fromCharCode(65+m.correct)+' — '+esc(plain(m.explanation));}).join('<br>')+'</p>';
   h+='<p><strong>4 · Word order:</strong> '+ORDER.map(function(o,i){return (i+1)+'. '+esc(o.answer);}).join(' &nbsp; ')+'</p>';
   h+='<p><strong>5 · Model answers:</strong> '+OPEN.map(function(q,i){return (i+1)+'. '+esc(q.model);}).join('<br>')+'</p>';
   h+='</div>';
