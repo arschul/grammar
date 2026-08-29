@@ -245,24 +245,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- 6 · COMMON MISTAKES -->
 <section class="slide bg-1 pad-md" data-note="The four big ones. Number one by a distance: keeping 'if'. Number two: contracting the negative — 'Hadn't he' is impossible here.">
-<div class="sfit" style="zoom:1.289">
+<div class="sfit" style="zoom:1.18">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
   <div class="mistake-grid-static">
     <div class="mistake-static">
-      <p class="wrong">If had I known, I would have called.</p>
+      <p class="wrong"><s>If</s> had I known, I would have called.</p>
       <p class="right"><strong class="hl-accent">Had I known</strong>, I would have called.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">Was it not for her advice, I would have failed.</p>
+      <p class="wrong"><s>Was</s> it not for her advice, I would have failed.</p>
       <p class="right"><strong class="hl-accent">Were it not for</strong> her advice, I would have failed.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">Should you needed help, call reception.</p>
+      <p class="wrong">Should you <s>needed</s> help, call reception.</p>
       <p class="right">Should you <strong class="hl-gold">need</strong> help, call reception.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">Hadn't he resigned, he would have been promoted.</p>
+      <p class="wrong"><s>Hadn't</s> he resigned, he would have been promoted.</p>
       <p class="right"><strong class="hl-accent">Had he not</strong> resigned, he would have been promoted.</p>
     </div>
   </div>
@@ -430,6 +430,19 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       border-radius:999px;padding:8px 16px;font-family:'Bricolage Grotesque',sans-serif;
       font-size:14px;font-weight:600;letter-spacing:.02em;box-shadow:0 8px 26px rgba(0,0,0,.38);}
 @media (max-width:900px){ .edge{opacity:1;} .edge .nav-arrow{width:48px;height:48px;font-size:22px;} }
+
+/* --- 2026 board-fill pass: mistake cards + error-ID rows --- */
+.mistake-grid-static{gap:18px;}
+.sfit>.mistake-grid-static{align-content:space-evenly;grid-auto-rows:min-content;}
+.sfit>.mistake-grid-static>*{justify-content:center;}
+.mistake-static{padding:24px 32px;}
+.mistake-static .wrong{font-size:38px;line-height:1.26;color:var(--muted);text-decoration:none;}
+.mistake-static .wrong s{text-decoration:line-through;text-decoration-thickness:.06em;text-underline-offset:0;color:var(--accent-text);}
+.mistake-static .wrong .miss{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);}
+.mistake-static .right{font-size:41px;line-height:1.26;margin:10px 0 0;}
+.toefl-row{padding:24px 32px 30px;}
+.toefl-row .tsent{font-size:40px;line-height:1.9;}
+.sfit>.toefl-list{justify-content:space-evenly;gap:16px;}
 </style>
 <div class="edge edge-l" data-edge="l"><button class="nav-arrow" id="edgePrev" aria-label="Previous slide" title="Previous (←)">‹</button></div>
 <div class="edge edge-r" data-edge="r"><button class="nav-arrow" id="edgeNext" aria-label="Next slide" title="Next (→)">›</button></div>
