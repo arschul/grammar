@@ -332,27 +332,27 @@ h2.giant{font-size:180px;font-weight:800;line-height:.9;letter-spacing:-.04em;co
 <!-- SLIDE 6 · COMMON MISTAKES -->
 <section class="slide bg-1 pad-md"
          data-note="These are the three most common mistakes at B1. Read each wrong version first and ask students to spot the error before revealing.">
-<div class="sfit" style="zoom:1.42">
+<div class="sfit" style="zoom:1.18">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
   <div class="mistake-grid-static">
     <div class="mistake-static">
-      <p class="wrong">a red big car</p>
+      <p class="wrong">a red <s>big</s> car</p>
       <p class="right">✓ a <strong class="hl-accent">big red</strong> car</p>
       <p style="font-size:22px;color:var(--muted);margin-top:8px;">Size comes before colour.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">a wooden old French table</p>
+      <p class="wrong"><s>a</s> <s>wooden</s> old French table</p>
       <p class="right">✓ an <strong class="hl-accent">old French wooden</strong> table</p>
       <p style="font-size:22px;color:var(--muted);margin-top:8px;">Age → origin → material.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">a pretty, Italian, small vase</p>
+      <p class="wrong">a pretty, Italian, <s>small</s> vase</p>
       <p class="right">✓ a <strong class="hl-accent">pretty small Italian</strong> vase</p>
       <p style="font-size:22px;color:var(--muted);margin-top:8px;">Opinion → size → origin. No comma between different categories.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">a round big silver coin</p>
+      <p class="wrong">a round <s>big</s> silver coin</p>
       <p class="right">✓ a <strong class="hl-accent">big round silver</strong> coin</p>
       <p style="font-size:22px;color:var(--muted);margin-top:8px;">Size comes before shape.</p>
     </div>
@@ -625,6 +625,19 @@ h2.giant{font-size:180px;font-weight:800;line-height:.9;letter-spacing:-.04em;co
       border-radius:999px;padding:8px 16px;font-family:'Bricolage Grotesque',sans-serif;
       font-size:14px;font-weight:600;letter-spacing:.02em;box-shadow:0 8px 26px rgba(0,0,0,.38);}
 @media (max-width:900px){ .edge{opacity:1;} .edge .nav-arrow{width:48px;height:48px;font-size:22px;} }
+
+/* --- 2026 board-fill pass: mistake cards + error-ID rows --- */
+.mistake-grid-static{gap:18px;}
+.sfit>.mistake-grid-static{align-content:space-evenly;grid-auto-rows:min-content;}
+.sfit>.mistake-grid-static>*{justify-content:center;}
+.mistake-static{padding:24px 32px;}
+.mistake-static .wrong{font-size:38px;line-height:1.26;color:var(--muted);text-decoration:none;}
+.mistake-static .wrong s{text-decoration:line-through;text-decoration-thickness:.06em;text-underline-offset:0;color:var(--accent-text);}
+.mistake-static .wrong .miss{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);}
+.mistake-static .right{font-size:41px;line-height:1.26;margin:10px 0 0;}
+.toefl-row{padding:24px 32px 30px;}
+.toefl-row .tsent{font-size:40px;line-height:1.9;}
+.sfit>.toefl-list{justify-content:space-evenly;gap:16px;}
 </style>
 <div class="edge edge-l" data-edge="l"><button class="nav-arrow" id="edgePrev" aria-label="Previous slide" title="Previous (←)">‹</button></div>
 <div class="edge edge-r" data-edge="r"><button class="nav-arrow" id="edgeNext" aria-label="Next slide" title="Next (→)">›</button></div>
