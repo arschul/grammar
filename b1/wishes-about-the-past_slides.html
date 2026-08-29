@@ -204,24 +204,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- 5 · COMMON MISTAKES -->
 <section class="slide bg-1 pad-md" data-note="Three errors: 'would have' instead of 'had', wrong subject-verb agreement (wish vs wishes), and 'have' instead of 'had'.">
-<div class="sfit" style="zoom:1.289">
+<div class="sfit" style="zoom:1.18">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
   <div class="mistake-grid-static">
     <div class="mistake-static">
-      <p class="wrong">I wish I would have studied harder.</p>
+      <p class="wrong">I wish I <s>would</s> <s>have</s> studied harder.</p>
       <p class="right">I wish I <strong class="hl-accent">had studied</strong> harder.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">She wish she hadn't said that.</p>
+      <p class="wrong">She <s>wish</s> she hadn't said that.</p>
       <p class="right">She <strong class="hl-gold">wishes</strong> she hadn't said that.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">I wish I have asked for directions.</p>
+      <p class="wrong">I wish I <s>have</s> asked for directions.</p>
       <p class="right">I wish I <strong class="hl-accent">had asked</strong> for directions.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">We wish we would have left earlier.</p>
+      <p class="wrong">We wish we <s>would</s> <s>have</s> left earlier.</p>
       <p class="right">We wish we <strong class="hl-gold">had left</strong> earlier.</p>
     </div>
   </div>
@@ -406,6 +406,19 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       border-radius:999px;padding:8px 16px;font-family:'Bricolage Grotesque',sans-serif;
       font-size:14px;font-weight:600;letter-spacing:.02em;box-shadow:0 8px 26px rgba(0,0,0,.38);}
 @media (max-width:900px){ .edge{opacity:1;} .edge .nav-arrow{width:48px;height:48px;font-size:22px;} }
+
+/* --- 2026 board-fill pass: mistake cards + error-ID rows --- */
+.mistake-grid-static{gap:18px;}
+.sfit>.mistake-grid-static{align-content:space-evenly;grid-auto-rows:min-content;}
+.sfit>.mistake-grid-static>*{justify-content:center;}
+.mistake-static{padding:24px 32px;}
+.mistake-static .wrong{font-size:38px;line-height:1.26;color:var(--muted);text-decoration:none;}
+.mistake-static .wrong s{text-decoration:line-through;text-decoration-thickness:.06em;text-underline-offset:0;color:var(--accent-text);}
+.mistake-static .wrong .miss{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);}
+.mistake-static .right{font-size:41px;line-height:1.26;margin:10px 0 0;}
+.toefl-row{padding:24px 32px 30px;}
+.toefl-row .tsent{font-size:40px;line-height:1.9;}
+.sfit>.toefl-list{justify-content:space-evenly;gap:16px;}
 </style>
 <div class="edge edge-l" data-edge="l"><button class="nav-arrow" id="edgePrev" aria-label="Previous slide" title="Previous (←)">‹</button></div>
 <div class="edge edge-r" data-edge="r"><button class="nav-arrow" id="edgeNext" aria-label="Next slide" title="Next (→)">›</button></div>
