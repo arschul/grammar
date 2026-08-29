@@ -256,24 +256,24 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 
 <!-- SLIDE 6 · COMMON MISTAKES -->
 <section class="slide bg-1 pad-md" data-note="Four errors, four rules — conjunction gone, having not have, not not don't, past participle not past simple.">
-<div class="sfit" style="zoom:1.20">
+<div class="sfit" style="zoom:1.18">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
   <div class="mistake-grid-static">
     <div class="mistake-static">
-      <p class="wrong">Because being metal, the lid expands.</p>
+      <p class="wrong"><s>Because</s> being metal, the lid expands.</p>
       <p class="right">Correct: <strong class="hl-accent">Being metal</strong>, the lid expands.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">Have used her name, you're less likely to forget it.</p>
+      <p class="wrong"><s>Have</s> used her name, you're less likely to forget it.</p>
       <p class="right">Correct: <strong class="hl-accent">Having used</strong> her name&hellip;</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">Don't having a car, we take the bus.</p>
+      <p class="wrong"><s>Don't</s> having a car, we take the bus.</p>
       <p class="right">Correct: <strong class="hl-accent">Not having</strong> a car&hellip;</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong">Having already saw the film, she stayed in.</p>
+      <p class="wrong">Having already <s>saw</s> the film, she stayed in.</p>
       <p class="right">Correct: Having already <strong class="hl-accent">seen</strong> the film&hellip;</p>
     </div>
   </div>
@@ -475,6 +475,19 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       border-radius:999px;padding:8px 16px;font-family:'Bricolage Grotesque',sans-serif;
       font-size:14px;font-weight:600;letter-spacing:.02em;box-shadow:0 8px 26px rgba(0,0,0,.38);}
 @media (max-width:900px){ .edge{opacity:1;} .edge .nav-arrow{width:48px;height:48px;font-size:22px;} }
+
+/* --- 2026 board-fill pass: mistake cards + error-ID rows --- */
+.mistake-grid-static{gap:18px;}
+.sfit>.mistake-grid-static{align-content:space-evenly;grid-auto-rows:min-content;}
+.sfit>.mistake-grid-static>*{justify-content:center;}
+.mistake-static{padding:24px 32px;}
+.mistake-static .wrong{font-size:38px;line-height:1.26;color:var(--muted);text-decoration:none;}
+.mistake-static .wrong s{text-decoration:line-through;text-decoration-thickness:.06em;text-underline-offset:0;color:var(--accent-text);}
+.mistake-static .wrong .miss{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;color:var(--accent-text);}
+.mistake-static .right{font-size:41px;line-height:1.26;margin:10px 0 0;}
+.toefl-row{padding:24px 32px 30px;}
+.toefl-row .tsent{font-size:40px;line-height:1.9;}
+.sfit>.toefl-list{justify-content:space-evenly;gap:16px;}
 </style>
 <div class="edge edge-l" data-edge="l"><button class="nav-arrow" id="edgePrev" aria-label="Previous slide" title="Previous (←)">‹</button></div>
 <div class="edge edge-r" data-edge="r"><button class="nav-arrow" id="edgeNext" aria-label="Next slide" title="Next (→)">›</button></div>
