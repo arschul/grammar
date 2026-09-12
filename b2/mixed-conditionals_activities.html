@@ -553,7 +553,7 @@
 </div>
 
 <script>
-// -- THEME (light default; honour saved pref) --
+// -- THEME (light default; honor saved pref) --
 function toggleTheme(){
   const root=document.documentElement;
   const isDark=root.getAttribute('data-theme')==='dark';
@@ -600,13 +600,13 @@ function checkStep(step,cid,fid,data,fn){
 const MATCH = [
   {left:"1. If I had saved more money,", right:"a. I would own a flat now."},
   {left:"2. If she were taller,", right:"b. she would have made the team last year."},
-  {left:"3. If they hadn't cancelled the flight,", right:"c. we would be in Rome right now."},
+  {left:"3. If they hadn't canceled the flight,", right:"c. we would be in Rome right now."},
   {left:"4. If he weren't afraid of water,", right:"d. he would have learned to swim as a child."},
   {left:"5. If we had left earlier,", right:"e. we wouldn't be stuck in traffic."}
 ];
 const FILL = [
   {sentence:"If I _____ so much last night, I wouldn't feel sick now.", answer:"hadn't eaten", hint:"not eat", alt:["had not eaten"], explanation:"Past condition, present result. The if-clause needs the past perfect: 'hadn't eaten'."},
-  {sentence:"If she were more organised, she _____ the deadline yesterday.", answer:"wouldn't have missed", hint:"not miss", alt:["would not have missed"], explanation:"Present condition, past result. The result needs 'would have' + past participle: 'wouldn't have missed'."},
+  {sentence:"If she were more organized, she _____ the deadline yesterday.", answer:"wouldn't have missed", hint:"not miss", alt:["would not have missed"], explanation:"Present condition, past result. The result needs 'would have' + past participle: 'wouldn't have missed'."},
   {sentence:"If they had booked earlier, they _____ on the beach now.", answer:"would be", hint:"be", explanation:"Past condition, present result. Use 'would' + base verb: 'would be'."},
   {sentence:"If he _____ Spanish, he would have understood the announcement.", answer:"spoke", hint:"speak", explanation:"Present (permanent) condition, past result. The if-clause uses the past simple: 'spoke'."},
   {sentence:"If we hadn't taken a wrong turn, we _____ home by now.", answer:"would be", hint:"be", explanation:"Past condition, present result. Use 'would' + base verb: 'would be'."}
@@ -633,9 +633,9 @@ const MISTAKE = [
     explanation:"(C) You <em>apply for</em> a role: <em>she applied for a different role</em>. The mixed conditional is correct."
   },
   {
-    sentence:"If they [were] more organised, they [wouldn't have missed] the deadline, [and] [the client would not cancelled] the contract.",
+    sentence:"If they [were] more organized, they [wouldn't have missed] the deadline, [and] [the client would not canceled] the contract.",
     correct:3,
-    explanation:"(D) The result here is in the past, so it takes <em>would have</em> + past participle: <em>the client would not have cancelled the contract</em>. The present condition is correct."
+    explanation:"(D) The result here is in the past, so it takes <em>would have</em> + past participle: <em>the client would not have canceled the contract</em>. The present condition is correct."
   }
 ];
 const ORDER = [
