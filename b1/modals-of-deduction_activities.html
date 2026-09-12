@@ -568,7 +568,7 @@
 </div>
 
 <script>
-// -- THEME (light default; honour saved pref) --
+// -- THEME (light default; honor saved pref) --
 function toggleTheme(){
   const root=document.documentElement;
   const isDark=root.getAttribute('data-theme')==='dark';
@@ -622,7 +622,7 @@ const MATCH = [
 const FILL = [
   {sentence:"You've been studying all day. You _____ be exhausted.", answer:"must", hint:"99% sure it's true", explanation:"'must' — strong evidence makes you almost certain it's true."},
   {sentence:"I'm not sure where Ana is. She _____ be at the gym.", answer:"might", alt:["may","could"], hint:"maybe", explanation:"'might' (or 'may' / 'could') — you aren't sure; it's just possible."},
-  {sentence:"That _____ be Tom's car — he doesn't even have a driving licence.", answer:"can't", alt:["cannot"], hint:"99% sure it's NOT true", explanation:"'can't' — the evidence makes it impossible. Not 'mustn't'."},
+  {sentence:"That _____ be Tom's car — he doesn't even have a driving license.", answer:"can't", alt:["cannot"], hint:"99% sure it's NOT true", explanation:"'can't' — the evidence makes it impossible. Not 'mustn't'."},
   {sentence:"This website has no sources at all. The story _____ be fake news.", answer:"could", alt:["might","may"], hint:"maybe", explanation:"'could' (or 'might' / 'may') — it's possible, but you can't be certain."},
   {sentence:"They wrote the textbook themselves, so they _____ know the answer.", answer:"must", hint:"99% sure it's true", explanation:"'must' — logically, the authors are almost certain to know it."}
 ];
@@ -665,7 +665,7 @@ const OPEN = [
    model:"She must be really busy at work today. Or she might be at the cinema with her phone switched off."},
   {question:"You see a news headline that sounds unbelievable. Write two deductions about it using 'can't' and 'could'.",
    model:"This headline can't be completely true — no other site is reporting it. The photo could be edited, too."},
-  {question:"Your neighbour's lights have been off for a week. Write two deductions about where they are.",
+  {question:"Your neighbor's lights have been off for a week. Write two deductions about where they are.",
    model:"They must be away on holiday. They might be visiting their family in another city."},
   {question:"A classmate got the highest score on a very difficult exam. Write two deductions using 'must'.",
    model:"He must study for hours every day. He must be really good at managing his time."},
