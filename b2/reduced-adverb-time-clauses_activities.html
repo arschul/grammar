@@ -580,7 +580,7 @@
 </div>
 
 <script>
-// -- THEME (light default; honour saved pref) --
+// -- THEME (light default; honor saved pref) --
 function toggleTheme(){
   const root=document.documentElement;
   const isDark=root.getAttribute('data-theme')==='dark';
@@ -657,7 +657,7 @@ const MISTAKE = [
     explanation:"(A) A reduced clause must share the subject of the main clause — lights cannot leave: <em>Before leaving the office, you must switch the lights off</em>."
   },
   {
-    sentence:"[While] travelling [through] Vietnam, they [arrived to] Hue [at] midnight.",
+    sentence:"[While] traveling [through] Vietnam, they [arrived to] Hue [at] midnight.",
     correct:2,
     explanation:"(C) <em>Arrive</em> takes <em>in</em> or <em>at</em>: <em>they arrived in Hue at midnight</em>. The reduced time clause is correct."
   },
@@ -679,8 +679,8 @@ const ORDER = [
 const OPEN = [
   {question:"What do you like to do after a long day of work or study? Answer with 'After + -ing'.", model:"After working all day, I usually go for a run by the river. After finishing that, I cook something simple and read for an hour."},
   {question:"Describe something you always do before you go to bed. Use 'Before + -ing' twice.", model:"Before going to bed, I always leave my phone in another room. Before doing that, I write a short list of what I need to do the next day."},
-  {question:"How has your life changed since you started a new job, course or hobby? Use 'Since + -ing'.", model:"Since starting this course, I have had far less free time. Since moving closer to the centre, though, I spend much less of it travelling."},
-  {question:"Describe your reaction to a piece of surprising news. Use 'On + -ing'.", model:"On hearing that my sister had passed her exams, I called her straight away. On seeing her face that evening, I realised how relieved she was."},
+  {question:"How has your life changed since you started a new job, course or hobby? Use 'Since + -ing'.", model:"Since starting this course, I have had far less free time. Since moving closer to the center, though, I spend much less of it traveling."},
+  {question:"Describe your reaction to a piece of surprising news. Use 'On + -ing'.", model:"On hearing that my sister had passed her exams, I called her straight away. On seeing her face that evening, I realized how relieved she was."},
   {question:"Write a time sentence that cannot be reduced, and explain why not.", model:"'While my brother was cooking, I set the table' cannot be reduced. The two clauses have different subjects, and a reduced clause always belongs to the subject of the main clause."}
 ];
 // -- MATCH --
