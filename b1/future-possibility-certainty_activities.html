@@ -548,7 +548,7 @@
 </div>
 
 <script>
-// -- THEME (light default; honour saved pref) --
+// -- THEME (light default; honor saved pref) --
 function toggleTheme(){
   const root=document.documentElement;
   const isDark=root.getAttribute('data-theme')==='dark';
@@ -596,7 +596,7 @@ const MATCH = [
   {left:"1. I might stay home tonight —", right:"a. I'm not sure yet."},
   {left:"2. She will definitely get the job.", right:"b. She is completely certain about it."},
   {left:"3. He probably won't come to the party", right:"c. because he is very busy this week."},
-  {left:"4. You could find a cheaper flat", right:"d. if you look outside the city centre."},
+  {left:"4. You could find a cheaper flat", right:"d. if you look outside the city center."},
   {left:"5. They will probably move abroad", right:"e. but they haven't decided for sure."}
 ];
 const FILL = [
@@ -608,7 +608,7 @@ const FILL = [
 ];
 const MISTAKE = [
   {
-    sentence:"The sky is grey, [so] it [might rains] later, [but] the forecast [says] it will be dry.",
+    sentence:"The sky is gray, [so] it [might rains] later, [but] the forecast [says] it will be dry.",
     correct:1,
     explanation:"(B) After <em>might</em> the verb takes its base form: <em>it might rain later</em>."
   },
