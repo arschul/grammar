@@ -3,7 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- HUBGEN:theme start -->
+  <script>
+    (function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+      if(!v){var old=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme"];
+        for(var i=0;i<old.length;i++){var o=localStorage.getItem(old[i]);if(o){v=o;break;}}
+        v=v||"dark";localStorage.setItem(k,v);}
+      var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+      document.documentElement.setAttribute("data-theme",m);}catch(e){}})();
+  </script>
+<!-- HUBGEN:theme end -->
 <title>GrammarHub</title>
+<!-- HUBGEN:head start -->
+  <meta name="description" content="Interactive English grammar lessons and slide decks, A1 to B2.">
+  <link rel="icon" href="https://arschul.github.io/assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Grammar Hub">
+  <meta property="og:description" content="Interactive English grammar lessons and slide decks, A1 to B2.">
+  <meta property="og:url" content="https://arschul.github.io/grammar/">
+  <link rel="stylesheet" href="https://arschul.github.io/assets/hub.v2.css">
+  <script defer src="https://arschul.github.io/assets/hub.v2.js"></script>
+  <style>:root{--hub-bg:var(--paper);--hub-surface:var(--card);--hub-ink:var(--ink);--hub-ink-soft:var(--ink-soft);--hub-rule:var(--line);--hub-accent:var(--brand);--hub-radius:var(--r);--hub-font-display:'Bricolage Grotesque', sans-serif;--hub-font-ui:'DM Sans', sans-serif;}</style>
+<!-- HUBGEN:head end -->
+<style>
+  /* fallback if the shared stylesheet fails to load — structure only */
+  .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem;}
+  .hub-card{display:flex;flex-direction:column;gap:.45rem;padding:1.1rem 1.25rem;
+    border:1px solid currentColor;border-radius:10px;text-decoration:none;color:inherit;opacity:.95;}
+  .hub-card[hidden]{display:none;}
+  .hub-card__title{margin:0;font-size:1.02rem;}
+  .hub-card__blurb{margin:0;font-size:.86rem;line-height:1.5;}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
@@ -180,7 +210,9 @@
 </head>
 <body>
 <nav>
-  <a class="main-hub-link" href="../">← Main Hub</a>
+  <!-- HUBGEN:backlink start -->
+  <a class="hub-backlink" href="https://arschul.github.io/">← Classroom Hub</a>
+<!-- HUBGEN:backlink end -->
   <a class="nav-logo" href="index.html">Grammar<span>Hub</span></a>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -798,23 +830,6 @@
 </div>
 
 <script>
-function toggleTheme(){
-  const root=document.documentElement;
-  const isDark=root.getAttribute('data-theme')==='dark';
-  root.setAttribute('data-theme',isDark?'light':'dark');
-  document.getElementById('theme-btn').textContent=isDark?'🌙':'☀️';
-  localStorage.setItem('gh-theme',isDark?'light':'dark');
-}
-(function(){
-  const saved=localStorage.getItem('gh-theme');
-  if(saved==='dark'){
-    document.documentElement.setAttribute('data-theme','dark');
-    document.addEventListener('DOMContentLoaded',()=>{
-      const btn=document.getElementById('theme-btn');
-      if(btn)btn.textContent='☀️';
-    });
-  }
-})();
 
 /* ── SEARCH ── */
 (function(){
