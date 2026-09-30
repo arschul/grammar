@@ -56,6 +56,7 @@ for f in files:
         o = len(re.findall(r'<%s[\s>]' % tag, h)); c = h.count('</%s>' % tag)
         if o != c: bad(f, f'<{tag}> {o} open vs {c} close')
     body = h.split('</style>', 1)[-1]
+    if len(re.findall(r'class="[^"]*\b(?:theme-toggle|theme-btn)\b', body)) > 1: bad(f, 'more than one .theme-toggle/.theme-btn (leaf.v1.js paints them all as theme buttons)')
     visible = re.sub(r'<script>.*?</script>', '', body, flags=re.S)
     for b in BRE:
         for m in re.finditer(b, text(visible) + ' ' + ' '.join(js_blocks(h)), re.I):
