@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -489,7 +505,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
       <div class="note-box">
         <strong>⚠ Common mistakes:</strong><br>
         ✗ <em>If I would have known, I would be there.</em> → ✓ <em>If I <strong>had known</strong>, I would be there.</em> (no <em>would</em> in the if-clause)<br>
-        ✗ <em>If she were lucky, she would went by ambulance.</em> → ✓ <em>she <strong>would have gone</strong></em> (result is past → need <em>have</em> + participle)<br>
+        ✗ <em>If she were more careful, she wouldn't lost her keys.</em> → ✓ <em>she <strong>wouldn't have lost</strong></em> (result is past → need <em>have</em> + participle)<br>
         ✗ <em>If he had trained, he would be fit now.</em> is fine — just don't mix up which clause is past perfect vs. past simple.
       </div>
     </div></div>
@@ -608,7 +624,7 @@ function checkStep(step,cid,fid,data,fn){
 
 // -- DATA --
 const MATCH = [
-  {left:"1. If I had saved more money,", right:"a. I would own a flat now."},
+  {left:"1. If I had saved more money,", right:"a. I would own an apartment now."},
   {left:"2. If she were taller,", right:"b. she would have made the team last year."},
   {left:"3. If they hadn't canceled the flight,", right:"c. we would be in Rome right now."},
   {left:"4. If he weren't afraid of water,", right:"d. he would have learned to swim as a child."},
@@ -622,31 +638,11 @@ const FILL = [
   {sentence:"If we hadn't taken a wrong turn, we _____ home by now.", answer:"would be", hint:"be", explanation:"Past condition, present result. Use 'would' + base verb: 'would be'."}
 ];
 const MISTAKE = [
-  {
-    sentence:"If I [had taken] that job, [I would have been] much happier [today], [but] I turned it down.",
-    correct:1,
-    explanation:"(B) A past condition with a present result takes <em>would</em> + base form: <em>I would be much happier today</em>."
-  },
-  {
-    sentence:"If he [had listened] to the doctor, he [would be] healthier now, [but] [his habits was] always terrible.",
-    correct:3,
-    explanation:"(D) <em>His habits</em> is plural, so it takes <em>were</em>. The mixed conditional is correct."
-  },
-  {
-    sentence:"[If I would have saved] more money, I [would own] a flat [by] now [instead] of renting.",
-    correct:0,
-    explanation:"(A) The <em>if</em>-clause takes the past perfect: <em>If I had saved more money</em>. The present result <em>I would own a flat by now</em> is correct."
-  },
-  {
-    sentence:"If she [spoke] Mandarin, she [would have got] the Shanghai post, [but she applied to] a different role [instead].",
-    correct:2,
-    explanation:"(C) You <em>apply for</em> a role: <em>she applied for a different role</em>. The mixed conditional is correct."
-  },
-  {
-    sentence:"If they [were] more organized, they [wouldn't have missed] the deadline, [and] [the client would not canceled] the contract.",
-    correct:3,
-    explanation:"(D) The result here is in the past, so it takes <em>would have</em> + past participle: <em>the client would not have canceled the contract</em>. The present condition is correct."
-  }
+  {"sentence": "If I [had taken] that job, [I would have been] much happier [today], [but] I turned it down.", "correct": 1, "explanation": "(B) A past condition with a present result takes <em>would</em> + base form: <em>I would be much happier today</em>.", "fix": "I would be", "note": "past condition + present result → would + base verb"},
+  {"sentence": "If he [had listened] to the doctor, he [would be] healthier now, [but] [his habits was] always terrible.", "correct": 3, "explanation": "(D) <em>His habits</em> is plural, so it takes <em>were</em>. The mixed conditional is correct.", "fix": "his habits were", "note": "his habits is plural → were"},
+  {"sentence": "[If I would have saved] more money, I [would own] an apartment [by] now [instead] of renting.", "correct": 0, "explanation": "(A) The <em>if</em>-clause takes the past perfect: <em>If I had saved more money</em>. The present result <em>I would own an apartment by now</em> is correct.", "fix": "If I had saved", "note": "no would have in the if-clause"},
+  {"sentence": "If she [spoke] Mandarin, she [would have gotten] the Shanghai post, [but she applied to] a different role [instead].", "correct": 2, "explanation": "(C) You <em>apply for</em> a role: <em>she applied for a different role</em>. The mixed conditional is correct."},
+  {"sentence": "If they [were] more organized, they [wouldn't have missed] the deadline, [and] [the client would not canceled] the contract.", "correct": 3, "explanation": "(D) The result here is in the past, so it takes <em>would have</em> + past participle: <em>the client would not have canceled the contract</em>. The present condition is correct."}
 ];
 const ORDER = [
   {words:["If","I","had","slept","more,","I","wouldn't","be","tired."], answer:"If I had slept more, I wouldn't be tired."},
@@ -699,28 +695,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -801,12 +818,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

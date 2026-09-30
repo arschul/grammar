@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -624,31 +640,11 @@ const FILL = [
   {sentence:"We _____ for the bus at the station.", answer:"are waiting", hint:"wait", explanation:"Subject 'we' (plural) → are + waiting."}
 ];
 const MISTAKE = [
-  {
-    sentence:"[My two cousins playing] football in the park [while] their father [watches] them [from] the car.",
-    correct:0,
-    explanation:"(A) The present continuous needs <em>am/is/are</em> before the <em>-ing</em> verb: <em>My two cousins are playing</em>."
-  },
-  {
-    sentence:"The children [are waiting] quietly [outside] the classroom because their teacher [is collecting] their [homeworks].",
-    correct:3,
-    explanation:"(D) <em>Homework</em> is uncountable and has no plural form: <em>their homework</em>. Both present continuous verbs in this sentence are correct."
-  },
-  {
-    sentence:"My sister [is sitting] at the kitchen table and [writeing] a long letter [to] her best friend [in] Canada.",
-    correct:1,
-    explanation:"(B) <em>Write</em> drops its silent <em>-e</em> before <em>-ing</em>. The correct spelling is <em>writing</em>."
-  },
-  {
-    sentence:"My mother [is making] dinner in the kitchen [while] [my brother and me] [are setting] the table.",
-    correct:2,
-    explanation:"(C) In the subject of a clause, use the subject pronoun after <em>and</em>: <em>my brother and I</em>. Both continuous verbs in this sentence are correct."
-  },
-  {
-    sentence:"[Why is] your brother [wearing] a heavy coat today [when] the sun [is shine] so brightly outside?",
-    correct:3,
-    explanation:"(D) After <em>is</em> the verb needs <em>-ing</em>: <em>is shining</em>. Note that the first continuous verb, <em>is wearing</em>, is perfectly correct."
-  }
+  {"sentence": "[My two cousins playing] football in the park [while] their father [is watching] them [from] the car.", "correct": 0, "explanation": "(A) The present continuous needs <em>am/is/are</em> before the <em>-ing</em> verb: <em>My two cousins are playing</em>.", "fix": "My two cousins are playing", "note": "never drop am/is/are"},
+  {"sentence": "My sister [is sitting] at the kitchen table and [writeing] a long letter [to] her best friend [in] Canada.", "correct": 1, "explanation": "(B) <em>Write</em> drops its silent <em>-e</em> before <em>-ing</em>. The correct spelling is <em>writing</em>.", "fix": "writing", "note": "write drops the silent e → writing"},
+  {"sentence": "[Why is] your brother [wearing] a heavy coat today [when] the sun [is shine] so brightly outside?", "correct": 3, "explanation": "(D) After <em>is</em> the verb needs <em>-ing</em>: <em>is shining</em>. Note that the first continuous verb, <em>is wearing</em>, is perfectly correct.", "fix": "is shining", "note": "is + verb-ing, even in the second clause"},
+  {"sentence": "The children [are waiting] quietly [outside] the classroom because their teacher [is collecting] their [homeworks].", "correct": 3, "explanation": "(D) <em>Homework</em> is uncountable and has no plural form: <em>their homework</em>. Both present continuous verbs in this sentence are correct.", "fix": "homework", "note": "homework is uncountable — no -s"},
+  {"sentence": "My mother [is making] dinner in the kitchen [while] [my brother and me] [are setting] the table.", "correct": 2, "explanation": "(C) In the subject of a clause, use the subject pronoun after <em>and</em>: <em>my brother and I</em>. Both continuous verbs in this sentence are correct."}
 ];
 const ORDER = [
   {words:["She","is","reading","a","book","in","the","garden."], answer:"She is reading a book in the garden."},
@@ -701,28 +697,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -803,12 +820,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

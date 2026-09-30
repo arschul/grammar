@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -630,36 +646,16 @@ const MATCH = [
 const FILL = [
   {sentence:"I went to the supermarket _____ (buy) some food for dinner.", answer:"to buy", explanation:"Purpose: use the infinitive with 'to' to say why you did something."},
   {sentence:"My teacher encouraged me _____ (apply) for the language course.", answer:"to apply", explanation:"Verb + object + infinitive: 'encouraged me to apply' (encourage + person + to + verb)."},
-  {sentence:"She agreed _____ (help) us move to our new flat.", answer:"to help", explanation:"Verb + infinitive: 'agree' is directly followed by 'to + verb'."},
+  {sentence:"She agreed _____ (help) us move to our new apartment.", answer:"to help", explanation:"Verb + infinitive: 'agree' is directly followed by 'to + verb'."},
   {sentence:"It is impossible _____ (please) everyone all the time.", answer:"to please", explanation:"Adjective + infinitive: 'impossible to please' (adjective + to + verb)."},
   {sentence:"He warned us _____ (not touch) the hot surface.", answer:"not to touch", explanation:"Verb + object + negative infinitive: 'warned us not to touch' (warn + person + not to + verb)."}
 ];
 const MISTAKE = [
-  {
-    sentence:"After the interview he [agreed] [to accepting] the job [and] started [the following] Monday.",
-    correct:1,
-    explanation:"(B) The infinitive is <em>to</em> + base form: <em>agreed to accept the job</em>."
-  },
-  {
-    sentence:"My parents want [to buy] a house [near] the sea, [but] the prices [is] too high this year.",
-    correct:3,
-    explanation:"(D) <em>The prices</em> is plural, so it takes <em>are</em>. The infinitive <em>to buy</em> is correct."
-  },
-  {
-    sentence:"[He refused answering] the question, [so] the journalist [asked] it [again].",
-    correct:0,
-    explanation:"(A) <em>Refuse</em> is followed by a <em>to</em>-infinitive: <em>He refused to answer the question</em>."
-  },
-  {
-    sentence:"I went to the library [to] borrow a book, [but] there were [only a few informations] [about] the topic.",
-    correct:2,
-    explanation:"(C) <em>Information</em> is uncountable, so it has no plural and takes <em>a little</em>: <em>only a little information</em>. The infinitive of purpose <em>to borrow</em> is correct."
-  },
-  {
-    sentence:"My sister promised [to help] me, [but] she was [too busy for come] on Saturday [in the end].",
-    correct:2,
-    explanation:"(C) The pattern is <em>too</em> + adjective + <em>to</em>-infinitive: <em>too busy to come on Saturday</em>. <em>Promised to help</em> is correct."
-  }
+  {"sentence": "After the interview he [agreed] [to accepting] the job [and] started [the following] Monday.", "correct": 1, "explanation": "(B) The infinitive is <em>to</em> + base form: <em>agreed to accept the job</em>.", "fix": "to accept", "note": "to + base verb"},
+  {"sentence": "My parents want [to buy] a house [near] the sea, [but] the prices [is] too high this year.", "correct": 3, "explanation": "(D) <em>The prices</em> is plural, so it takes <em>are</em>. The infinitive <em>to buy</em> is correct.", "fix": "are", "note": "prices is plural → are"},
+  {"sentence": "[He refused answering] the question, [so] the journalist [asked] it [again].", "correct": 0, "explanation": "(A) <em>Refuse</em> is followed by a <em>to</em>-infinitive: <em>He refused to answer the question</em>.", "fix": "He refused to answer", "note": "refuse + to-infinitive"},
+  {"sentence": "I went to the library [to] borrow a book, [but] there were [only a few informations] [about] the topic.", "correct": 2, "explanation": "(C) <em>Information</em> is uncountable, so it has no plural and takes <em>a little</em>: <em>only a little information</em>. The infinitive of purpose <em>to borrow</em> is correct."},
+  {"sentence": "My sister promised [to help] me, [but] she was [too busy for come] on Saturday [in the end].", "correct": 2, "explanation": "(C) The pattern is <em>too</em> + adjective + <em>to</em>-infinitive: <em>too busy to come on Saturday</em>. <em>Promised to help</em> is correct."}
 ];
 const ORDER = [
   {words:["called","She","me","to","help.","ask","for"], answer:"She called me to ask for help."},
@@ -712,28 +708,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -814,12 +831,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

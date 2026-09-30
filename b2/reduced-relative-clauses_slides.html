@@ -158,6 +158,21 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
 .toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
 .sfit>.toefl-list{justify-content:space-between;}
+
+/* GH-QA 2026-10 */
+/* projector type floor */
+.slide .verb-hint{font-size:30px;color:var(--muted);font-weight:600;}
+.slide .hint{font-size:28px;}
+.slide .eyebrow{font-size:28px;}
+.slide .recap-card .k{font-size:28px;}
+.slide .card-label{font-size:28px;}
+.slide .toefl-row .tp i{font-size:28px;}
+.slide .toefl-row .tanswer .tnote{font-size:28px;}
+.slide .cond-label,.slide .eg-num,.slide .v-label,.slide .structure-sub,.slide .if-label,.slide .four-rule,
+.slide .dual-tag,.slide .irreg-arrow,.slide .num,.slide .tagpill,.slide .cond-structure,.slide .dual-gloss,.slide .label,.slide .cond-ex,.slide .dual-verb{font-size:28px;}
+/* empty gap instead of a "?" that collides with question marks */
+.gap-btn{min-width:130px;min-height:1.25em;}
+.gap-btn:empty{background:#fff linear-gradient(transparent calc(100% - 10px),#e3b6a6 calc(100% - 10px),#e3b6a6 calc(100% - 7px),transparent calc(100% - 7px));}
 </style>
 </head>
 <body>
@@ -308,31 +323,31 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <div class="gap-list">
     <div class="gap-row">
       <span>We won't talk about tornadoes</span>
-      <button class="gap-btn" data-answer="we've">?</button>
+      <button class="gap-btn" data-answer="we've"></button>
       <span class="verb-hint">(that we have)</span>
       <span>seen or heard about.</span>
     </div>
     <div class="gap-row">
       <span>People</span>
-      <button class="gap-btn" data-answer="interested">?</button>
+      <button class="gap-btn" data-answer="interested"></button>
       <span class="verb-hint">(who are interested)</span>
       <span>in storm chasing can stream this.</span>
     </div>
     <div class="gap-row">
       <span>Storm chasers</span>
-      <button class="gap-btn" data-answer="near">?</button>
+      <button class="gap-btn" data-answer="near"></button>
       <span class="verb-hint">(who are near)</span>
       <span>the tornado can report in real time.</span>
     </div>
     <div class="gap-row">
       <span>The man</span>
-      <button class="gap-btn" data-answer="standing">?</button>
+      <button class="gap-btn" data-answer="standing"></button>
       <span class="verb-hint">(who is standing)</span>
       <span>over there was my teacher.</span>
     </div>
     <div class="gap-row">
       <span>All the letters</span>
-      <button class="gap-btn" data-answer="sent">?</button>
+      <button class="gap-btn" data-answer="sent"></button>
       <span class="verb-hint">(that were sent)</span>
       <span>last week arrived this morning.</span>
     </div>
@@ -341,8 +356,8 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </section>
 
 <!-- SLIDE 9 · PRACTICE 2 -->
-<section class="slide bg-1 pad-sm" data-note="Make them name the broken rule before you tap the card open.">
-<div class="sfit" style="zoom:1.0">
+<section class="slide bg-1 pad-sm" data-note="Make them name the broken rule before you tap to reveal.">
+<div class="sfit" style="zoom:1.3">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
     <span class="hint">tap a sentence to reveal the error</span>
@@ -450,7 +465,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   document.getElementById('notesBtn').addEventListener('click',function(){notesBar.classList.toggle('show');});
   window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){show(current+1);e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(current-1);e.preventDefault();}else if(e.key==='r'||e.key==='R'){show(0);}else if(e.key==='n'||e.key==='N'){notesBar.classList.toggle('show');}});
   var gapBtns=document.querySelectorAll('.gap-btn');
-  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent=r?ans:'?';});})(gapBtns[a]);}
+  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent = r ? ans : '';});})(gapBtns[a]);}
   var mCards=document.querySelectorAll('.mistake-card');
   for(var b=0;b<mCards.length;b++)mCards[b].addEventListener('click',function(){this.classList.toggle('revealed');});
   var dots='. . . . . . . . . .';
@@ -589,6 +604,49 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   var rows=document.querySelectorAll('.toefl-row');
   for(var i=0;i<rows.length;i++)
     rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
+<script>
+/* GH-QA 2026-10: fit each slide to the canvas.  The hand-set zoom on .sfit is the ceiling;
+   it only shrinks when content would run past the 1920x1080 canvas. */
+(function(){
+  function over(s){
+    var sr=s.getBoundingClientRect(), k=sr.width/1920, m=0;
+    var w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT), n, r=document.createRange();
+    while((n=w.nextNode())){
+      if(!n.textContent.trim()||!n.parentElement||n.parentElement.closest('.circle-deco'))continue;
+      var el=n.parentElement; if(!el.offsetParent&&getComputedStyle(el).position!=='fixed')continue;
+      r.selectNodeContents(n); var rs=r.getClientRects();
+      for(var i=0;i<rs.length;i++){
+        m=Math.max(m,(rs[i].bottom-(sr.bottom-14*k))/k,(rs[i].right-(sr.right-14*k))/k);
+      }
+    }
+    return m>0;
+  }
+  function revealAll(s){ /* size for the fully revealed slide so text never jumps mid-lesson */
+    var undo=[];
+    s.querySelectorAll('.toefl-row,.mistake-card,.gap-btn,.complete-row').forEach(function(el){
+      var rec={el:el,cls:el.className}; el.classList.add('revealed');
+      if(el.classList.contains('gap-btn')){rec.txt=el.textContent;el.textContent=el.getAttribute('data-answer')||'';}
+      var end=el.classList.contains('complete-row')&&el.querySelector('.end');
+      if(end){rec.end=end;rec.endTxt=end.textContent;end.textContent=end.getAttribute('data-text')||'';}
+      undo.push(rec);
+    });
+    return function(){undo.forEach(function(r){r.el.className=r.cls;if(r.txt!==undefined)r.el.textContent=r.txt;if(r.end)r.end.textContent=r.endTxt;});};
+  }
+  function fit(s){
+    var f=s.querySelector('.sfit'); if(!f)return;
+    if(!f.dataset.zoom)f.dataset.zoom=parseFloat(f.style.zoom)||1;
+    var z=+f.dataset.zoom; f.style.zoom=z; var restore=revealAll(s);
+    while(z>0.72&&over(s)){z=Math.round((z-0.02)*100)/100;f.style.zoom=z;}
+    restore();
+  }
+  function fitActive(){var s=document.querySelector('.slide.active');if(s)fit(s);}
+  window.ghFit=fit;
+  var mo=new MutationObserver(function(ms){ms.forEach(function(m){if(m.target.classList.contains('active'))fit(m.target);});});
+  document.querySelectorAll('.slide').forEach(function(s){mo.observe(s,{attributes:true,attributeFilter:['class']});});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(fitActive);
+  window.addEventListener('load',fitActive);
 })();
 </script>
 </body>

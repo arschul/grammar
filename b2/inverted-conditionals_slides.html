@@ -158,6 +158,21 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
 .toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
 .sfit>.toefl-list{justify-content:space-between;}
+
+/* GH-QA 2026-10 */
+/* projector type floor */
+.slide .verb-hint{font-size:30px;color:var(--muted);font-weight:600;}
+.slide .hint{font-size:28px;}
+.slide .eyebrow{font-size:28px;}
+.slide .recap-card .k{font-size:28px;}
+.slide .card-label{font-size:28px;}
+.slide .toefl-row .tp i{font-size:28px;}
+.slide .toefl-row .tanswer .tnote{font-size:28px;}
+.slide .cond-label,.slide .eg-num,.slide .v-label,.slide .structure-sub,.slide .if-label,.slide .four-rule,
+.slide .dual-tag,.slide .irreg-arrow,.slide .num,.slide .tagpill,.slide .cond-structure,.slide .dual-gloss,.slide .label,.slide .cond-ex,.slide .dual-verb{font-size:28px;}
+/* empty gap instead of a "?" that collides with question marks */
+.gap-btn{min-width:130px;min-height:1.25em;}
+.gap-btn:empty{background:#fff linear-gradient(transparent calc(100% - 10px),#e3b6a6 calc(100% - 10px),#e3b6a6 calc(100% - 7px),transparent calc(100% - 7px));}
 </style>
 </head>
 <body>
@@ -243,11 +258,11 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <div class="card-row" style="margin-top:34px;">
     <div class="card">
       <div class="card-label">Present</div>
-      <p class="serif-lg" style="margin:0;font-size:36px;"><strong class="hl-accent">Were it not for</strong> the flood defences, this district would be under water.</p>
+      <p class="serif-lg" style="margin:0;font-size:36px;"><strong class="hl-accent">Were it not for</strong> the flood defenses, this district would be under water.</p>
     </div>
     <div class="card">
       <div class="card-label">Past</div>
-      <p class="serif-lg" style="margin:0;font-size:36px;"><strong class="hl-gold">Had it not been for</strong> the flood defences, this district would have been under water.</p>
+      <p class="serif-lg" style="margin:0;font-size:36px;"><strong class="hl-gold">Had it not been for</strong> the flood defenses, this district would have been under water.</p>
     </div>
   </div>
 </div>
@@ -264,8 +279,8 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       <p class="right"><strong class="hl-accent">Had I known</strong>, I would have called.</p>
     </div>
     <div class="mistake-static">
-      <p class="wrong"><s>Was</s> it not for her advice, I would have failed.</p>
-      <p class="right"><strong class="hl-accent">Were it not for</strong> her advice, I would have failed.</p>
+      <p class="wrong"><s>Was</s> it not for her advice, I would fail.</p>
+      <p class="right"><strong class="hl-accent">Were it not for</strong> her advice, I would fail.</p>
     </div>
     <div class="mistake-static">
       <p class="wrong">Should you <s>needed</s> help, call reception.</p>
@@ -296,18 +311,18 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   </div>
   <h2 class="slide-title compact">Fill the gap</h2>
   <div class="gap-list">
-    <div class="gap-row"><button class="gap-btn" data-answer="Should">?</button><span class="verb-hint">(if you should)</span><span>you require assistance, please ask at reception.</span></div>
-    <div class="gap-row"><button class="gap-btn" data-answer="Had">?</button><span class="verb-hint">(if I had)</span><span>I known about the strike, I would have driven.</span></div>
-    <div class="gap-row"><button class="gap-btn" data-answer="Were">?</button><span class="verb-hint">(if it were)</span><span>it not for the tunnel, the journey would take two hours.</span></div>
-    <div class="gap-row"><span>Were the city</span><button class="gap-btn" data-answer="to">?</button><span class="verb-hint">(to + infinitive)</span><span>ban cars from the center, air quality would improve.</span></div>
-    <div class="gap-row"><span>Had the bridge not</span><button class="gap-btn" data-answer="been rebuilt">?</button><span class="verb-hint">(rebuild)</span><span>, the town would have been cut off.</span></div>
+    <div class="gap-row"><button class="gap-btn" data-answer="Should"></button><span class="verb-hint">(if you should)</span><span>you require assistance, please ask at reception.</span></div>
+    <div class="gap-row"><button class="gap-btn" data-answer="Had"></button><span class="verb-hint">(if I had)</span><span>I known about the strike, I would have driven.</span></div>
+    <div class="gap-row"><button class="gap-btn" data-answer="Were"></button><span class="verb-hint">(if it were)</span><span>it not for the tunnel, the journey would take two hours.</span></div>
+    <div class="gap-row"><span>Were the city</span><button class="gap-btn" data-answer="to"></button><span class="verb-hint">(to + infinitive)</span><span>ban cars from the center, air quality would improve.</span></div>
+    <div class="gap-row"><span>Had the bridge not</span><button class="gap-btn" data-answer="been rebuilt"></button><span class="verb-hint">(rebuild)</span><span>, the town would have been cut off.</span></div>
   </div>
 </div>
 </section>
 
 <!-- 9 · PRACTICE 2 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 2. Ask them to name the error type before tapping: wrong participle, wrong main clause, missing infinitive, wrong tense.">
-<div class="sfit" style="zoom:1.0">
+<div class="sfit" style="zoom:1.3">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
     <span class="hint">tap a sentence to reveal the error</span>
@@ -319,12 +334,12 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
       <div class="tanswer"><p class="tfix"><b>A</b>Had I have known &rarr; <span class="tok">Had I known</span></p><p class="tnote">&#10003; Had + subject + past participle</p></div>
     </div>
     <div class="toefl-row">
-      <p class="tsent"><span class="tp">Were<i>A</i></span> I <span class="tp">to move<i>B</i></span> abroad, <span class="tp bad">I would miss my familys support<i>C</i></span> <span class="tp">more<i>D</i></span> than anything else.</p>
-      <div class="tanswer"><p class="tfix"><b>C</b>I would miss my familys support &rarr; <span class="tok">I would miss my family&#x27;s support</span></p><p class="tnote">&#10003; a possessive noun needs an apostrophe</p></div>
+      <p class="tsent"><span class="tp">Were<i>A</i></span> I <span class="tp">you<i>B</i></span>, <span class="tp bad">I will<i>C</i></span> <span class="tp">accept<i>D</i></span> the offer without hesitation.</p>
+      <div class="tanswer"><p class="tfix"><b>C</b>I will &rarr; <span class="tok">I would</span></p><p class="tnote">&#10003; inverted second conditional → would + base verb</p></div>
     </div>
     <div class="toefl-row">
-      <p class="tsent"><span class="tp">Had<i>A</i></span> she <span class="tp">asked<i>B</i></span> me, I <span class="tp">would have helped<i>C</i></span> her, <span class="tp bad">but she would have not asked<i>D</i></span> anyone.</p>
-      <div class="tanswer"><p class="tfix"><b>D</b>but she would have not asked &rarr; <span class="tok">but she would not have asked</span></p><p class="tnote">&#10003; not goes between would and have</p></div>
+      <p class="tsent"><span class="tp">Had<i>A</i></span> the alarm <span class="tp">not sounded<i>B</i></span>, the fire <span class="tp bad">would spread<i>C</i></span> <span class="tp">through<i>D</i></span> the whole building.</p>
+      <div class="tanswer"><p class="tfix"><b>C</b>would spread &rarr; <span class="tok">would have spread</span></p><p class="tnote">&#10003; inverted third conditional → would have + past participle</p></div>
     </div>
   </div>
 </div>
@@ -402,7 +417,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   document.getElementById('notesBtn').addEventListener('click',function(){notesBar.classList.toggle('show');});
   window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){show(current+1);e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(current-1);e.preventDefault();}else if(e.key==='r'||e.key==='R'){show(0);}else if(e.key==='n'||e.key==='N'){notesBar.classList.toggle('show');}});
   var gapBtns=document.querySelectorAll('.gap-btn');
-  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent=r?ans:'?';});})(gapBtns[a]);}
+  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent = r ? ans : '';});})(gapBtns[a]);}
   var mCards=document.querySelectorAll('.mistake-card');
   for(var b=0;b<mCards.length;b++)mCards[b].addEventListener('click',function(){this.classList.toggle('revealed');});
   var dots='. . . . . . . . . .';
@@ -541,6 +556,49 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   var rows=document.querySelectorAll('.toefl-row');
   for(var i=0;i<rows.length;i++)
     rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
+<script>
+/* GH-QA 2026-10: fit each slide to the canvas.  The hand-set zoom on .sfit is the ceiling;
+   it only shrinks when content would run past the 1920x1080 canvas. */
+(function(){
+  function over(s){
+    var sr=s.getBoundingClientRect(), k=sr.width/1920, m=0;
+    var w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT), n, r=document.createRange();
+    while((n=w.nextNode())){
+      if(!n.textContent.trim()||!n.parentElement||n.parentElement.closest('.circle-deco'))continue;
+      var el=n.parentElement; if(!el.offsetParent&&getComputedStyle(el).position!=='fixed')continue;
+      r.selectNodeContents(n); var rs=r.getClientRects();
+      for(var i=0;i<rs.length;i++){
+        m=Math.max(m,(rs[i].bottom-(sr.bottom-14*k))/k,(rs[i].right-(sr.right-14*k))/k);
+      }
+    }
+    return m>0;
+  }
+  function revealAll(s){ /* size for the fully revealed slide so text never jumps mid-lesson */
+    var undo=[];
+    s.querySelectorAll('.toefl-row,.mistake-card,.gap-btn,.complete-row').forEach(function(el){
+      var rec={el:el,cls:el.className}; el.classList.add('revealed');
+      if(el.classList.contains('gap-btn')){rec.txt=el.textContent;el.textContent=el.getAttribute('data-answer')||'';}
+      var end=el.classList.contains('complete-row')&&el.querySelector('.end');
+      if(end){rec.end=end;rec.endTxt=end.textContent;end.textContent=end.getAttribute('data-text')||'';}
+      undo.push(rec);
+    });
+    return function(){undo.forEach(function(r){r.el.className=r.cls;if(r.txt!==undefined)r.el.textContent=r.txt;if(r.end)r.end.textContent=r.endTxt;});};
+  }
+  function fit(s){
+    var f=s.querySelector('.sfit'); if(!f)return;
+    if(!f.dataset.zoom)f.dataset.zoom=parseFloat(f.style.zoom)||1;
+    var z=+f.dataset.zoom; f.style.zoom=z; var restore=revealAll(s);
+    while(z>0.72&&over(s)){z=Math.round((z-0.02)*100)/100;f.style.zoom=z;}
+    restore();
+  }
+  function fitActive(){var s=document.querySelector('.slide.active');if(s)fit(s);}
+  window.ghFit=fit;
+  var mo=new MutationObserver(function(ms){ms.forEach(function(m){if(m.target.classList.contains('active'))fit(m.target);});});
+  document.querySelectorAll('.slide').forEach(function(s){mo.observe(s,{attributes:true,attributeFilter:['class']});});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(fitActive);
+  window.addEventListener('load',fitActive);
 })();
 </script>
 </body>

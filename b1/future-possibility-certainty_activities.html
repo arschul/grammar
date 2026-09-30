@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -484,7 +500,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
         <em>will definitely</em> → completely certain (100%)<br><br>
         <strong>⚠ Common mistakes:</strong><br>
         ✗ <em>She might to come tomorrow.</em> → ✓ <em>She might come tomorrow.</em> (no <em>to</em> after modals)<br>
-        ✗ <em>I definitely will go.</em> → ✓ <em>I will definitely go.</em> (<em>definitely</em> comes after <em>will</em>)<br>
+        ✗ <em>I will go definitely.</em> → ✓ <em>I will definitely go.</em> (<em>definitely</em> goes between <em>will</em> and the verb)<br>
         ✗ <em>I probably won't to pass.</em> → ✓ <em>I probably won't pass.</em>
       </div>
     </div></div>
@@ -511,7 +527,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     <div id="fpc-act2" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Fill in the Gaps</div>
-        <div class="activity-desc">Complete each sentence with the correct word or phrase from this topic.</div>
+        <div class="activity-desc">Complete each sentence. The bracket tells you how sure the speaker is: <em>maybe</em> (might / may / could), <em>almost sure</em> (probably) or <em>100% sure</em> (definitely).</div>
         <div id="fpc-fill-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(2,'fpc-fill-exercises','fpc-fill-feedback',FILL,checkFill)">Check Answers</button>
@@ -606,42 +622,22 @@ const MATCH = [
   {left:"1. I might stay home tonight —", right:"a. I'm not sure yet."},
   {left:"2. She will definitely get the job.", right:"b. She is completely certain about it."},
   {left:"3. He probably won't come to the party", right:"c. because he is very busy this week."},
-  {left:"4. You could find a cheaper flat", right:"d. if you look outside the city center."},
+  {left:"4. You could find a cheaper apartment", right:"d. if you look outside the city center."},
   {left:"5. They will probably move abroad", right:"e. but they haven't decided for sure."}
 ];
 const FILL = [
-  {sentence:"I'm not sure about my plans — I _____ go to the beach if the weather is good.", answer:"might", alt:["may","could"], explanation:"Use 'might', 'may' or 'could' for something possible but uncertain."},
-  {sentence:"She has studied really hard, so she will _____ pass the exam.", answer:"definitely", alt:["probably"], explanation:"Both 'definitely' and 'probably' work, since there's not enough context."},
-  {sentence:"I _____ won't have enough money to travel this summer.", answer:"probably", alt:["definitely"], explanation:"Both 'definitely' and 'probably' work, since there's not enough context."},
-  {sentence:"He _____ get a promotion soon — his boss really likes him.", answer:"will probably", alt:["probably will"], explanation:"Use 'will probably' for near certainty in a positive sentence."},
-  {sentence:"They _____ move to another city, but they haven't decided yet.", answer:"might", alt:["may","could"], explanation:"Use 'might', 'may' or 'could' when something is just a possibility."}
+  {"sentence": "I'm not sure about my plans — I _____ go to the beach if the weather is good.", "answer": "might", "alt": ["may", "could"], "explanation": "Use 'might', 'may' or 'could' for something possible but uncertain.", "hint": "maybe"},
+  {"sentence": "She has studied really hard, so she will _____ pass the exam.", "answer": "definitely", "explanation": "'definitely' — you are 100% sure; it goes after will.", "hint": "100% sure"},
+  {"sentence": "I _____ won't have enough money to travel this summer.", "answer": "probably", "explanation": "'probably' — almost sure; in the negative it goes before won't.", "hint": "almost sure"},
+  {"sentence": "He _____ get a promotion soon — his boss really likes him.", "answer": "will probably", "alt": ["probably will"], "explanation": "'will probably' — almost sure; probably goes after will.", "hint": "almost sure"},
+  {"sentence": "They _____ move to another city, but they haven't decided yet.", "answer": "might", "alt": ["may", "could"], "explanation": "Use 'might', 'may' or 'could' when something is just a possibility.", "hint": "maybe"}
 ];
 const MISTAKE = [
-  {
-    sentence:"The sky is gray, [so] it [might rains] later, [but] the forecast [says] it will be dry.",
-    correct:1,
-    explanation:"(B) After <em>might</em> the verb takes its base form: <em>it might rain later</em>."
-  },
-  {
-    sentence:"The results [may] arrive tomorrow, [but] the committee [hasn't] finished [to discuss] the proposals.",
-    correct:3,
-    explanation:"(D) <em>Finish</em> is followed by the <em>-ing</em> form: <em>hasn't finished discussing the proposals</em>. <em>May arrive</em> is correct."
-  },
-  {
-    sentence:"[It will be definitely] cold tonight, [so] take a coat [and] [maybe] a scarf.",
-    correct:0,
-    explanation:"(A) The adverb sits between <em>will</em> and the main verb: <em>It will definitely be cold tonight</em>."
-  },
-  {
-    sentence:"Tomorrow [might] be sunny, [although] today has been [the most wet] day [of] the month.",
-    correct:2,
-    explanation:"(C) Short adjectives form the superlative with <em>-est</em>: <em>the wettest day of the month</em>. <em>Might be</em> is correct."
-  },
-  {
-    sentence:"There's a good chance that prices [will] fall, [but] nobody [can] be certain, so we [may to wait].",
-    correct:3,
-    explanation:"(D) <em>May</em> is a modal and takes the bare infinitive: <em>we may wait</em>. <em>Will fall</em> and <em>can be</em> are correct."
-  }
+  {"sentence": "The sky is gray, [so] it [might rains] later, [but] the forecast [says] it will be dry.", "correct": 1, "explanation": "(B) After <em>might</em> the verb takes its base form: <em>it might rain later</em>.", "fix": "might rain", "note": "modals take the bare infinitive"},
+  {"sentence": "The results [may] arrive tomorrow, [but] the committee [hasn't] finished [to discuss] the proposals.", "correct": 3, "explanation": "(D) <em>Finish</em> is followed by the <em>-ing</em> form: <em>hasn't finished discussing the proposals</em>. <em>May arrive</em> is correct.", "fix": "discussing", "note": "finish + -ing"},
+  {"sentence": "[It will be definitely] cold tonight, [so] take a coat [and] [maybe] a scarf.", "correct": 0, "explanation": "(A) The adverb sits between <em>will</em> and the main verb: <em>It will definitely be cold tonight</em>.", "fix": "It will definitely be", "note": "the adverb goes between will and the verb"},
+  {"sentence": "Tomorrow [might] be sunny, [although] today has been [the most wet] day [of] the month.", "correct": 2, "explanation": "(C) Short adjectives form the superlative with <em>-est</em>: <em>the wettest day of the month</em>. <em>Might be</em> is correct."},
+  {"sentence": "There's a good chance that prices [will] fall, [but] nobody [can] be certain, so we [may to wait].", "correct": 3, "explanation": "(D) <em>May</em> is a modal and takes the bare infinitive: <em>we may wait</em>. <em>Will fall</em> and <em>can be</em> are correct."}
 ];
 const ORDER = [
   {words:["might","I","late.","be"], answer:"I might be late."},
@@ -652,10 +648,10 @@ const ORDER = [
 ];
 const OPEN = [
   {question:"Write two sentences about something you might do next weekend.", model:"I might go to the cinema with my friends. I could also stay home and watch TV if I'm tired."},
-  {question:"Write two sentences using 'will definitely' and 'will probably'.", model:"I will definitely call my mum this weekend. I will probably visit my grandparents too."},
+  {question:"Write two sentences using 'will definitely' and 'will probably'.", model:"I will definitely call my mom this weekend. I will probably visit my grandparents too."},
   {question:"Write two negative sentences using 'probably won't' and 'might not'.", model:"I probably won't go out on Friday — I have work early on Saturday. She might not come to the party if she's not feeling well."},
   {question:"Think about your life in five years. Write three sentences using different expressions from this topic.", model:"I will definitely have finished my degree by then. I might be living in a different city. I probably won't have the same job I have now."},
-  {question:"Write one sentence for each level of certainty: possible, almost certain, and completely certain.", model:"I could get a promotion this year — my manager seems happy with my work. I will probably move to a bigger flat next year. I will definitely keep studying English."}
+  {question:"Write one sentence for each level of certainty: possible, almost certain, and completely certain.", model:"I could get a promotion this year — my manager seems happy with my work. I will probably move to a bigger apartment next year. I will definitely keep studying English."}
 ];
 
 // -- MATCH --
@@ -694,28 +690,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -796,12 +813,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

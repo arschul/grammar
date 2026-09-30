@@ -152,6 +152,21 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
 .toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
 .sfit>.toefl-list{justify-content:space-between;}
+
+/* GH-QA 2026-10 */
+/* projector type floor */
+.slide .verb-hint{font-size:30px;color:var(--muted);font-weight:600;}
+.slide .hint{font-size:28px;}
+.slide .eyebrow{font-size:28px;}
+.slide .recap-card .k{font-size:28px;}
+.slide .card-label{font-size:28px;}
+.slide .toefl-row .tp i{font-size:28px;}
+.slide .toefl-row .tanswer .tnote{font-size:28px;}
+.slide .cond-label,.slide .eg-num,.slide .v-label,.slide .structure-sub,.slide .if-label,.slide .four-rule,
+.slide .dual-tag,.slide .irreg-arrow,.slide .num,.slide .tagpill,.slide .cond-structure,.slide .dual-gloss,.slide .label,.slide .cond-ex,.slide .dual-verb{font-size:28px;}
+/* empty gap instead of a "?" that collides with question marks */
+.gap-btn{min-width:130px;min-height:1.25em;}
+.gap-btn:empty{background:#fff linear-gradient(transparent calc(100% - 10px),#e3b6a6 calc(100% - 10px),#e3b6a6 calc(100% - 7px),transparent calc(100% - 7px));}
 </style>
 </head>
 <body>
@@ -202,7 +217,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <div class="eyebrow accent">Use 1 — still in progress</div>
   <h2 class="slide-title tall">Started in the past, still happening</h2>
   <div class="eg-list">
-    <div class="eg-row alt">I <strong class="hl-accent">have been studying</strong> English <strong>for</strong> three years. <span style="color:var(--muted-2);font-size:26px;">(still happening)</span></div>
+    <div class="eg-row alt">I <strong class="hl-accent">have been studying</strong> English <strong>for</strong> three years. <span style="color:var(--muted);font-size:28px;">(still happening)</span></div>
     <div class="eg-row plain">She <strong class="hl-accent">has been working</strong> here <strong>since</strong> 2020.</div>
     <div class="eg-row alt">They <strong class="hl-gold">haven't been sleeping</strong> well lately.</div>
   </div>
@@ -215,7 +230,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <div class="eyebrow gold">Use 2 — recent visible result</div>
   <h2 class="slide-title tall">A continuous action explains now</h2>
   <div class="eg-list">
-    <div class="eg-row alt">Your eyes are red. Have you <strong class="hl-gold">been crying</strong>? <span style="color:var(--muted-2);font-size:26px;">(eyes explain it)</span></div>
+    <div class="eg-row alt">Your eyes are red. Have you <strong class="hl-gold">been crying</strong>? <span style="color:var(--muted);font-size:28px;">(eyes explain it)</span></div>
     <div class="eg-row plain">I'm exhausted — I <strong class="hl-gold">have been running</strong>.</div>
     <div class="eg-row alt">The ground is wet. It <strong class="hl-gold">has been raining</strong>.</div>
   </div>
@@ -229,11 +244,11 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <div class="versus-grid">
     <div class="versus-card pp">
       <div class="versus-label pp">Present Perfect</div>
-      <p class="versus-text">I <strong>have read</strong> three books this month. <span style="font-size:26px;color:var(--muted-2);">(completed — how many)</span></p>
+      <p class="versus-text">I <strong>have read</strong> three books this month. <span style="font-size:28px;color:var(--muted);">(completed — how many)</span></p>
     </div>
     <div class="versus-card ppp">
       <div class="versus-label ppp">Present Perfect Progressive</div>
-      <p class="versus-text">I <strong>have been reading</strong> all afternoon. <span style="font-size:26px;color:var(--muted-2);">(ongoing — how long)</span></p>
+      <p class="versus-text">I <strong>have been reading</strong> all afternoon. <span style="font-size:28px;color:var(--muted);">(ongoing — how long)</span></p>
     </div>
   </div>
   <p style="font-size:30px;color:var(--muted-2);margin-top:28px;font-style:italic;"><strong style="color:var(--text);">for</strong> + duration (three years) &nbsp;|&nbsp; <strong style="color:var(--text);">since</strong> + starting point (2020)</p>
@@ -241,14 +256,14 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </section>
 
 <!-- 6 · COMMON MISTAKES -->
-<section class="slide bg-1 pad-md" data-note="Three errors: stative verbs can't use progressive (know, love, believe), 'since' with a duration instead of 'for', and missing 'been'.">
+<section class="slide bg-1 pad-md" data-note="Four errors: stative verbs can't use progressive (know, love, believe), 'since' with a duration instead of 'for', and missing 'been'.">
 <div class="sfit" style="zoom:1.18">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
   <div class="mistake-grid-static">
     <div class="mistake-static">
       <p class="wrong">I have <s>been</s> <s>knowing</s> her for years.</p>
-      <p class="right">I <strong class="hl-accent">have known</strong> her for years. <span style="font-size:22px;color:var(--muted-2);">(stative verb)</span></p>
+      <p class="right">I <strong class="hl-accent">have known</strong> her for years. <span style="font-size:28px;color:var(--muted);">(stative verb)</span></p>
     </div>
     <div class="mistake-static">
       <p class="wrong">She has been working here <s>since</s> two years.</p>
@@ -283,18 +298,18 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   </div>
   <h2 class="slide-title compact">Fill the gap</h2>
   <div class="gap-list">
-    <div class="gap-row"><span>I</span><button class="gap-btn" data-answer="have been learning">?</button><span class="verb-hint">(learn)</span><span>guitar for six months.</span></div>
-    <div class="gap-row"><span>You look tired. How long</span><button class="gap-btn" data-answer="have you been waiting">?</button><span>?</span></div>
-    <div class="gap-row"><span>She</span><button class="gap-btn" data-answer="has been living">?</button><span class="verb-hint">(live)</span><span>here since January.</span></div>
-    <div class="gap-row"><span>It</span><button class="gap-btn" data-answer="has been raining">?</button><span class="verb-hint">(rain)</span><span>all morning — the garden is soaked.</span></div>
-    <div class="gap-row"><span>They</span><button class="gap-btn" data-answer="haven't been sleeping">?</button><span class="verb-hint">(sleep)</span><span>well lately.</span></div>
+    <div class="gap-row"><span>I</span><button class="gap-btn" data-answer="have been learning"></button><span class="verb-hint">(learn)</span><span>guitar for six months.</span></div>
+    <div class="gap-row"><span>You look tired. How long</span><button class="gap-btn" data-answer="have you been waiting"></button><span class="verb-hint">(you / wait)</span><span>?</span></div>
+    <div class="gap-row"><span>She</span><button class="gap-btn" data-answer="has been living"></button><span class="verb-hint">(live)</span><span>here since January.</span></div>
+    <div class="gap-row"><span>It</span><button class="gap-btn" data-answer="has been raining"></button><span class="verb-hint">(rain)</span><span>all morning — the garden is soaked.</span></div>
+    <div class="gap-row"><span>They</span><button class="gap-btn" data-answer="haven't been sleeping"></button><span class="verb-hint">(not / sleep)</span><span>well lately.</span></div>
   </div>
 </div>
 </section>
 
 <!-- 9 · PRACTICE 2 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 2. Spot the error then tap to reveal.">
-<div class="sfit" style="zoom:1.0">
+<div class="sfit" style="zoom:1.3">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
     <span class="hint">tap a sentence to reveal the error</span>
@@ -389,7 +404,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   document.getElementById('notesBtn').addEventListener('click',function(){notesBar.classList.toggle('show');});
   window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){show(current+1);e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(current-1);e.preventDefault();}else if(e.key==='r'||e.key==='R'){show(0);}else if(e.key==='n'||e.key==='N'){notesBar.classList.toggle('show');}});
   var gapBtns=document.querySelectorAll('.gap-btn');
-  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent=r?ans:'?';});})(gapBtns[a]);}
+  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent = r ? ans : '';});})(gapBtns[a]);}
   var mCards=document.querySelectorAll('.mistake-card');
   for(var b=0;b<mCards.length;b++)mCards[b].addEventListener('click',function(){this.classList.toggle('revealed');});
   var dots='. . . . . . . . . .';
@@ -528,6 +543,49 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   var rows=document.querySelectorAll('.toefl-row');
   for(var i=0;i<rows.length;i++)
     rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
+<script>
+/* GH-QA 2026-10: fit each slide to the canvas.  The hand-set zoom on .sfit is the ceiling;
+   it only shrinks when content would run past the 1920x1080 canvas. */
+(function(){
+  function over(s){
+    var sr=s.getBoundingClientRect(), k=sr.width/1920, m=0;
+    var w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT), n, r=document.createRange();
+    while((n=w.nextNode())){
+      if(!n.textContent.trim()||!n.parentElement||n.parentElement.closest('.circle-deco'))continue;
+      var el=n.parentElement; if(!el.offsetParent&&getComputedStyle(el).position!=='fixed')continue;
+      r.selectNodeContents(n); var rs=r.getClientRects();
+      for(var i=0;i<rs.length;i++){
+        m=Math.max(m,(rs[i].bottom-(sr.bottom-14*k))/k,(rs[i].right-(sr.right-14*k))/k);
+      }
+    }
+    return m>0;
+  }
+  function revealAll(s){ /* size for the fully revealed slide so text never jumps mid-lesson */
+    var undo=[];
+    s.querySelectorAll('.toefl-row,.mistake-card,.gap-btn,.complete-row').forEach(function(el){
+      var rec={el:el,cls:el.className}; el.classList.add('revealed');
+      if(el.classList.contains('gap-btn')){rec.txt=el.textContent;el.textContent=el.getAttribute('data-answer')||'';}
+      var end=el.classList.contains('complete-row')&&el.querySelector('.end');
+      if(end){rec.end=end;rec.endTxt=end.textContent;end.textContent=end.getAttribute('data-text')||'';}
+      undo.push(rec);
+    });
+    return function(){undo.forEach(function(r){r.el.className=r.cls;if(r.txt!==undefined)r.el.textContent=r.txt;if(r.end)r.end.textContent=r.endTxt;});};
+  }
+  function fit(s){
+    var f=s.querySelector('.sfit'); if(!f)return;
+    if(!f.dataset.zoom)f.dataset.zoom=parseFloat(f.style.zoom)||1;
+    var z=+f.dataset.zoom; f.style.zoom=z; var restore=revealAll(s);
+    while(z>0.72&&over(s)){z=Math.round((z-0.02)*100)/100;f.style.zoom=z;}
+    restore();
+  }
+  function fitActive(){var s=document.querySelector('.slide.active');if(s)fit(s);}
+  window.ghFit=fit;
+  var mo=new MutationObserver(function(ms){ms.forEach(function(m){if(m.target.classList.contains('active'))fit(m.target);});});
+  document.querySelectorAll('.slide').forEach(function(s){mo.observe(s,{attributes:true,attributeFilter:['class']});});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(fitActive);
+  window.addEventListener('load',fitActive);
 })();
 </script>
 </body>

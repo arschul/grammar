@@ -149,6 +149,21 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 .toefl-row .tanswer .tok{color:var(--correct);font-weight:600;}
 .toefl-row .tanswer .tnote{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:5px 0 0;color:var(--correct);font-weight:600;}
 .sfit>.toefl-list{justify-content:space-between;}
+
+/* GH-QA 2026-10 */
+/* projector type floor */
+.slide .verb-hint{font-size:30px;color:var(--muted);font-weight:600;}
+.slide .hint{font-size:28px;}
+.slide .eyebrow{font-size:28px;}
+.slide .recap-card .k{font-size:28px;}
+.slide .card-label{font-size:28px;}
+.slide .toefl-row .tp i{font-size:28px;}
+.slide .toefl-row .tanswer .tnote{font-size:28px;}
+.slide .cond-label,.slide .eg-num,.slide .v-label,.slide .structure-sub,.slide .if-label,.slide .four-rule,
+.slide .dual-tag,.slide .irreg-arrow,.slide .num,.slide .tagpill,.slide .cond-structure,.slide .dual-gloss,.slide .label,.slide .cond-ex,.slide .dual-verb{font-size:28px;}
+/* empty gap instead of a "?" that collides with question marks */
+.gap-btn{min-width:130px;min-height:1.25em;}
+.gap-btn:empty{background:#fff linear-gradient(transparent calc(100% - 10px),#e3b6a6 calc(100% - 10px),#e3b6a6 calc(100% - 7px),transparent calc(100% - 7px));}
 </style>
 </head>
 <body>
@@ -191,7 +206,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <div class="eyebrow accent">a · Purpose</div>
   <h2 class="slide-title tall">Why someone does something</h2>
   <div class="eg-list">
-    <div class="eg-row alt">She went to the library <strong class="hl-accent">to study</strong>. <span style="color:var(--muted-2);font-size:26px;">(Why? To study.)</span></div>
+    <div class="eg-row alt">She went to the library <strong class="hl-accent">to study</strong>. <span style="color:var(--muted);font-size:28px;">(Why? To study.)</span></div>
     <div class="eg-row plain">He called me <strong class="hl-accent">to ask</strong> for help.</div>
     <div class="eg-row alt">I save money <strong class="hl-accent">to travel</strong> every summer.</div>
   </div>
@@ -215,38 +230,26 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </div>
 </section>
 
-<!-- 5 · VERB + INFINITIVE -->
-<section class="slide bg-1 pad-md" data-note="No object needed here — the verb goes straight to the infinitive. Drill the verb list and ask for example sentences." style="background:var(--cream-1);">
-<div class="sfit" style="zoom:1.42">
-  <div class="eyebrow accent">c · Verb + infinitive</div>
+<!-- 5 · VERB OR ADJECTIVE + INFINITIVE -->
+<section class="slide bg-1 pad-md" data-note="Two short patterns. c: the verb goes straight to the infinitive (want, decide, refuse). d: after adjectives of ease, readiness and feeling (easy, happy, ready). Ask for one sentence with each.">
+<div class="sfit" style="zoom:1.25">
+  <div class="eyebrow accent">c · d &nbsp;Verb or adjective + infinitive</div>
   <h2 class="slide-title tall">No object in between</h2>
   <div class="verb-cloud">
-    <span class="verb-chip">agree</span><span class="verb-chip">want</span><span class="verb-chip">prefer</span>
-    <span class="verb-chip">decide</span><span class="verb-chip">hope</span><span class="verb-chip">need</span>
-    <span class="verb-chip">plan</span><span class="verb-chip">refuse</span><span class="verb-chip">offer</span>
+    <span class="verb-chip">agree</span><span class="verb-chip">want</span><span class="verb-chip">decide</span><span class="verb-chip">hope</span>
+    <span class="verb-chip">need</span><span class="verb-chip">plan</span><span class="verb-chip">refuse</span><span class="verb-chip">offer</span>
   </div>
   <div class="eg-list" style="margin-top:24px;">
     <div class="eg-row alt">I <strong>want</strong> <span class="hl-accent">to see</span> that film.</div>
     <div class="eg-row plain">He <strong>refused</strong> <span class="hl-accent">to answer</span> the question.</div>
-  </div>
-</div>
-</section>
-
-<!-- 6 · ADJECTIVE + INFINITIVE -->
-<section class="slide bg-2 pad-md" data-note="Adjectives followed by infinitive often describe ease, readiness, or emotional reaction. Common construction: 'It is [adjective] to [verb]'.">
-<div class="sfit" style="zoom:1.42">
-  <div class="eyebrow gold">d · Adjective + infinitive</div>
-  <h2 class="slide-title tall">After certain adjectives</h2>
-  <div class="eg-list">
     <div class="eg-row alt">It is <strong>easy</strong> <span class="hl-gold">to understand</span>.</div>
     <div class="eg-row plain">She was <strong>happy</strong> <span class="hl-gold">to hear</span> the news.</div>
-    <div class="eg-row alt">Are you <strong>ready</strong> <span class="hl-gold">to start</span>?</div>
   </div>
 </div>
 </section>
 
-<!-- 7 · COMMON MISTAKES -->
-<section class="slide bg-1 pad-md" data-note="Three top errors: missing 'to' after verb+object, using 'for + verb-ing' instead of infinitive for purpose, and missing 'to' after want-type verbs.">
+<!-- 6 · COMMON MISTAKES -->
+<section class="slide bg-1 pad-md" data-note="Four top errors: missing 'to' after verb+object, using 'for + verb-ing' instead of infinitive for purpose, and missing 'to' after want-type verbs.">
 <div class="sfit" style="zoom:1.18">
   <div class="eyebrow accent">⚠ Watch out</div>
   <h2 class="slide-title compact">Common mistakes</h2>
@@ -271,7 +274,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </div>
 </section>
 
-<!-- 8 · PRACTICE DIVIDER -->
+<!-- 7 · PRACTICE DIVIDER -->
 <section class="slide bg-accent pad-lg center-v" style="position:relative;" data-note="Practice. Remind: all four uses share the same form — to + base verb.">
   <div class="circle-deco" style="bottom:-160px;right:-120px;width:520px;height:520px;"></div>
   <div class="eyebrow onaccent" style="font-size:30px;letter-spacing:.16em;background:none;padding:0;opacity:.85;">Now it's your turn</div>
@@ -279,7 +282,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   <p class="lead-italic" style="color:#fff;opacity:.92;">Say the answer out loud — then tap to check.</p>
 </section>
 
-<!-- 9 · PRACTICE 1 -->
+<!-- 8 · PRACTICE 1 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 1. Students complete with the right infinitive structure.">
 <div class="sfit" style="zoom:1.42">
   <div class="row-flex">
@@ -288,18 +291,18 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   </div>
   <h2 class="slide-title compact">Fill the gap</h2>
   <div class="gap-list">
-    <div class="gap-row"><span>She went to the gym</span><button class="gap-btn" data-answer="to exercise">?</button></div>
-    <div class="gap-row"><span>My parents encouraged me</span><button class="gap-btn" data-answer="to apply">?</button><span>for the job.</span></div>
-    <div class="gap-row"><span>I decided</span><button class="gap-btn" data-answer="to leave">?</button><span>early.</span></div>
-    <div class="gap-row"><span>It's hard</span><button class="gap-btn" data-answer="to understand">?</button><span>without context.</span></div>
-    <div class="gap-row"><span>He warned us</span><button class="gap-btn" data-answer="not to touch">?</button><span>it.</span></div>
+    <div class="gap-row"><span>She went to the gym</span><button class="gap-btn" data-answer="to exercise"></button><span class="verb-hint">(exercise)</span></div>
+    <div class="gap-row"><span>My parents encouraged me</span><button class="gap-btn" data-answer="to apply"></button><span class="verb-hint">(apply)</span><span>for the job.</span></div>
+    <div class="gap-row"><span>I decided</span><button class="gap-btn" data-answer="to leave"></button><span class="verb-hint">(leave)</span><span>early.</span></div>
+    <div class="gap-row"><span>It's hard</span><button class="gap-btn" data-answer="to understand"></button><span class="verb-hint">(understand)</span><span>without context.</span></div>
+    <div class="gap-row"><span>He warned us</span><button class="gap-btn" data-answer="not to touch"></button><span class="verb-hint">(not / touch)</span><span>it.</span></div>
   </div>
 </div>
 </section>
 
-<!-- 10 · PRACTICE 2 -->
+<!-- 9 · PRACTICE 2 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 2. Spot the error then tap to reveal.">
-<div class="sfit" style="zoom:1.0">
+<div class="sfit" style="zoom:1.3">
   <div class="row-flex">
     <div class="eyebrow accent">Practice 2</div>
     <span class="hint">tap a sentence to reveal the error</span>
@@ -322,7 +325,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </div>
 </section>
 
-<!-- 11 · PRACTICE 3 -->
+<!-- 10 · PRACTICE 3 -->
 <section class="slide bg-1 pad-sm" data-note="Practice 3. Students complete with a logical continuation.">
 <div class="sfit" style="zoom:1.42">
   <div class="row-flex">
@@ -339,7 +342,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
 </div>
 </section>
 
-<!-- 12 · YOUR TURN -->
+<!-- 11 · YOUR TURN -->
 <section class="slide bg-3 pad-lg" data-note="Production. Students create sentences for each of the four uses. Listen for the infinitive 'to' being present every time.">
 <div class="sfit" style="zoom:1.42">
   <div class="eyebrow gold">Speak &amp; write</div>
@@ -351,6 +354,21 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
     <div class="prompt-row">What do you want to do this weekend?</div>
     <div class="prompt-row">What is hard/easy for you to do in English?</div>
   </div>
+</div>
+</section>
+
+<!-- 12 · RECAP -->
+<section class="slide bg-dark pad-lg center-v" data-note="Wrap up. Give a situation; students name the pattern and say a to + base verb sentence.">
+<div class="sfit" style="zoom:1.42">
+  <div class="eyebrow ondark">Recap</div>
+  <h2 style="font-size:84px;font-weight:800;line-height:1.0;letter-spacing:-0.02em;margin:22px 0 36px;">Remember this</h2>
+  <div class="recap-grid">
+    <div class="recap-card"><div class="k">Purpose</div><div class="v">to + verb answers “why?”</div></div>
+    <div class="recap-card"><div class="k">Verb + person</div><div class="v">tell / ask / warn someone to…</div></div>
+    <div class="recap-card"><div class="k">Verb + to</div><div class="v">want / decide / refuse to…</div></div>
+    <div class="recap-card"><div class="k">Adjective + to</div><div class="v">easy / happy / ready to…</div></div>
+  </div>
+  <p class="recap-foot">Purpose is to + verb, never for + verb: I went out to buy bread.</p>
 </div>
 </section>
 
@@ -380,7 +398,7 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   document.getElementById('notesBtn').addEventListener('click',function(){notesBar.classList.toggle('show');});
   window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){show(current+1);e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(current-1);e.preventDefault();}else if(e.key==='r'||e.key==='R'){show(0);}else if(e.key==='n'||e.key==='N'){notesBar.classList.toggle('show');}});
   var gapBtns=document.querySelectorAll('.gap-btn');
-  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent=r?ans:'?';});})(gapBtns[a]);}
+  for(var a=0;a<gapBtns.length;a++){(function(btn){var ans=btn.getAttribute('data-answer');btn.addEventListener('click',function(){var r=btn.classList.toggle('revealed');btn.textContent = r ? ans : '';});})(gapBtns[a]);}
   var mCards=document.querySelectorAll('.mistake-card');
   for(var b=0;b<mCards.length;b++)mCards[b].addEventListener('click',function(){this.classList.toggle('revealed');});
   var dots='. . . . . . . . . .';
@@ -519,6 +537,49 @@ h2.giant{font-size:140px;font-weight:800;line-height:0.96;letter-spacing:-0.03em
   var rows=document.querySelectorAll('.toefl-row');
   for(var i=0;i<rows.length;i++)
     rows[i].addEventListener('click',function(){this.classList.toggle('revealed');});
+})();
+</script>
+<script>
+/* GH-QA 2026-10: fit each slide to the canvas.  The hand-set zoom on .sfit is the ceiling;
+   it only shrinks when content would run past the 1920x1080 canvas. */
+(function(){
+  function over(s){
+    var sr=s.getBoundingClientRect(), k=sr.width/1920, m=0;
+    var w=document.createTreeWalker(s,NodeFilter.SHOW_TEXT), n, r=document.createRange();
+    while((n=w.nextNode())){
+      if(!n.textContent.trim()||!n.parentElement||n.parentElement.closest('.circle-deco'))continue;
+      var el=n.parentElement; if(!el.offsetParent&&getComputedStyle(el).position!=='fixed')continue;
+      r.selectNodeContents(n); var rs=r.getClientRects();
+      for(var i=0;i<rs.length;i++){
+        m=Math.max(m,(rs[i].bottom-(sr.bottom-14*k))/k,(rs[i].right-(sr.right-14*k))/k);
+      }
+    }
+    return m>0;
+  }
+  function revealAll(s){ /* size for the fully revealed slide so text never jumps mid-lesson */
+    var undo=[];
+    s.querySelectorAll('.toefl-row,.mistake-card,.gap-btn,.complete-row').forEach(function(el){
+      var rec={el:el,cls:el.className}; el.classList.add('revealed');
+      if(el.classList.contains('gap-btn')){rec.txt=el.textContent;el.textContent=el.getAttribute('data-answer')||'';}
+      var end=el.classList.contains('complete-row')&&el.querySelector('.end');
+      if(end){rec.end=end;rec.endTxt=end.textContent;end.textContent=end.getAttribute('data-text')||'';}
+      undo.push(rec);
+    });
+    return function(){undo.forEach(function(r){r.el.className=r.cls;if(r.txt!==undefined)r.el.textContent=r.txt;if(r.end)r.end.textContent=r.endTxt;});};
+  }
+  function fit(s){
+    var f=s.querySelector('.sfit'); if(!f)return;
+    if(!f.dataset.zoom)f.dataset.zoom=parseFloat(f.style.zoom)||1;
+    var z=+f.dataset.zoom; f.style.zoom=z; var restore=revealAll(s);
+    while(z>0.72&&over(s)){z=Math.round((z-0.02)*100)/100;f.style.zoom=z;}
+    restore();
+  }
+  function fitActive(){var s=document.querySelector('.slide.active');if(s)fit(s);}
+  window.ghFit=fit;
+  var mo=new MutationObserver(function(ms){ms.forEach(function(m){if(m.target.classList.contains('active'))fit(m.target);});});
+  document.querySelectorAll('.slide').forEach(function(s){mo.observe(s,{attributes:true,attributeFilter:['class']});});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(fitActive);
+  window.addEventListener('load',fitActive);
 })();
 </script>
 </body>

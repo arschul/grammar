@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -453,7 +469,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
     <div class="explanation-section">
       <h2>What Is Should Have / Shouldn't Have?</h2>
-      <p>We use <em>should have</em> and <em>shouldn't have</em> + past participle to talk about the past. It's a way of criticising a decision or expressing regret about something that did or didn't happen.</p>
+      <p>We use <em>should have</em> and <em>shouldn't have</em> + past participle to talk about the past. It's a way of criticizing a decision or expressing regret about something that did or didn't happen.</p>
       <div class="formula-box">
         <strong>Subject + should(n't) + have + past participle</strong><br><br>
         <em>You <strong>should have called</strong> me before you left.</em><br>
@@ -482,7 +498,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
     <div class="explanation-section">
       <h2>Shouldn't Have (something did happen)</h2>
-      <p>Use <em>shouldn't have</em> + past participle to say that something happened, but it was the wrong choice. The action did take place, and we're criticising it.</p>
+      <p>Use <em>shouldn't have</em> + past participle to say that something happened, but it was the wrong choice. The action did take place, and we're criticizing it.</p>
       <div class="examples-grid">
         <div class="example-item">
           <em>He <strong>shouldn't have shouted</strong> at his sister.</em><br>
@@ -640,38 +656,18 @@ const MATCH = [
   {left:"5. He failed the exam because he",                right:"e. should have studied harder the week before."}
 ];
 const FILL = [
-  {sentence:"I _____ (study) harder for the exam — I only got 40%.", answer:"should have studied", explanation:"'should have studied' — criticising a past action that didn't happen."},
-  {sentence:"She _____ (not / drive) so fast — she got a speeding ticket.", answer:"shouldn't have driven", explanation:"'shouldn't have driven' — criticising something that did happen."},
+  {sentence:"I _____ (study) harder for the exam — I only got 40%.", answer:"should have studied", explanation:"'should have studied' — criticizing a past action that didn't happen."},
+  {sentence:"She _____ (not / drive) so fast — she got a speeding ticket.", answer:"shouldn't have driven", explanation:"'shouldn't have driven' — criticizing something that did happen."},
   {sentence:"We _____ (bring) an umbrella — it rained all afternoon.", answer:"should have brought", explanation:"'should have brought' — expresses regret about something that didn't happen."},
-  {sentence:"He _____ (not / spend) all his money on video games.", answer:"shouldn't have spent", explanation:"'shouldn't have spent' — criticises a past action that did happen."},
+  {sentence:"He _____ (not / spend) all his money on video games.", answer:"shouldn't have spent", explanation:"'shouldn't have spent' — criticizes a past action that did happen."},
   {sentence:"_____ you have called the doctor when you started feeling ill?", answer:"Should", alt:["should"], explanation:"'Should you have called...?' — the question form starts with 'Should'."}
 ];
 const MISTAKE = [
-  {
-    sentence:"He [shouldn't have] [drove] so fast [in] the rain, [and] now the car is damaged.",
-    correct:1,
-    explanation:"(B) <em>Should have</em> is followed by the past participle: <em>shouldn't have driven so fast</em>."
-  },
-  {
-    sentence:"We [should have] booked earlier, [because] the hotels [were] full [and the price have risen].",
-    correct:3,
-    explanation:"(D) <em>The price</em> is singular, so it takes <em>has risen</em>. <em>Should have booked</em> is correct."
-  },
-  {
-    sentence:"[I should of studied] harder [for] the exam, [but] I [spent] the whole weekend at the beach.",
-    correct:0,
-    explanation:"(A) The correct form is <em>should have</em>: <em>I should have studied harder</em>. <em>Should of</em> merely spells the spoken contraction and is never written."
-  },
-  {
-    sentence:"She [should have] apologized [to] her sister [but was too proud for do] it [that] evening.",
-    correct:2,
-    explanation:"(C) The pattern is <em>too</em> + adjective + <em>to</em>-infinitive: <em>too proud to do it</em>. <em>Should have apologized</em> is correct."
-  },
-  {
-    sentence:"You [should not have] shouted at him, [and] [you should have not] waited a week [to apologize].",
-    correct:2,
-    explanation:"(C) <em>Not</em> comes between <em>should</em> and <em>have</em>: <em>you should not have waited a week</em>. The first form is correct."
-  }
+  {"sentence": "He [shouldn't have] [drove] so fast [in] the rain, [and] now the car is damaged.", "correct": 1, "explanation": "(B) <em>Should have</em> is followed by the past participle: <em>shouldn't have driven so fast</em>.", "fix": "driven", "note": "should have + past participle"},
+  {"sentence": "We [should have] booked earlier, [because] the hotels [were] full [and the price have risen].", "correct": 3, "explanation": "(D) <em>The price</em> is singular, so it takes <em>has risen</em>. <em>Should have booked</em> is correct.", "fix": "and the price has risen", "note": "the price is singular → has"},
+  {"sentence": "[I should of studied] harder [for] the exam, [but] I [spent] the whole weekend at the beach.", "correct": 0, "explanation": "(A) The correct form is <em>should have</em>: <em>I should have studied harder</em>. <em>Should of</em> merely spells the spoken contraction and is never written.", "fix": "I should have studied", "note": "should have, never should of"},
+  {"sentence": "She [should have] apologized [to] her sister [but was too proud for do] it [that] evening.", "correct": 2, "explanation": "(C) The pattern is <em>too</em> + adjective + <em>to</em>-infinitive: <em>too proud to do it</em>. <em>Should have apologized</em> is correct."},
+  {"sentence": "You [should not have] shouted at him, [and] [you should have not] waited a week [to apologize].", "correct": 2, "explanation": "(C) <em>Not</em> comes between <em>should</em> and <em>have</em>: <em>you should not have waited a week</em>. The first form is correct."}
 ];
 const ORDER = [
   {words:["You","should","have","called","me","earlier."], answer:"You should have called me earlier."},
@@ -729,28 +725,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -831,12 +848,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

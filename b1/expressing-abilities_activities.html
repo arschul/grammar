@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -626,31 +642,11 @@ const FILL = [
   {sentence:"I'm not _____ (be able to) come to the meeting on Monday — I have another appointment.", answer:"able to"}
 ];
 const MISTAKE = [
-  {
-    sentence:"When I was ten I [could] swim quite well, [but] I [couldn't to] dive [from] the high board.",
-    correct:2,
-    explanation:"(C) Modal verbs are followed by the bare infinitive: <em>couldn't dive</em>, with no <em>to</em>. The first <em>could</em> is correct."
-  },
-  {
-    sentence:"[Despite of] her injury, she [was able to] finish the race [and] even [managed] to smile.",
-    correct:0,
-    explanation:"(A) <em>Despite</em> is not followed by <em>of</em>: <em>Despite her injury</em>. (<em>In spite of</em> is the version that takes <em>of</em>.) The ability structures are correct."
-  },
-  {
-    sentence:"After three years of lessons my brother [can] play the guitar well, [and] next year he [will] [can] join a band.",
-    correct:3,
-    explanation:"(D) Two modals cannot follow each other: <em>he will be able to join a band</em>. The first <em>can</em> is correct."
-  },
-  {
-    sentence:"My cousin [can] speak Japanese fluently [because she have] lived in Tokyo [since] 2019 [without] a break.",
-    correct:1,
-    explanation:"(B) <em>She</em> is third-person singular, so the present perfect is <em>she has lived</em>. <em>Can speak</em> is correct."
-  },
-  {
-    sentence:"[I can't to] help you this afternoon, [but] I [will be able to] give you a hand [tomorrow].",
-    correct:0,
-    explanation:"(A) <em>Can</em> takes the bare infinitive: <em>I can't help you</em>. <em>Will be able to</em>, later in the sentence, is correct."
-  }
+  {"sentence": "When I was ten I [could] swim quite well, [but] I [couldn't to] dive [from] the high board.", "correct": 2, "explanation": "(C) Modal verbs are followed by the bare infinitive: <em>couldn't dive</em>, with no <em>to</em>. The first <em>could</em> is correct.", "fix": "couldn't", "note": "modals take the bare infinitive"},
+  {"sentence": "[Despite of] her injury, she [was able to] finish the race [and] even [managed] to smile.", "correct": 0, "explanation": "(A) <em>Despite</em> is not followed by <em>of</em>: <em>Despite her injury</em>. (<em>In spite of</em> is the version that takes <em>of</em>.) The ability structures are correct.", "fix": "Despite", "note": "despite takes no of"},
+  {"sentence": "After three years of lessons my brother [can] play the guitar well, [and] next year he [will] [can] join a band.", "correct": 3, "explanation": "(D) Two modals cannot follow each other: <em>he will be able to join a band</em>. The first <em>can</em> is correct.", "fix": "be able to", "note": "two modals cannot stack — use be able to"},
+  {"sentence": "My cousin [can] speak Japanese fluently [because she have] lived in Tokyo [since] 2019 [without] a break.", "correct": 1, "explanation": "(B) <em>She</em> is third-person singular, so the present perfect is <em>she has lived</em>. <em>Can speak</em> is correct."},
+  {"sentence": "[I can't to] help you this afternoon, [but] I [will be able to] give you a hand [tomorrow].", "correct": 0, "explanation": "(A) <em>Can</em> takes the bare infinitive: <em>I can't help you</em>. <em>Will be able to</em>, later in the sentence, is correct."}
 ];
 const ORDER = [
   {words:["the","She","fix","to","managed","problem."], answer:"She managed to fix the problem."},
@@ -662,7 +658,7 @@ const ORDER = [
 const OPEN = [
   {question:"Write two sentences about things you can do well and one thing you can't do.", model:"I can speak two languages and I can cook quite well. I can't draw at all — my pictures always look terrible."},
   {question:"Write two sentences about things you could or couldn't do when you were younger.", model:"When I was little, I could run really fast. I couldn't ride a bike until I was eight, but after that I went everywhere on it."},
-  {question:"Think of something difficult you achieved. Write a sentence using 'managed to' and one using 'succeeded in'.", model:"Last year I managed to finish a 10km race even though I hadn't trained much. I also succeeded in learning enough French to have a basic conversation on my holiday."},
+  {question:"Think of something difficult you achieved. Write a sentence using 'managed to' and one using 'succeeded in'.", model:"Last year I managed to finish a 10km race even though I hadn't trained much. I also succeeded in learning enough French to have a basic conversation on my vacation."},
   {question:"Write two sentences using 'be able to' — one positive and one negative.", model:"My sister is able to work very long hours without getting tired. I'm not able to do that — I need at least eight hours of sleep."},
   {question:"Write a short paragraph (3–4 sentences) about a skill you have or want to develop. Use at least two different ability expressions.", model:"I can play the guitar, but I'm not able to read music very well. When I was younger, I could only play a few chords. Last month I managed to learn a full song for the first time, and I succeeded in playing it at a family dinner."}
 ];
@@ -703,28 +699,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -805,12 +822,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

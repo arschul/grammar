@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -472,7 +488,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     <div class="explanation-section">
       <h2>Positive, Negative and Question Forms</h2>
       <div class="formula-box">
-        <strong>Positive:</strong> The cake <em>was made</em> by my mum.<br>
+        <strong>Positive:</strong> The cake <em>was made</em> by my mom.<br>
         <strong>Negative:</strong> The exam <em>wasn't canceled</em>.<br>
         <strong>Question:</strong> <em>Was</em> the letter <em>delivered</em> on time?<br>
         <strong>Question (plural):</strong> <em>Were</em> the students <em>told</em> about the change?
@@ -616,38 +632,18 @@ const MATCH = [
   {left:"5. Two windows were broken in the storm", right:"e. but nobody was hurt."}
 ];
 const FILL = [
-  {sentence:"The car _____ (repair) by a mechanic yesterday.", answer:"was repaired", explanation:"'The car was repaired' — singular subject, so use 'was' + past participle of 'repair'."},
-  {sentence:"All the tickets _____ (sell) before midday.", answer:"were sold", explanation:"'All the tickets were sold' — plural subject, so use 'were' + past participle of 'sell'."},
-  {sentence:"The letter _____ (not / send) on time.", answer:"wasn't sent", alt:["was not sent"], explanation:"'The letter wasn't sent' — negative: 'was not' + past participle."},
-  {sentence:"_____ the report _____ (finish) before the meeting?", answer:"Was / finished", alt:["was / finished","Was/finished","was/finished"], explanation:"'Was the report finished?' — question form: 'Was' + subject + past participle."},
-  {sentence:"Three students _____ (choose) to represent the school.", answer:"were chosen", explanation:"'Three students were chosen' — plural subject, so use 'were' + past participle of 'choose'."}
+  {"sentence": "The car _____ (repair) by a mechanic yesterday.", "answer": "was repaired", "explanation": "'The car was repaired' — singular subject, so use 'was' + past participle of 'repair'."},
+  {"sentence": "All the tickets _____ (sell) before midday.", "answer": "were sold", "explanation": "'All the tickets were sold' — plural subject, so use 'were' + past participle of 'sell'."},
+  {"sentence": "The letter _____ (not / send) on time.", "answer": "wasn't sent", "alt": ["was not sent"], "explanation": "'The letter wasn't sent' — negative: 'was not' + past participle."},
+  {"sentence": "The report _____ before the meeting, so we discussed it without the numbers.", "answer": "wasn't finished", "alt": ["was not finished"], "hint": "not / finish", "explanation": "'wasn't finished' — past passive negative: wasn't + past participle."},
+  {"sentence": "Three students _____ (choose) to represent the school.", "answer": "were chosen", "explanation": "'Three students were chosen' — plural subject, so use 'were' + past participle of 'choose'."}
 ];
 const MISTAKE = [
-  {
-    sentence:"The letters [were] [wrote] by hand [and] delivered [the] same afternoon.",
-    correct:1,
-    explanation:"(B) The past passive uses the past participle: <em>were written by hand</em>."
-  },
-  {
-    sentence:"The museum [was built] in 1890 [and] [was restored] twice, [although much visitors] complained.",
-    correct:3,
-    explanation:"(D) <em>Visitors</em> is countable, so use <em>many</em>. Both passive forms are correct."
-  },
-  {
-    sentence:"[The windows was broken] [during] the storm, [but] nobody [was hurt].",
-    correct:0,
-    explanation:"(A) <em>The windows</em> is plural, so the past passive is <em>were broken</em>. <em>Was hurt</em>, with <em>nobody</em>, is correct."
-  },
-  {
-    sentence:"The parcel [was sent] [to] the wrong address [and arrived to] Lisbon [two] weeks late.",
-    correct:2,
-    explanation:"(C) <em>Arrive</em> takes <em>in</em> or <em>at</em>, never <em>to</em>: <em>and arrived in Lisbon</em>. The past passive is correct."
-  },
-  {
-    sentence:"The road [was closed] [by] the police [because] [an accident was happened] near the bridge.",
-    correct:3,
-    explanation:"(D) <em>Happen</em> is intransitive and has no passive: <em>an accident happened near the bridge</em>. <em>Was closed by the police</em> is correct."
-  }
+  {"sentence": "The letters [were] [wrote] by hand [and] delivered [the] same afternoon.", "correct": 1, "explanation": "(B) The past passive uses the past participle: <em>were written by hand</em>.", "fix": "written", "note": "were + past participle: write → written"},
+  {"sentence": "The museum [was built] in 1890 [and] [was restored] twice, [although much visitors] complained.", "correct": 3, "explanation": "(D) <em>Visitors</em> is countable, so use <em>many</em>. Both passive forms are correct.", "fix": "although many visitors", "note": "many with countable nouns"},
+  {"sentence": "[The windows was broken] [during] the storm, [but] nobody [was hurt].", "correct": 0, "explanation": "(A) <em>The windows</em> is plural, so the past passive is <em>were broken</em>. <em>Was hurt</em>, with <em>nobody</em>, is correct.", "fix": "The windows were broken", "note": "the windows is plural → were"},
+  {"sentence": "The parcel [was sent] [to] the wrong address [and arrived to] Lisbon [two] weeks late.", "correct": 2, "explanation": "(C) <em>Arrive</em> takes <em>in</em> or <em>at</em>, never <em>to</em>: <em>and arrived in Lisbon</em>. The past passive is correct."},
+  {"sentence": "The road [was closed] [by] the police [because] [an accident was happened] near the bridge.", "correct": 3, "explanation": "(D) <em>Happen</em> is intransitive and has no passive: <em>an accident happened near the bridge</em>. <em>Was closed by the police</em> is correct."}
 ];
 const ORDER = [
   {words:["built","The","was","by","bridge","engineers.","local"], answer:"The bridge was built by local engineers."},
@@ -705,28 +701,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -807,12 +824,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

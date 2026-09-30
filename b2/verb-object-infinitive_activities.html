@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -646,31 +662,11 @@ const FILL = [
   {sentence:"Jane invited _____ on vacation with her.", answer:"Nelly to go", hint:"Nelly + go", explanation:"Verb + object + to-infinitive: 'invited Nelly to go'."}
 ];
 const MISTAKE = [
-  {
-    sentence:"She [persuaded] her brother [to apply] [and convinced him applying] for the scholarship [as well].",
-    correct:2,
-    explanation:"(C) <em>Convince</em> takes an object + <em>to</em>-infinitive: <em>convinced him to apply</em>. <em>Persuaded her brother to apply</em> is correct."
-  },
-  {
-    sentence:"[My parents wants me to] study law, [but] I [would prefer] [to] work in design.",
-    correct:0,
-    explanation:"(A) <em>My parents</em> is plural, so it takes <em>want</em>. The verb + object + infinitive pattern is correct."
-  },
-  {
-    sentence:"They [expected] him [to accept] the offer, [but he made them to wait] [three] weeks.",
-    correct:3,
-    explanation:"(D) <em>Make</em> takes a bare infinitive: <em>he made them wait three weeks</em>. <em>Expected him to accept</em> is correct."
-  },
-  {
-    sentence:"The manager [reminded] [us to apply to] the grant [before] Friday, [and] we sent the forms.",
-    correct:1,
-    explanation:"(B) You <em>apply for</em> a grant: <em>reminded us to apply for the grant</em>. The verb + object + infinitive pattern is correct."
-  },
-  {
-    sentence:"He [wanted] [that his son studied] medicine, [but] the boy [chose] architecture instead.",
-    correct:1,
-    explanation:"(B) <em>Want</em> takes an object and a <em>to</em>-infinitive, never a <em>that</em>-clause: <em>He wanted his son to study medicine</em>."
-  }
+  {"sentence": "She [persuaded] her brother [to apply] [and convinced him applying] for the scholarship [as well].", "correct": 2, "explanation": "(C) <em>Convince</em> takes an object + <em>to</em>-infinitive: <em>convinced him to apply</em>. <em>Persuaded her brother to apply</em> is correct.", "fix": "and convinced him to apply", "note": "convince somebody to do something"},
+  {"sentence": "[My parents wants me to] study law, [but] I [would prefer] [to] work in design.", "correct": 0, "explanation": "(A) <em>My parents</em> is plural, so it takes <em>want</em>. The verb + object + infinitive pattern is correct.", "fix": "My parents want me to", "note": "my parents is plural → want"},
+  {"sentence": "They [expected] him [to accept] the offer, [but] he [made them to wait] three weeks.", "correct": 3, "explanation": "(D) <em>Make</em> takes a bare infinitive: <em>he made them wait three weeks</em>. <em>Expected him to accept</em> is correct.", "fix": "made them wait", "note": "make somebody do — no to"},
+  {"sentence": "The manager [reminded] [us to apply to] the grant [before] Friday, [and] we sent the forms.", "correct": 1, "explanation": "(B) You <em>apply for</em> a grant: <em>reminded us to apply for the grant</em>. The verb + object + infinitive pattern is correct."},
+  {"sentence": "He [wanted] [that his son studied] medicine, [but] the boy [chose] architecture instead.", "correct": 1, "explanation": "(B) <em>Want</em> takes an object and a <em>to</em>-infinitive, never a <em>that</em>-clause: <em>He wanted his son to study medicine</em>."}
 ];
 const ORDER = [
   {words:["They","encouraged","us","to","apply","early."], answer:"They encouraged us to apply early."},
@@ -684,7 +680,7 @@ const OPEN = [
   {question:"Think of a rule at your school, workplace or building. Report it using 'allow', 'permit' or 'not to'.", model:"The building doesn't allow residents to park in front of the entrance. The caretaker has asked us not to leave bicycles in the hallway."},
   {question:"Report a warning somebody has given you recently.", model:"A colleague warned me not to reply to that email in a hurry. He told me to wait until the next morning before answering."},
   {question:"Describe an invitation you have received or given. Use 'invite' or 'would like'.", model:"My cousin invited me to spend a week at the coast in August. I would like her to come to my birthday dinner in return."},
-  {question:"What do your family or friends expect you to do this year, and what do they not expect?", model:"My parents expect me to finish my course before the summer. They don't expect me to move abroad immediately, but I have asked them not to worry about it."}
+  {question:"What do your friends and family expect you to do this year, and what do they not expect?", model:"My parents expect me to finish my course before the summer. They don't expect me to move abroad immediately, but I have asked them not to worry about it."}
 ];
 
 // -- MATCH --
@@ -723,28 +719,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -825,12 +842,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

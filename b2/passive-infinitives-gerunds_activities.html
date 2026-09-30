@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -516,7 +532,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
         <tr><th>Word in front</th><th>Form you need</th></tr>
         <tr><td class="pron">a modal (<em>must</em>, <em>can</em>, <em>should</em>&hellip;)</td><td><em><strong>be</strong> + past participle</em> &mdash; <em>must <strong>be answered</strong></em></td></tr>
         <tr><td class="pron">a <em>to</em>-structure (<em>going to</em>, <em>would like to</em>&hellip;)</td><td><em><strong>to be</strong> + past participle</em> &mdash; <em>would like <strong>to be given</strong></em></td></tr>
-        <tr><td class="pron">a gerund verb (<em>like</em>, <em>hate</em>, <em>remember</em>&hellip;)</td><td><em><strong>being</strong> + past participle</em> &mdash; <em>remember <strong>being told</strong></em></td></tr>
+        <tr><td class="pron">a gerund verb (<em>avoid</em>, <em>enjoy</em>, <em>remember</em>&hellip;)</td><td><em><strong>being</strong> + past participle</em> &mdash; <em>remember <strong>being told</strong></em></td></tr>
         <tr><td class="pron">any preposition (<em>of</em>, <em>on</em>, <em>to</em>&hellip;)</td><td><em><strong>being</strong> + past participle</em> &mdash; <em>afraid of <strong>being asked</strong></em></td></tr>
       </table>
       <div class="note-box">
@@ -538,7 +554,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
       </div>
       <div class="note-box">
         <strong>&#9888; Common mistakes:</strong><br>
-        &#10007; <em>He doesn't like to be introduced&hellip;</em> &rarr; &#10003; <em>He doesn't like <strong>being introduced</strong>&hellip;</em> (after <em>like</em> here, the gerund)<br>
+        &#10007; <em>He avoids to be introduced&hellip;</em> &rarr; &#10003; <em>He avoids <strong>being introduced</strong>&hellip;</em> (after <em>avoid</em>, the gerund)<br>
         &#10007; <em>The questions must being answered.</em> &rarr; <em>The questions must <strong>be answered</strong>.</em><br>
         &#10007; <em>Not all of them will answered.</em> &rarr; &#10003; <em>Not all of them will <strong>be answered</strong>.</em><br>
         &#10007; <em>I'm afraid of be misunderstood.</em> &rarr; &#10003; <em>I'm afraid of <strong>being misunderstood</strong>.</em><br>
@@ -663,45 +679,25 @@ function checkStep(step,cid,fid,data,fn){
 const MATCH = [
   {left:"1. I would like", right:"a. to be given the chance to discover more."},
   {left:"2. You were invited", right:"b. to send in questions for Dr. Davis."},
-  {left:"3. He doesn't like", right:"c. being introduced to new people."},
+  {left:"3. He avoids", right:"c. being introduced to new people."},
   {left:"4. I remember", right:"d. being told about a man who has synesthesia."},
   {left:"5. Not all the questions are going", right:"e. to be answered by Dr. Davis."}
 ];
 
 const FILL = [
-  {sentence:"I would like _____ the chance to discover more about synesthesia.", answer:"to be given", hint:"give \u2014 after 'would like'", explanation:"'Would like' keeps 'to', so the form is 'to be' + past participle."},
-  {sentence:"He doesn't like _____ to new people at parties.", answer:"being introduced", hint:"introduce \u2014 after 'like'", explanation:"After a gerund verb the passive is 'being' + past participle."},
-  {sentence:"I remember _____ about a man who can taste colors.", answer:"being told", hint:"tell \u2014 after 'remember'", explanation:"'Remember' takes a gerund, so the passive gerund is used."},
-  {sentence:"Not every question can _____ in a single episode.", answer:"be answered", hint:"answer \u2014 after 'can'", explanation:"After a modal there is no 'to' and no 'being': just 'be' + past participle."},
-  {sentence:"She's afraid of _____ by the other guests on the show.", answer:"being misunderstood", hint:"misunderstand \u2014 after 'of'", explanation:"Every preposition is followed by a gerund, so the passive is 'being' + past participle."}
+  {"sentence": "I would like _____ the chance to discover more about synesthesia.", "answer": "to be given", "hint": "give — after 'would like'", "explanation": "'Would like' keeps 'to', so the form is 'to be' + past participle."},
+  {"sentence": "He avoids _____ to new people at parties.", "answer": "being introduced", "hint": "introduce — after 'avoid'", "explanation": "After a gerund verb the passive is 'being' + past participle."},
+  {"sentence": "I remember _____ about a man who can taste colors.", "answer": "being told", "hint": "tell — after 'remember'", "explanation": "'Remember' takes a gerund, so the passive gerund is used."},
+  {"sentence": "Not every question can _____ in a single episode.", "answer": "be answered", "hint": "answer — after 'can'", "explanation": "After a modal there is no 'to' and no 'being': just 'be' + past participle."},
+  {"sentence": "She's afraid of _____ by the other guests on the show.", "answer": "being misunderstood", "hint": "misunderstand — after 'of'", "explanation": "Every preposition is followed by a gerund, so the passive is 'being' + past participle."}
 ];
 
 const MISTAKE = [
-  {
-    sentence:"The documents need [to be] [sign] before Friday, [and] copies [must] be filed separately.",
-    correct:1,
-    explanation:"(B) The passive infinitive is <em>to be</em> + past participle: <em>need to be signed</em>."
-  },
-  {
-    sentence:"She dislikes [being interrupted] [during] meetings, [although] [her colleagues does it] constantly.",
-    correct:3,
-    explanation:"(D) <em>Her colleagues</em> is plural, so it takes <em>do it</em>. The passive gerund <em>being interrupted</em> is correct."
-  },
-  {
-    sentence:"[He hates being critic] [in] public, [so] the manager always [speaks] to him privately.",
-    correct:0,
-    explanation:"(A) The passive gerund is <em>being</em> + past participle: <em>He hates being criticised in public</em>."
-  },
-  {
-    sentence:"The building [is expected] [to be completed] [until] March, [but] the work is behind schedule.",
-    correct:2,
-    explanation:"(C) A deadline takes <em>by</em>: <em>expected to be completed by March</em>. The passive infinitive is correct."
-  },
-  {
-    sentence:"The proposal [deserves] [to be considered] carefully, [and it should not be reject] [without] discussion.",
-    correct:2,
-    explanation:"(C) The passive needs the past participle: <em>it should not be rejected</em>. <em>Deserves to be considered</em> is correct."
-  }
+  {"sentence": "The documents need [to be] [sign] before Friday, [and] copies [must] be filed separately.", "correct": 1, "explanation": "(B) The passive infinitive is <em>to be</em> + past participle: <em>need to be signed</em>.", "fix": "signed", "note": "to be + past participle"},
+  {"sentence": "She dislikes [being interrupted] [during] meetings, [although] [her colleagues does it] constantly.", "correct": 3, "explanation": "(D) <em>Her colleagues</em> is plural, so it takes <em>do it</em>. The passive gerund <em>being interrupted</em> is correct.", "fix": "her colleagues do it", "note": "her colleagues is plural → do"},
+  {"sentence": "[He hates being critic] [in] public, [so] the manager always [speaks] to him privately.", "correct": 0, "explanation": "(A) The passive gerund is <em>being</em> + past participle: <em>He hates being criticized in public</em>.", "fix": "He hates being criticized", "note": "being + past participle"},
+  {"sentence": "The building [is expected] [to be completed] [until] March, [but] the work is behind schedule.", "correct": 2, "explanation": "(C) A deadline takes <em>by</em>: <em>expected to be completed by March</em>. The passive infinitive is correct."},
+  {"sentence": "The proposal [deserves] [to be considered] carefully, [and it should not be reject] [without] discussion.", "correct": 2, "explanation": "(C) The passive needs the past participle: <em>it should not be rejected</em>. <em>Deserves to be considered</em> is correct."}
 ];
 
 const ORDER = [
@@ -756,28 +752,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -858,12 +875,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --

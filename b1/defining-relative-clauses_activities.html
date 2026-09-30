@@ -424,11 +424,27 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   #gh-print-sheet .pw-key h2{font-size:10pt;margin:0 0 5pt;}
   #gh-print-sheet .pw-key p{font-size:8pt;line-height:1.55;margin:0 0 4pt;}
 }
+/* GH-QA 2026-10 */
+  .activity-desc{font-size:1rem;}
+  .hint-text{color:var(--ink-soft);font-size:.95rem;}
+  .exercise-num{font-size:.74rem;}
+  .toefl-sentence .tlabel{font-size:.8rem;}
+  .rail-label{font-size:.8rem;}
+  html.gh-big{font-size:125%;}
+  html.gh-big .topic-page{max-width:1120px;}
+  #big-btn{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:-.02em;}
+  html.gh-big #big-btn{background:var(--ink);color:var(--paper);}
+  @media(max-width:600px){
+    .rail-node{min-width:0;}
+    .rail-label{display:none;}
+    .rail-node.current .rail-label{display:block;font-size:.78rem;}
+  }
 </style>
 </head>
 <body>
 <nav>
   <a class="nav-logo" href="../index.html">Grammar<span>Hub</span></a>
+  <button class="theme-toggle" onclick="ghBig()" id="big-btn" title="Bigger text for the projector" aria-label="Toggle bigger text">A+</button>
   <button class="theme-toggle" onclick="printWorksheet()" id="print-btn" title="Print worksheet" aria-label="Print worksheet">🖨</button>
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode" aria-label="Toggle light or dark mode">🌙</button>
 </nav>
@@ -521,7 +537,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     <div id="drc-act2" class="activity-section">
       <div class="activity-card">
         <div class="activity-title">Fill in the Gaps</div>
-        <div class="activity-desc">Complete each sentence with the correct relative pronoun: <em>who, which, where,</em> or <em>when</em>.</div>
+        <div class="activity-desc">Complete each sentence with <em>who, which, that, where</em> or <em>when</em>. The bracket tells you what the noun is.</div>
         <div id="drc-fill-exercises"></div>
         <div class="btn-row">
           <button class="check-btn" onclick="checkStep(2,'drc-fill-exercises','drc-fill-feedback',FILL,checkFill)">Check Answers</button>
@@ -620,38 +636,18 @@ const MATCH = [
   {left:"5. There are some inventors",                  right:"e. who are creating some pretty amusing things."}
 ];
 const FILL = [
-  {sentence:"Give an example of a time _____ you bought something that you were disappointed with.", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a time."},
-  {sentence:"Name the main places _____ you shop, apart from online.", answer:"where", explanation:"We use 'where' to introduce a relative clause about a place."},
-  {sentence:"Think of a person _____ has been very important in the first decades of the 21st century.", answer:"who", alt:["that"], explanation:"We use 'who' (or 'that') to introduce a relative clause about a person."},
-  {sentence:"The invention _____ changed communication the most is the smartphone.", answer:"that", alt:["which"], explanation:"We use 'that' or 'which' to introduce a relative clause about a thing."},
-  {sentence:"Do you remember the moment _____ you first used the internet?", answer:"when", alt:["that"], explanation:"We use 'when' to introduce a relative clause about a moment in time."}
+  {"sentence": "That's the man _____ fixed my car last week.", "answer": "who", "alt": ["that"], "hint": "a person", "explanation": "'who' (or 'that') — the clause describes a person."},
+  {"sentence": "This is the café _____ we had our first date.", "answer": "where", "hint": "a place", "explanation": "'where' — the clause describes a place."},
+  {"sentence": "I'll never forget the day _____ I got my first job.", "answer": "when", "alt": ["that"], "hint": "a time", "explanation": "'when' — the clause describes a time."},
+  {"sentence": "The app _____ I use most is a dictionary.", "answer": "which", "alt": ["that"], "hint": "a thing", "explanation": "'which' (or 'that') — the clause describes a thing."},
+  {"sentence": "Do you remember the teacher _____ taught us math?", "answer": "who", "alt": ["that"], "hint": "a person", "explanation": "'who' (or 'that') — the clause describes a person."}
 ];
 const MISTAKE = [
-  {
-    sentence:"I met a woman [at the conference] [which] speaks five languages [and] works [as] a translator.",
-    correct:1,
-    explanation:"(B) Use <em>who</em> (or <em>that</em>) for people: <em>a woman who speaks five languages</em>."
-  },
-  {
-    sentence:"The book [that] I borrowed [from] the library [was] fascinating, but the pages [is] falling out.",
-    correct:3,
-    explanation:"(D) <em>The pages</em> is plural, so it takes <em>are falling out</em>. The relative clause <em>that I borrowed</em> is correct."
-  },
-  {
-    sentence:"[The film that we watched it] last night [was] much longer [than] I [expected].",
-    correct:0,
-    explanation:"(A) <em>That</em> is already the object of <em>watched</em>, so <em>it</em> must be deleted: <em>The film that we watched last night</em>."
-  },
-  {
-    sentence:"The hotel [that] we booked online [was] [more cheaper] than the one [near] the station.",
-    correct:2,
-    explanation:"(C) Do not combine <em>more</em> with an <em>-er</em> ending: <em>cheaper than</em>. The defining relative clause is correct."
-  },
-  {
-    sentence:"The students [who] arrived late [missed] the lecture, [and] the professor [who he] wrote the book was annoyed.",
-    correct:3,
-    explanation:"(D) <em>Who</em> is already the subject of its clause, so <em>he</em> is unnecessary: <em>the professor who wrote the book</em>. The first relative clause is correct."
-  }
+  {"sentence": "I met a woman [at the conference] [which] speaks five languages [and] works [as] a translator.", "correct": 1, "explanation": "(B) Use <em>who</em> (or <em>that</em>) for people: <em>a woman who speaks five languages</em>.", "fix": "who", "note": "who for people, which for things"},
+  {"sentence": "The book [that] I borrowed [from] the library [was] fascinating, but the pages [is] falling out.", "correct": 3, "explanation": "(D) <em>The pages</em> is plural, so it takes <em>are falling out</em>. The relative clause <em>that I borrowed</em> is correct.", "fix": "are", "note": "the pages is plural → are"},
+  {"sentence": "[The film that we watched it] last night [was] much longer [than] I [expected].", "correct": 0, "explanation": "(A) <em>That</em> is already the object of <em>watched</em>, so <em>it</em> must be deleted: <em>The film that we watched last night</em>.", "fix": "The film that we watched", "note": "no extra object pronoun in the relative clause"},
+  {"sentence": "The hotel [that] we booked online [was] [more cheaper] than the one [near] the station.", "correct": 2, "explanation": "(C) Do not combine <em>more</em> with an <em>-er</em> ending: <em>cheaper than</em>. The defining relative clause is correct."},
+  {"sentence": "The students [who] arrived late [missed] the lecture, [and] the professor [who he] wrote the book was annoyed.", "correct": 3, "explanation": "(D) <em>Who</em> is already the subject of its clause, so <em>he</em> is unnecessary: <em>the professor who wrote the book</em>. The first relative clause is correct."}
 ];
 const ORDER = [
   {words:["She's","the","teacher","who","helped","me","most."], answer:"She's the teacher who helped me most."},
@@ -704,28 +700,49 @@ function initMatch(prefix,data){
 }
 
 // -- FILL --
+// -- BIG TEXT (projector) --
+function ghBig(){const on=document.documentElement.classList.toggle('gh-big');try{localStorage.setItem('gh-bigtext',on?'1':'0');}catch(e){}}
+try{if(localStorage.getItem('gh-bigtext')==='1')document.documentElement.classList.add('gh-big');}catch(e){}
+
 function buildFillHTML(cid,data){
   const c=document.getElementById(cid);c.innerHTML='';
   data.forEach((item,i)=>{
     const d=document.createElement('div');d.className='exercise';
     const parts=item.sentence.split('_____');
     const hintHTML=item.hint?`<span class="hint-text">(${item.hint})</span>`:'';
-    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="...">${hintHTML}${parts[1]||''}</div>${item.explanation?`<div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${item.explanation}</div>`:''}`;
+    const ex=item.explanation||'';
+    const shown=ex&&ghNorm(ex).includes(ghNorm(item.answer||'Ø'))?ex:`<em>${item.answer===''?'Ø (no word)':item.answer}</em>${ex?' — '+ex:''}`;
+    d.innerHTML=`<div class="exercise-num">Exercise ${i+1}</div><div class="exercise-q">${parts[0]}<input class="gap-input" data-idx="${i}" type="text" placeholder="..." autocomplete="off" autocapitalize="off" spellcheck="false">${hintHTML}${parts[1]||''}</div><div class="model-answer" id="${cid}-fexp-${i}"><strong>Correct answer:</strong> ${shown}</div>`;
     c.appendChild(d);
   });
 }
+function ghNorm(s){
+  return String(s).replace(/<[^>]+>/g,'').toLowerCase().replace(/[‘’ʼ`´]/g,"'").replace(/[“”]/g,'"')
+    .replace(/\s+/g,' ').trim().replace(/[.!?,;:]+$/,'').trim();
+}
+function ghExpand(s){
+  return s.replace(/\bcan't\b/g,'cannot').replace(/\bwon't\b/g,'will not').replace(/\bshan't\b/g,'shall not')
+    .replace(/n't\b/g,' not').replace(/'m\b/g,' am').replace(/'re\b/g,' are').replace(/'ve\b/g,' have').replace(/'ll\b/g,' will')
+    .replace(/\s+/g,' ').trim();
+}
+function ghMatch(user,answers,strict){
+  const u=ghNorm(user);
+  return answers.some(a=>{const n=ghNorm(a);return u===n||(!strict&&ghExpand(u)===ghExpand(n));});
+}
 function checkFill(cid,fid,data){
   const inputs=document.querySelectorAll(`#${cid} .gap-input`);let correct=0;
+  const desc=(document.getElementById(cid).closest('.activity-card')||document).querySelector('.activity-desc');
+  const strict=!!(desc&&/not contractions|full forms/i.test(desc.textContent));
   inputs.forEach(inp=>{
-    const idx=parseInt(inp.dataset.idx),uv=inp.value.trim().toLowerCase();
-    const ans=data[idx].answer.toLowerCase(),alts=(data[idx].alt||[]).map(a=>a.toLowerCase());
+    const idx=parseInt(inp.dataset.idx);
+    const ok=ghMatch(inp.value,[data[idx].answer].concat(data[idx].alt||[]),strict);
     const expEl=document.getElementById(`${cid}-fexp-${idx}`);
-    if(uv===ans||alts.includes(uv)){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
+    if(ok){inp.classList.add('correct-answer');inp.classList.remove('wrong-answer');correct++;if(expEl)expEl.classList.remove('show');}
     else{inp.classList.add('wrong-answer');inp.classList.remove('correct-answer');if(expEl)expEl.classList.add('show');}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?`\u2713 Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
+  fb.textContent=correct===data.length?`✓ Perfect! All ${data.length} correct!`:`You got ${correct} out of ${data.length} correct. Check the highlighted answers.`;
 }
 
 // -- MISTAKE --
@@ -806,12 +823,13 @@ function checkOrder(cid,fid,data){
   data.forEach((item,i)=>{
     const st=orderState[cid][i],built=st.selected.map(wi=>st.words[wi]).join(' ');
     const sl=document.getElementById(`${cid}-slots-${i}`),ht=document.getElementById(`${cid}-hint-${i}`);
-    if(built.toLowerCase()===item.answer.toLowerCase()){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
-    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='\u2713 '+item.answer;ht.style.display='block';}}
+    const ok=[item.answer].concat(item.alt||[]).some(a=>ghNorm(a)===ghNorm(built));
+    if(ok){correct++;sl.style.borderColor='var(--correct)';if(ht)ht.style.display='none';}
+    else{sl.style.borderColor='var(--wrong)';if(ht){ht.textContent='✓ '+item.answer;ht.style.display='block';}}
   });
   const fb=document.getElementById(fid);fb.classList.add('show');
   fb.className=correct===data.length?'feedback show correct':'feedback show partial';
-  fb.textContent=correct===data.length?'\u2713 Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
+  fb.textContent=correct===data.length?'✓ Perfect! All sentences correct!':`${correct} out of ${data.length} correct. Check the highlighted sentences.`;
 }
 
 // -- OPEN --
