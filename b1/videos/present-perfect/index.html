@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link href="assets/fonts.css" rel="stylesheet" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      :root {
+        --cream: #fdf6ee;
+        --cream-2: #fffaf4;
+        --text: #2c2017;
+        --muted: #8c7c6e;
+        --border: #f0e2d4;
+        --accent: #e26d4f;
+        --accent-text: #c9543a;
+        --accent-bg: #fbe1d6;
+        --gold: #eaa036;
+        --gold-text: #b97d16;
+        --gold-bg: #fbeccf;
+        --dark: #2c2017;
+        --green: #1f7a4d;
+        --green-bg: #d9efe2;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream); }
+      #root {
+        position: relative; width: 1920px; height: 1080px; overflow: hidden;
+        font-family: "Bricolage Grotesque", sans-serif; color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+      .clip { position: absolute; inset: 0; }
+      .scene { display: flex; flex-direction: column; padding: 90px 120px; }
+      .center { align-items: center; justify-content: center; text-align: center; }
+      .bg-cream { background: var(--cream); }
+      .bg-dark { background: var(--dark); color: var(--cream); }
+      .bg-accent { background: var(--accent); color: #fff; }
+
+      .eyebrow {
+        align-self: flex-start; font-weight: 700; font-size: 26px; letter-spacing: 0.12em;
+        text-transform: uppercase; padding: 12px 22px; border-radius: 999px;
+        background: var(--accent-bg); color: var(--accent-text);
+      }
+      .eyebrow.gold { background: var(--gold-bg); color: var(--gold-text); }
+      .eyebrow.ondark { background: rgba(234, 160, 54, 0.18); color: var(--gold); }
+      .h2 { font-size: 88px; font-weight: 800; letter-spacing: -0.025em; line-height: 1; margin-top: 22px; }
+      .serif { font-family: "Newsreader", serif; }
+      .hl { color: var(--accent-text); font-weight: 600; }
+      .hl-gold { color: var(--gold-text); font-weight: 600; }
+
+      /* ---------- 1. title ---------- */
+      .t-big { font-size: 200px; font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; }
+      .t-sub { font-family: "Newsreader", serif; font-style: italic; font-size: 54px; margin-top: 40px; opacity: 0.92; }
+      .blob { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.12); }
+
+      /* ---------- 2. timeline ---------- */
+      .tl-wrap { position: relative; width: 1680px; height: 420px; margin-top: 60px; }
+      .tl-line { position: absolute; left: 0; top: 260px; height: 8px; width: 1680px; border-radius: 4px; background: #d8c6b4; transform-origin: left center; }
+      .tl-lbl { position: absolute; top: 300px; font-size: 32px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); }
+      .now-mark { position: absolute; left: 1420px; top: 170px; width: 8px; height: 190px; background: var(--accent); border-radius: 4px; }
+      .now-lbl { position: absolute; left: 1360px; top: 110px; width: 128px; text-align: center; font-size: 40px; font-weight: 800; color: var(--accent-text); }
+      .dot { position: absolute; width: 44px; height: 44px; border-radius: 50%; top: 242px; }
+      .dot.past { left: 380px; background: var(--muted); }
+      .dot.pp { left: 620px; background: var(--gold); }
+      .arc { position: absolute; left: 0; top: 0; overflow: visible; }
+      .tl-caption { position: absolute; font-family: "Newsreader", serif; font-size: 46px; line-height: 1.2; }
+      .cap-past { left: 160px; top: 20px; width: 520px; color: var(--muted); }
+      .cap-pp { left: 700px; top: 380px; width: 900px; }
+      .tag { display: inline-block; font-family: "Bricolage Grotesque", sans-serif; font-size: 24px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 8px; }
+      .tag.grey { background: #eee3d8; color: var(--muted); }
+      .tag.gold { background: var(--gold-bg); color: var(--gold-text); }
+      .tl-bottom { position: absolute; left: 120px; right: 120px; bottom: 80px; text-align: center; font-size: 46px; font-weight: 700; }
+
+      /* ---------- 3. formula ---------- */
+      .formula { display: flex; align-items: center; gap: 36px; margin-top: 90px; justify-content: center; }
+      .block { white-space: nowrap; font-size: 76px; font-weight: 800; padding: 34px 56px; border-radius: 32px; letter-spacing: -0.02em; }
+      .b-subj { background: #fff; border: 3px solid var(--border); }
+      .b-have { background: var(--accent); color: #fff; }
+      .b-pp { background: var(--gold); color: var(--dark); }
+      .plus { font-size: 80px; font-weight: 800; color: var(--muted); }
+      .pron-row { display: flex; gap: 48px; justify-content: center; margin-top: 90px; }
+      .pron-card { background: #fff; border: 2px solid var(--border); border-radius: 28px; padding: 34px 50px; font-size: 52px; font-weight: 700; min-width: 640px; text-align: center; }
+      .pron-card small { display: block; font-family: "Newsreader", serif; font-style: italic; font-weight: 400; font-size: 40px; color: var(--muted); margin-top: 14px; }
+      .neg-row { display: flex; gap: 40px; justify-content: center; margin-top: 50px; font-family: "Newsreader", serif; font-size: 44px; }
+      .neg-row span { background: var(--cream-2); border: 2px dashed #e3cdb8; border-radius: 18px; padding: 14px 30px; }
+
+      /* ---------- 4. participles ---------- */
+      .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 60px; }
+      .vcard { position: relative; height: 210px; border-radius: 26px; background: #fff; border: 2px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .vbase { font-size: 40px; color: var(--muted); font-weight: 600; }
+      .vpart { font-size: 72px; font-weight: 800; color: var(--accent-text); margin-top: 6px; }
+      .vcard.reg .vpart { color: var(--green); }
+      .vcard.reg { background: var(--green-bg); border-color: #b9dcc7; }
+      .part-note { margin-top: 44px; font-family: "Newsreader", serif; font-size: 42px; color: var(--muted); text-align: center; }
+
+      /* ---------- 5-7. uses ---------- */
+      .use-num { font-size: 260px; font-weight: 800; line-height: 0.8; color: var(--accent); opacity: 0.18; position: absolute; right: 120px; top: 70px; }
+      .use-ex { font-family: "Newsreader", serif; font-size: 76px; line-height: 1.2; margin-top: 70px; max-width: 1500px; }
+      .use-note { font-size: 40px; color: var(--muted); margin-top: 26px; font-weight: 600; }
+      .chips { display: flex; gap: 22px; margin-top: 80px; }
+      #s5, #s6, #s7 { justify-content: center; }
+      #s5 .eyebrow, #s6 .eyebrow, #s7 .eyebrow { position: absolute; top: 90px; left: 120px; }
+      .chip { font-size: 40px; font-weight: 700; padding: 14px 34px; border-radius: 999px; background: var(--gold-bg); color: var(--gold-text); }
+      .bar-wrap { position: relative; height: 150px; margin-top: 50px; width: 1680px; }
+      .bar-track { position: absolute; top: 60px; left: 0; width: 1680px; height: 8px; background: #d8c6b4; border-radius: 4px; }
+      .bar-fill { position: absolute; top: 46px; left: 300px; width: 1100px; height: 36px; border-radius: 18px; background: var(--gold); transform-origin: left center; }
+      .bar-start { position: absolute; left: 230px; top: 100px; font-size: 34px; font-weight: 700; color: var(--gold-text); }
+      .bar-now { position: absolute; left: 1350px; top: 100px; font-size: 34px; font-weight: 800; color: var(--accent-text); }
+      .bar-for { position: absolute; left: 640px; top: -6px; font-size: 38px; font-weight: 800; color: var(--text); }
+      .result { display: flex; align-items: center; gap: 40px; margin-top: 60px; }
+      .r-box { background: #fff; border: 2px solid var(--border); border-radius: 28px; padding: 30px 44px; font-size: 46px; }
+      .r-arrow { font-size: 70px; color: var(--accent); font-weight: 800; }
+
+      /* ---------- 8. vs past simple ---------- */
+      .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 60px; flex: 1; }
+      .vs-col { border-radius: 34px; padding: 46px 54px; display: flex; flex-direction: column; }
+      .vs-col.pp { background: #fff; border: 3px solid var(--gold); }
+      .vs-col.ps { background: #f3e9df; border: 3px solid #e2d3c4; }
+      .vs-h { font-size: 52px; font-weight: 800; }
+      .vs-q { font-size: 34px; color: var(--muted); font-weight: 600; margin-top: 8px; }
+      .vs-words { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+      .vs-words span { font-size: 36px; font-weight: 700; padding: 10px 26px; border-radius: 999px; }
+      .pp .vs-words span { background: var(--gold-bg); color: var(--gold-text); }
+      .ps .vs-words span { background: #e6d8ca; color: #6f5f52; }
+      .vs-ex { font-family: "Newsreader", serif; font-size: 46px; margin-top: auto; line-height: 1.25; }
+
+      /* ---------- 9. mistake ---------- */
+      .mist { font-family: "Newsreader", serif; font-size: 88px; line-height: 1.2; margin-top: 30px; position: relative; display: inline-block; }
+      .mist.wrong { color: #c9bcae; }
+      .strike { position: absolute; left: -10px; right: -10px; top: 55%; height: 8px; background: var(--accent); border-radius: 4px; transform-origin: left center; }
+      .mark { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 80px; margin-right: 30px; }
+      .mist-why { font-size: 40px; color: var(--gold); font-weight: 600; margin-top: 60px; }
+
+      /* ---------- 10. outro ---------- */
+      .eq { white-space: nowrap; display: flex; align-items: center; gap: 40px; font-size: 84px; font-weight: 800; letter-spacing: -0.02em; }
+      .eq .pill { padding: 26px 54px; border-radius: 999px; }
+      .eq .p1 { background: rgba(255, 255, 255, 0.18); }
+      .eq .p2 { background: #fff; color: var(--accent-text); }
+      .eq .p3 { background: var(--dark); color: var(--gold); }
+      .outro-sub { font-family: "Newsreader", serif; font-style: italic; font-size: 52px; margin-top: 70px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="68.5" data-width="1920" data-height="1080">
+
+      <!-- 1. TITLE 0–5 -->
+      <section id="s1" class="clip scene center bg-accent" data-start="0" data-duration="5" data-track-index="0">
+        <div class="blob" data-layout-allow-overflow id="blob1" style="width:700px;height:700px;left:-200px;top:-260px"></div>
+        <div class="blob" data-layout-allow-overflow id="blob2" style="width:520px;height:520px;right:-140px;bottom:-200px"></div>
+        <div class="t-big" id="t1">Present</div>
+        <div class="t-big" id="t2">Perfect</div>
+        <div class="t-sub" id="t3">the past that still matters <b style="font-style:normal">now</b></div>
+      </section>
+
+      <!-- 2. TIMELINE 5–15 -->
+      <section id="s2" class="clip scene bg-cream" data-start="5" data-duration="10" data-track-index="0">
+        <div class="eyebrow" id="s2e">The big idea</div>
+        <div class="tl-wrap">
+          <div class="tl-line" id="tlLine"></div>
+          <div class="tl-lbl" style="left:0">PAST</div>
+          <div class="now-mark" id="nowMark"></div>
+          <div class="now-lbl" id="nowLbl">NOW</div>
+          <div class="dot past" id="dotPast"></div>
+          <div class="tl-caption cap-past" id="capPast"><span class="tag grey">Past simple</span><br />I <b>lost</b> my keys.</div>
+          <svg class="arc" width="1680" height="420" viewBox="0 0 1680 420">
+            <path id="arcPath" d="M 642 250 Q 1040 -10 1418 250" fill="none" stroke="#eaa036" stroke-width="10" stroke-linecap="round" stroke-dasharray="6 0" />
+          </svg>
+          <div class="dot pp" id="dotPP"></div>
+          <div class="tl-caption cap-pp" id="capPP"><span class="tag gold">Present perfect</span><br />I <b class="hl-gold">have lost</b> my keys. <span style="color:var(--muted)">(…I still can’t get in!)</span></div>
+        </div>
+        <div class="tl-bottom" id="tlBottom">Past action <span style="color:var(--gold-text)">→</span> connected to <span class="hl">now</span></div>
+      </section>
+
+      <!-- 3. FORMULA 15–24 -->
+      <section id="s3" class="clip scene bg-cream" data-start="15" data-duration="9" data-track-index="0">
+        <div class="eyebrow">The form</div>
+        <div class="formula">
+          <div class="block b-subj" id="fb1">subject</div>
+          <div class="plus" id="fp1">+</div>
+          <div class="block b-have" id="fb2">have / has</div>
+          <div class="plus" id="fp2">+</div>
+          <div class="block b-pp" id="fb3">past participle</div>
+        </div>
+        <div class="pron-row">
+          <div class="pron-card" id="pc1">I / you / we / they <span class="hl">have</span><small>I’ve eaten. &nbsp;They’ve left.</small></div>
+          <div class="pron-card" id="pc2">he / she / it <span class="hl">has</span><small>She’s eaten. &nbsp;It’s stopped.</small></div>
+        </div>
+        <div class="neg-row">
+          <span id="ng1">I <b>haven’t</b> finished.</span>
+          <span id="ng2"><b>Has</b> he called?</span>
+        </div>
+      </section>
+
+      <!-- 4. PARTICIPLES 24–32 -->
+      <section id="s4" class="clip scene bg-cream" data-start="24" data-duration="8" data-track-index="0">
+        <div class="eyebrow gold">Past participles</div>
+        <div class="h2">Regular: + <span style="color:var(--green)">-ed</span>. Irregular: memorize!</div>
+        <div class="grid">
+          <div class="vcard reg"><div class="vbase">work</div><div class="vpart">worked</div></div>
+          <div class="vcard reg"><div class="vbase">visit</div><div class="vpart">visited</div></div>
+          <div class="vcard"><div class="vbase">go</div><div class="vpart">gone</div></div>
+          <div class="vcard"><div class="vbase">be</div><div class="vpart">been</div></div>
+          <div class="vcard"><div class="vbase">see</div><div class="vpart">seen</div></div>
+          <div class="vcard"><div class="vbase">eat</div><div class="vpart">eaten</div></div>
+          <div class="vcard"><div class="vbase">do</div><div class="vpart">done</div></div>
+          <div class="vcard"><div class="vbase">write</div><div class="vpart">written</div></div>
+        </div>
+      </section>
+
+      <!-- 5. USE 1: EXPERIENCE 32–39 -->
+      <section id="s5" class="clip scene bg-cream" data-start="32" data-duration="7" data-track-index="0">
+        <div class="use-num">1</div>
+        <div class="eyebrow">Use 1 · Life experience</div>
+        <div class="use-ex" id="u1ex">“<b class="hl">Have</b> you <b class="hl-gold">ever</b> <b class="hl">been</b> to Japan?”</div>
+        <div class="use-ex" id="u1ex2" style="margin-top:24px">“No, I’ve <b class="hl-gold">never</b> <b class="hl">been</b> there.”</div>
+        <div class="use-note" id="u1note">When? It doesn’t matter — only <i>in your life up to now</i>.</div>
+        <div class="chips"><span class="chip">ever</span><span class="chip">never</span><span class="chip">before</span><span class="chip">… times</span></div>
+      </section>
+
+      <!-- 6. USE 2: UNFINISHED TIME 39–47 -->
+      <section id="s6" class="clip scene bg-cream" data-start="39" data-duration="8" data-track-index="0">
+        <div class="use-num">2</div>
+        <div class="eyebrow">Use 2 · Started in the past, still true</div>
+        <div class="use-ex" id="u2ex">“She <b class="hl">has lived</b> in Lima <b class="hl-gold">since 2020</b>.”</div>
+        <div class="bar-wrap">
+          <div class="bar-track"></div>
+          <div class="bar-fill" id="barFill"></div>
+          <div class="bar-for" id="barFor">for six years</div>
+          <div class="bar-start" id="barStart">2020</div>
+          <div class="bar-now" id="barNow">NOW</div>
+        </div>
+        <div class="chips"><span class="chip"><b>for</b> + a period</span><span class="chip"><b>since</b> + a starting point</span><span class="chip">How long…?</span></div>
+      </section>
+
+      <!-- 7. USE 3: RECENT RESULT 47–54 -->
+      <section id="s7" class="clip scene bg-cream" data-start="47" data-duration="7" data-track-index="0">
+        <div class="use-num">3</div>
+        <div class="eyebrow">Use 3 · Recent action, result now</div>
+        <div class="result">
+          <div class="r-box serif" id="r1" style="font-size:64px">“I’ve <b class="hl-gold">just</b> <b class="hl">broken</b> my phone.”</div>
+          <div class="r-arrow" id="r2">→</div>
+          <div class="r-box" id="r3">📵 no phone now</div>
+        </div>
+        <div class="use-ex" id="u3ex" style="font-size:58px;margin-top:50px">“Have you finished <b class="hl-gold">yet</b>?” &nbsp;“Yes, I’ve <b class="hl-gold">already</b> finished!”</div>
+        <div class="chips"><span class="chip">just</span><span class="chip">already</span><span class="chip">yet</span><span class="chip">recently</span></div>
+      </section>
+
+      <!-- 8. VS PAST SIMPLE 54–60 -->
+      <section id="s8" class="clip scene bg-cream" data-start="54" data-duration="6" data-track-index="0">
+        <div class="eyebrow gold">Present perfect vs. past simple</div>
+        <div class="vs">
+          <div class="vs-col pp" id="vsA">
+            <div class="vs-h">Present perfect</div>
+            <div class="vs-q">No finished time — connected to now</div>
+            <div class="vs-words"><span>ever</span><span>never</span><span>yet</span><span>for</span><span>since</span><span>this week</span></div>
+            <div class="vs-ex">I’ve <b>seen</b> that movie.</div>
+          </div>
+          <div class="vs-col ps" id="vsB">
+            <div class="vs-h">Past simple</div>
+            <div class="vs-q">Finished time — it’s over</div>
+            <div class="vs-words"><span>yesterday</span><span>last week</span><span>in 2019</span><span>two days ago</span></div>
+            <div class="vs-ex">I <b>saw</b> it <b>last Friday</b>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. MISTAKE 60–65 -->
+      <section id="s9" class="clip scene center bg-dark" data-start="60" data-duration="5" data-track-index="0">
+        <div class="eyebrow ondark" style="align-self:center">Common mistake</div>
+        <div class="mist wrong" id="mw"><span class="mark" style="color:var(--accent)">✗</span>I have seen him yesterday.<div class="strike" id="strike"></div></div>
+        <div class="mist" id="mr"><span class="mark" style="color:#6fcf97">✓</span>I <b>saw</b> him yesterday.</div>
+        <div class="mist-why" id="mwhy">Finished time word → past simple</div>
+      </section>
+
+      <!-- 10. OUTRO 65–68.5 -->
+      <section id="s10" class="clip scene center bg-accent" data-start="65" data-duration="3.5" data-track-index="0">
+        <div class="eq">
+          <span class="pill p1" id="e1">past</span><span id="e2">+</span><span class="pill p2" id="e3">now</span><span id="e4">=</span><span class="pill p3" id="e5">present perfect</span>
+        </div>
+        <div class="outro-sub" id="osub">Now you’ve learned it. ✨</div>
+      </section>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const pop = (sel, t, extra = {}) =>
+        tl.fromTo(sel, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: E, ...extra }, t);
+
+      // 1. title
+      tl.fromTo("#blob1", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, ease: "expo.out" }, 0);
+      tl.fromTo("#blob2", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, ease: "expo.out" }, 0.2);
+      tl.fromTo("#t1", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" }, 0.3);
+      tl.fromTo("#t2", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" }, 0.5);
+      pop("#t3", 1.3);
+      tl.to("#blob1", { y: 60, x: 40, duration: 4, ease: "sine.inOut" }, 1);
+      tl.to(["#t1", "#t2", "#t3"], { opacity: 0, y: -40, duration: 0.4, stagger: 0.06, ease: "power2.in" }, 4.4);
+
+      // 2. timeline (starts 5)
+      pop("#s2e", 5.2);
+      tl.fromTo("#tlLine", { scaleX: 0 }, { scaleX: 1, duration: 1, ease: "power2.inOut" }, 5.4);
+      tl.fromTo("#nowMark", { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 6.2);
+      pop("#nowLbl", 6.3);
+      tl.fromTo("#dotPast", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(3)" }, 7);
+      pop("#capPast", 7.2);
+      tl.fromTo("#dotPP", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(3)" }, 9);
+      tl.fromTo("#arcPath", { attr: { "stroke-dasharray": "0 1200" } }, { attr: { "stroke-dasharray": "1200 0" }, duration: 1.4, ease: "power2.inOut" }, 9.3);
+      tl.to("#nowMark", { scaleX: 2.2, duration: 0.25, yoyo: true, repeat: 1, ease: "power1.inOut" }, 10.7);
+      pop("#capPP", 10.2);
+      tl.to("#capPast", { opacity: 0.45, duration: 0.5 }, 10.2);
+      pop("#tlBottom", 12);
+
+      // 3. formula (15)
+      tl.fromTo("#fb1", { opacity: 0, x: -200 }, { opacity: 1, x: 0, duration: 0.6, ease: E }, 15.3);
+      tl.fromTo("#fp1", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, 15.7);
+      tl.fromTo("#fb2", { opacity: 0, y: -160 }, { opacity: 1, y: 0, duration: 0.7, ease: "bounce.out" }, 15.9);
+      tl.fromTo("#fp2", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, 16.5);
+      tl.fromTo("#fb3", { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.6, ease: E }, 16.7);
+      tl.to(["#fb1", "#fb2", "#fb3"], { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, stagger: 0.12 }, 17.6);
+      pop("#pc1", 18.4);
+      pop("#pc2", 18.8);
+      pop("#ng1", 20.6);
+      pop("#ng2", 21);
+
+      // 4. participles (24)
+      tl.fromTo("#s4 .h2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: E }, 24.2);
+      tl.fromTo("#s4 .vcard", { opacity: 0, rotationY: -90 }, { opacity: 1, rotationY: 0, duration: 0.55, stagger: 0.28, ease: "back.out(1.6)" }, 24.9);
+      tl.fromTo("#s4 .vpart", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.28, ease: E }, 25.3);
+
+      // 5. use 1 (32)
+      tl.fromTo("#s5 .use-num", { opacity: 0, scale: 0.6 }, { opacity: 0.18, scale: 1, duration: 0.8, ease: E }, 32);
+      pop("#u1ex", 32.4);
+      pop("#u1ex2", 33.8);
+      pop("#u1note", 35);
+      tl.fromTo("#s5 .chip", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.12, ease: "back.out(2.5)" }, 35.8);
+
+      // 6. use 2 (39)
+      tl.fromTo("#s6 .use-num", { opacity: 0, scale: 0.6 }, { opacity: 0.18, scale: 1, duration: 0.8, ease: E }, 39);
+      pop("#u2ex", 39.4);
+      pop("#barStart", 40.6);
+      tl.fromTo("#barFill", { scaleX: 0 }, { scaleX: 1, duration: 1.8, ease: "power2.inOut" }, 40.8);
+      pop("#barNow", 42.4);
+      pop("#barFor", 42.8);
+      tl.fromTo("#s6 .chip", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.15, ease: "back.out(2.5)" }, 43.6);
+
+      // 7. use 3 (47)
+      tl.fromTo("#s7 .use-num", { opacity: 0, scale: 0.6 }, { opacity: 0.18, scale: 1, duration: 0.8, ease: E }, 47);
+      pop("#r1", 47.4);
+      tl.fromTo("#r2", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 48.4);
+      tl.fromTo("#r3", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.5)" }, 48.7);
+      pop("#u3ex", 49.8);
+      tl.fromTo("#s7 .chip", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.12, ease: "back.out(2.5)" }, 51.2);
+
+      // 8. vs (54)
+      tl.fromTo("#vsA", { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.7, ease: E }, 54.3);
+      tl.fromTo("#vsB", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.7, ease: E }, 54.6);
+      tl.fromTo("#s8 .vs-words span", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.08, ease: "back.out(2)" }, 55.3);
+
+      // 9. mistake (60)
+      pop("#mw", 60.2);
+      tl.fromTo("#strike", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power2.inOut" }, 61);
+      tl.to("#mw", { x: 12, duration: 0.06, yoyo: true, repeat: 5 }, 61.3);
+      pop("#mr", 62);
+      pop("#mwhy", 62.8);
+
+      // 10. outro (65)
+      tl.fromTo(["#e1", "#e2", "#e3", "#e4", "#e5"], { opacity: 0, y: 60, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, stagger: 0.14, ease: "back.out(2)" }, 65.2);
+      pop("#osub", 66.4);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
